@@ -90,20 +90,25 @@
 
     <string name="horasHacer" translatable="false">Estatus para realizar horas</string>
     <string name="horasR" translatable="false">Estatus para recibir horas</string>
-    <string name="title_activity_main">Main_Activity</string>
+    <string name="title_activity_main" translatable="false">Main_Activity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
     <!-- Main Activity-->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="drawer_open">Open Drawer</string>
-    <string name="drawer_close">Close Drawer</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="drawer_open" translatable="false">Open Drawer</string>
+    <string name="drawer_close" translatable="false">Close Drawer</string>
 
-    <string name="user_name">Nombre del Usuario</string>
+    <string name="user_name" translatable="false">Nombre del Usuario</string>
+
+    //Pagina Inicio
+    <string name="pi_detalle" translatable="false">Detalle</string>
+    <string name="pi_nombre" translatable="false">José Luis</string>
+    <string name="pi_trabajo" translatable="false">Videojuegos</string>
 
 </resources>

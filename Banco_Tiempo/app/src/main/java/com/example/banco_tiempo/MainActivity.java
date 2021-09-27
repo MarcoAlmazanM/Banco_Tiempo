@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String lastName = preferences.getString("lastName","");
         nameTextView.setText( name + " " + lastName);
 
-        //Always Display Home UI
-        getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment()).commit();
-        setTitle("Home");
+        //Always Display Inicio UI
+        getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentInicio()).commit();
+        setTitle("Inicio");
 
         // Setup Toolbar
         setSupportActionBar(toolbar);
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction ft = fm.beginTransaction();
         switch(item.getItemId()){
             case R.id.nav_home:
-                ft.replace(R.id.content, new HomeFragment()).commit();
+                ft.replace(R.id.content, new FragmentInicio()).commit();
                 break;
             case R.id.nav_profile:
                 ft.replace(R.id.content, new ProfileFragment()).commit();
