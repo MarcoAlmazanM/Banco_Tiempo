@@ -37,10 +37,10 @@ public class LoginActivity extends AppCompatActivity {
         if (intent.getExtras() != null) {
             LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
             if (loginResponse.getLoginApproval() == 1) {
-                preferences = this.getSharedPreferences("datos",Context.MODE_PRIVATE);
+                preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
                 editor = preferences.edit();
-                editor.putString("Nombre",loginResponse.getName().toString());
-                editor.putString("Apellido",loginResponse.getLastName().toString());
+                editor.putString("name",loginResponse.getName().toString());
+                editor.putString("lastName",loginResponse.getLastName().toString());
                 editor.apply();
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(menu);
@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(register);
     }
+
     public void loginUser(LoginRequest loginRequest) {
         Call<LoginResponse> loginResponseCall = ApiClient.getService().loginUser(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {

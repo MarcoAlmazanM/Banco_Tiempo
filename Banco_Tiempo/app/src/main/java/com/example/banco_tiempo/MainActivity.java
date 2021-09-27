@@ -45,10 +45,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         headerView = navigationView.getHeaderView(0);
         nameTextView = (TextView)headerView.findViewById(R.id.nameTextView);
         toolbar = findViewById(R.id.toolbar);
-        preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
-        nameTextView.setText(preferences.getString("Nombre","Nombre del Usuario") + " " + preferences.getString("Apellido","Nombre del Usuario"));
+        //Set Header Nav
+        String name = preferences.getString("name","Nombre del Usuario");
+        String lastName = preferences.getString("lastName","");
+        nameTextView.setText( name + " " + lastName);
+
         //Always Display Home UI
         getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment()).commit();
         setTitle("Home");
