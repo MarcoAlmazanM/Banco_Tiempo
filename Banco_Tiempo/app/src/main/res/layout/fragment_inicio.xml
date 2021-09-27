@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentInicio">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <View
+        android:id="@+id/myRectangleView15"
+        android:layout_width="0dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myRectangleView14" />
+
+    <Button
+        android:id="@+id/btnDetalles12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:text="@string/pi_detalle"
+        app:layout_constraintEnd_toStartOf="@+id/imgProfile12"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView15" />
+
+    <TextView
+        android:id="@+id/tVNombre12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:text="@string/pi_nombre"
+        app:layout_constraintBottom_toTopOf="@+id/tVTrabajo12"
+        app:layout_constraintStart_toStartOf="@+id/tVTrabajo12" />
+
+    <ImageButton
+        android:id="@+id/imageBtn10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_baseline_favorite_24"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView15"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView15" />
+
+    <ImageView
+        android:id="@+id/imgProfile12"
+        android:layout_width="122dp"
+        android:layout_height="131dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="22dp"
+        android:src="@drawable/ic_baseline_face_24"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView15"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView15"/>
+
+    <View
+        android:id="@+id/myRectangleView14"
+        android:layout_width="0dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toTopOf="@+id/myRectangleView15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myRectangleView11" />
+
+    <TextView
+        android:id="@+id/tVTrabajo12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginBottom="11dp"
+        android:text="@string/pi_trabajo"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView15"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView15" />
+
+    <Button
+        android:id="@+id/btnDetalles11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:text="@string/pi_detalle"
+        app:layout_constraintEnd_toStartOf="@+id/imgProfile13"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView14" />
+
+    <TextView
+        android:id="@+id/tVNombre11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="@string/pi_nombre"
+        app:layout_constraintStart_toStartOf="@+id/imageBtn9"
+        app:layout_constraintTop_toBottomOf="@+id/imageBtn9" />
+
+    <ImageButton
+        android:id="@+id/imageBtn9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_baseline_favorite_24"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView14"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView14" />
+
+    <View
+        android:id="@+id/myRectangleView13"
+        android:layout_width="0dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgProfile10"
+        android:layout_width="127dp"
+        android:layout_height="122dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="65dp"
+        android:src="@drawable/ic_baseline_face_24"
+        app:layout_constraintBottom_toTopOf="@+id/myRectangleView11"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView13"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toEndOf="@+id/tVTrabajo"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView13"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <Button
+        android:id="@+id/btnDetalles10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:text="@string/pi_detalle"
+        app:layout_constraintEnd_toStartOf="@+id/imgProfile10"
+        app:layout_constraintTop_toTopOf="@+id/imgProfile10" />
+
+    <ImageButton
+        android:id="@+id/imageBtn8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/ic_baseline_favorite_24"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView13"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView13" />
+
+    <TextView
+        android:id="@+id/tVTrabajo9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/pi_trabajo"
+        app:layout_constraintStart_toStartOf="@+id/tVNombre11"
+        app:layout_constraintTop_toBottomOf="@+id/tVNombre11" />
+
+    <View
+        android:id="@+id/myRectangleView11"
+        android:layout_width="0dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toTopOf="@+id/myRectangleView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myRectangleView13" />
+
+    <ImageView
+        android:id="@+id/imgProfile8"
+        android:layout_width="122dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_baseline_face_24"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView11"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView11"/>
+
+    <ImageView
+        android:id="@+id/imgProfile13"
+        android:layout_width="121dp"
+        android:layout_height="127dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="9dp"
+        android:src="@drawable/ic_baseline_face_24"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView14"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView14"/>
+
+    <Button
+        android:id="@+id/btnDetalles8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:text="@string/pi_detalle"
+        app:layout_constraintEnd_toStartOf="@+id/imgProfile8"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView11" />
+
+    <ImageButton
+        android:id="@+id/imageBtn6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/ic_baseline_favorite_24"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView11"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView11" />
+
+    <TextView
+        android:id="@+id/tVTrabajo8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="@string/pi_trabajo"
+        app:layout_constraintStart_toStartOf="@+id/tVNombre8"
+        app:layout_constraintTop_toBottomOf="@+id/tVNombre8" />
+
+    <TextView
+        android:id="@+id/tVNombre8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="@string/pi_nombre"
+        app:layout_constraintStart_toStartOf="@+id/imageBtn6"
+        app:layout_constraintTop_toBottomOf="@+id/imageBtn6" />
+
+    <TextView
+        android:id="@+id/tVTrabajo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/pi_trabajo"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView13"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView13" />
+
+    <TextView
+        android:id="@+id/tVNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/pi_nombre"
+        app:layout_constraintBottom_toTopOf="@+id/tVTrabajo"
+        app:layout_constraintStart_toStartOf="@+id/tVTrabajo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
