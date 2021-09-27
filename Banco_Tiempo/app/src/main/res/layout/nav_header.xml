@@ -14,9 +14,10 @@
         android:layout_gravity="center"
         />
     <TextView
+        android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre del Usuario"
+        android:text="@string/user_name"
         android:textSize="20sp"
         android:layout_gravity="center"
         />

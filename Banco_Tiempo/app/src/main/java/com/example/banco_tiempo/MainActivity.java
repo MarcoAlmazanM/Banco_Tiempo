@@ -9,11 +9,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -22,8 +26,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout mDrawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    View headerView;
+    TextView nameTextView;
 
     ActionBarDrawerToggle toggle;
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +42,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //SET UI
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        headerView = navigationView.getHeaderView(0);
+        nameTextView = (TextView)headerView.findViewById(R.id.nameTextView);
         toolbar = findViewById(R.id.toolbar);
+        preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        editor = preferences.edit();
 
-
+        nameTextView.setText(preferences.getString("Nombre","Nombre del Usuario") + " " + preferences.getString("Apellido","Nombre del Usuario"));
         //Always Display Home UI
         getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment()).commit();
         setTitle("Home");

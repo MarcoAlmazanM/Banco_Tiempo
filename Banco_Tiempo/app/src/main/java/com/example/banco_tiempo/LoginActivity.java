@@ -2,7 +2,9 @@ package com.example.banco_tiempo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     Button btnRegister;
     EditText edUsername, edPassword;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,34 +33,15 @@ public class LoginActivity extends AppCompatActivity {
         edUsername = findViewById(R.id.eTUsername);
         edPassword = findViewById(R.id.eTPassword);
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(register);
-            }
-        });
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (TextUtils.isEmpty(edUsername.getText().toString()) || TextUtils.isEmpty(edPassword.getText().toString())) {
-                    String message = "All inputs required ...";
-                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
-                } else {
-                    LoginRequest loginRequest = new LoginRequest();
-                    loginRequest.setUsername(edUsername.getText().toString());
-                    loginRequest.setPassword(edPassword.getText().toString());
-
-                    loginUser(loginRequest);
-                }
-            }
-        });
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
-            Log.e("TAG", "msg----------------->" + loginResponse.toString());
             if (loginResponse.getLoginApproval() == 1) {
+                preferences = this.getSharedPreferences("datos",Context.MODE_PRIVATE);
+                editor = preferences.edit();
+                editor.putString("Nombre",loginResponse.getName().toString());
+                editor.putString("Apellido",loginResponse.getLastName().toString());
+                editor.apply();
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(menu);
             }else{
@@ -66,6 +51,23 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void btnLogin(View view){
+        if (TextUtils.isEmpty(edUsername.getText().toString()) || TextUtils.isEmpty(edPassword.getText().toString())) {
+            String message = "All inputs required ...";
+            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+        } else {
+            LoginRequest loginRequest = new LoginRequest();
+            loginRequest.setUsername(edUsername.getText().toString());
+            loginRequest.setPassword(edPassword.getText().toString());
+
+            loginUser(loginRequest);
+        }
+    }
+
+    public void btnRegister(View view){
+        Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(register);
+    }
     public void loginUser(LoginRequest loginRequest) {
         Call<LoginResponse> loginResponseCall = ApiClient.getService().loginUser(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
