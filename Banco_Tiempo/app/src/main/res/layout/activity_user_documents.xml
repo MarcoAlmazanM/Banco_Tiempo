@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserDocumentsActivity">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/ine"
+        app:layout_constraintBottom_toTopOf="@+id/boton_documento_ine"
+        app:layout_constraintStart_toStartOf="@+id/boton_documento_ine" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/comprobanteDomicilio"
+        app:layout_constraintBottom_toTopOf="@+id/boton_antescedentes"
+        app:layout_constraintStart_toStartOf="@+id/boton_antescedentes" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/certificado"
+        app:layout_constraintBottom_toTopOf="@+id/boton_comprobante"
+        app:layout_constraintStart_toStartOf="@+id/boton_comprobante" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/cartaPenal"
+        app:layout_constraintBottom_toTopOf="@+id/boton_certificado"
+        app:layout_constraintStart_toStartOf="@+id/boton_certificado" />
+
+    <Button
+        android:id="@+id/boton_antescedentes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="subir documento"
+        app:layout_constraintStart_toStartOf="@+id/boton_documento_ine"
+        app:layout_constraintTop_toBottomOf="@+id/boton_documento_ine" />
+
+    <Button
+        android:id="@+id/boton_certificado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="subir documento"
+        app:layout_constraintStart_toStartOf="@+id/boton_antescedentes"
+        app:layout_constraintTop_toBottomOf="@+id/boton_antescedentes" />
+
+    <Button
+        android:id="@+id/boton_comprobante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="subir documento"
+        app:layout_constraintStart_toStartOf="@+id/boton_certificado"
+        app:layout_constraintTop_toBottomOf="@+id/boton_certificado" />
+
+    <Button
+        android:id="@+id/boton_documento_ine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:text="subir documento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/upload_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/boton_documento_ine"
+        app:layout_constraintStart_toEndOf="@+id/boton_documento_ine"
+        app:srcCompat="@drawable/ic_upload" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/boton_antescedentes"
+        app:layout_constraintStart_toEndOf="@+id/boton_antescedentes"
+        app:srcCompat="@drawable/ic_upload" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/boton_comprobante"
+        app:layout_constraintStart_toEndOf="@+id/boton_comprobante"
+        app:srcCompat="@drawable/ic_upload" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/boton_certificado"
+        app:layout_constraintStart_toEndOf="@+id/boton_certificado"
+        app:srcCompat="@drawable/ic_upload" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

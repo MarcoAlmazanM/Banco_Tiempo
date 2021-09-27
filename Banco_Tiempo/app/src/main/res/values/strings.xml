@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">Banco de Tiempo</string>
+    <string name="registroBDT" translatable="false">Registrarse con BDT</string>
+    <string name="registroFB" translatable="false">Registrarse con Facebook</string>
+    <string name="registroG" translatable="false">Registrarse con Google</string>
+    <string name="iniciarsesion" translatable="false">Iniciar Sesión</string>
+    <string name="bienvenida" translatable="false">Banco de Tiempo</string>
+    <string name="logoBDT" translatable="false">Reloj de bienvenida</string>
+    <string name="nombreLogin" translatable="false">Nombre</string>
+    <string name="passwordLogin" translatable="false">Contraseña</string>
+    <string name="registroReg" translatable="false">Registro</string>
+    <string name="registroTeryPol" translatable="false">Acepto las condiciones de uso y la política de privacidad.</string>
+    <string name="correo" translatable="false">Correo</string>
+    <string name="confirmaContra" translatable="false">Confirma contraseña</string>
+    <string name="registrarse" translatable="false">Regístrate</string>
+    <string name="nombreUsuario" translatable="false">Nombre de Usuario</string>
+    <string name="datosUsuario" translatable="false">Datos del Usuario</string>
+    <string name="documentosUsuario" translatable="false">Documentos / Certificados</string>
+    <string name="apellidoMaterno" translatable="false">Apellido Materno</string>
+    <string name="apellidoPaterno" translatable="false">Apellido Paterno</string>
+    <string name="direccion" translatable="false">Dirección</string>
+    <string name="municipio" translatable="false">Municipio</string>
+    <string name="codigoPostal" translatable="false">Código Postal</string>
+    <string name="ciudad" translatable="false">Ciudad</string>
+    <string name="nombres" translatable="false">Nombre(s)</string>
+    <string name="nacimiento" translatable="false">Nacimiento</string>
+    <string name="ine" translatable="false">INE *</string>
+    <string name="comprobanteDomicilio" translatable="false">Comprobante de Domicilio *</string>
+    <string name="certificado" translatable="false">Certificado</string>
+    <string name="cartaPenal" translatable="false">Carta de Antecendentes no Penales *</string>
+    <string name="eligeDoc" translatable="false">Elige Documento...</string>
+    <string name="busquedaFiltro" translatable="false">Ingresa una Categoría</string>
+    <string name="topCategorias" translatable="false">Top Categorías</string>
+
+    //Nueva Oferta
+    <string name="upload" translatable="false">Subir</string>
+    <string name="nomOfer" translatable="false">Nombre de la oferta</string>
+    <string name="trabajo" translatable="false">Tipo de trabajo</string>
+    <string name="ubicacion" translatable="false">Ubicacion</string>
+    <string name="descripcion" translatable="false">Breve descripcion de la oferta.</string>
+    <string name="imgoferta" translatable="false">Imagen de la oferta</string>
+    <string-array name="tipoOferta">
+        <item>Carpintería</item>
+        <item>Repostería</item>
+        <item>Panadería</item>
+    </string-array>
+    <string-array name="ubicacionOferta">
+        <item>Coyotepec</item>
+        <item>Acolman</item>
+        <item>Tenancingo</item>
+    </string-array>
+
+    //Ajustes
+    <string name="software" translatable="false">Información de Software</string>
+    <string name="terycon" translatable="false">Términos y condiciones</string>
+    <string name="legal" translatable="false">Legal</string>
+    <string name="faq" translatable="false">Preguntas frecuentes</string>
+    <string name="manual" translatable="false">Manual de aplicación</string>
+
+    //DetallesOfertas
+    <string name="calEstrellas" translatable="false">4.7(13)</string>
+    <string name="empleo" translatable="false">Carpintero</string>
+    <string name="descTrabajo" translatable="false">Descripción de prueba</string>
+    <string name="horarios" translatable="false">Horarios Disponibles</string>
+    <string name="botonAceptar" translatable="false">Aceptar</string>
+    <string name="horario1" translatable="false">Lunes a Viernes de 8:00 a 13:00</string>
+
+    //Bienvenida
+    <string name="start" translatable="false">Comenzar</string>
+
+    <string name="validacion" translatable="false">Verificación</string>
+    <string name="msgValidacion" translatable="false">Ingresa el código que se envió por correo</string>
+    <string name="codigoVeri" translatable="false">Ingresa el código </string>
+    <string name="entrar" translatable="false">Entrar</string>
+    <string name="nuevoCodigo" translatable="false"><a href="https://www.youtube.com/watch?v=R0H0X0KXzbA">Enviar código nuevamente</a></string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
+
+    <string name="menu_home" translatable="false">Perfil de usuario</string>
+    <string name="menu_gallery" translatable="false">Consulta de ofertas</string>
+    <string name="menu_slideshow" translatable="false">Registro de ofertas</string>
+    <string name="menu_ajustes" translatable="false">Ajustes</string>
+
+    <string name="misOfertas" translatable="false">Mis Ofertas publicadas</string>
+    <string name="favoritos" translatable="false">Mis Servicios Favoritos</string>
+    <string name="servicioId" translatable="false">Nombre del servicio</string>
+    <string name="contacto" translatable="false">Ofertante</string>
+    <string name="contratar" translatable="false">Contratar nuevamente</string>
+
+    <string name="horasHacer" translatable="false">Estatus para realizar horas</string>
+    <string name="horasR" translatable="false">Estatus para recibir horas</string>
+    <string name="title_activity_main">Main_Activity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- Main Activity-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
+</resources>
