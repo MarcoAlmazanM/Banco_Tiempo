@@ -8,4 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darker_gray">#A9A9A9</color>
+    <color name="blue_1_toolbar">#03045E</color>
+    <color name="blue_2">#023E8A</color>
+    <color name="blue_3">#0077B6</color>
+    <color name="blue_4_btn">#0096C7</color>
+    <color name="blue_5">#00B4D8</color>
+    <color name="blue_6">#48CAE4</color>
+    <color name="blue_7">#90E0EF</color>
+    <color name="blue_8">#ADE8F4</color>
+    <color name="blue_9">#CAF0F8</color>
 </resources>

@@ -3,18 +3,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:title="Home"
+            android:title="Inicio"
             android:icon="@drawable/ic_baseline_home_24"
             android:checked="true"
         />
         <item
             android:id="@+id/nav_profile"
-            android:title="Profile"
+            android:title="Perfil"
             android:icon="@drawable/ic_baseline_person_24"
         />
         <item
             android:id="@+id/nav_event"
-            android:title="Event"
+            android:title="Búsqueda de Ofertas"
+            android:icon="@drawable/ic_baseline_event_24"
+            />
+        <item
+            android:id="@+id/nav_event"
+            android:title="Agregar Nueva Ofertas"
             android:icon="@drawable/ic_baseline_event_24"
             />
     </group>

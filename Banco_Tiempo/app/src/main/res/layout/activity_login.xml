@@ -14,7 +14,9 @@
         android:text="@string/registroBDT"
         app:layout_constraintEnd_toEndOf="@+id/btnLogin"
         app:layout_constraintStart_toStartOf="@+id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+
+        />
 
     <Button
         android:id="@+id/button3"
@@ -44,6 +46,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/iniciarsesion"
         app:layout_constraintEnd_toEndOf="@+id/eTPassword"
+        android:backgroundTint="@color/blue_4_btn"
         app:layout_constraintStart_toStartOf="@+id/eTPassword"
         app:layout_constraintTop_toBottomOf="@+id/eTPassword" />
 
