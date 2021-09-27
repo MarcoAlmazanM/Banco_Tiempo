@@ -64,13 +64,13 @@
         app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
     <EditText
-        android:id="@+id/eTEmail"
+        android:id="@+id/eTUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:autofillHints="username"
         android:ems="10"
-        android:hint="@string/correo"
+        android:hint="@string/username"
         android:inputType="textWebEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,10 +88,10 @@
         android:hint="@string/passwordLogin"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/eTEmail"
+        app:layout_constraintEnd_toEndOf="@+id/eTUsername"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/eTEmail"
-        app:layout_constraintTop_toBottomOf="@+id/eTEmail" />
+        app:layout_constraintStart_toStartOf="@+id/eTUsername"
+        app:layout_constraintTop_toBottomOf="@+id/eTUsername" />
 
     <TextView
         android:id="@+id/textView"

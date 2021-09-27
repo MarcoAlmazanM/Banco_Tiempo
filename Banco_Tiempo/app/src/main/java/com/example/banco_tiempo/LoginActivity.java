@@ -18,7 +18,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     Button btnRegister;
-    EditText edEmail, edPassword;
+    EditText edUsername, edPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
-        edEmail = findViewById(R.id.eTEmail);
+        edUsername = findViewById(R.id.eTUsername);
         edPassword = findViewById(R.id.eTPassword);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -40,12 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(edEmail.getText().toString()) || TextUtils.isEmpty(edPassword.getText().toString())) {
+                if (TextUtils.isEmpty(edUsername.getText().toString()) || TextUtils.isEmpty(edPassword.getText().toString())) {
                     String message = "All inputs required ...";
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                 } else {
                     LoginRequest loginRequest = new LoginRequest();
-                    loginRequest.setEmail(edEmail.getText().toString());
+                    loginRequest.setUsername(edUsername.getText().toString());
                     loginRequest.setPassword(edPassword.getText().toString());
 
                     loginUser(loginRequest);
@@ -55,10 +55,13 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
-            Log.e("TAG", "msg----------------->" + loginResponse.getLoginApproval().toString());
+            Log.e("TAG", "msg----------------->" + loginResponse.toString());
             if (loginResponse.getLoginApproval() == 1) {
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(menu);
+            }else{
+                String message = "Inicio Fallido";
+                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
             }
         }
     }

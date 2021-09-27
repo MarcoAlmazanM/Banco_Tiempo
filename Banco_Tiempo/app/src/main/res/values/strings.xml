@@ -10,6 +10,7 @@
     <string name="passwordLogin" translatable="false">Contraseña</string>
     <string name="registroReg" translatable="false">Registro</string>
     <string name="registroTeryPol" translatable="false">Acepto las condiciones de uso y la política de privacidad.</string>
+    <string name="username" translatable="false">Usuario</string>
     <string name="correo" translatable="false">Correo</string>
     <string name="confirmaContra" translatable="false">Confirma contraseña</string>
     <string name="registrarse" translatable="false">Regístrate</string>
