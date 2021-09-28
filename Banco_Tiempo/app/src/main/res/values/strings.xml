@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Banco de Tiempo</string>
+    <string name="app_nameold" translatable="false">Banco de Tiempo</string>
     <string name="registroBDT" translatable="false">Registrarse con BDT</string>
     <string name="registroFB" translatable="false">Registrarse con Facebook</string>
     <string name="registroG" translatable="false">Registrarse con Google</string>
@@ -114,5 +114,17 @@
     <string name="pi_detalle" translatable="false">Detalle</string>
     <string name="pi_nombre" translatable="false">José Luis</string>
     <string name="pi_trabajo" translatable="false">Videojuegos</string>
+    <string name="pi_imgdesc" translatable="false">Favorito</string>
+    <string name="pi_titulo" translatable="false">Ofertas Populares</string>
+
+    //New Login
+    <string name="app_name" translatable="false">Banco de Tiempo</string>
+    <string name="login_email_hint" translatable="false">Correo</string>
+    <string name="login_password_hint" translatable="false">Contraseña</string>
+    <string name="accounthave" translatable="false">¿Ya tienes\n una cuenta?</string>
+    <string name="passforg" translatable="false">¿Olvidaste tu contraseña?</string>
+    <string name="nlogin" translatable="false">Iniciar Sesión</string>
+    <string name="nusuar" translatable="false">¿Usuario nuevo? Registrate ahora</string>
+    <string name="nforinic" translatable="false">Otras formas</string>
 
 </resources>
