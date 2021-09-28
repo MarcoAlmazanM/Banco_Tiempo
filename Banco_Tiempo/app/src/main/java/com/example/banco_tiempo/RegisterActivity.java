@@ -26,6 +26,9 @@ public class RegisterActivity extends AppCompatActivity {
     EditText eTNombre, eTAP,eTAM, eTCalle, eTNumInt,
             eTColonia,eTMunicipio, eTEstado, eTCP,
             eTEmailR, eTUsername, eTPassword, eTPasswordConfirm;
+    String nombre, apellidoPaterno, apellidoMaterno, calle, numInt, colonia,
+            municipio, estado, cP, email, username, password, passwordConfirm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     public void verifyData(View view){
+
+        // Find Id EditText & CheckBox
         eTNombre =findViewById(R.id.eTNombre);
         eTAP = findViewById(R.id.eTAP);
         eTAM = findViewById(R.id.eTAM);
@@ -60,6 +65,11 @@ public class RegisterActivity extends AppCompatActivity {
         eTPassword = findViewById(R.id.eTPasswordR);
         eTPasswordConfirm = findViewById(R.id.eTPasswordConfirm);
         checkPrivacity = findViewById(R.id.cBPrivacity);
+
+        // Set strings UI
+
+        nombre = eTNombre.getText().toString();
+        apellidoPaterno = eTAP.getText().toString();
 
         if(TextUtils.isEmpty(eTNombre.getText().toString()) || TextUtils.isEmpty(eTAP.getText().toString()) ||
                 TextUtils.isEmpty(eTAM.getText().toString()) || TextUtils.isEmpty(eTCalle.getText().toString())||
@@ -77,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
             String message = "You need to accept the notice of privacy ...";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
         } else{
-            String password = hash256(eTPassword.getText().toString());
+            password = hash256(eTPassword.getText().toString());
             RegisterRequest registerRequest = new RegisterRequest();
             registerRequest.setNombre(eTNombre.getText().toString());
             registerRequest.setApellidoP(eTAP.getText().toString());

@@ -24,10 +24,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true" />
         <activity
-            android:name=".NewLogin"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:exported="true"/>
-        <activity
             android:name=".UserDocumentsActivity"
             android:exported="true" />
         <activity
