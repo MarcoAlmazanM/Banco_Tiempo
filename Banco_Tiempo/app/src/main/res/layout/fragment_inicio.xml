@@ -1,262 +1,350 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentInicio">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tVOfertaPop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:text="@string/pi_titulo"
+                android:translationX="150dp"
+                android:translationY="20dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/blue_9"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
+
+                <!--
+        In the above cardview widget
+        cardelevation property will give elevation to your card view
+        card corner radius will provide radius to your card view
+        card background color will give background color to your card view
+        card max elevation will give the cardview maximum elevation
+        card prevent corner overlap will add padding to CardView on v20 and before to prevent intersections between the Card content and rounded corners.
+        card use compact padding will add padding in API v21+ as well to have the same measurements with previous versions.
+        below are the two widgets imageview and text view we are displaying inside our card view.
+        -->
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="200dp"
+                    android:layout_height="125dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_baseline_face_24"
+                    android:translationX="105dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/pi_nombre"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:translationX="-118dp"
+                    android:translationY="-15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/pi_trabajo"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:translationX="-105dp"
+                    android:translationY="15dp" />
+
+                <ImageButton
+                    android:id="@+id/imageDetalleBtn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/pi_imgdesc"
+                    android:minHeight="48dp"
+                    android:src="@drawable/ic_baseline_favorite_24"
+                    android:translationX="18dp"
+                    android:translationY="10dp" />
+
+                <Button
+                    android:id="@+id/btnDetalle3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue_4_btn"
+                    android:text="@string/pi_detalle"
+                    android:translationX="80dp"
+                    android:translationY="10dp" />
 
 
-    <View
-        android:id="@+id/myRectangleView15"
-        android:layout_width="0dp"
-        android:layout_height="147dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginEnd="19dp"
-        android:background="@drawable/rectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myRectangleView14" />
+            </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/btnDetalles12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:text="@string/pi_detalle"
-        app:layout_constraintEnd_toStartOf="@+id/imgProfile12"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView15" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/blue_9"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/tVNombre12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:text="@string/pi_nombre"
-        app:layout_constraintBottom_toTopOf="@+id/tVTrabajo12"
-        app:layout_constraintStart_toStartOf="@+id/tVTrabajo12" />
+                <!--
+        In the above cardview widget
+        cardelevation property will give elevation to your card view
+        card corner radius will provide radius to your card view
+        card background color will give background color to your card view
+        card max elevation will give the cardview maximum elevation
+        card prevent corner overlap will add padding to CardView on v20 and before to prevent intersections between the Card content and rounded corners.
+        card use compact padding will add padding in API v21+ as well to have the same measurements with previous versions.
+        below are the two widgets imageview and text view we are displaying inside our card view.
+        -->
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="200dp"
+                    android:layout_height="125dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_baseline_face_24"
+                    android:translationX="105dp" />
 
-    <ImageButton
-        android:id="@+id/imageBtn10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/ic_baseline_favorite_24"
-        app:layout_constraintStart_toStartOf="@+id/myRectangleView15"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView15" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/pi_nombre"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:translationX="-118dp"
+                    android:translationY="-15dp" />
 
-    <ImageView
-        android:id="@+id/imgProfile12"
-        android:layout_width="122dp"
-        android:layout_height="131dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="22dp"
-        android:src="@drawable/ic_baseline_face_24"
-        app:layout_constraintEnd_toEndOf="@+id/myRectangleView15"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView15"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/pi_trabajo"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:translationX="-105dp"
+                    android:translationY="15dp" />
 
-    <View
-        android:id="@+id/myRectangleView14"
-        android:layout_width="0dp"
-        android:layout_height="147dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginEnd="19dp"
-        android:background="@drawable/rectangle"
-        app:layout_constraintBottom_toTopOf="@+id/myRectangleView15"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myRectangleView11" />
+                <ImageButton
+                    android:id="@+id/imageDetalleBtn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/pi_imgdesc"
+                    android:minHeight="48dp"
+                    android:src="@drawable/ic_baseline_favorite_24"
+                    android:translationX="18dp"
+                    android:translationY="10dp" />
 
-    <TextView
-        android:id="@+id/tVTrabajo12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginBottom="11dp"
-        android:text="@string/pi_trabajo"
-        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView15"
-        app:layout_constraintStart_toStartOf="@+id/myRectangleView15" />
+                <Button
+                    android:id="@+id/btnDetalle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue_4_btn"
+                    android:text="@string/pi_detalle"
+                    android:translationX="80dp"
+                    android:translationY="10dp" />
 
-    <Button
-        android:id="@+id/btnDetalles11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:text="@string/pi_detalle"
-        app:layout_constraintEnd_toStartOf="@+id/imgProfile13"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView14" />
 
-    <TextView
-        android:id="@+id/tVNombre11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:text="@string/pi_nombre"
-        app:layout_constraintStart_toStartOf="@+id/imageBtn9"
-        app:layout_constraintTop_toBottomOf="@+id/imageBtn9" />
+            </androidx.cardview.widget.CardView>
 
-    <ImageButton
-        android:id="@+id/imageBtn9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_baseline_favorite_24"
-        app:layout_constraintStart_toStartOf="@+id/myRectangleView14"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView14" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/blue_9"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
 
-    <View
-        android:id="@+id/myRectangleView13"
-        android:layout_width="0dp"
-        android:layout_height="147dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="19dp"
-        android:background="@drawable/rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <!--
+        In the above cardview widget
+        cardelevation property will give elevation to your card view
+        card corner radius will provide radius to your card view
+        card background color will give background color to your card view
+        card max elevation will give the cardview maximum elevation
+        card prevent corner overlap will add padding to CardView on v20 and before to prevent intersections between the Card content and rounded corners.
+        card use compact padding will add padding in API v21+ as well to have the same measurements with previous versions.
+        below are the two widgets imageview and text view we are displaying inside our card view.
+        -->
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="200dp"
+                    android:layout_height="125dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_baseline_face_24"
+                    android:translationX="105dp" />
 
-    <ImageView
-        android:id="@+id/imgProfile10"
-        android:layout_width="127dp"
-        android:layout_height="122dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="65dp"
-        android:src="@drawable/ic_baseline_face_24"
-        app:layout_constraintBottom_toTopOf="@+id/myRectangleView11"
-        app:layout_constraintEnd_toEndOf="@+id/myRectangleView13"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toEndOf="@+id/tVTrabajo"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView13"
-        app:layout_constraintVertical_bias="0.0"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/pi_nombre"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:translationX="-118dp"
+                    android:translationY="-15dp" />
 
-    <Button
-        android:id="@+id/btnDetalles10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:text="@string/pi_detalle"
-        app:layout_constraintEnd_toStartOf="@+id/imgProfile10"
-        app:layout_constraintTop_toTopOf="@+id/imgProfile10" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/pi_trabajo"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:translationX="-105dp"
+                    android:translationY="15dp" />
 
-    <ImageButton
-        android:id="@+id/imageBtn8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/ic_baseline_favorite_24"
-        app:layout_constraintStart_toStartOf="@+id/myRectangleView13"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView13" />
+                <ImageButton
+                    android:id="@+id/imageDetalleBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/pi_imgdesc"
+                    android:minHeight="48dp"
+                    android:src="@drawable/ic_baseline_favorite_24"
+                    android:translationX="18dp"
+                    android:translationY="10dp" />
 
-    <TextView
-        android:id="@+id/tVTrabajo9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/pi_trabajo"
-        app:layout_constraintStart_toStartOf="@+id/tVNombre11"
-        app:layout_constraintTop_toBottomOf="@+id/tVNombre11" />
+                <Button
+                    android:id="@+id/btnDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue_4_btn"
+                    android:text="@string/pi_detalle"
+                    android:translationX="80dp"
+                    android:translationY="10dp" />
 
-    <View
-        android:id="@+id/myRectangleView11"
-        android:layout_width="0dp"
-        android:layout_height="147dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginEnd="19dp"
-        android:background="@drawable/rectangle"
-        app:layout_constraintBottom_toTopOf="@+id/myRectangleView14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myRectangleView13" />
 
-    <ImageView
-        android:id="@+id/imgProfile8"
-        android:layout_width="122dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_baseline_face_24"
-        app:layout_constraintEnd_toEndOf="@+id/myRectangleView11"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView11"/>
+            </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/imgProfile13"
-        android:layout_width="121dp"
-        android:layout_height="127dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="9dp"
-        android:src="@drawable/ic_baseline_face_24"
-        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView14"
-        app:layout_constraintEnd_toEndOf="@+id/myRectangleView14"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/blue_9"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
 
-    <Button
-        android:id="@+id/btnDetalles8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:text="@string/pi_detalle"
-        app:layout_constraintEnd_toStartOf="@+id/imgProfile8"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView11" />
+                <!--
+        In the above cardview widget
+        cardelevation property will give elevation to your card view
+        card corner radius will provide radius to your card view
+        card background color will give background color to your card view
+        card max elevation will give the cardview maximum elevation
+        card prevent corner overlap will add padding to CardView on v20 and before to prevent intersections between the Card content and rounded corners.
+        card use compact padding will add padding in API v21+ as well to have the same measurements with previous versions.
+        below are the two widgets imageview and text view we are displaying inside our card view.
+        -->
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="200dp"
+                    android:layout_height="125dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_baseline_face_24"
+                    android:translationX="105dp" />
 
-    <ImageButton
-        android:id="@+id/imageBtn6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="7dp"
-        android:src="@drawable/ic_baseline_favorite_24"
-        app:layout_constraintStart_toStartOf="@+id/myRectangleView11"
-        app:layout_constraintTop_toTopOf="@+id/myRectangleView11" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/pi_nombre"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:translationX="-118dp"
+                    android:translationY="-15dp" />
 
-    <TextView
-        android:id="@+id/tVTrabajo8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:text="@string/pi_trabajo"
-        app:layout_constraintStart_toStartOf="@+id/tVNombre8"
-        app:layout_constraintTop_toBottomOf="@+id/tVNombre8" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/pi_trabajo"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:translationX="-105dp"
+                    android:translationY="15dp" />
 
-    <TextView
-        android:id="@+id/tVNombre8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:text="@string/pi_nombre"
-        app:layout_constraintStart_toStartOf="@+id/imageBtn6"
-        app:layout_constraintTop_toBottomOf="@+id/imageBtn6" />
+                <ImageButton
+                    android:id="@+id/imageDetalleBtn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/pi_imgdesc"
+                    android:minHeight="48dp"
+                    android:src="@drawable/ic_baseline_favorite_24"
+                    android:translationX="18dp"
+                    android:translationY="10dp" />
 
-    <TextView
-        android:id="@+id/tVTrabajo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="12dp"
-        android:text="@string/pi_trabajo"
-        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView13"
-        app:layout_constraintStart_toStartOf="@+id/myRectangleView13" />
+                <Button
+                    android:id="@+id/btnDetalle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue_4_btn"
+                    android:text="@string/pi_detalle"
+                    android:translationX="80dp"
+                    android:translationY="10dp" />
 
-    <TextView
-        android:id="@+id/tVNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="@string/pi_nombre"
-        app:layout_constraintBottom_toTopOf="@+id/tVTrabajo"
-        app:layout_constraintStart_toStartOf="@+id/tVTrabajo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -110,5 +110,7 @@
     <string name="pi_detalle" translatable="false">Detalle</string>
     <string name="pi_nombre" translatable="false">José Luis</string>
     <string name="pi_trabajo" translatable="false">Videojuegos</string>
+    <string name="pi_imgdesc" translatable="false">Favorito</string>
+    <string name="pi_titulo" translatable="false">Ofertas Populares</string>
 
 </resources>
