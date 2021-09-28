@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
+            android:name=".OfferDetails"
+            android:exported="true" />
+        <activity
+            android:name=".ListOffersActivity"
+            android:exported="true" />
+        <activity
             android:name=".UserDocumentsActivity"
             android:exported="true" />
         <activity

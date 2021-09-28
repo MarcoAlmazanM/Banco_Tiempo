@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FilterFragment">
+
+    <TextView
+        android:id="@+id/categorias"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rectangle"
+        android:text="@string/topCategorias"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSastreria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Sastreria"
+        android:backgroundTint="@color/blue_4_btn"
+        app:layout_constraintEnd_toEndOf="@+id/btnDefensa"
+        app:layout_constraintStart_toStartOf="@+id/btnDefensa"
+        app:layout_constraintTop_toBottomOf="@+id/btnDefensa" />
+
+    <Button
+        android:id="@+id/btnIdioma"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Idiomas"
+        android:backgroundTint="@color/blue_4_btn"
+        app:layout_constraintEnd_toEndOf="@+id/btnPlomeria"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="@+id/btnPlomeria"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlomeria" />
+
+    <Button
+        android:id="@+id/btnReposteria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Reposteria"
+        android:backgroundTint="@color/blue_4_btn"
+        app:layout_constraintEnd_toEndOf="@+id/btnSastreria"
+        app:layout_constraintStart_toStartOf="@+id/btnSastreria"
+        app:layout_constraintTop_toBottomOf="@+id/btnSastreria" />
+
+    <Button
+        android:id="@+id/btnCarpinteria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Carpinteria"
+        android:backgroundTint="@color/blue_4_btn"
+        app:layout_constraintEnd_toEndOf="@+id/btnReposteria"
+        app:layout_constraintStart_toStartOf="@+id/btnReposteria"
+        app:layout_constraintTop_toBottomOf="@+id/btnReposteria" />
+
+    <Button
+        android:id="@+id/btnPlomeria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Plomeria"
+        android:backgroundTint="@color/blue_4_btn"
+        app:layout_constraintEnd_toEndOf="@+id/btnCarpinteria"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="@+id/btnCarpinteria"
+        app:layout_constraintTop_toBottomOf="@+id/btnCarpinteria" />
+
+    <Button
+        android:id="@+id/btnDefensa"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="60dp"
+        android:text="Defensa personal"
+        android:backgroundTint="@color/blue_4_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categorias" />
+
+    <Button
+        android:id="@+id/btnPerfil"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Buscar perfil"
+        android:backgroundTint="@color/blue_4_btn"
+        app:layout_constraintEnd_toEndOf="@+id/busquedaPerfil"
+        app:layout_constraintStart_toStartOf="@+id/btnIdioma"
+        app:layout_constraintTop_toBottomOf="@+id/busquedaPerfil" />
+
+    <Button
+        android:id="@+id/btnServicio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Buscar servicio"
+        android:backgroundTint="@color/blue_4_btn"
+        app:layout_constraintEnd_toEndOf="@+id/busquedaServicio"
+        app:layout_constraintStart_toStartOf="@+id/btnPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/busquedaServicio" />
+
+    <TextView
+        android:id="@+id/tagPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perfil"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="@+id/busquedaPerfil"
+        app:layout_constraintStart_toStartOf="@+id/btnIdioma"
+        app:layout_constraintTop_toTopOf="@+id/busquedaPerfil" />
+
+    <TextView
+        android:id="@+id/tagServicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Servicio"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="@+id/busquedaServicio"
+        app:layout_constraintStart_toStartOf="@+id/tagPerfil"
+        app:layout_constraintTop_toTopOf="@+id/busquedaServicio" />
+
+    <EditText
+        android:id="@+id/busquedaPerfil"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/blue_9"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Perfil a buscar..."
+        app:layout_constraintEnd_toEndOf="@+id/btnIdioma"
+        app:layout_constraintStart_toEndOf="@+id/tagPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/btnIdioma" />
+
+    <EditText
+        android:id="@+id/busquedaServicio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/blue_9"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Servicio a buscar"
+        app:layout_constraintEnd_toEndOf="@+id/busquedaPerfil"
+        app:layout_constraintStart_toEndOf="@+id/tagServicio"
+        app:layout_constraintTop_toBottomOf="@+id/btnPerfil" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
