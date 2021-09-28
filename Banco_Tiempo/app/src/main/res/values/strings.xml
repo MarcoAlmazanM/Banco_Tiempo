@@ -19,10 +19,14 @@
     <string name="documentosUsuario" translatable="false">Documentos / Certificados</string>
     <string name="apellidoMaterno" translatable="false">Apellido Materno</string>
     <string name="apellidoPaterno" translatable="false">Apellido Paterno</string>
-    <string name="direccion" translatable="false">Dirección</string>
+    <string name="ciudad" translatable="false">Ciudad</string>
+    <string name="direccion" translatable="false">Direccion</string>
+    <string name="calle" translatable="false">Calle</string>
+    <string name="numInt" translatable="false">Número Interno</string>
     <string name="municipio" translatable="false">Municipio</string>
     <string name="codigoPostal" translatable="false">Código Postal</string>
-    <string name="ciudad" translatable="false">Ciudad</string>
+    <string name="colonia" translatable="false">Colonia</string>
+    <string name="estado" translatable="false">Estado</string>
     <string name="nombres" translatable="false">Nombre(s)</string>
     <string name="nacimiento" translatable="false">Nacimiento</string>
     <string name="ine" translatable="false">INE *</string>

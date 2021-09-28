@@ -21,8 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    Button btnLogin;
-    Button btnRegister;
+
     EditText edUsername, edPassword;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -31,15 +30,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnRegister = findViewById(R.id.btnRegister);
+
         edUsername = findViewById(R.id.eTUsername);
         edPassword = findViewById(R.id.eTPassword);
 
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
+            Log.e("TAG","Msg--->"+loginResponse.getLoginApproval().toString());
             if (loginResponse.getLoginApproval() == 1) {
+                Log.e("TAG","ENTRAMOS");
                 preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
                 editor = preferences.edit();
                 editor.putString("name",loginResponse.getName().toString());
@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful()) {
+
                     LoginResponse loginResponse = response.body();
                     startActivity(new Intent(LoginActivity.this, LoginActivity.class).putExtra("data", loginResponse));
                     finish();

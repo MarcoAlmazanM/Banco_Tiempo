@@ -12,7 +12,7 @@ public class ApiClient {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://bka70s5pka.execute-api.us-east-1.amazonaws.com/")
+                .baseUrl("https://bka70s5pka.execute-api.us-east-1.amazonaws.com/API/")
                 .client(okHttpClient)
                 .build();
         return retrofit;
