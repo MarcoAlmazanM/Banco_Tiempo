@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.apply();
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(menu);
+                finish();
             }else{
                 String message = "Inicio Fallido";
                 Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
@@ -58,8 +62,9 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             LoginRequest loginRequest = new LoginRequest();
             loginRequest.setUsername(edUsername.getText().toString());
-            loginRequest.setPassword(edPassword.getText().toString());
-
+            String password = edPassword.getText().toString();
+            password = hash256(password);
+            loginRequest.setPassword(password);
             loginUser(loginRequest);
         }
     }
@@ -91,4 +96,32 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    // Section Hash Sha 256
+    private static String bytesToHexString(byte[] bytes) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < bytes.length; i++) {
+            String hex = Integer.toHexString(0xFF & bytes[i]);
+            if (hex.length() == 1) {
+                sb.append('0');
+            }
+            sb.append(hex);
+        }
+        return sb.toString();
+    }
+
+    private String hash256(String password){
+        MessageDigest digest=null;
+        String hash = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+            digest.update(password.getBytes());
+            hash = bytesToHexString(digest.digest());
+        } catch(NoSuchAlgorithmException e1) {
+            e1.printStackTrace();
+        }
+        return hash;
+    }
+
+
 }
