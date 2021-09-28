@@ -34,7 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             RegisterResponse registerResponse = (RegisterResponse) intent.getSerializableExtra("data");
-            Log.e("TAG","MSGGG---->"+registerResponse.getRegisterApproval() );
             if (registerResponse.getRegisterApproval() == 1) {
                 Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(login);
@@ -47,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     public void verifyData(View view){
-        eTNombre = findViewById(R.id.eTNombre);
+        eTNombre =findViewById(R.id.eTNombre);
         eTAP = findViewById(R.id.eTAP);
         eTAM = findViewById(R.id.eTAM);
         eTCalle = findViewById(R.id.eTCalle);
@@ -71,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                 TextUtils.isEmpty(eTPasswordConfirm.getText().toString())){
             String message = "All inputs required ...";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-        }else if (TextUtils.isEmpty(eTPassword.getText().toString()) != TextUtils.isEmpty(eTPassword.getText().toString())){
+        }else if (!eTPassword.getText().toString().equals(eTPasswordConfirm.getText().toString())){
             String message = "Both Passwords have to be equal ...";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
         }else if(checkPrivacity.isChecked() == false ){
