@@ -131,4 +131,22 @@
     <string name="registrate" translatable="false">¡Tu primer\n paso con \nnosotros!</string>
     <string name="goback" translatable="false">¿Ya tienes una cuenta?</string>
 
+    //Nueva Oferta RecyclerView
+    <string-array name="empleos">
+        <item>Carpintería</item>
+        <item>Plomería</item>
+        <item>Sastrería</item>
+        <item>Tutoría</item>
+        <item>Inglés</item>
+        <item>Matemáticas</item>
+    </string-array>
+
+    <string-array name="descripciones">
+        <item>Descripción de prueba.</item>
+        <item>Descripción de prueba.</item>
+        <item>Descripción de prueba.</item>
+        <item>Descripción de prueba.</item>
+        <item>Descripción de prueba.</item>
+    </string-array>
+
 </resources>
