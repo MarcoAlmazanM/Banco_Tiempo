@@ -263,6 +263,7 @@
                     <TextView
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
+                        android:onClick="goBackLogin"
                         android:text="@string/goback"
                         android:textAlignment="center"
                         android:textColor="@color/themeColor"
@@ -347,7 +348,8 @@
         android:layout_marginRight="11dp"
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="false"
-        android:src="@drawable/ic_back_img"/>
+        android:onClick="goBackLogin"
+        android:src="@drawable/ic_back_img" />
 
     <!--android:onClick="onLoginClick" -->
 

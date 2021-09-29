@@ -36,8 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        registerIntent();
         changeStatusBarColor();
+        registerIntent();
     }
 
     public void changeStatusBarColor() {
@@ -48,8 +48,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
     }
-
-    public void verifyData(View view){
 
     public void verifyData(View view){
         // Find Id EditText & CheckBox
@@ -152,5 +150,10 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    public void goBackLogin(View view){
+        Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(login);
+        finish();
+    }
 
 }

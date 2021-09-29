@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_settings:
                 ft.replace(R.id.content, new SettingsFragment()).commit();
                 break;
+            case R.id.nav_closeSession:
+                break;
         }
         setTitle(item.getTitle());
         mDrawerLayout.closeDrawers();
