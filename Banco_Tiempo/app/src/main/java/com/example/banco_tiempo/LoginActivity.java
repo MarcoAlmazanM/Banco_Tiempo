@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -23,15 +24,44 @@ public class LoginActivity extends AppCompatActivity {
     EditText edUsername, edPassword;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //For changing status bar icon color
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
         setContentView(R.layout.activity_login);
 
+
+        loginIntent();
+    }
+
+    public void btnLogin(View view){
         edUsername = findViewById(R.id.eTUsername);
         edPassword = findViewById(R.id.eTPassword);
+        if (TextUtils.isEmpty(edUsername.getText().toString()) || TextUtils.isEmpty(edPassword.getText().toString())) {
+            message = "All inputs required ...";
+            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+        } else {
+            LoginRequest loginRequest = new LoginRequest();
+            loginRequest.setUsername(edUsername.getText().toString());
+            Resources resources = new Resources();
+            String password = edPassword.getText().toString();
+            password = resources.hash256(password);
+            loginRequest.setPassword(password);
+            loginUser(loginRequest);
+        }
+    }
 
+    public void btnRegister(View view){
+        Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(register);
+    }
+
+    public void loginIntent(){
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
@@ -43,31 +73,13 @@ public class LoginActivity extends AppCompatActivity {
                 editor.apply();
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(menu);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }else{
-                String message = "Inicio Fallido";
+                message = "Inicio Fallido";
                 Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    public void btnLogin(View view){
-        if (TextUtils.isEmpty(edUsername.getText().toString()) || TextUtils.isEmpty(edPassword.getText().toString())) {
-            String message = "All inputs required ...";
-            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
-        } else {
-            LoginRequest loginRequest = new LoginRequest();
-            loginRequest.setUsername(edUsername.getText().toString());
-            String password = edPassword.getText().toString();
-            password = hash256(password);
-            loginRequest.setPassword(password);
-            loginUser(loginRequest);
-        }
-    }
-
-    public void btnRegister(View view){
-        Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(register);
     }
 
     public void loginUser(LoginRequest loginRequest) {
@@ -80,44 +92,17 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, LoginActivity.class).putExtra("data", loginResponse));
                     finish();
                 } else {
-                    String message = "An error occurred, please try again...";
+                    message = "An error occurred, please try again...";
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                String message = t.getLocalizedMessage();
+                message = t.getLocalizedMessage();
                 Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
-
-    // Section Hash Sha 256
-    private static String bytesToHexString(byte[] bytes) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < bytes.length; i++) {
-            String hex = Integer.toHexString(0xFF & bytes[i]);
-            if (hex.length() == 1) {
-                sb.append('0');
-            }
-            sb.append(hex);
-        }
-        return sb.toString();
-    }
-
-    private String hash256(String password){
-        MessageDigest digest=null;
-        String hash = null;
-        try {
-            digest = MessageDigest.getInstance("SHA-256");
-            digest.update(password.getBytes());
-            hash = bytesToHexString(digest.digest());
-        } catch(NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        }
-        return hash;
-    }
-
 
 }

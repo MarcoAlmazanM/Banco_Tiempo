@@ -27,25 +27,14 @@ public class RegisterActivity extends AppCompatActivity {
             eTColonia,eTMunicipio, eTEstado, eTCP,
             eTEmailR, eTUsername, eTPassword, eTPasswordConfirm;
     String nombre, apellidoPaterno, apellidoMaterno, calle, numInt, colonia,
-            municipio, estado, cP, email, username, password, passwordConfirm;
+            municipio, estado, cP, email, username, password, passwordConfirm, message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Intent intent = getIntent();
-        if (intent.getExtras() != null) {
-            RegisterResponse registerResponse = (RegisterResponse) intent.getSerializableExtra("data");
-            if (registerResponse.getRegisterApproval() == 1) {
-                Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(login);
-                finish();
-            }else{
-                String message = registerResponse.getError();
-                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-            }
-        }
+        registerIntent();
 
     }
     public void verifyData(View view){
@@ -67,41 +56,63 @@ public class RegisterActivity extends AppCompatActivity {
         checkPrivacity = findViewById(R.id.cBPrivacity);
 
         // Set strings UI
-
         nombre = eTNombre.getText().toString();
         apellidoPaterno = eTAP.getText().toString();
+        apellidoMaterno = eTAM.getText().toString();
+        calle = eTCalle.getText().toString();
+        numInt = eTNumInt.getText().toString();
+        colonia = eTColonia.getText().toString();
+        municipio = eTMunicipio.getText().toString();
+        estado = eTEstado.getText().toString();
+        cP = eTCP.getText().toString();
+        email = eTEmailR.getText().toString();
+        username = eTUsername.getText().toString();
+        password = eTPassword.getText().toString();
+        passwordConfirm = eTPasswordConfirm.getText().toString();
 
-        if(TextUtils.isEmpty(eTNombre.getText().toString()) || TextUtils.isEmpty(eTAP.getText().toString()) ||
-                TextUtils.isEmpty(eTAM.getText().toString()) || TextUtils.isEmpty(eTCalle.getText().toString())||
-                TextUtils.isEmpty(eTNumInt.getText().toString()) || TextUtils.isEmpty(eTColonia.getText().toString()) ||
-                TextUtils.isEmpty(eTMunicipio.getText().toString()) || TextUtils.isEmpty(eTEstado.getText().toString()) ||
-                TextUtils.isEmpty(eTCP.getText().toString()) || TextUtils.isEmpty(eTEmailR.getText().toString()) ||
-                TextUtils.isEmpty(eTUsername.getText().toString()) || TextUtils.isEmpty(eTPassword.getText().toString()) ||
-                TextUtils.isEmpty(eTPasswordConfirm.getText().toString())){
-            String message = "All inputs required ...";
+        if(TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellidoPaterno) || TextUtils.isEmpty(apellidoMaterno) || TextUtils.isEmpty(calle)||
+                TextUtils.isEmpty(numInt) || TextUtils.isEmpty(colonia) || TextUtils.isEmpty(municipio) || TextUtils.isEmpty(estado) ||
+                TextUtils.isEmpty(cP) || TextUtils.isEmpty(email) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(passwordConfirm)){
+            message = "All inputs required ...";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-        }else if (!eTPassword.getText().toString().equals(eTPasswordConfirm.getText().toString())){
-            String message = "Both Passwords have to be equal ...";
+        }else if (!password.equals(passwordConfirm)){
+            message = "Both Passwords have to be equal ...";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-        }else if(checkPrivacity.isChecked() == false ){
-            String message = "You need to accept the notice of privacy ...";
+        }else if(!checkPrivacity.isChecked()){
+            message = "You need to accept the notice of privacy ...";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
         } else{
-            password = hash256(eTPassword.getText().toString());
+            Resources resources = new Resources();
+            String passwordHash = resources.hash256(password);
             RegisterRequest registerRequest = new RegisterRequest();
-            registerRequest.setNombre(eTNombre.getText().toString());
-            registerRequest.setApellidoP(eTAP.getText().toString());
-            registerRequest.setApellidoM(eTAM.getText().toString());
-            registerRequest.setCalle(eTCalle.getText().toString());
-            registerRequest.setNumero(eTNumInt.getText().toString());
-            registerRequest.setColonia(eTColonia.getText().toString());
-            registerRequest.setMunicipio(eTMunicipio.getText().toString());
-            registerRequest.setEstado(eTEstado.getText().toString());
-            registerRequest.setCPP(eTCP.getText().toString());
-            registerRequest.setCorreo(eTEmailR.getText().toString());
-            registerRequest.setIdUsuario(eTUsername.getText().toString());
-            registerRequest.setContrasena(password);
+            registerRequest.setNombre(nombre);
+            registerRequest.setApellidoP(apellidoPaterno);
+            registerRequest.setApellidoM(apellidoMaterno);
+            registerRequest.setCalle(calle);
+            registerRequest.setNumero(numInt);
+            registerRequest.setColonia(colonia);
+            registerRequest.setMunicipio(municipio);
+            registerRequest.setEstado(estado);
+            registerRequest.setCPP(cP);
+            registerRequest.setCorreo(email);
+            registerRequest.setIdUsuario(username);
+            registerRequest.setContrasena(passwordHash);
             registerUser(registerRequest);
+        }
+    }
+
+    public void registerIntent(){
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            RegisterResponse registerResponse = (RegisterResponse) intent.getSerializableExtra("data");
+            if (registerResponse.getRegisterApproval() == 1) {
+                Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(login);
+                finish();
+            }else{
+                message = registerResponse.getError();
+                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -115,42 +126,18 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(new Intent(RegisterActivity.this, RegisterActivity.class).putExtra("data", registerResponse));
                     finish();
                 } else {
-                    String message = "An error occurred, please try again...";
+                    message = "An error occurred, please try again...";
                     Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                String message = t.getLocalizedMessage();
+                message = t.getLocalizedMessage();
                 Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    // Section Hash Sha 256
-    private static String bytesToHexString(byte[] bytes) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < bytes.length; i++) {
-            String hex = Integer.toHexString(0xFF & bytes[i]);
-            if (hex.length() == 1) {
-                sb.append('0');
-            }
-            sb.append(hex);
-        }
-        return sb.toString();
-    }
 
-    private String hash256(String password){
-        MessageDigest digest=null;
-        String hash = null;
-        try {
-            digest = MessageDigest.getInstance("SHA-256");
-            digest.update(password.getBytes());
-            hash = bytesToHexString(digest.digest());
-        } catch(NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        }
-        return hash;
-    }
 }
