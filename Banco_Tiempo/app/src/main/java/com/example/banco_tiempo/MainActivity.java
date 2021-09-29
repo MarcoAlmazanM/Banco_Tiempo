@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     public void closeSession(MenuItem item) {
         editor.putBoolean("SaveSession",false);
         editor.apply();
