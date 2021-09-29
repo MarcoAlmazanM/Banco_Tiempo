@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_baseline_person_24"
         />
         <item
-            android:id="@+id/nav_event"
+            android:id="@+id/nav_searchOffers"
             android:title="Búsqueda de Ofertas"
             android:icon="@drawable/ic_baseline_event_24"
             />
@@ -36,7 +36,12 @@
                     android:title="Settings"
                     android:icon="@drawable/ic_baseline_settings_24"
                     />
+                <item
+                    android:id="@+id/nav_closeSession"
+                    android:title="Close Session"
+                    android:icon="@drawable/ic_baseline_logout_24"/>
             </group>
         </menu>
     </item>
+
 </menu>

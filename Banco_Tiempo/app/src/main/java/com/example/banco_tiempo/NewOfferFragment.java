@@ -1,22 +1,21 @@
 package com.example.banco_tiempo;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentInicio#newInstance} factory method to
+ * Use the {@link NewOfferFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentInicio extends Fragment {
-
+public class NewOfferFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,9 +26,13 @@ public class FragmentInicio extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FragmentInicio() {
+    public NewOfferFragment() {
         // Required empty public constructor
     }
+
+    RecyclerView recyclerOfertas;
+    String s1[], s2[];
+    int images[] = {R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48};
 
     /**
      * Use this factory method to create a new instance of
@@ -37,11 +40,11 @@ public class FragmentInicio extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentInicio.
+     * @return A new instance of fragment NewOfferFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentInicio newInstance(String param1, String param2) {
-        FragmentInicio fragment = new FragmentInicio();
+    public static NewOfferFragment newInstance(String param1, String param2) {
+        NewOfferFragment fragment = new NewOfferFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,7 +64,18 @@ public class FragmentInicio extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio, container, false);
+        View vista = inflater.inflate(R.layout.fragment_new_offer, container, false);
+
+        recyclerOfertas = (RecyclerView) vista.findViewById(R.id.rVNewOffer);
+
+        s1 = getResources().getStringArray(R.array.empleos);
+        s2 = getResources().getStringArray(R.array.descripciones);
+
+        AdapterNewOffer myadapter = new AdapterNewOffer(getContext(), s1, s2, images);
+
+        recyclerOfertas.setAdapter(myadapter);
+        recyclerOfertas.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        return vista;
     }
 }

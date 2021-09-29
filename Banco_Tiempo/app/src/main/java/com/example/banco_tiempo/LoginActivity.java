@@ -5,11 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,43 +24,36 @@ public class LoginActivity extends AppCompatActivity {
     EditText edUsername, edPassword;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    String message;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        edUsername = findViewById(R.id.eTUsername);
-        edPassword = findViewById(R.id.eTPassword);
-
-        Intent intent = getIntent();
-        if (intent.getExtras() != null) {
-            LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
-            if (loginResponse.getLoginApproval() == 1) {
-                preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
-                editor = preferences.edit();
-                editor.putString("name",loginResponse.getName().toString());
-                editor.putString("lastName",loginResponse.getLastName().toString());
-                editor.apply();
-                Intent menu = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(menu);
-                finish();
-            }else{
-                String message = "Inicio Fallido";
-                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
-            }
+        //For changing status bar icon color
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
+        setContentView(R.layout.activity_login);
+        preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        loginIntent();
+
+
     }
 
     public void btnLogin(View view){
+        edUsername = findViewById(R.id.eTUsername);
+        edPassword = findViewById(R.id.eTPassword);
         if (TextUtils.isEmpty(edUsername.getText().toString()) || TextUtils.isEmpty(edPassword.getText().toString())) {
-            String message = "All inputs required ...";
+            message = "All inputs required ...";
             Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
         } else {
             LoginRequest loginRequest = new LoginRequest();
             loginRequest.setUsername(edUsername.getText().toString());
+            Resources resources = new Resources();
             String password = edPassword.getText().toString();
-            password = hash256(password);
+            password = resources.hash256(password);
             loginRequest.setPassword(password);
             loginUser(loginRequest);
         }
@@ -70,6 +62,32 @@ public class LoginActivity extends AppCompatActivity {
     public void btnRegister(View view){
         Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(register);
+    }
+
+    public boolean checkSession(){
+        return this.preferences.getBoolean("SaveSession", false);
+    }
+
+    public void loginIntent(){
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
+            if (loginResponse.getLoginApproval() == 1) {
+                preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
+                editor = preferences.edit();
+                editor.putString("name",loginResponse.getName().toString());
+                editor.putString("lastName",loginResponse.getLastName().toString());
+                editor.putBoolean("SaveSession",true);
+                editor.apply();
+                Intent menu = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(menu);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+                finish();
+            }else{
+                message = "Inicio Fallido";
+                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void loginUser(LoginRequest loginRequest) {
@@ -82,44 +100,17 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, LoginActivity.class).putExtra("data", loginResponse));
                     finish();
                 } else {
-                    String message = "An error occurred, please try again...";
+                    message = "An error occurred, please try again...";
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                String message = t.getLocalizedMessage();
+                message = t.getLocalizedMessage();
                 Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
-
-    // Section Hash Sha 256
-    private static String bytesToHexString(byte[] bytes) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < bytes.length; i++) {
-            String hex = Integer.toHexString(0xFF & bytes[i]);
-            if (hex.length() == 1) {
-                sb.append('0');
-            }
-            sb.append(hex);
-        }
-        return sb.toString();
-    }
-
-    private String hash256(String password){
-        MessageDigest digest=null;
-        String hash = null;
-        try {
-            digest = MessageDigest.getInstance("SHA-256");
-            digest.update(password.getBytes());
-            hash = bytesToHexString(digest.digest());
-        } catch(NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        }
-        return hash;
-    }
-
 
 }

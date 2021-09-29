@@ -7,58 +7,45 @@
     tools:context=".ProfileFragment">
 
 
-    <ImageView
-        android:id="@+id/imagenUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tVUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="57dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="38dp"
         android:text="@string/nombreUsuario"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/btnUserData"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
+        app:layout_constraintEnd_toEndOf="@+id/btnUserData"
+        app:layout_constraintTop_toBottomOf="@+id/iVUserProfile" />
 
     <Button
         android:id="@+id/btnUserData"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginEnd="33dp"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
         android:layout_marginBottom="28dp"
-        android:backgroundTint="#272323"
+        android:backgroundTint="@color/blue_4_btn"
         android:onClick="goUserData"
         android:text="@string/datosUsuario"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:iconTint="#221E1E"
-        app:layout_constraintBottom_toTopOf="@+id/boton_documentos_usuario"
+        app:layout_constraintBottom_toTopOf="@+id/btnUserDocuments"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/tVUserName" />
 
     <Button
-        android:id="@+id/boton_documentos_usuario"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="269dp"
-        android:backgroundTint="#272323"
+        android:id="@+id/btnUserDocuments"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="248dp"
+        android:backgroundTint="@color/blue_4_btn"
         android:onClick="goUserDoc"
         android:text="@string/documentosUsuario"
         android:textAlignment="textStart"
@@ -69,5 +56,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnUserData" />
+
+    <ImageView
+        android:id="@+id/iVUserProfile"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/baseline_account_circle_black_48"
+        app:layout_constraintBottom_toTopOf="@+id/tVUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
