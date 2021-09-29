@@ -53,17 +53,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/aceptarServicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/blue_4_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horario"
-        tools:text="@string/botonAceptar" />
-
     <TextView
         android:id="@+id/serviceGiven"
         android:layout_width="wrap_content"
@@ -108,5 +97,16 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/jobDescription"
         app:layout_constraintStart_toStartOf="@+id/jobDescription" />
+
+    <Button
+        android:id="@+id/aceptarServicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:text="Aceptar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
