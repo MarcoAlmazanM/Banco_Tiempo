@@ -127,4 +127,8 @@
     <string name="nusuar" translatable="false">¿Usuario nuevo? Registrate ahora</string>
     <string name="nforinic" translatable="false">Otras formas</string>
 
+    //Registro
+    <string name="registrate" translatable="false">¡Tu primer\n paso con \nnosotros!</string>
+    <string name="goback" translatable="false">¿Ya tienes una cuenta?</string>
+
 </resources>
