@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -114,8 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_settings:
                 ft.replace(R.id.content, new SettingsFragment()).commit();
                 break;
-            case R.id.nav_closeSession:
-                break;
+
         }
         setTitle(item.getTitle());
         mDrawerLayout.closeDrawers();
@@ -127,5 +127,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    public void closeSession(MenuItem item) {
+        editor.putBoolean("SaveSession",false);
+        editor.apply();
+        String message = "Closed Session";
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+        Intent login = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(login);
+        finish();
     }
 }
