@@ -33,12 +33,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         registerIntent();
-
     }
-    public void verifyData(View view){
 
+    public void verifyData(View view){
         // Find Id EditText & CheckBox
         eTNombre =findViewById(R.id.eTNombre);
         eTAP = findViewById(R.id.eTAP);

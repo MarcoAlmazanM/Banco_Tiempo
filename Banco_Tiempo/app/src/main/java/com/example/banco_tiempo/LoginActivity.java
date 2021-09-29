@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     String message;
+    Boolean saveSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,15 @@ public class LoginActivity extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
         setContentView(R.layout.activity_login);
+        preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        editor.putBoolean(  "SaveSession", false);
+        editor.apply();
 
+        if(checkSession()){
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            finish();
+        }
 
         loginIntent();
     }
@@ -61,15 +70,21 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(register);
     }
 
+    public boolean checkSession(){
+        return this.preferences.getBoolean("SaveSession",false);
+    }
+
     public void loginIntent(){
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
             if (loginResponse.getLoginApproval() == 1) {
+                saveSession = true;
                 preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
                 editor = preferences.edit();
                 editor.putString("name",loginResponse.getName().toString());
                 editor.putString("lastName",loginResponse.getLastName().toString());
+                editor.putBoolean(  "SaveSession", saveSession);
                 editor.apply();
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(menu);
