@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -34,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        changeStatusBarColor();
+
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             RegisterResponse registerResponse = (RegisterResponse) intent.getSerializableExtra("data");
@@ -48,6 +53,16 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
     }
+
+    public void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
+
+        }
+    }
+
     public void verifyData(View view){
 
         // Find Id EditText & CheckBox
