@@ -30,10 +30,11 @@
         android:background="@drawable/rectangle"
         android:text="@string/nombreUsuario"
         android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/serviceGiven"
-        app:layout_constraintEnd_toEndOf="@+id/userJobImage"
-        app:layout_constraintHorizontal_bias="0.456"
-        app:layout_constraintStart_toStartOf="@+id/userJobImage" />
+        app:layout_constraintEnd_toStartOf="@+id/serviceGiven"
+        app:layout_constraintStart_toEndOf="@+id/trabajo" />
 
     <TextView
         android:id="@+id/jobDescription"
@@ -68,6 +69,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:text="#servicio"
         android:textColor="@android:color/black"
         android:background="@drawable/rectangle"
@@ -99,6 +102,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/rectangle"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:text="Trabajo"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/jobDescription"
