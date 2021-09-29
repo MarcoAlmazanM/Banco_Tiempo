@@ -20,8 +20,8 @@ public class OfferDetails extends AppCompatActivity {
         setContentView(R.layout.activity_offer_details);
 
         ElementList oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
-        nombre=findViewById(R.id.userName);
-        servicio=findViewById(R.id.userJob);
+        nombre=findViewById(R.id.textView);
+        servicio=findViewById(R.id.trabajo);
         descripcion=findViewById(R.id.jobDescription);
         perfil=findViewById(R.id.userJobImage);
 
