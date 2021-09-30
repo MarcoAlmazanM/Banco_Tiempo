@@ -1,21 +1,30 @@
 package com.example.banco_tiempo;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.banco_tiempo.databinding.ActivityMainBinding;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,40 +63,41 @@ public class Upload extends AppCompatActivity {
     // Method for starting the activity for selecting image from phone storage
     public void pick(View view) {
         verifyStoragePermissions(Upload.this);
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "Open Gallery"), PICK_IMAGE_REQUEST);
+        mGetContent.launch("image/*");
     }
 
-    // Method to get the absolute path of the selected image from its URI
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                selectedImage = data.getData();                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-                if(cursor != null) {
-                    cursor.moveToFirst();
-                    int indexImage = cursor.getColumnIndex(imageProjection[0]);
-                    part_image = cursor.getString(indexImage);
-                    imgPath.setText(part_image);                                                        // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri uri) {
+                    selectedImage = uri;                                                         // Get the image file URI
+                    String[] imageProjection = {MediaStore.Images.Media.DATA};
+                    Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                        int indexImage = cursor.getColumnIndex(imageProjection[0]);
+                        part_image = cursor.getString(indexImage);
+                        imgPath.setText(part_image);
+                        part_image = uri.toString();
+                        // Get the image file absolute path
+                        Bitmap bitmap = null;
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        image.setImageBitmap(bitmap);                                                       // Set the ImageView with the bitmap of the image
                     }
-                    image.setImageBitmap(bitmap);                                                       // Set the ImageView with the bitmap of the image
                 }
-            }
-        }
-    }
+            });
+
+    // Method to get the absolute path of the selected image from its URI
+
 
     // Upload the image to the remote database
     public void uploadImage(View view) {
-        File imageFile = new File(part_image);                                                          // Create a file using the absolute path of the image
+        File imageFile = new File(part_image);
+        // Create a file using the absolute path of the image
         RequestBody reqBody = RequestBody.create(MediaType.parse("multipart/form-file"), imageFile);
         MultipartBody.Part partImage = MultipartBody.Part.createFormData("file", imageFile.getName(), reqBody);
         API api = RetrofitClient.getInstance().getAPI();
