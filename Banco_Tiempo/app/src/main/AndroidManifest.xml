@@ -23,10 +23,6 @@
             android:name=".ListOffersActivity"
             android:exported="true" />
         <activity
-            android:name=".NewRegister"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".UserDocumentsActivity"
             android:exported="true" />
         <activity
