@@ -120,6 +120,7 @@ public class Upload extends AppCompatActivity {
         RequestBody reqBody = RequestBody.create(imageFile, MediaType.parse("multipart/form-file"));
         MultipartBody.Part partImage = MultipartBody.Part.createFormData("image", imageFile.getName(), reqBody);
         API api = RetrofitClient.getInstance().getAPI();
+
         Call<ResponseBody> upload = api.uploadImage(partImage);
         Log.d("lol", "uploadImage:entramos1");
         upload.enqueue(new Callback<ResponseBody>() {

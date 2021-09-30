@@ -19,7 +19,9 @@
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
             android:name=".Upload"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".OfferDetails"
             android:exported="true" />
