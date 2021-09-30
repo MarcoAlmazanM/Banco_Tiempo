@@ -38,7 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
         editor = preferences.edit();
         loginIntent();
-
+        if(checkSession()){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
 
     }
 
