@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -73,6 +74,7 @@ public class Upload extends AppCompatActivity {
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
+                @SuppressLint("Range")
                 @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onActivityResult(Uri uri) {
@@ -86,10 +88,7 @@ public class Upload extends AppCompatActivity {
                         Uri filename = Uri.parse(imageProjection[0]);
 
                         cursor.close();
-                        imgPath.setText(part_image);
-
-                        Log.d("lol", part_image);
-                        Log.d("lol", filename.toString());
+                        //imgPath.setText(part_image);
 
                         // Get the image file absolute path
                         Bitmap bitmap = null;
@@ -103,7 +102,7 @@ public class Upload extends AppCompatActivity {
                     }
 
                     else {
-                        Log.d("lol", "onActivityResult: ohshiet");
+                        Toast.makeText(Upload.this,"Algo Salio mal", Toast.LENGTH_SHORT);
                     }
 
                 }
@@ -117,7 +116,7 @@ public class Upload extends AppCompatActivity {
         File imageFile = new File(part_image);
         // Create a file using the absolute path of the image
 
-        RequestBody reqBody = RequestBody.create(imageFile, MediaType.parse("multipart/form-file"));
+        RequestBody reqBody = RequestBody.create(MediaType.parse("multipart/form-file"), imageFile);
         MultipartBody.Part partImage = MultipartBody.Part.createFormData("image", imageFile.getName(), reqBody);
         API api = RetrofitClient.getInstance().getAPI();
 
