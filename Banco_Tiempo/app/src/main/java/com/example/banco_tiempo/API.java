@@ -22,6 +22,6 @@ public interface API {
     Call<ResponseBody> getImageByName(@Path("filename") String name);
 
     @Multipart                                                                                          // POST request to upload an image from storage
-    @POST("fileUpload/")
+    @POST("uploadimage/")
     Call<ResponseBody> uploadImage(@Part MultipartBody.Part image);
 }

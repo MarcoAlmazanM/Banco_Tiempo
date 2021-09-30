@@ -1,9 +1,12 @@
 package com.example.banco_tiempo;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -16,6 +19,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -27,6 +31,7 @@ import android.widget.Toast;
 import com.example.banco_tiempo.databinding.ActivityMainBinding;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -68,17 +73,24 @@ public class Upload extends AppCompatActivity {
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
+                @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onActivityResult(Uri uri) {
-                    selectedImage = uri;                                                         // Get the image file URI
-                    String[] imageProjection = {MediaStore.Images.Media.DATA};
+                    selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+                    String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
                     Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-                    if (cursor != null) {
-                        cursor.moveToFirst();
-                        int indexImage = cursor.getColumnIndex(imageProjection[0]);
-                        part_image = cursor.getString(indexImage);
+                    if (cursor.getCount()>0) {
+                        cursor.moveToPosition(0);
+                        part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+
+                        Uri filename = Uri.parse(imageProjection[0]);
+
+                        cursor.close();
                         imgPath.setText(part_image);
-                        part_image = uri.toString();
+
+                        Log.d("lol", part_image);
+                        Log.d("lol", filename.toString());
+
                         // Get the image file absolute path
                         Bitmap bitmap = null;
                         try {
@@ -86,8 +98,14 @@ public class Upload extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        image.setImageBitmap(bitmap);                                                       // Set the ImageView with the bitmap of the image
+                        image.setImageBitmap(bitmap);
+                        // Set the ImageView with the bitmap of the image
                     }
+
+                    else {
+                        Log.d("lol", "onActivityResult: ohshiet");
+                    }
+
                 }
             });
 
@@ -98,23 +116,32 @@ public class Upload extends AppCompatActivity {
     public void uploadImage(View view) {
         File imageFile = new File(part_image);
         // Create a file using the absolute path of the image
-        RequestBody reqBody = RequestBody.create(MediaType.parse("multipart/form-file"), imageFile);
-        MultipartBody.Part partImage = MultipartBody.Part.createFormData("file", imageFile.getName(), reqBody);
+
+        RequestBody reqBody = RequestBody.create(imageFile, MediaType.parse("multipart/form-file"));
+        MultipartBody.Part partImage = MultipartBody.Part.createFormData("image", imageFile.getName(), reqBody);
         API api = RetrofitClient.getInstance().getAPI();
         Call<ResponseBody> upload = api.uploadImage(partImage);
+        Log.d("lol", "uploadImage:entramos1");
         upload.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
+                    Log.d("lol", response.toString());
+                    Log.d("lol", "onResponse: entramos2");
                     Toast.makeText(Upload.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
                     Intent main = new Intent(Upload.this, MainActivity.class);
                     main.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(main);
                 }
+                else {
+                    Log.d("lol", response.toString());
+
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("lol", t.toString());
                 Toast.makeText(Upload.this, "Request failed", Toast.LENGTH_SHORT).show();
             }
         });
