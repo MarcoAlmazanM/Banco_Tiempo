@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ProfileFragment">
 
 
@@ -22,7 +23,7 @@
     <Button
         android:id="@+id/btnUserData"
         android:layout_width="340dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginStart="35dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="28dp"
@@ -32,7 +33,8 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16sp"
-        app:iconTint="#221E1E"
+        android:drawableRight="@drawable/baseline_description_black_20"
+        android:drawableTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btnUserDocuments"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +43,7 @@
     <Button
         android:id="@+id/btnUserDocuments"
         android:layout_width="340dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginStart="35dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="248dp"
@@ -51,7 +53,8 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16sp"
-        app:iconTint="#221E1E"
+        android:drawableRight="@drawable/baseline_description_black_20"
+        android:drawableTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

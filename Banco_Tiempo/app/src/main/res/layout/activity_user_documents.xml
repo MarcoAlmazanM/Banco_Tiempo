@@ -6,113 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".UserDocumentsActivity">
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:drawableRight="@drawable/baseline_upload_black_24"
+        android:drawableTint="@color/white"
+        android:text="Documento"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:drawableRight="@drawable/baseline_upload_black_24"
+        android:drawableTint="@color/white"
+        android:text="Documento"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:drawableRight="@drawable/baseline_upload_black_24"
+        android:drawableTint="@color/white"
+        android:text="Documento"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:drawableRight="@drawable/baseline_upload_black_24"
+        android:drawableTint="@color/white"
+        android:text="Documento"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/ine"
-        app:layout_constraintBottom_toTopOf="@+id/boton_documento_ine"
-        app:layout_constraintStart_toStartOf="@+id/boton_documento_ine" />
+        android:text="Subida de documentos:"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.108" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/comprobanteDomicilio"
-        app:layout_constraintBottom_toTopOf="@+id/boton_antescedentes"
-        app:layout_constraintStart_toStartOf="@+id/boton_antescedentes" />
+        android:text="INE *"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="@+id/button2" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/certificado"
-        app:layout_constraintBottom_toTopOf="@+id/boton_comprobante"
-        app:layout_constraintStart_toStartOf="@+id/boton_comprobante" />
+        android:text="Comprobante de Domicilio *"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="@+id/button3" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/cartaPenal"
-        app:layout_constraintBottom_toTopOf="@+id/boton_certificado"
-        app:layout_constraintStart_toStartOf="@+id/boton_certificado" />
+        android:text="Carta de Antecedentes No Penales *"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="@+id/button4" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Certificado(s)"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintStart_toStartOf="@+id/button5" />
 
     <Button
-        android:id="@+id/boton_antescedentes"
+        android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="subir documento"
-        app:layout_constraintStart_toStartOf="@+id/boton_documento_ine"
-        app:layout_constraintTop_toBottomOf="@+id/boton_documento_ine" />
-
-    <Button
-        android:id="@+id/boton_certificado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="subir documento"
-        app:layout_constraintStart_toStartOf="@+id/boton_antescedentes"
-        app:layout_constraintTop_toBottomOf="@+id/boton_antescedentes" />
-
-    <Button
-        android:id="@+id/boton_comprobante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="subir documento"
-        app:layout_constraintStart_toStartOf="@+id/boton_certificado"
-        app:layout_constraintTop_toBottomOf="@+id/boton_certificado" />
-
-    <Button
-        android:id="@+id/boton_documento_ine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        android:text="subir documento"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/upload_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/boton_documento_ine"
-        app:layout_constraintStart_toEndOf="@+id/boton_documento_ine"
-        app:srcCompat="@drawable/ic_upload" />
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/boton_antescedentes"
-        app:layout_constraintStart_toEndOf="@+id/boton_antescedentes"
-        app:srcCompat="@drawable/ic_upload" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/boton_comprobante"
-        app:layout_constraintStart_toEndOf="@+id/boton_comprobante"
-        app:srcCompat="@drawable/ic_upload" />
-
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/boton_certificado"
-        app:layout_constraintStart_toEndOf="@+id/boton_certificado"
-        app:srcCompat="@drawable/ic_upload" />
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/baseline_add_black_24"
+        android:drawableTint="@color/blue_4_btn"
+        android:text="Agregar Certificado"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/blue_4_btn"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
