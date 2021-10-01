@@ -1,8 +1,5 @@
 package com.example.banco_tiempo;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -13,32 +10,23 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.banco_tiempo.databinding.ActivityMainBinding;
-
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +38,7 @@ public class Upload extends AppCompatActivity {
     ImageView image;
     Uri selectedImage;
     String part_image;
+    String sImage;
 
     // Permissions for accessing the storage
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -88,12 +77,17 @@ public class Upload extends AppCompatActivity {
                         Uri filename = Uri.parse(imageProjection[0]);
 
                         cursor.close();
-                        //imgPath.setText(part_image);
+                        imgPath.setText(part_image);
 
                         // Get the image file absolute path
                         Bitmap bitmap = null;
                         try {
                             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
+                            byte[] bytes = stream.toByteArray();
+                            sImage = Base64.encodeToString(bytes,Base64.DEFAULT);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -113,36 +107,32 @@ public class Upload extends AppCompatActivity {
 
     // Upload the image to the remote database
     public void uploadImage(View view) {
-        File imageFile = new File(part_image);
-        // Create a file using the absolute path of the image
+        ImageRequest imageRequest = new ImageRequest();
+        imageRequest.setImage(sImage);
+        imageRequest.setUsername("grecia");
+        uploadImageServer(imageRequest);
+    }
 
-        RequestBody reqBody = RequestBody.create(MediaType.parse("multipart/form-file"), imageFile);
-        MultipartBody.Part partImage = MultipartBody.Part.createFormData("image", imageFile.getName(), reqBody);
-        API api = RetrofitClient.getInstance().getAPI();
-
-        Call<ResponseBody> upload = api.uploadImage(partImage);
-        Log.d("lol", "uploadImage:entramos1");
-        upload.enqueue(new Callback<ResponseBody>() {
+    public void uploadImageServer(ImageRequest imageRequest){
+        Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
+        registerResponseCall.enqueue(new Callback<ImageResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<ImageResponse>  call, Response<ImageResponse>response) {
                 if (response.isSuccessful()) {
-                    Log.d("lol", response.toString());
-                    Log.d("lol", "onResponse: entramos2");
-                    Toast.makeText(Upload.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
-                    Intent main = new Intent(Upload.this, MainActivity.class);
-                    main.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(main);
-                }
-                else {
-                    Log.d("lol", response.toString());
+                    ImageResponse registerResponse = response.body();
+                    String message = "Entramos";
+                    Toast.makeText(Upload.this, message, Toast.LENGTH_LONG).show();
 
+                } else {
+                    String message = "An error occurred, please try again...";
+                    Toast.makeText(Upload.this, message, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("lol", t.toString());
-                Toast.makeText(Upload.this, "Request failed", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ImageResponse> call, Throwable t) {
+               String message = t.getLocalizedMessage();
+                Toast.makeText(Upload.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
