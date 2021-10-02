@@ -109,7 +109,7 @@ public class Upload extends AppCompatActivity {
     public void uploadImage(View view) {
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setImage(sImage);
-        imageRequest.setUsername("grecia");
+        imageRequest.setUsername("JoseLuis");
         uploadImageServer(imageRequest);
     }
 
@@ -120,7 +120,7 @@ public class Upload extends AppCompatActivity {
             public void onResponse(Call<ImageResponse>  call, Response<ImageResponse>response) {
                 if (response.isSuccessful()) {
                     ImageResponse registerResponse = response.body();
-                    String message = "Entramos";
+                    String message = "Image Uploaded Successfully";
                     Toast.makeText(Upload.this, message, Toast.LENGTH_LONG).show();
 
                 } else {
