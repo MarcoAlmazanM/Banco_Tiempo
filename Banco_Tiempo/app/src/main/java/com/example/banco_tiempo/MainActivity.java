@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.replace(R.id.content, new FilterFragment()).commit();
                 break;
             case R.id.nav_newOffer:
-                ft.replace(R.id.content, new HomeFragment()).commit();
+                ft.replace(R.id.content, new NewOfferFragment()).commit();
                 break;
             case R.id.nav_settings:
                 ft.replace(R.id.content, new SettingsFragment()).commit();
