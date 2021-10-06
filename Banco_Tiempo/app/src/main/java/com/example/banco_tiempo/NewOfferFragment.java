@@ -1,5 +1,6 @@
 package com.example.banco_tiempo;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +31,8 @@ public class NewOfferFragment extends Fragment {
     public NewOfferFragment() {
         // Required empty public constructor
     }
+
+    Button btnCreaOffer;
 
     RecyclerView recyclerOfertas;
     String s1[], s2[];
@@ -76,6 +80,21 @@ public class NewOfferFragment extends Fragment {
         recyclerOfertas.setAdapter(myadapter);
         recyclerOfertas.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        btnCreaOffer = (Button)vista.findViewById(R.id.btnNOffer);
+        clickBtnCreateOffer(btnCreaOffer);
+
+
         return vista;
+    }
+
+    public void clickBtnCreateOffer(Button btnCreateOffer){
+        btnCreateOffer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent creaOferta = new Intent(getActivity().getApplicationContext(), CreateOffer.class);
+                getActivity().startActivity(creaOferta);
+
+            }
+        });
     }
 }

@@ -78,8 +78,9 @@ public class LoginActivity extends AppCompatActivity {
             if (loginResponse.getLoginApproval() == 1) {
                 preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
                 editor = preferences.edit();
-                editor.putString("name",loginResponse.getName().toString());
-                editor.putString("lastName",loginResponse.getLastName().toString());
+                editor.putString("name",loginResponse.getName());
+                editor.putString("lastName",loginResponse.getLastName());
+                editor.putString("username",loginResponse.getUsername());
                 editor.putBoolean("SaveSession",true);
                 editor.apply();
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);

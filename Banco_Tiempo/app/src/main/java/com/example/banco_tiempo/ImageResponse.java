@@ -3,13 +3,13 @@ package com.example.banco_tiempo;
 import java.io.Serializable;
 
 public class ImageResponse implements Serializable {
-    Integer number;
+    Integer transactionApproval;
 
-    public Integer getNumber() {
-        return number;
+    public Integer getTransactionApproval() {
+        return transactionApproval;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setTransactionApproval(Integer transactionApproval) {
+        this.transactionApproval = transactionApproval;
     }
 }

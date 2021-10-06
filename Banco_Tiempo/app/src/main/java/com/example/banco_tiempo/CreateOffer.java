@@ -1,8 +1,20 @@
 package com.example.banco_tiempo;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -11,17 +23,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
+
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -30,13 +42,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Upload extends AppCompatActivity {
+public class CreateOffer extends AppCompatActivity {
+    Toolbar toolbar;
+    RelativeLayout createOfferLayout;
 
-    TextView imgPath;
-    ImageView image;
+    ImageView img1;
     Uri selectedImage;
     String part_image;
     String sImage;
+    TextView imgPath;
+
+    AutoCompleteTextView autoCTV, autoCTV2;
+    ArrayAdapter<String> adapterItems, adapterItems2;
+    String[] items = {"Carpintería", "Sastrería", "Repostería", "Tutoría", "Plomería"};
+    String[] items2 = {"Toluca", "Metepec", "Otro pueblo xd"};
 
     // Permissions for accessing the storage
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -45,19 +64,58 @@ public class Upload extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.upload);
-        imgPath = findViewById(R.id.item_img);
-        image = findViewById(R.id.img);
+        setContentView(R.layout.activity_create_offer);
+        createOfferLayout = findViewById(R.id.user_new_offer);
+        Log.e("TAG",createOfferLayout.toString());
+        toolbar = findViewById(R.id.toolbar);
+        setTitle("Create New Offer");
+        setSupportActionBar(toolbar);
+
+        img1 = findViewById(R.id.iVPhoto1);
+        imgPath = findViewById(R.id.tVImageN);
+
+        autoCTV = findViewById(R.id.tVAutoComplete);
+        autoCTV2 = findViewById(R.id.tVAutoComplete2);
+        adapterItems = new ArrayAdapter<String>(this, R.layout.list_empleos_item, items);
+        autoCTV.setAdapter(adapterItems);
+        adapterItems2 = new ArrayAdapter<String>(this, R.layout.list_empleos_item, items2);
+        autoCTV2.setAdapter(adapterItems2);
+
+        preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        //Get username shared preferences
+        username = preferences.getString("username","username");
+
+        autoCTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(getApplicationContext(), "Empleo: "+item, Toast.LENGTH_SHORT).show();
+            }
+        });
+        autoCTV2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(getApplicationContext(), "Ubicación: "+item, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    // Method for starting the activity for selecting image from phone storage
     public void pick(View view) {
-        verifyStoragePermissions(Upload.this);
+        verifyStoragePermissions(CreateOffer.this);
         mGetContent.launch("image/*");
     }
+
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -89,26 +147,22 @@ public class Upload extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        image.setImageBitmap(bitmap);
+                        img1.setImageBitmap(bitmap);
                         // Set the ImageView with the bitmap of the image
                     }
 
                     else {
-                        Toast.makeText(Upload.this,"Algo Salio mal", Toast.LENGTH_SHORT);
+                        Toast.makeText(CreateOffer.this,"Algo Salio mal", Toast.LENGTH_SHORT);
                     }
 
                 }
             });
 
-    // Method to get the absolute path of the selected image from its URI
-
-
-    // Upload the image to the remote database
-    public void uploadImage(View view) {
+    public void addNewOffer(View view){
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setImage(sImage);
-        imageRequest.setUsername("Marco");
-        imageRequest.setType("ProfilePicture");
+        imageRequest.setUsername(username);
+        imageRequest.setType("ComprobantePicture");
         uploadImageServer(imageRequest);
     }
 
@@ -116,22 +170,22 @@ public class Upload extends AppCompatActivity {
         Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
         registerResponseCall.enqueue(new Callback<ImageResponse>() {
             @Override
-            public void onResponse(Call<ImageResponse>  call, Response<ImageResponse>response) {
+            public void onResponse(Call<ImageResponse>  call, Response<ImageResponse> response) {
                 if (response.isSuccessful()) {
                     ImageResponse registerResponse = response.body();
                     String message = "Image Uploaded Successfully";
-                    Toast.makeText(Upload.this, message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
 
                 } else {
                     String message = "An error occurred, please try again...";
-                    Toast.makeText(Upload.this, message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ImageResponse> call, Throwable t) {
-               String message = t.getLocalizedMessage();
-                Toast.makeText(Upload.this, message, Toast.LENGTH_LONG).show();
+                String message = t.getLocalizedMessage();
+                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -10,5 +10,24 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rVNewOffer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNOffer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:drawableLeft="@drawable/baseline_add_black_24"
+        android:drawableTint="@color/white"
+        android:text="Oferta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rVNewOffer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

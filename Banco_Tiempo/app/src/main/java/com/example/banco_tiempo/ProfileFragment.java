@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,8 +46,10 @@ import java.io.IOException;
  */
 public class ProfileFragment extends Fragment {
     Button btnUserData;
+    Button btnUserDocuments;
     Button btnImg;
     Button btnCncl;
+
 
     TextView imgPath;
     ImageView image;
@@ -108,21 +111,40 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        // Set listener en btnUserData
         btnUserData = (Button)root.findViewById(R.id.btnUserData);
+        clickBtnUserData(btnUserData);
+
+        btnUserDocuments = (Button) root.findViewById(R.id.btnUserDocuments);
+        clickBtnUserDocuments(btnUserDocuments);
+
         image = root.findViewById(R.id.iVUserProfile);
 
+
+        pick(image, root);
+
+        return root;
+    }
+
+    public void clickBtnUserData(Button btnUserData){
         btnUserData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent userData = new Intent(getActivity().getApplicationContext(), UserDataActivity.class);
                 getActivity().startActivity(userData);
-
             }
         });
 
-        pick(image, root);
+    }
 
-        return root;
+    public void clickBtnUserDocuments(Button btnUserDocuments){
+        btnUserDocuments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent userData = new Intent(getActivity().getApplicationContext(), UserDocumentsActivity.class);
+                getActivity().startActivity(userData);
+            }
+        });
     }
 
     public void pick (ImageView image, View root) {
@@ -139,6 +161,7 @@ public class ProfileFragment extends Fragment {
                 onButtonShowPopupWindowClick(view, root);
             }
         });
+
     }
 
     public void onButtonShowPopupWindowClick(View view, View root) {
@@ -181,7 +204,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
     }
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -213,8 +235,9 @@ public class ProfileFragment extends Fragment {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        image.setImageBitmap(bitmap);
+
                         // Set the ImageView with the bitmap of the image.
+                        image.setImageBitmap(bitmap);
                     }
 
                     else {
