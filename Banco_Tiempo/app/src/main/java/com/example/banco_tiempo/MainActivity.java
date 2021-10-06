@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         String imageUrl = preferences.getString("foto",null);
 
-        //Agregar if 
+        //Agregar if
 
         Picasso.get().invalidate(imageUrl);
         Picasso.get().load(imageUrl).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userProfileImage);
