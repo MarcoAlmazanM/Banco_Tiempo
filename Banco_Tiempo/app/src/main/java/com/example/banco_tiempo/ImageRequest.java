@@ -1,8 +1,17 @@
 package com.example.banco_tiempo;
 
 public class ImageRequest {
+    String type;
     String image;
     String username;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getImage() {
         return image;

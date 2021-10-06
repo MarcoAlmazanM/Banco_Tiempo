@@ -77,7 +77,7 @@ public class Upload extends AppCompatActivity {
                         Uri filename = Uri.parse(imageProjection[0]);
 
                         cursor.close();
-                        imgPath.setText(part_image);
+
 
                         // Get the image file absolute path
                         Bitmap bitmap = null;
@@ -109,7 +109,8 @@ public class Upload extends AppCompatActivity {
     public void uploadImage(View view) {
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setImage(sImage);
-        imageRequest.setUsername("JoseLuis");
+        imageRequest.setUsername("Marco");
+        imageRequest.setType("ProfilePicture");
         uploadImageServer(imageRequest);
     }
 
