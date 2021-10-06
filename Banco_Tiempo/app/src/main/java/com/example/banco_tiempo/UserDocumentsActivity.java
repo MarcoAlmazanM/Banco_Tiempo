@@ -10,7 +10,9 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -54,6 +56,10 @@ public class UserDocumentsActivity extends AppCompatActivity {
     ActivityResultLauncher<String>antGetContent;
     ActivityResultLauncher<String>certGetContent;
 
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    String username;
 
     // Permissions for accessing the storage
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -84,6 +90,13 @@ public class UserDocumentsActivity extends AppCompatActivity {
         cert = findViewById(R.id.certView);
         bCert = findViewById(R.id.cert);
 
+        preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        //Get username shared preferences
+        username = preferences.getString("username","username");
+
+
         ineGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @SuppressLint("Range")
             @RequiresApi(api = Build.VERSION_CODES.R)
@@ -101,8 +114,9 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     //Uri filename = Uri.parse(imageProjection[0]);
 
                     cursor.close();
-                   inePath.setText(part_image);
-                   bIne.setText("Documento cargado");
+                    //inePath.setText(part_image);
+                    bIne.setText("Documento cargado");
+
 
                     // Get the image file absolute path
                     Bitmap bitmap = null;
@@ -123,14 +137,6 @@ public class UserDocumentsActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
                 }
-            }
-        });
-
-        bIne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                ineGetContent.launch("image/*");
             }
         });
 
@@ -162,7 +168,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
                         byte[] bytes = stream.toByteArray();
-                        sIne = Base64.encodeToString(bytes,Base64.DEFAULT);
+                        sDom = Base64.encodeToString(bytes,Base64.DEFAULT);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -174,14 +180,6 @@ public class UserDocumentsActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
                 }
-            }
-        });
-
-        bDom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                domGetContent.launch("image/*");
             }
         });
 
@@ -228,13 +226,6 @@ public class UserDocumentsActivity extends AppCompatActivity {
             }
         });
 
-        bAnt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                antGetContent.launch("image/*");
-            }
-        });
-
         certGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @SuppressLint("Range")
             @RequiresApi(api = Build.VERSION_CODES.R)
@@ -278,52 +269,45 @@ public class UserDocumentsActivity extends AppCompatActivity {
             }
         });
 
-        bCert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                certGetContent.launch("image/*");
-            }
-        });
+
     }
 
-    /*private String getRealPathFromURI(Uri contentURI) {
-        String result;
-        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
-        if (cursor == null) { // Source is Dropbox or other similar local file path
-            result = contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            result = cursor.getString(idx);
-            cursor.close();
-        }
-        return result;
+    public void clickBtnIne(View view){
+        ineGetContent.launch("image/*");
     }
-    */
-     /*private void preUpload(){
+    public void clickBtnDom(View view){
+        domGetContent.launch("image/*");
+    }
+    public void clickBtnAnt(View view){
+        antGetContent.launch("image/*");
+    }
+    public void clickBtnCert(View view){
+        certGetContent.launch("image/*");
+    }
 
-     }
-      */
 
     // Upload the images to the remote database
     public void uploadIne(View view) {
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setImage(sIne);
-        imageRequest.setUsername("JoseLuis");
+        imageRequest.setUsername(username);
+        imageRequest.setType("INEPicture");
         uploadImageServer(imageRequest);
     }
 
     public void uploadDom(View view) {
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setImage(sDom);
-        imageRequest.setUsername("JoseLuis");
+        imageRequest.setUsername(username);
+        imageRequest.setType("ComprobantePicture");
         uploadImageServer(imageRequest);
     }
 
     public void uploadAnt(View view) {
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setImage(sAnt);
-        imageRequest.setUsername("JoseLuis");
+        imageRequest.setUsername(username);
+        imageRequest.setType("CartaAntecedentesPicture");
         uploadImageServer(imageRequest);
     }
 
@@ -331,6 +315,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setImage(sCert);
         imageRequest.setUsername("JoseLuis");
+        imageRequest.setType("ProfilePicture");
         uploadImageServer(imageRequest);
     }
 
