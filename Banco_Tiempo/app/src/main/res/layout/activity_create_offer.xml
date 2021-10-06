@@ -35,9 +35,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="340dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="380dp"
+        android:layout_marginBottom="370dp"
         android:clickable="false"
         android:minHeight="48dp"
         android:text="Nombre de imagen"
@@ -82,6 +82,7 @@
         android:layout_marginTop="-250dp"
         android:layout_marginEnd="0dp"
         android:gravity="top"
+        android:hint="Descripción"
         android:inputType="text|textMultiLine"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -91,11 +92,38 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tVDescription"
         android:layout_alignStart="@+id/tVDescription"
-        android:layout_marginStart="129dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue_4_btn"
         android:onClick="addNewOffer"
         android:text="Añadir" />
+
+    <Button
+        android:id="@+id/certi"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@+id/tVDescription"
+        android:layout_alignStart="@+id/tVDescription"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="19dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:drawableLeft="@drawable/baseline_add_black_24"
+        android:drawableTint="@color/white"
+        android:onClick="clickBtnCert"
+        android:text="Certificado"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/certiView"
+        android:layout_width="86dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/tVDescription"
+        android:layout_alignTop="@+id/tVDescription"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="169dp"
+        app:srcCompat="@drawable/baseline_upload_black_24" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -119,7 +147,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.Design.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/tVDescription"
@@ -129,14 +157,15 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="-65dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="160dp"
-        android:hint="Ubicación">
+        android:layout_marginBottom="150dp"
+        android:hint="Título de Oferta">
 
         <AutoCompleteTextView
             android:id="@+id/tVAutoComplete2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"></AutoCompleteTextView>
+            android:inputType="text"
+            tools:ignore="TouchTargetSizeCheck"></AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>
 
 </RelativeLayout>
