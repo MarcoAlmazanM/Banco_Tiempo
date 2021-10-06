@@ -151,17 +151,25 @@ public class ProfileFragment extends Fragment {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         // dismiss the popup window when touched
-        btnUserData = (Button)root.findViewById(R.id.btnUserData);
-        image = root.findViewById(R.id.iVUserProfile);
+        btnImg = (Button)view.findViewById(R.id.btnUserData);
 
-        btnUserData.setOnClickListener(new View.OnClickListener() {
+        btnImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent userData = new Intent(getActivity().getApplicationContext(), UserDataActivity.class);
-                getActivity().startActivity(userData);
 
             }
         });
+
+        btnCncl = (Button)view.findViewById(R.id.btnUserData);
+
+        btnImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
+
     }
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
