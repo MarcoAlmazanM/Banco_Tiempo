@@ -22,6 +22,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -64,10 +66,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imageIntent();
 
         String imageUrl = preferences.getString("foto",null);
-        
-        Picasso.get().load(imageUrl).into(userProfileImage);
 
+        //Agregar if 
 
+        Picasso.get().invalidate(imageUrl);
+        Picasso.get().load(imageUrl).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userProfileImage);
 
         //Always Display Inicio UI
         getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentInicio()).commit();
