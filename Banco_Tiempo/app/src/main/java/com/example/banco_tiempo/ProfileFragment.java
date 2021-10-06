@@ -6,6 +6,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -38,6 +39,10 @@ import androidx.fragment.app.Fragment;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,6 +62,12 @@ public class ProfileFragment extends Fragment {
     String part_image;
     String sImage;
     Context applicationContext = MainActivity.getContextOfApplication();
+
+    TextView nameTextView;
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+    String username;
 
     private final int REQUEST_EXTERNAL_STORAGE = 1;
     private String[] PERMISSIONS_STORAGE = {
@@ -110,6 +121,17 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        nameTextView = root.findViewById(R.id.tVUserName);
+        preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        //Set Header Nav
+        String name = preferences.getString("name","Nombre del Usuario");
+        String lastName = preferences.getString("lastName","");
+        nameTextView.setText( name + " " + lastName);
+
+        username = preferences.getString("username","username");
 
         // Set listener en btnUserData
         btnUserData = (Button)root.findViewById(R.id.btnUserData);
@@ -190,7 +212,8 @@ public class ProfileFragment extends Fragment {
         btnImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                uploadImageProfile();
+                popupWindow.dismiss();
             }
         });
 
@@ -205,6 +228,7 @@ public class ProfileFragment extends Fragment {
         });
 
     }
+
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -245,6 +269,40 @@ public class ProfileFragment extends Fragment {
                     }
                 }
             });
+
+    // Upload the image to the remote database
+    public void uploadImageProfile() {
+        ImageRequest imageRequest = new ImageRequest();
+        imageRequest.setImage(sImage);
+        imageRequest.setUsername(username);
+        imageRequest.setType("ProfilePicture");
+        uploadImageServer(imageRequest);
+    }
+
+    public void uploadImageServer(ImageRequest imageRequest){
+        Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
+        registerResponseCall.enqueue(new Callback<ImageResponse>() {
+            @Override
+            public void onResponse(Call<ImageResponse>  call, Response<ImageResponse> response) {
+                if (response.isSuccessful()) {
+                    ImageResponse imageResponse = response.body();
+                    startActivity(new Intent(getActivity(), MainActivity.class).putExtra("data", imageResponse));
+                    String message = "Image Uploaded Successfully";
+                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+
+                } else {
+                    String message = "An error occurred, please try again...";
+                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ImageResponse> call, Throwable t) {
+                String message = t.getLocalizedMessage();
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     public void verifyStoragePermissions() {
         int permission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
