@@ -45,6 +45,7 @@ public class ProfileFragment extends Fragment {
     Button btnImg;
     Button btnCncl;
 
+
     TextView imgPath;
     ImageView image;
     Uri selectedImage;
@@ -118,23 +119,24 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        pick(image);
+        pick(image, root);
 
         return root;
     }
 
-    public void pick (ImageView image) {
+    public void pick (ImageView image, View root) {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 verifyStoragePermissions();
                 mGetContent.launch("image/*");
-                onButtonShowPopupWindowClick(view);
+                onButtonShowPopupWindowClick(root);
             }
         });
+
     }
 
-    public void onButtonShowPopupWindowClick(View view) {
+    public void onButtonShowPopupWindowClick(View root) {
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -148,10 +150,10 @@ public class ProfileFragment extends Fragment {
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window token
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(root, Gravity.CENTER, 0, 0);
 
         // dismiss the popup window when touched
-        btnImg = (Button)view.findViewById(R.id.btnUserData);
+        btnImg = (Button)popupView.findViewById(R.id.btnImg);
 
         btnImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,15 +162,14 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        btnCncl = (Button)view.findViewById(R.id.btnUserData);
+        btnCncl = (Button)popupView.findViewById(R.id.btnCncl);
 
-        btnImg.setOnClickListener(new View.OnClickListener() {
+        btnCncl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
             }
         });
-
 
     }
 
@@ -201,8 +202,9 @@ public class ProfileFragment extends Fragment {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        image.setImageBitmap(bitmap);
+
                         // Set the ImageView with the bitmap of the image.
+                        image.setImageBitmap(bitmap);
                     }
 
                     else {
