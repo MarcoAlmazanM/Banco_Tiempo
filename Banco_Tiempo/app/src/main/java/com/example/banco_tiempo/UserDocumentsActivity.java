@@ -5,6 +5,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -38,11 +40,9 @@ import retrofit2.Response;
 public class UserDocumentsActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 9544;
-    /*TextView imgPath;
-    ImageView image;
-    Uri selectedImage;
-    String part_image;
-    */
+    Toolbar toolbar;
+    ConstraintLayout userDocumentsLayout;
+
     Uri selectedImage;
     String part_image;
 
@@ -73,6 +73,10 @@ public class UserDocumentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_documents);
+        userDocumentsLayout = findViewById(R.id.user_documents);
+        toolbar = findViewById(R.id.toolbar);
+        setTitle("User Documents");
+        setSupportActionBar(toolbar);
 
         inePath = findViewById(R.id.rutaIne);
         ine = findViewById(R.id.ineView);
@@ -114,9 +118,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     //Uri filename = Uri.parse(imageProjection[0]);
 
                     cursor.close();
-                    //inePath.setText(part_image);
                     bIne.setText("Documento cargado");
-
 
                     // Get the image file absolute path
                     Bitmap bitmap = null;
@@ -158,7 +160,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     //Uri filename = Uri.parse(imageProjection[0]);
 
                     cursor.close();
-                    domPath.setText(part_image);
+
                     bDom.setText("Documento cargado");
 
                     // Get the image file absolute path
@@ -201,7 +203,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     //Uri filename = Uri.parse(imageProjection[0]);
 
                     cursor.close();
-                    antPath.setText(part_image);
+
                     bAnt.setText("Documento cargado");
 
                     // Get the image file absolute path
@@ -244,7 +246,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     //Uri filename = Uri.parse(imageProjection[0]);
 
                     cursor.close();
-                    certPath.setText(part_image);
+
                     bCert.setText("Documento cargado");
 
                     // Get the image file absolute path
