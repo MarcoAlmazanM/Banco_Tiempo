@@ -130,6 +130,10 @@
     //Registro
     <string name="registrate" translatable="false">¡Tu primer\n paso con \nnosotros!</string>
     <string name="goback" translatable="false">¿Ya tienes una cuenta?</string>
+    
+    //Pop Up Window
+    <string name="uploadimg" translatable="false">Subir</string>
+    <string name="cancelimg" translatable="false">Cancelar</string>
 
     //Nueva Oferta RecyclerView
     <string-array name="empleos">

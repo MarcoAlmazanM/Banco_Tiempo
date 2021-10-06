@@ -12,11 +12,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,8 @@ import java.io.IOException;
  */
 public class ProfileFragment extends Fragment {
     Button btnUserData;
+    Button btnImg;
+    Button btnCncl;
 
     TextView imgPath;
     ImageView image;
@@ -124,6 +129,37 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 verifyStoragePermissions();
                 mGetContent.launch("image/*");
+                onButtonShowPopupWindowClick(view);
+            }
+        });
+    }
+
+    public void onButtonShowPopupWindowClick(View view) {
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window token
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+        btnUserData = (Button)root.findViewById(R.id.btnUserData);
+        image = root.findViewById(R.id.iVUserProfile);
+
+        btnUserData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent userData = new Intent(getActivity().getApplicationContext(), UserDataActivity.class);
+                getActivity().startActivity(userData);
+
             }
         });
     }
@@ -158,13 +194,12 @@ public class ProfileFragment extends Fragment {
                             e.printStackTrace();
                         }
                         image.setImageBitmap(bitmap);
-                        // Set the ImageView with the bitmap of the image
+                        // Set the ImageView with the bitmap of the image.
                     }
 
                     else {
-                        Toast.makeText(getActivity(),"Algo Salio mal", Toast.LENGTH_SHORT);
+                        Toast.makeText(getActivity(), "Algo Salio mal", Toast.LENGTH_SHORT);
                     }
-
                 }
             });
 
