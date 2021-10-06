@@ -32,6 +32,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import java.io.ByteArrayOutputStream;
@@ -56,7 +57,6 @@ public class ProfileFragment extends Fragment {
     String part_image;
     String sImage;
     Context applicationContext = MainActivity.getContextOfApplication();
-
 
     private final int REQUEST_EXTERNAL_STORAGE = 1;
     private String[] PERMISSIONS_STORAGE = {
@@ -176,6 +176,10 @@ public class ProfileFragment extends Fragment {
         boolean focusable = true; // lets taps outside the popup also dismiss it
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            popupWindow.setElevation(20);
+        }
+
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window token
         popupWindow.showAtLocation(root, Gravity.CENTER, 0, 0);
@@ -195,6 +199,7 @@ public class ProfileFragment extends Fragment {
         btnCncl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
                 popupWindow.dismiss();
             }
         });
