@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateOffer">
+
+    <TextView
+        android:id="@+id/tVImageN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="380dp"
+        android:clickable="false"
+        android:minHeight="48dp"
+        android:text="Nombre de imagen"
+        android:textAlignment="center"
+        android:textSize="12sp" />
+
+
+    <ImageView
+        android:id="@+id/iVPhoto1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tVImageN"
+        android:layout_alignEnd="@+id/tVImageN"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="400dp"
+        app:srcCompat="@drawable/imagen_predeterminada" />
+
+    <Button
+        android:id="@+id/btnAddImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/iVPhoto1"
+        android:layout_alignTop="@+id/iVPhoto1"
+        android:layout_marginStart="222dp"
+        android:layout_marginTop="270dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:drawableLeft="@drawable/baseline_add_black_24"
+        android:drawableTint="@color/white"
+        android:onClick="pick"
+        android:text="Imagen" />
+
+    <EditText
+        android:id="@+id/tVDescription"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/tVImageN"
+        android:layout_alignStart="@+id/tVImageN"
+        android:layout_alignEnd="@+id/tVImageN"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-250dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="top"
+        android:inputType="text|textMultiLine"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btnUploadOffer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tVDescription"
+        android:layout_alignStart="@+id/tVDescription"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/blue_4_btn"
+        android:text="Añadir" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tVDescription"
+        android:layout_alignTop="@+id/tVDescription"
+        android:layout_alignEnd="@+id/tVDescription"
+        android:layout_alignBottom="@+id/tVDescription"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-120dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="215dp"
+        android:hint="Categoría">
+
+        <AutoCompleteTextView
+            android:id="@+id/tVAutoComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"></AutoCompleteTextView>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tVDescription"
+        android:layout_alignTop="@+id/tVDescription"
+        android:layout_alignEnd="@+id/tVDescription"
+        android:layout_alignBottom="@+id/tVDescription"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-65dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="160dp"
+        android:hint="Ubicación">
+
+        <AutoCompleteTextView
+            android:id="@+id/tVAutoComplete2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"></AutoCompleteTextView>
+    </com.google.android.material.textfield.TextInputLayout>
+
+</RelativeLayout>
