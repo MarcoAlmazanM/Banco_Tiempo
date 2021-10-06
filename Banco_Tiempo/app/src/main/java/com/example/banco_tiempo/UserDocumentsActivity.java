@@ -275,15 +275,19 @@ public class UserDocumentsActivity extends AppCompatActivity {
     }
 
     public void clickBtnIne(View view){
+        verifyStoragePermissions(UserDocumentsActivity.this);
         ineGetContent.launch("image/*");
     }
     public void clickBtnDom(View view){
+        verifyStoragePermissions(UserDocumentsActivity.this);
         domGetContent.launch("image/*");
     }
     public void clickBtnAnt(View view){
+        verifyStoragePermissions(UserDocumentsActivity.this);
         antGetContent.launch("image/*");
     }
     public void clickBtnCert(View view){
+        verifyStoragePermissions(UserDocumentsActivity.this);
         certGetContent.launch("image/*");
     }
 

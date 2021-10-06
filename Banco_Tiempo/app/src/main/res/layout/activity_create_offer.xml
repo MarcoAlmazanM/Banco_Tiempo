@@ -6,7 +6,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/user_new_offer"
     tools:context=".CreateOffer">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tVImageN"
@@ -34,7 +52,7 @@
         android:layout_alignStart="@+id/tVImageN"
         android:layout_alignEnd="@+id/tVImageN"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="400dp"
         app:srcCompat="@drawable/imagen_predeterminada" />
@@ -46,7 +64,7 @@
         android:layout_alignStart="@+id/iVPhoto1"
         android:layout_alignTop="@+id/iVPhoto1"
         android:layout_marginStart="222dp"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="205dp"
         android:backgroundTint="@color/blue_4_btn"
         android:drawableLeft="@drawable/baseline_add_black_24"
         android:drawableTint="@color/white"
@@ -76,6 +94,7 @@
         android:layout_marginStart="129dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue_4_btn"
+        android:onClick="addNewOffer"
         android:text="Añadir" />
 
     <com.google.android.material.textfield.TextInputLayout

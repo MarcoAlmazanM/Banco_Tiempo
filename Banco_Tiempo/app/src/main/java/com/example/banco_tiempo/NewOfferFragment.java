@@ -33,6 +33,7 @@ public class NewOfferFragment extends Fragment {
     }
 
     Button btnCreaOffer;
+
     RecyclerView recyclerOfertas;
     String s1[], s2[];
     int images[] = {R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48};
@@ -80,9 +81,14 @@ public class NewOfferFragment extends Fragment {
         recyclerOfertas.setLayoutManager(new LinearLayoutManager(getContext()));
 
         btnCreaOffer = (Button)vista.findViewById(R.id.btnNOffer);
+        clickBtnCreateOffer(btnCreaOffer);
 
 
-        btnCreaOffer.setOnClickListener(new View.OnClickListener() {
+        return vista;
+    }
+
+    public void clickBtnCreateOffer(Button btnCreateOffer){
+        btnCreateOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent creaOferta = new Intent(getActivity().getApplicationContext(), CreateOffer.class);
@@ -90,7 +96,5 @@ public class NewOfferFragment extends Fragment {
 
             }
         });
-
-        return vista;
     }
 }
