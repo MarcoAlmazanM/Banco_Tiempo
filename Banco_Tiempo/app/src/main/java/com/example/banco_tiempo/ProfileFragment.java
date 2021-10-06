@@ -1,5 +1,7 @@
 package com.example.banco_tiempo;
 
+import static java.lang.Thread.sleep;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -118,23 +120,28 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        pick(image);
+        pick(image, root);
 
         return root;
     }
 
-    public void pick (ImageView image) {
+    public void pick (ImageView image, View root) {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 verifyStoragePermissions();
                 mGetContent.launch("image/*");
-                onButtonShowPopupWindowClick(view);
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                onButtonShowPopupWindowClick(view, root);
             }
         });
     }
 
-    public void onButtonShowPopupWindowClick(View view) {
+    public void onButtonShowPopupWindowClick(View view, View root) {
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -148,10 +155,10 @@ public class ProfileFragment extends Fragment {
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window token
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(root, Gravity.CENTER, 0, 0);
 
         // dismiss the popup window when touched
-        btnImg = (Button)view.findViewById(R.id.btnUserData);
+        btnImg = (Button)popupView.findViewById(R.id.btnImg);
 
         btnImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,9 +167,9 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        btnCncl = (Button)view.findViewById(R.id.btnUserData);
+        btnCncl = (Button)popupView.findViewById(R.id.btnCncl);
 
-        btnImg.setOnClickListener(new View.OnClickListener() {
+        btnCncl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
