@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -57,10 +58,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Set Header Nav
         String name = preferences.getString("name","Nombre del Usuario");
         String lastName = preferences.getString("lastName","");
+
         nameTextView.setText( name + " " + lastName);
 
-        //Recuerda poner un if
-        Picasso.get().load("https://bancodetiempo.s3.amazonaws.com/perfil/anvrrtr3_perfil.jpg").into(userProfileImage);
+        imageIntent();
+
+        String imageUrl = preferences.getString("foto",null);
+        
+        Picasso.get().load(imageUrl).into(userProfileImage);
+
+
 
         //Always Display Inicio UI
         getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentInicio()).commit();
@@ -75,6 +82,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void imageIntent(){
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            ImageResponse imageResponse = (ImageResponse) intent.getSerializableExtra("data");
+            if(imageResponse.getTransactionApproval() == 1){
+                preferences = getSharedPreferences("userData",Context.MODE_PRIVATE);
+                editor = preferences.edit();
+                editor.putString("foto",imageResponse.getUrl());
+                editor.apply();
+            }
+        }
     }
 
     private ActionBarDrawerToggle setUpDrawerToggle(){
