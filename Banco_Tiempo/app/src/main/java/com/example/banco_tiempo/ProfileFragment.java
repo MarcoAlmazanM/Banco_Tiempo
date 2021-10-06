@@ -1,5 +1,7 @@
 package com.example.banco_tiempo;
 
+import static java.lang.Thread.sleep;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -130,13 +132,18 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 verifyStoragePermissions();
                 mGetContent.launch("image/*");
-                onButtonShowPopupWindowClick(root);
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                onButtonShowPopupWindowClick(view, root);
             }
         });
 
     }
 
-    public void onButtonShowPopupWindowClick(View root) {
+    public void onButtonShowPopupWindowClick(View view, View root) {
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
