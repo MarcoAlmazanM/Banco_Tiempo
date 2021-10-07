@@ -102,20 +102,13 @@ public class UserDocumentsActivity extends AppCompatActivity {
         bAntUpload=findViewById(R.id.antUpload);
         antBar=findViewById(R.id.antBar);
         antBar.setVisibility(View.GONE);
-        /*
-        certPath = findViewById(R.id.rutaCert);
-        cert = findViewById(R.id.certView);
-        bCert = findViewById(R.id.cert);
-         */
+
 
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
         //Get username shared preferences
         username = preferences.getString("username","username");
-
-
-
 
     }
 
@@ -347,8 +340,13 @@ public class UserDocumentsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ImageResponse>  call, Response<ImageResponse> response) {
                 if (response.isSuccessful()) {
-                    ImageResponse registerResponse = response.body();
-                    String message = "Image Uploaded Successfully";
+                    ImageResponse imageResponse = response.body();
+                    String message;
+                    if(imageResponse.getTransactionApproval() == 1){
+                        message = "Image Uploaded Successfully";
+                    }else{
+                        message = "Error in Upload Image";
+                    }
                     Toast.makeText(UserDocumentsActivity.this, message, Toast.LENGTH_LONG).show();
 
                 } else {
