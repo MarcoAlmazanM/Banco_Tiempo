@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -163,12 +162,7 @@ public class ProfileFragment extends Fragment {
         document_status = root.findViewById(R.id.document);
 
         if (statusHours == 0) {
-            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.cross, null));
-            Matrix matrix = new Matrix();
-            status.setScaleType(ImageView.ScaleType.MATRIX);   //required
-            matrix.setRotate(45);
-            matrix.postTranslate((float)64, (float)0);
-            status.setImageMatrix(matrix);
+            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
         }else {
             status.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.greentick, null));
         }
@@ -277,19 +271,9 @@ public class ProfileFragment extends Fragment {
                     HoursDocumentResponse hoursDocumentResponse = response.body();
                     try {
                         if (hoursDocumentResponse.getStatusHoras() == 1) {
-                            Matrix matrix = new Matrix();
-                            status.setScaleType(ImageView.ScaleType.MATRIX);   //required
-                            matrix.setRotate(-45);
-                            matrix.postTranslate((float) -64, (float) 0);
-                            status.setImageMatrix(matrix);
                             status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
                         }else {
-                            Matrix matrix = new Matrix();
-                            status.setScaleType(ImageView.ScaleType.MATRIX);   //required
-                            matrix.setRotate(45);
-                            matrix.postTranslate((float) 64, (float) 0);
-                            status.setImageMatrix(matrix);
-                            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.cross, null));
+                            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                         }
 
                     }catch (NullPointerException e){
@@ -298,19 +282,9 @@ public class ProfileFragment extends Fragment {
 
                     try{
                         if (hoursDocumentResponse.getStatusDocumentos() == 1) {
-                            Matrix matrix = new Matrix();
-                            document_status.setScaleType(ImageView.ScaleType.MATRIX);   //required
-                            matrix.setRotate(-45);
-                            matrix.postTranslate((float) -64, (float) 0);
-                            document_status.setImageMatrix(matrix);
                             document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
                         } else {
-                            Matrix matrix = new Matrix();
-                            document_status.setScaleType(ImageView.ScaleType.MATRIX);   //required
-                            matrix.setRotate(45);
-                            matrix.postTranslate((float) 64, (float) 0);
-                            document_status.setImageMatrix(matrix);
-                            document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.cross, null));
+                            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                         }
                     }catch (NullPointerException e){
                         String message = "Error";

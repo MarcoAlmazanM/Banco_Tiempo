@@ -98,7 +98,7 @@
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/greentick" />
+                        android:src="@drawable/ic_baseline_close_24" />
 
                     <TextView
                         android:id="@+id/tVverHoras"
@@ -136,8 +136,7 @@
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:background="@color/white"
-                        android:src="@drawable/document" />
+                        android:src="@drawable/ic_baseline_close_24" />
 
                     <TextView
                         android:id="@+id/tVverDocu"
