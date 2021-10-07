@@ -52,7 +52,6 @@ public class CreateOffer extends AppCompatActivity {
     Uri selectedImage;
     String part_image;
     String sImage;
-    TextView imgPath;
     String sCert;
     Button bCert;
     ImageView cert;
@@ -85,7 +84,7 @@ public class CreateOffer extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         img1 = findViewById(R.id.iVPhoto1);
-        imgPath = findViewById(R.id.tVImageN);
+
 
         cert = findViewById(R.id.certiView);
         bCert = findViewById(R.id.certi);
@@ -207,7 +206,7 @@ public class CreateOffer extends AppCompatActivity {
                             byte[] buffer = new byte[(int) file.length() + 100];
                             @SuppressWarnings("resource")
                             int length = new FileInputStream(file).read(buffer);
-                            sImage = Base64.encodeToString(buffer, 0, length,
+                            sCert = Base64.encodeToString(buffer, 0, length,
                                     Base64.DEFAULT);
 
                         } catch (IOException e) {
@@ -221,21 +220,7 @@ public class CreateOffer extends AppCompatActivity {
                 }
             });
 
-    public void addNewOffer(View view){
-        ImageRequest imageRequest = new ImageRequest();
-        imageRequest.setImage(sImage);
-        imageRequest.setUsername(username);
-        imageRequest.setType("ComprobantePicture");
-        uploadImageServer(imageRequest);
-    }
 
-    public void uploadCert(View view) {
-        ImageRequest imageRequest = new ImageRequest();
-        imageRequest.setImage(sCert);
-        imageRequest.setUsername("JoseLuis");
-        imageRequest.setType("ProfilePicture");
-        uploadImageServer(imageRequest);
-    }
 
     public void uploadImageServer(ImageRequest imageRequest){
         Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
