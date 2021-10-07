@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -65,12 +66,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         imageIntent();
 
-        String imageUrl = preferences.getString("foto","");
+        String imageUrl = preferences.getString("foto",null);
 
-        //Agregar if
+        if (imageUrl.equals("NULL")){
+            userProfileImage.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.baseline_account_circle_black_48,null));
+        }else{
+            Picasso.get().invalidate(imageUrl);
+            Picasso.get().load(imageUrl).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userProfileImage);
+        }
 
-        Picasso.get().invalidate(imageUrl);
-        Picasso.get().load(imageUrl).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userProfileImage);
 
         //Always Display Inicio UI
         getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentInicio()).commit();

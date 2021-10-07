@@ -42,6 +42,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -146,9 +147,14 @@ public class ProfileFragment extends Fragment {
         clickBtnUserDocuments(btnUserDocuments);
 
         image = root.findViewById(R.id.iVUserProfile);
-        String imageProfile = preferences.getString("foto","");
-        Picasso.get().invalidate(imageProfile);
-        Picasso.get().load(imageProfile).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
+        String imageProfile = preferences.getString("foto",null);
+        if (imageProfile.equals("NULL")){
+            image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
+        }else{
+            Picasso.get().invalidate(imageProfile);
+            Picasso.get().load(imageProfile).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
+        }
+
         pick(image, root);
 
         return root;
@@ -261,36 +267,30 @@ public class ProfileFragment extends Fragment {
                     image.setImageURI(uri);
                     selectedImage = MediaStore.Images.Media.getContentUri("external");// Get the image file URI
                     String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                    File f = new File(getImagePath(uri));
-                    String fileName = f.getName();
-                    Log.e("TAG1",fileName);
-                    Cursor cursor = applicationContext.getContentResolver().query(selectedImage, imageProjection,fileName, null, null);
+
+                    // Obtain path image & fileName image
+                    String path = getImagePath(uri);
+                    File file = new File(path);
+                    String fileName = file.getName();
+                    String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+                    String[] args = {fileName};
+
+                    Cursor cursor = applicationContext.getContentResolver().query(selectedImage, imageProjection,selectionClause, args, null);
                     if (cursor.getCount()>0) {
                         cursor.moveToPosition(0);
                         part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-                        Log.e("Tag3",part_image);
-                        Uri filename = Uri.parse(imageProjection[0]);
-
                         cursor.close();
-
-                        // Get the image file absolute path
-                        Bitmap bitmap = null;
                         try {
-                            bitmap = MediaStore.Images.Media.getBitmap(applicationContext.getContentResolver(), Uri.fromFile(new File(part_image)));
-                            Log.e("Tag4", bitmap.toString());
-                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                            byte[] bytes = stream.toByteArray();
-                            sImage = Base64.encodeToString(bytes,Base64.DEFAULT);
+                            byte[] buffer = new byte[(int) file.length() + 100];
+                            @SuppressWarnings("resource")
+                            int length = new FileInputStream(file).read(buffer);
+                            sImage = Base64.encodeToString(buffer, 0, length,
+                                    Base64.DEFAULT);
 
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-                        // Set the ImageView with the bitmap of the image.
-                        //image.setImageBitmap(bitmap);
                     }
-
                     else {
                         Toast.makeText(getActivity(), "Algo Salio mal", Toast.LENGTH_SHORT);
                     }
