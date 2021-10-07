@@ -82,7 +82,6 @@ public class CreateOffer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_offer);
         createOfferLayout = findViewById(R.id.user_new_offer);
-        Log.e("TAG",createOfferLayout.toString());
         toolbar = findViewById(R.id.toolbar);
         setTitle("Create New Offer");
         setSupportActionBar(toolbar);
@@ -165,7 +164,7 @@ public class CreateOffer extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             NewOfferResponse newOfferResponse = (NewOfferResponse) intent.getSerializableExtra("data");
-            if (newOfferResponse.getTransactionApproval() == 1) {
+            if(newOfferResponse.getTransactionApproval() == 1) {
                 message = "New Offer created successfully";
                 Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
             }else{
@@ -221,38 +220,39 @@ public class CreateOffer extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onActivityResult(Uri uri) {
-                    img1.setImageURI(uri);
-                    selectedImage = MediaStore.Images.Media.getContentUri("external");
-                    // Get the image file URI
-                    String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+                    if (uri != null) {
+                        img1.setImageURI(uri);
+                        selectedImage = MediaStore.Images.Media.getContentUri("external");
+                        // Get the image file URI
+                        String[] imageProjection = {MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME};
 
-                    // Obtain path image & fileName image
-                    String path = getImagePath(uri);
-                    File file = new File(path);
-                    String fileName = file.getName();
-                    String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
-                    String[] args = {fileName};
+                        // Obtain path image & fileName image
+                        String path = getImagePath(uri);
+                        File file = new File(path);
+                        String fileName = file.getName();
+                        String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+                        String[] args = {fileName};
 
-                    Cursor cursor = getContentResolver().query(selectedImage, imageProjection,selectionClause, args, null);
-                    if (cursor.getCount()>0) {
-                        cursor.moveToPosition(0);
-                        part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-                        cursor.close();
-                        try {
-                            byte[] buffer = new byte[(int) file.length() + 100];
-                            @SuppressWarnings("resource")
-                            int length = new FileInputStream(file).read(buffer);
-                            sImage = Base64.encodeToString(buffer, 0, length,
-                                    Base64.DEFAULT);
+                        Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+                        if (cursor.getCount() > 0) {
+                            cursor.moveToPosition(0);
+                            part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+                            cursor.close();
+                            try {
+                                byte[] buffer = new byte[(int) file.length() + 100];
+                                @SuppressWarnings("resource")
+                                int length = new FileInputStream(file).read(buffer);
+                                sImage = Base64.encodeToString(buffer, 0, length,
+                                        Base64.DEFAULT);
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
                         }
-                    }
-                    else {
-                        Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
-                    }
 
+                    }
                 }
             });
 
@@ -262,39 +262,40 @@ public class CreateOffer extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onActivityResult(Uri uri) {
-                    cert.setImageURI(uri);
+                    if (uri != null) {
+                        cert.setImageURI(uri);
 
-                    selectedImage = MediaStore.Images.Media.getContentUri("external");
-                    // Get the image file URI
-                    String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+                        selectedImage = MediaStore.Images.Media.getContentUri("external");
+                        // Get the image file URI
+                        String[] imageProjection = {MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME};
 
-                    // Obtain path image & fileName image
-                    String path = getImagePath(uri);
-                    File file = new File(path);
-                    String fileName = file.getName();
-                    String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
-                    String[] args = {fileName};
+                        // Obtain path image & fileName image
+                        String path = getImagePath(uri);
+                        File file = new File(path);
+                        String fileName = file.getName();
+                        String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+                        String[] args = {fileName};
 
-                    Cursor cursor = getContentResolver().query(selectedImage, imageProjection,selectionClause, args, null);
-                    if (cursor.getCount()>0) {
-                        cursor.moveToPosition(0);
-                        part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-                        cursor.close();
-                        try {
-                            byte[] buffer = new byte[(int) file.length() + 100];
-                            @SuppressWarnings("resource")
-                            int length = new FileInputStream(file).read(buffer);
-                            sCert = Base64.encodeToString(buffer, 0, length,
-                                    Base64.DEFAULT);
+                        Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+                        if (cursor.getCount() > 0) {
+                            cursor.moveToPosition(0);
+                            part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+                            cursor.close();
+                            try {
+                                byte[] buffer = new byte[(int) file.length() + 100];
+                                @SuppressWarnings("resource")
+                                int length = new FileInputStream(file).read(buffer);
+                                sCert = Base64.encodeToString(buffer, 0, length,
+                                        Base64.DEFAULT);
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
                         }
-                    }
-                    else {
-                        Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
-                    }
 
+                    }
                 }
             });
 

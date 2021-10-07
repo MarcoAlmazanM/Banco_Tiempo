@@ -23,7 +23,7 @@ public interface UserService {
     Call<ImageResponse> uploadImageServer(@Body ImageRequest imageRequest);
 
     //POST request to upload new offer
-    @POST("uploadimage")
+    @POST("createservice")
     Call<NewOfferResponse> uploadNewOffer(@Body NewOfferRequest newOfferRequest);
 
 }
