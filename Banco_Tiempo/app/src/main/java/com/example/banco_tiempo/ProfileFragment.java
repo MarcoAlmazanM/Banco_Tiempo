@@ -85,6 +85,9 @@ public class ProfileFragment extends Fragment {
     Integer statusHours;
     Integer documentosApproval;
 
+    TextView tVHours;
+    TextView tVDocuments;
+    ImageView document_status;
 
     NestedScrollView nestedScrollView;
 
@@ -157,14 +160,17 @@ public class ProfileFragment extends Fragment {
         documentosApproval = preferences.getInt("documentosApproval", 0);
 
         status = root.findViewById(R.id.statusHours);
+        document_status = root.findViewById(R.id.document);
 
-        if (statusHours == 1) {
+        if (statusHours == 0) {
             status.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.cross, null));
             Matrix matrix = new Matrix();
             status.setScaleType(ImageView.ScaleType.MATRIX);   //required
             matrix.setRotate(45);
             matrix.postTranslate((float)64, (float)0);
             status.setImageMatrix(matrix);
+        }else {
+            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.greentick, null));
         }
 
         // Set listener en btnUserData
@@ -192,6 +198,12 @@ public class ProfileFragment extends Fragment {
         }
 
         pick(image, root);
+
+        tVHours = root.findViewById(R.id.tVverHoras);
+        tVDocuments = root.findViewById(R.id.tVverDocu);
+
+        checkHours(tVHours);
+        checkDocuments(tVDocuments);
 
         return root;
     }
@@ -222,6 +234,100 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+    }
+
+    public void checkHours(TextView tVHours){
+        tVHours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkHoursServer();
+            }
+        });
+    }
+
+    public void checkDocuments (TextView tVDocuments){
+        tVDocuments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkDocumentsServer();
+            }
+        });
+    }
+
+    public void checkDocumentsServer(){
+        HoursDocumentsRequest hoursDocumentRequest = new HoursDocumentsRequest();
+        hoursDocumentRequest.setUsername(username);
+        hoursDocumentRequest.setType("documentos");
+        checkHoursDocuments(hoursDocumentRequest);
+    }
+
+    public void checkHoursServer(){
+        HoursDocumentsRequest hoursDocumentRequest = new HoursDocumentsRequest();
+        hoursDocumentRequest.setUsername(username);
+        hoursDocumentRequest.setType("horas");
+        checkHoursDocuments(hoursDocumentRequest);
+    }
+
+    public void checkHoursDocuments(HoursDocumentsRequest hoursDocumentsRequest){
+        Call<HoursDocumentResponse> hoursDocumentResponseCall = ApiClient.getService().checkHoursDocuments(hoursDocumentsRequest);
+        hoursDocumentResponseCall.enqueue(new Callback<HoursDocumentResponse>() {
+            @Override
+            public void onResponse(Call<HoursDocumentResponse>  call, Response<HoursDocumentResponse> response) {
+                if (response.isSuccessful()) {
+                    HoursDocumentResponse hoursDocumentResponse = response.body();
+                    try {
+                        if (hoursDocumentResponse.getStatusHoras() == 1) {
+                            Matrix matrix = new Matrix();
+                            status.setScaleType(ImageView.ScaleType.MATRIX);   //required
+                            matrix.setRotate(-45);
+                            matrix.postTranslate((float) -64, (float) 0);
+                            status.setImageMatrix(matrix);
+                            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
+                        }else {
+                            Matrix matrix = new Matrix();
+                            status.setScaleType(ImageView.ScaleType.MATRIX);   //required
+                            matrix.setRotate(45);
+                            matrix.postTranslate((float) 64, (float) 0);
+                            status.setImageMatrix(matrix);
+                            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.cross, null));
+                        }
+
+                    }catch (NullPointerException e){
+                        String message = "Error";
+                    }
+
+                    try{
+                        if (hoursDocumentResponse.getStatusDocumentos() == 1) {
+                            Matrix matrix = new Matrix();
+                            document_status.setScaleType(ImageView.ScaleType.MATRIX);   //required
+                            matrix.setRotate(-45);
+                            matrix.postTranslate((float) -64, (float) 0);
+                            document_status.setImageMatrix(matrix);
+                            document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
+                        } else {
+                            Matrix matrix = new Matrix();
+                            document_status.setScaleType(ImageView.ScaleType.MATRIX);   //required
+                            matrix.setRotate(45);
+                            matrix.postTranslate((float) 64, (float) 0);
+                            document_status.setImageMatrix(matrix);
+                            document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.cross, null));
+                        }
+                    }catch (NullPointerException e){
+                        String message = "Error";
+                    }
+
+                } else {
+                    String message = "An error occurred, please try again...";
+                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HoursDocumentResponse> call, Throwable t) {
+                String message = t.getLocalizedMessage();
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void onButtonShowPopupWindowClick(View view, View root) {

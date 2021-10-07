@@ -26,4 +26,8 @@ public interface UserService {
     @POST("createservice")
     Call<NewOfferResponse> uploadNewOffer(@Body NewOfferRequest newOfferRequest);
 
+    //POST to check status Documents & Hours
+    @POST("getuserstatus")
+    Call<HoursDocumentResponse> checkHoursDocuments (@Body HoursDocumentsRequest hoursDocumentsRequest);
+
 }

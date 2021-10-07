@@ -106,9 +106,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Verificar Horas"
                         android:layout_marginTop="75dp"
                         android:gravity="center"
+                        android:text="Verificar Horas"
                         android:textSize="10sp" />
 
 
@@ -134,22 +134,22 @@
                         android:id="@+id/document"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/document"
                         android:background="@color/white"
-                        android:layout_centerHorizontal="true"/>
+                        android:src="@drawable/document" />
 
                     <TextView
                         android:id="@+id/tVverDocu"
+                        style="@style/profileStyledBackButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/profileStyledBackButton1"
-                        android:textSize="10sp"
-                        android:text="Verificar Documentos"
-                        android:layout_marginTop="65dp"
                         android:layout_below="@+id/document"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="65dp"
                         android:gravity="center"
-                        android:layout_centerInParent="true"/>
+                        android:text="Verificar Documentos"
+                        android:textSize="10sp" />
 
 
                 </RelativeLayout>
