@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -50,11 +53,11 @@ public class CreateOffer extends AppCompatActivity {
     Uri selectedImage;
     String part_image;
     String sImage;
-    TextView imgPath;
-    ActivityResultLauncher<String>certGetContent;
     String sCert;
     Button bCert;
     ImageView cert;
+    TextView category, title, description;
+    String cat, titxd, des, message;
 
     AutoCompleteTextView autoCTV, autoCTV2;
     ArrayAdapter<String> adapterItems, adapterItems2;
@@ -84,19 +87,15 @@ public class CreateOffer extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         img1 = findViewById(R.id.iVPhoto1);
-        imgPath = findViewById(R.id.tVImageN);
+
 
         cert = findViewById(R.id.certiView);
         bCert = findViewById(R.id.certi);
 
         autoCTV = findViewById(R.id.tVAutoComplete);
-        //autoCTV2 = findViewById(R.id.tVAutoComplete2);
+
         adapterItems = new ArrayAdapter<String>(this, R.layout.list_empleos_item, items);
         autoCTV.setAdapter(adapterItems);
-        /*
-        adapterItems2 = new ArrayAdapter<String>(this, R.layout.list_empleos_item, items2);
-        autoCTV2.setAdapter(adapterItems2);
-        */
 
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -111,57 +110,7 @@ public class CreateOffer extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Empleo: "+item, Toast.LENGTH_SHORT).show();
             }
         });
-        /*
-        autoCTV2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getApplicationContext(), "Ubicación: "+item, Toast.LENGTH_SHORT).show();
-            }
-        });
-         */
-        certGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onActivityResult(Uri result) {
-                cert.setImageURI(result);
 
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-
-                    bCert.setText("Documento cargado");
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sCert = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(CreateOffer.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
-            }
-        });
     }
 
     public void pick(View view) {
@@ -169,6 +118,46 @@ public class CreateOffer extends AppCompatActivity {
         mGetContent.launch("image/*");
     }
 
+    public void clickBtnCert(View view){
+        verifyStoragePermissions(CreateOffer.this);
+        certGetContent.launch("image/*");
+    }
+
+    public void addNewOffer(View view){
+        img1 = findViewById(R.id.iVPhoto1);
+        cert = findViewById(R.id.certiView);
+        category = findViewById(R.id.tVAutoComplete);
+        title = findViewById(R.id.tVAutoComplete2);
+        description = findViewById(R.id.tVDescription);
+
+        cat = category.getText().toString();
+        titxd = title.getText().toString();
+        des = description.getText().toString();
+
+        if (TextUtils.isEmpty(cat) || TextUtils.isEmpty(titxd) || TextUtils.isEmpty(sImage)) {
+            message = "All inputs required ...";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+        } else {
+            //Inserte código aquí
+        }
+    }
+
+    public String getImagePath(Uri uri){
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        String document_id = cursor.getString(0);
+        document_id = document_id.substring(document_id.lastIndexOf(":")+1);
+        cursor.close();
+
+        cursor = getContentResolver().query(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+        cursor.moveToFirst();
+        @SuppressLint("Range") String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+        cursor.close();
+
+        return path;
+    }
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -177,61 +166,83 @@ public class CreateOffer extends AppCompatActivity {
                 @Override
                 public void onActivityResult(Uri uri) {
                     img1.setImageURI(uri);
-                    selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+                    selectedImage = MediaStore.Images.Media.getContentUri("external");
+                    // Get the image file URI
                     String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                    Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
+
+                    // Obtain path image & fileName image
+                    String path = getImagePath(uri);
+                    File file = new File(path);
+                    String fileName = file.getName();
+                    String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+                    String[] args = {fileName};
+
+                    Cursor cursor = getContentResolver().query(selectedImage, imageProjection,selectionClause, args, null);
                     if (cursor.getCount()>0) {
                         cursor.moveToPosition(0);
                         part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                        Uri filename = Uri.parse(imageProjection[0]);
-
                         cursor.close();
-
-
-                        // Get the image file absolute path
-                        Bitmap bitmap = null;
                         try {
-                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                            byte[] bytes = stream.toByteArray();
-                            sImage = Base64.encodeToString(bytes,Base64.DEFAULT);
+                            byte[] buffer = new byte[(int) file.length() + 100];
+                            @SuppressWarnings("resource")
+                            int length = new FileInputStream(file).read(buffer);
+                            sImage = Base64.encodeToString(buffer, 0, length,
+                                    Base64.DEFAULT);
 
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        //img1.setImageBitmap(bitmap);
-                        // Set the ImageView with the bitmap of the image
                     }
-
                     else {
-                        Toast.makeText(CreateOffer.this,"Algo Salio mal", Toast.LENGTH_SHORT);
+                        Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
                     }
 
                 }
             });
 
-    public void addNewOffer(View view){
-        ImageRequest imageRequest = new ImageRequest();
-        imageRequest.setImage(sImage);
-        imageRequest.setUsername(username);
-        imageRequest.setType("ComprobantePicture");
-        uploadImageServer(imageRequest);
-    }
+    ActivityResultLauncher<String> certGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @SuppressLint("Range")
+                @RequiresApi(api = Build.VERSION_CODES.R)
+                @Override
+                public void onActivityResult(Uri uri) {
+                    cert.setImageURI(uri);
 
-    public void clickBtnCert(View view){
-        verifyStoragePermissions(CreateOffer.this);
-        certGetContent.launch("image/*");
-    }
+                    selectedImage = MediaStore.Images.Media.getContentUri("external");
+                    // Get the image file URI
+                    String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
 
-    public void uploadCert(View view) {
-        ImageRequest imageRequest = new ImageRequest();
-        imageRequest.setImage(sCert);
-        imageRequest.setUsername("JoseLuis");
-        imageRequest.setType("ProfilePicture");
-        uploadImageServer(imageRequest);
-    }
+                    // Obtain path image & fileName image
+                    String path = getImagePath(uri);
+                    File file = new File(path);
+                    String fileName = file.getName();
+                    String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+                    String[] args = {fileName};
+
+                    Cursor cursor = getContentResolver().query(selectedImage, imageProjection,selectionClause, args, null);
+                    if (cursor.getCount()>0) {
+                        cursor.moveToPosition(0);
+                        part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+                        cursor.close();
+                        try {
+                            byte[] buffer = new byte[(int) file.length() + 100];
+                            @SuppressWarnings("resource")
+                            int length = new FileInputStream(file).read(buffer);
+                            sCert = Base64.encodeToString(buffer, 0, length,
+                                    Base64.DEFAULT);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
+                    }
+
+                }
+            });
+
+
 
     public void uploadImageServer(ImageRequest imageRequest){
         Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);

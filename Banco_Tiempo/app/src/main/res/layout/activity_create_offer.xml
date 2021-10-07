@@ -42,7 +42,7 @@
         android:layout_marginBottom="417dp"
         android:clickable="false"
         android:minHeight="48dp"
-        android:text="Nombre de imagen"
+        android:text=""
         android:textAlignment="center"
         android:textSize="12sp" />
 
