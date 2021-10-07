@@ -159,13 +159,14 @@
         android:layout_marginTop="-60dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="160dp"
-        android:hint="Título de Oferta">
+        android:hint="   Título de Oferta">
 
         <AutoCompleteTextView
             android:id="@+id/tVAutoComplete2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
+            android:textSize="16sp"
             tools:ignore="TouchTargetSizeCheck"></AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>
 

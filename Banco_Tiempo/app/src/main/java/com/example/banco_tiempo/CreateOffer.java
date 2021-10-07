@@ -176,6 +176,7 @@ public class CreateOffer extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onActivityResult(Uri uri) {
+                    img1.setImageURI(uri);
                     selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
                     String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
                     Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
@@ -200,7 +201,7 @@ public class CreateOffer extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        img1.setImageBitmap(bitmap);
+                        //img1.setImageBitmap(bitmap);
                         // Set the ImageView with the bitmap of the image
                     }
 
