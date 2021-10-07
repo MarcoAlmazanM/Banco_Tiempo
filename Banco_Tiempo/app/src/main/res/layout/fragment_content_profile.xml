@@ -17,13 +17,13 @@
 
         <TextView
             style="@style/headerText"
-            android:text="Account Info"
+            android:text="Información de la cuenta"
             android:layout_marginBottom="20dp"/>
 
         <RelativeLayout style="@style/profileDetailsLayout">
             <ImageView
                 android:id="@+id/nameImageView"
-                android:src="@drawable/ic_name"
+                android:src="@drawable/name1"
                 style="@style/profileDetailsImage" />
 
             <TextView
@@ -43,7 +43,7 @@
         <RelativeLayout style="@style/profileDetailsLayout">
             <ImageView
                 android:id="@+id/mobileImageView"
-                android:src="@drawable/ic_mobile"
+                android:src="@drawable/username"
                 style="@style/profileDetailsImage" />
 
             <TextView
@@ -62,7 +62,7 @@
         <RelativeLayout style="@style/profileDetailsLayout">
             <ImageView
                 android:id="@+id/emailImageView"
-                android:src="@drawable/ic_email"
+                android:src="@drawable/email"
                 style="@style/profileDetailsImage" />
 
             <TextView
@@ -77,34 +77,39 @@
 
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/btnUserData"
-            android:layout_width="340dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="28dp"
-            android:backgroundTint="@color/blue_4_btn"
-            android:onClick="goUserData"
-            android:text="@string/datosUsuario"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:drawableRight="@drawable/baseline_description_black_20"
-            android:drawableTint="@color/white" />
+        <!--DATOS USUARIO TEMPO
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20dp"
+            android:background="@color/profileBackground"
+            android:gravity="center">
 
-        <Button
+        <TextView
+            android:id="@+id/btnUserData"
+            android:onClick="goUserData"
+            style="@style/profileStyledBackButton1"
+            android:text="@string/datosUsuario"
+            android:drawableRight="@drawable/baseline_description_black_20"/>
+        </RelativeLayout>
+        -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20dp"
+            android:background="@color/profileBackground"
+            android:gravity="center">
+
+        <TextView
             android:id="@+id/btnUserDocuments"
-            android:layout_width="340dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="28dp"
-            android:backgroundTint="@color/blue_4_btn"
             android:onClick="goUserDoc"
+            style="@style/profileStyledBackButton1"
             android:text="@string/documentosUsuario"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:drawableRight="@drawable/baseline_description_black_20"
-            android:drawableTint="@color/white" />
+            android:drawableEnd="@drawable/baseline_description_black_20"/>
+        </RelativeLayout>
 
         <View style="@style/proifleDetailsView" />
 

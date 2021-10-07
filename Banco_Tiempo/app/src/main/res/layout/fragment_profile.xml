@@ -63,28 +63,98 @@
                     android:textSize="12dp"
                     android:textStyle="bold" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/profileBackground"
-                    android:gravity="center">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_alignParentTop="true"
-                        android:background="@drawable/profile_bk" />
-
-                    <TextView
-                        style="@style/profileStyledBackButton"
-                        android:text="@string/returnMain" />
-                </RelativeLayout>
 
             </LinearLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:background="@color/white">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="125dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/blue_2"
+                app:cardElevation="10dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/greentick"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/greentick"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/tVverHoras"
+                        style="@style/profileStyledBackButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/greentick"
+                        android:layout_centerVertical="true"
+                        android:text="Verificar Horas"
+                        android:layout_marginTop="75dp"
+                        android:gravity="center"
+                        android:textSize="10sp" />
+
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="125dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/blue_2"
+                app:cardElevation="10dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/document"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/document"
+                        android:background="@color/white"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:id="@+id/tVverDocu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/profileStyledBackButton1"
+                        android:textSize="10sp"
+                        android:text="Verificar Documentos"
+                        android:layout_marginTop="65dp"
+                        android:layout_below="@+id/document"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"/>
+
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
