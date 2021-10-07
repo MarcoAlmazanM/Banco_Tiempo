@@ -37,4 +37,17 @@
     <color name="bg_black2">#1c1c1c</color>
     <color name="element_black">#494949</color>
     <color name="element_white">#d3d8e3</color>
+
+    <!-- EXTRA STYLES -->
+
+    <color name="colorPrimary1">#3F51B5</color>
+    <color name="colorPrimaryDark1">#303F9F</color>
+    <color name="colorAccent1">#FF4081</color>
+
+    <!--colors for profile-->
+    <color name="profilePrimaryDark">#FF3B30</color>
+    <color name="profileAccentColor">#F7F7F7</color>
+    <color name="profileBackground">#fff</color>
+    <color name="blackTextColor">#000</color>
+    <color name="profileEditTextColor">#707070</color>
 </resources>

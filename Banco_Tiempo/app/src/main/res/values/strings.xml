@@ -158,5 +158,9 @@
         <item>Descripción de prueba.</item>
         <item>Descripción de prueba.</item>
     </string-array>
+    
+    //Profile View
+    <string name="profileEmail" translatable="false">prueba@correo.com</string>
+    <string name="returnMain" translatable="false">Regresar \n a menú principal</string>
 
 </resources>
