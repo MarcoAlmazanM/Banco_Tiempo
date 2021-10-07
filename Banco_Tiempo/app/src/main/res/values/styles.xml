@@ -166,4 +166,12 @@
         <item name="android:minWidth">250dp</item>
     </style>
 
+    <style name="circular">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="roundSquare">
+        <item name="cornerSize">10%</item>
+    </style>
+
 </resources>

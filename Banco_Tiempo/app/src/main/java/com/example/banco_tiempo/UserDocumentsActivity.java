@@ -18,19 +18,24 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -48,13 +53,12 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     TextView inePath, domPath, antPath, certPath;
     ImageView ine, dom, ant, cert;
-    Button bIne, bDom, bAnt, bCert;
+    Button bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload, bCert;
     String sIne, sDom, sAnt, sCert;
 
-    ActivityResultLauncher<String>ineGetContent;
-    ActivityResultLauncher<String>domGetContent;
-    ActivityResultLauncher<String>antGetContent;
-    ActivityResultLauncher<String>certGetContent;
+    ProgressBar ineBar, domBar, antBar;
+
+
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -81,18 +85,24 @@ public class UserDocumentsActivity extends AppCompatActivity {
         inePath = findViewById(R.id.rutaIne);
         ine = findViewById(R.id.ineView);
         bIne = findViewById(R.id.ine);
+        bIneUpload=findViewById(R.id.ineUpload);
+        ineBar=findViewById(R.id.ineBar);
+        ineBar.setVisibility(View.GONE);
 
         domPath = findViewById(R.id.rutaDom);
         dom = findViewById(R.id.domView);
         bDom = findViewById(R.id.dom);
+        bDomUpload=findViewById(R.id.domUpload);
+        domBar=findViewById(R.id.domBar);
+        domBar.setVisibility(View.GONE);
 
         antPath = findViewById(R.id.rutaAnt);
         ant = findViewById(R.id.antView);
         bAnt = findViewById(R.id.ant);
+        bAntUpload=findViewById(R.id.antUpload);
+        antBar=findViewById(R.id.antBar);
+        antBar.setVisibility(View.GONE);
 
-        certPath = findViewById(R.id.rutaCert);
-        cert = findViewById(R.id.certView);
-        bCert = findViewById(R.id.cert);
 
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -100,177 +110,32 @@ public class UserDocumentsActivity extends AppCompatActivity {
         //Get username shared preferences
         username = preferences.getString("username","username");
 
+    }
 
-        ineGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
+    private void changeBtn(Button b, TextView t) {
+        b.setText("Documento cargado");
+        b.setBackgroundColor(getColor(R.color.green));
+        b.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.username, 0);
+        t.setText("Carga exitosa");
+        t.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_upload_black_24, 0);
+    }
+
+    private void uploadEffect(ProgressBar bar, Button b){
+        bar.setVisibility(View.VISIBLE);
+        b.setBackgroundColor(getColor(R.color.white));
+        b.setTextColor(Color.parseColor("#36CBF9"));
+        b.setText("Subiendo...");
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onActivityResult(Uri result) {
-                ine.setImageURI(result);
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-                    bIne.setText("Documento cargado");
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sIne = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
+            public void run() {
+                bar.setVisibility(View.GONE);
+                b.setTextColor(Color.parseColor("#FFFFFF"));
+                b.setBackgroundColor(getColor(R.color.green));
+                b.setText("Listo");
             }
-        });
-
-        domGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onActivityResult(Uri result) {
-                dom.setImageURI(result);
-
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-
-                    bDom.setText("Documento cargado");
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sDom = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
-            }
-        });
-
-        antGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onActivityResult(Uri result) {
-                ant.setImageURI(result);
-
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-
-                    bAnt.setText("Documento cargado");
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sAnt = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
-            }
-        });
-
-        certGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onActivityResult(Uri result) {
-                cert.setImageURI(result);
-
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-
-                    bCert.setText("Documento cargado");
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sCert = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
-            }
-        });
-
+        }, 7000);
 
     }
 
@@ -286,10 +151,6 @@ public class UserDocumentsActivity extends AppCompatActivity {
         verifyStoragePermissions(UserDocumentsActivity.this);
         antGetContent.launch("image/*");
     }
-    public void clickBtnCert(View view){
-        verifyStoragePermissions(UserDocumentsActivity.this);
-        certGetContent.launch("image/*");
-    }
 
 
     // Upload the images to the remote database
@@ -299,6 +160,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         imageRequest.setUsername(username);
         imageRequest.setType("INEPicture");
         uploadImageServer(imageRequest);
+        uploadEffect(ineBar, bIneUpload);
     }
 
     public void uploadDom(View view) {
@@ -307,6 +169,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         imageRequest.setUsername(username);
         imageRequest.setType("ComprobantePicture");
         uploadImageServer(imageRequest);
+        uploadEffect(domBar, bDomUpload);
     }
 
     public void uploadAnt(View view) {
@@ -315,15 +178,161 @@ public class UserDocumentsActivity extends AppCompatActivity {
         imageRequest.setUsername(username);
         imageRequest.setType("CartaAntecedentesPicture");
         uploadImageServer(imageRequest);
+        uploadEffect(antBar, bAntUpload);
     }
 
-    public void uploadCert(View view) {
-        ImageRequest imageRequest = new ImageRequest();
-        imageRequest.setImage(sCert);
-        imageRequest.setUsername("JoseLuis");
-        imageRequest.setType("ProfilePicture");
-        uploadImageServer(imageRequest);
+    public String getImagePath(Uri uri){
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        String document_id = cursor.getString(0);
+        document_id = document_id.substring(document_id.lastIndexOf(":")+1);
+        cursor.close();
+
+        cursor = getContentResolver().query(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+        cursor.moveToFirst();
+        @SuppressLint("Range") String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+        cursor.close();
+
+        return path;
     }
+
+    ActivityResultLauncher<String>ineGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @SuppressLint("Range")
+        @RequiresApi(api = Build.VERSION_CODES.R)
+        @Override
+        public void onActivityResult(Uri uri) {
+            ine.setImageURI(uri);
+            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+            // Obtain path image & fileName image
+            String path = getImagePath(uri);
+            File file = new File(path);
+            String fileName = file.getName();
+            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+            String[] args = {fileName};
+
+            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+
+            if (cursor.getCount()>0) {
+                cursor.moveToPosition(0);
+                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+
+                cursor.close();
+                changeBtn(bIne, inePath);
+
+                try {
+                    byte[] buffer = new byte[(int) file.length() + 100];
+                    @SuppressWarnings("resource")
+                    int length = new FileInputStream(file).read(buffer);
+                    sIne = Base64.encodeToString(buffer, 0, length,
+                            Base64.DEFAULT);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            else {
+                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
+            }
+        }
+    });
+
+    ActivityResultLauncher<String> domGetContent =registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @SuppressLint("Range")
+        @RequiresApi(api = Build.VERSION_CODES.R)
+        @Override
+        public void onActivityResult(Uri uri) {
+            dom.setImageURI(uri);
+
+            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+
+            // Obtain path image & fileName image
+            String path = getImagePath(uri);
+            File file = new File(path);
+            String fileName = file.getName();
+            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+            String[] args = {fileName};
+
+            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+
+            if (cursor.getCount()>0) {
+                cursor.moveToPosition(0);
+                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+
+                cursor.close();
+
+                changeBtn(bDom, domPath);
+
+                try {
+                    byte[] buffer = new byte[(int) file.length() + 100];
+                    @SuppressWarnings("resource")
+                    int length = new FileInputStream(file).read(buffer);
+                    sDom = Base64.encodeToString(buffer, 0, length,
+                            Base64.DEFAULT);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            else {
+                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
+            }
+        }
+    });
+
+    ActivityResultLauncher<String> antGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @SuppressLint("Range")
+        @RequiresApi(api = Build.VERSION_CODES.R)
+        @Override
+        public void onActivityResult(Uri uri) {
+            ant.setImageURI(uri);
+
+            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+
+            // Obtain path image & fileName image
+            String path = getImagePath(uri);
+            File file = new File(path);
+            String fileName = file.getName();
+            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+            String[] args = {fileName};
+
+            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+
+            if (cursor.getCount()>0) {
+                cursor.moveToPosition(0);
+                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+
+                cursor.close();
+
+                changeBtn(bAnt, antPath);
+
+                // Get the image file absolute path
+                Bitmap bitmap = null;
+                try {
+                    byte[] buffer = new byte[(int) file.length() + 100];
+                    @SuppressWarnings("resource")
+                    int length = new FileInputStream(file).read(buffer);
+                    sAnt = Base64.encodeToString(buffer, 0, length,
+                            Base64.DEFAULT);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            else {
+                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
+            }
+        }
+    });
 
     public void uploadImageServer(ImageRequest imageRequest){
         Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
@@ -331,8 +340,13 @@ public class UserDocumentsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ImageResponse>  call, Response<ImageResponse> response) {
                 if (response.isSuccessful()) {
-                    ImageResponse registerResponse = response.body();
-                    String message = "Image Uploaded Successfully";
+                    ImageResponse imageResponse = response.body();
+                    String message;
+                    if(imageResponse.getTransactionApproval() == 1){
+                        message = "Image Uploaded Successfully";
+                    }else{
+                        message = "Error in Upload Image";
+                    }
                     Toast.makeText(UserDocumentsActivity.this, message, Toast.LENGTH_LONG).show();
 
                 } else {

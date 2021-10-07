@@ -38,7 +38,7 @@
     <string name="certificado" translatable="false">Certificado</string>
     <string name="cartaPenal" translatable="false">Carta de Antecendentes no Penales *</string>
     <string name="eligeDoc" translatable="false">Elige Documento...</string>
-    <string name="ruta" translatable="false">Ruta de documento</string>
+    <string name="ruta" translatable="false">Estado de carga</string>
 
 
     //Nueva Oferta
