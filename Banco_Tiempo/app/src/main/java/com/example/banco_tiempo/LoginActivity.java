@@ -1,7 +1,5 @@
 package com.example.banco_tiempo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import androidx.appcompat.app.AppCompatActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,6 +80,9 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("username",loginResponse.getUsername());
                 editor.putString("colonia",loginResponse.getColonia());
                 editor.putString("foto",loginResponse.getFoto());
+                editor.putString("email", loginResponse.getEmail());
+                editor.putInt("statusHours", loginResponse.getStatusHours());
+                editor.putInt("documentosApproval", loginResponse.getDocumentosApproval());
                 editor.putBoolean("SaveSession",true);
                 editor.apply();
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);

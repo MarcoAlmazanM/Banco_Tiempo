@@ -162,5 +162,9 @@
     //Profile View
     <string name="profileEmail" translatable="false">prueba@correo.com</string>
     <string name="returnMain" translatable="false">Regresar \n a menú principal</string>
+    <string name="correoProf" translatable="false">prueba@correo.mx</string>
+    <string name="emailProf" translatable="false">Correo Electrónico</string>
+    <string name="usernameProf" translatable="false">Nombre de Usuario</string>
+    <string name="nameProf" translatable="false">Nombre</string>
 
 </resources>
