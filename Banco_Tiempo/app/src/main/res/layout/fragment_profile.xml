@@ -158,7 +158,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/fragment_content_profile" />
+    <include layout="@layout/fragment_content_profile" android:id="@+id/fragment_content_profile"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

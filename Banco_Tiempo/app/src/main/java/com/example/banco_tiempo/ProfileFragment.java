@@ -34,11 +34,14 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -57,7 +60,7 @@ import retrofit2.Response;
  */
 public class ProfileFragment extends Fragment {
     Button btnUserData;
-    Button btnUserDocuments;
+    TextView btnUserDocuments;
     Button btnImg;
     Button btnCncl;
 
@@ -75,6 +78,8 @@ public class ProfileFragment extends Fragment {
     SharedPreferences.Editor editor;
     String username;
     String imageProfile;
+
+    NestedScrollView nestedScrollView;
 
     private final int REQUEST_EXTERNAL_STORAGE = 1;
     private String[] PERMISSIONS_STORAGE = {
@@ -141,7 +146,8 @@ public class ProfileFragment extends Fragment {
         username = preferences.getString("username","username");
 
         // Set listener en btnUserData
-        btnUserDocuments = root.findViewById(R.id.btnUserDocuments);
+        nestedScrollView = root.findViewById(R.id.fragment_content_profile);
+        btnUserDocuments = nestedScrollView.findViewById(R.id.btnUserDocuments);
         clickBtnUserDocuments(btnUserDocuments);
 
         image = root.findViewById(R.id.iVUserProfile);
@@ -159,7 +165,7 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    public void clickBtnUserDocuments(Button btnUserDocuments){
+    public void clickBtnUserDocuments(TextView btnUserDocuments){
         btnUserDocuments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
