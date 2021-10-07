@@ -75,6 +75,7 @@ public class CreateOffer extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     String username;
+    String colonia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,15 +103,16 @@ public class CreateOffer extends AppCompatActivity {
 
         //Get username shared preferences
         username = preferences.getString("username","username");
+        colonia = preferences.getString("colonia","colonia");
 
         autoCTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getApplicationContext(), "Empleo: "+item, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Categoria: "+item, Toast.LENGTH_SHORT).show();
             }
         });
-
+        createOfferIntent();
     }
 
     public void pick(View view) {
@@ -134,12 +136,66 @@ public class CreateOffer extends AppCompatActivity {
         titxd = title.getText().toString();
         des = description.getText().toString();
 
-        if (TextUtils.isEmpty(cat) || TextUtils.isEmpty(titxd) || TextUtils.isEmpty(sImage)) {
+        if (TextUtils.isEmpty(cat) || TextUtils.isEmpty(titxd)  || TextUtils.isEmpty(des)) {
             message = "All inputs required ...";
             Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
-        } else {
-            //Inserte código aquí
         }
+        else if(TextUtils.isEmpty(sImage)){
+            message = "An Image is necessary ...";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+        }
+        else {
+            NewOfferRequest newOfferRequest = new NewOfferRequest();
+            newOfferRequest.setUsername(username);
+            newOfferRequest.setCategoria(cat);
+            newOfferRequest.setNombre(titxd);
+            newOfferRequest.setDescripcion(des);
+            newOfferRequest.setImage(sImage);
+            newOfferRequest.setColonia(colonia);
+            if(TextUtils.isEmpty(sCert)){
+                newOfferRequest.setCertificado("NULL");
+            }else{
+                newOfferRequest.setCertificado(sCert);
+            }
+            uploadNewOffer(newOfferRequest);
+        }
+    }
+
+    public void createOfferIntent(){
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            NewOfferResponse newOfferResponse = (NewOfferResponse) intent.getSerializableExtra("data");
+            if (newOfferResponse.getTransactionApproval() == 1) {
+                message = "New Offer created successfully";
+                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+            }else{
+                message = "Error in New Offer Creation";
+                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void uploadNewOffer(NewOfferRequest newOfferRequest) {
+        Call<NewOfferResponse> newOfferResponseCall = ApiClient.getService().uploadNewOffer(newOfferRequest);
+        newOfferResponseCall.enqueue(new Callback<NewOfferResponse>() {
+            @Override
+            public void onResponse(Call<NewOfferResponse> call, Response<NewOfferResponse> response) {
+                if (response.isSuccessful()) {
+                    NewOfferResponse newOfferResponse = response.body();
+                    startActivity(new Intent(CreateOffer.this, CreateOffer.class).putExtra("data", newOfferResponse));
+                    finish();
+                } else {
+                    message = "An error occurred, please try again...";
+                    Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NewOfferResponse> call, Throwable t) {
+                message = t.getLocalizedMessage();
+                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public String getImagePath(Uri uri){

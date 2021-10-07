@@ -24,6 +24,6 @@ public interface UserService {
 
     //POST request to upload new offer
     @POST("uploadimage")
-    Call<ImageResponse> uploadNewOffer(@Body NewOfferRequest newOfferRequest);
+    Call<NewOfferResponse> uploadNewOffer(@Body NewOfferRequest newOfferRequest);
 
 }

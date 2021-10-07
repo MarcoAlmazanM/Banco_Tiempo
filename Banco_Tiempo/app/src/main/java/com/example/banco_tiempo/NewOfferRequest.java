@@ -7,6 +7,7 @@ public class NewOfferRequest {
     private String descripcion;
     private String image;
     private String certificado;
+    private String colonia;
 
     public String getUsername() {
         return username;
@@ -54,5 +55,13 @@ public class NewOfferRequest {
 
     public void setCertificado(String certificado) {
         this.certificado = certificado;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
     }
 }

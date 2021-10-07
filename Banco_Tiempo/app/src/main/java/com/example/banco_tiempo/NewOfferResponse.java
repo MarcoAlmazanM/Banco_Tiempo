@@ -3,13 +3,13 @@ package com.example.banco_tiempo;
 import java.io.Serializable;
 
 public class NewOfferResponse implements Serializable {
-    private String transactionApproval;
+    private Integer transactionApproval;
 
-    public String getTransactionApproval() {
+    public Integer getTransactionApproval() {
         return transactionApproval;
     }
 
-    public void setTransactionApproval(String transactionApproval) {
+    public void setTransactionApproval(Integer transactionApproval) {
         this.transactionApproval = transactionApproval;
     }
 }
