@@ -145,7 +145,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cert" />-->
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ineView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -155,9 +155,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ine"
         app:layout_constraintTop_toTopOf="@+id/ine"
+        app:shapeAppearanceOverlay="@style/roundSquare"
         app:srcCompat="@drawable/baseline_description_black_20" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/domView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -166,9 +167,10 @@
         app:layout_constraintEnd_toEndOf="@+id/ineView"
         app:layout_constraintStart_toEndOf="@+id/dom"
         app:layout_constraintTop_toTopOf="@+id/dom"
+        app:shapeAppearanceOverlay="@style/roundSquare"
         app:srcCompat="@drawable/baseline_description_black_20" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/antView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -177,6 +179,7 @@
         app:layout_constraintEnd_toEndOf="@+id/domView"
         app:layout_constraintStart_toEndOf="@+id/ant"
         app:layout_constraintTop_toTopOf="@+id/ant"
+        app:shapeAppearanceOverlay="@style/roundSquare"
         app:srcCompat="@drawable/baseline_description_black_20" />
 
     <!--<ImageView

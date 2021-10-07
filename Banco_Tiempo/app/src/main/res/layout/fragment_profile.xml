@@ -42,6 +42,8 @@
                     android:layout_height="120dp"
                     android:layout_marginTop="54dp"
                     android:layout_marginBottom="18dp"
+                    android:background="@drawable/img"
+                    android:translationZ="30dp"
                     android:src="@drawable/baseline_account_circle_black_48"
                     app:layout_constraintBottom_toTopOf="@+id/tVUserName"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +59,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tVemail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/profileEmail"
@@ -90,19 +93,18 @@
                     android:padding="5dp">
 
                     <ImageView
-                        android:id="@+id/greentick"
+                        android:id="@+id/statusHours"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/greentick"
-                        android:layout_centerHorizontal="true"/>
+                        android:src="@drawable/greentick" />
 
                     <TextView
                         android:id="@+id/tVverHoras"
                         style="@style/profileStyledBackButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/greentick"
                         android:layout_centerVertical="true"
                         android:text="Verificar Horas"
                         android:layout_marginTop="75dp"

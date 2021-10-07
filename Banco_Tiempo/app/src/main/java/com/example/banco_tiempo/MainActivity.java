@@ -25,6 +25,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
+
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout mDrawerLayout;
@@ -71,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             userProfileImage.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.baseline_account_circle_black_48,null));
         }else{
             Picasso.get().invalidate(imageUrl);
-            Picasso.get().load(imageUrl).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userProfileImage);
+            Transformation transformation = new RoundedCornersTransformation(100,5);
+            Picasso.get().load(imageUrl).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userProfileImage);
         }
 
 

@@ -9,13 +9,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,14 +39,13 @@ import androidx.fragment.app.Fragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
-import org.w3c.dom.Text;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,7 +63,7 @@ public class ProfileFragment extends Fragment {
     Button btnCncl;
 
 
-    TextView imgPath;
+    ImageView status;
     ImageView image;
     Uri selectedImage;
     String part_image;
@@ -73,11 +71,20 @@ public class ProfileFragment extends Fragment {
     Context applicationContext = MainActivity.getContextOfApplication();
 
     TextView nameTextView;
+    TextView emailTextView;
+    TextView usernameTextView;
+    TextView downNameTextView;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     String username;
     String imageProfile;
+    String email;
+    String name;
+    String lastName;
+    Integer statusHours;
+    Integer documentosApproval;
+
 
     NestedScrollView nestedScrollView;
 
@@ -139,24 +146,49 @@ public class ProfileFragment extends Fragment {
         editor = preferences.edit();
 
         //Set Header Nav
-        String name = preferences.getString("name","Nombre del Usuario");
-        String lastName = preferences.getString("lastName","");
+        name = preferences.getString("name","Nombre del Usuario");
+        lastName = preferences.getString("lastName","");
         nameTextView.setText( name + " " + lastName);
 
         username = preferences.getString("username","username");
+        email = preferences.getString("email", "correo@prueba.com");
+
+        statusHours = preferences.getInt("statusHours", 0);
+        documentosApproval = preferences.getInt("documentosApproval", 0);
+
+        status = root.findViewById(R.id.statusHours);
+
+        if (statusHours == 1) {
+            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.cross, null));
+            Matrix matrix = new Matrix();
+            status.setScaleType(ImageView.ScaleType.MATRIX);   //required
+            matrix.setRotate(45);
+            matrix.postTranslate((float)64, (float)0);
+            status.setImageMatrix(matrix);
+        }
 
         // Set listener en btnUserData
         nestedScrollView = root.findViewById(R.id.fragment_content_profile);
         btnUserDocuments = nestedScrollView.findViewById(R.id.btnUserDocuments);
         clickBtnUserDocuments(btnUserDocuments);
 
+        emailTextView = nestedScrollView.findViewById(R.id.tVemailP);
+        usernameTextView = nestedScrollView.findViewById(R.id.tVuserNameP);
+        downNameTextView = nestedScrollView.findViewById(R.id.tVnameP);
+
+        emailTextView.setText(email);
+        usernameTextView.setText(username);
+        downNameTextView.setText(name + " " + lastName);
+
+
         image = root.findViewById(R.id.iVUserProfile);
         imageProfile = preferences.getString("foto",null);
         if (imageProfile.equals("NULL")){
             image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
         }else{
+            Transformation transformation = new RoundedCornersTransformation(100,5);
             Picasso.get().invalidate(imageProfile);
-            Picasso.get().load(imageProfile).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
+            Picasso.get().load(imageProfile).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
         }
 
         pick(image, root);
@@ -231,8 +263,9 @@ public class ProfileFragment extends Fragment {
                 if (imageProfile.equals("NULL")){
                     image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
                 }else{
+                    Transformation transformation = new RoundedCornersTransformation(100,5);
                     Picasso.get().invalidate(imageProfile);
-                    Picasso.get().load(imageProfile).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
+                    Picasso.get().load(imageProfile).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
                 }
                 popupWindow.dismiss();
             }
@@ -264,7 +297,8 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onActivityResult(Uri uri) {
                     if (uri != null) {
-                        image.setImageURI(uri);
+                        Transformation transformation = new RoundedCornersTransformation(100,5);
+                        Picasso.get().load(Uri.parse(uri.toString())).resize(120,120).centerCrop().transform(transformation).into(image);
                         selectedImage = MediaStore.Images.Media.getContentUri("external");// Get the image file URI
                         String[] imageProjection = {MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME};
 
