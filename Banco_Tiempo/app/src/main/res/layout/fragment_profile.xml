@@ -1,75 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:background="@color/profileBackground"
     tools:context=".ProfileFragment">
 
-
-    <TextView
-        android:id="@+id/tVUserName"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="38dp"
-        android:text="@string/nombreUsuario"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnUserData"
-        app:layout_constraintEnd_toEndOf="@+id/btnUserData"
-        app:layout_constraintTop_toBottomOf="@+id/iVUserProfile" />
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme1.AppBarOverlay">
 
-    <Button
-        android:id="@+id/btnUserData"
-        android:layout_width="340dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:onClick="goUserData"
-        android:text="@string/datosUsuario"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:drawableRight="@drawable/baseline_description_black_20"
-        android:drawableTint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/btnUserDocuments"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tVUserName" />
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/profilePrimaryDark"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleTextAppearance="@style/TransparentText">
 
-    <Button
-        android:id="@+id/btnUserDocuments"
-        android:layout_width="340dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="248dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:onClick="goUserDoc"
-        android:text="@string/documentosUsuario"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:drawableRight="@drawable/baseline_description_black_20"
-        android:drawableTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUserData" />
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/profile_bk"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/iVUserProfile"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginBottom="18dp"
-        android:src="@drawable/baseline_account_circle_black_48"
-        app:layout_constraintBottom_toTopOf="@+id/tVUserName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/iVUserProfile"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="54dp"
+                    android:layout_marginBottom="18dp"
+                    android:src="@drawable/baseline_account_circle_black_48"
+                    app:layout_constraintBottom_toTopOf="@+id/tVUserName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tVUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombreUsuario"
+                    android:textSize="28dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profileEmail"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/profileBackground"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/profile_bk" />
+
+                    <TextView
+                        style="@style/profileStyledBackButton"
+                        android:text="@string/returnMain" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/fragment_content_profile" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

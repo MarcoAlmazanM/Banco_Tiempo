@@ -74,6 +74,7 @@ public class ProfileFragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     String username;
+    String imageProfile;
 
     private final int REQUEST_EXTERNAL_STORAGE = 1;
     private String[] PERMISSIONS_STORAGE = {
@@ -147,7 +148,7 @@ public class ProfileFragment extends Fragment {
         clickBtnUserDocuments(btnUserDocuments);
 
         image = root.findViewById(R.id.iVUserProfile);
-        String imageProfile = preferences.getString("foto",null);
+        imageProfile = preferences.getString("foto",null);
         if (imageProfile.equals("NULL")){
             image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
         }else{
@@ -234,7 +235,12 @@ public class ProfileFragment extends Fragment {
         btnCncl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
+                if (imageProfile.equals("NULL")){
+                    image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
+                }else{
+                    Picasso.get().invalidate(imageProfile);
+                    Picasso.get().load(imageProfile).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
+                }
                 popupWindow.dismiss();
             }
         });
@@ -264,35 +270,36 @@ public class ProfileFragment extends Fragment {
                 @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onActivityResult(Uri uri) {
-                    image.setImageURI(uri);
-                    selectedImage = MediaStore.Images.Media.getContentUri("external");// Get the image file URI
-                    String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+                    if (uri != null) {
+                        image.setImageURI(uri);
+                        selectedImage = MediaStore.Images.Media.getContentUri("external");// Get the image file URI
+                        String[] imageProjection = {MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME};
 
-                    // Obtain path image & fileName image
-                    String path = getImagePath(uri);
-                    File file = new File(path);
-                    String fileName = file.getName();
-                    String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
-                    String[] args = {fileName};
+                        // Obtain path image & fileName image
+                        String path = getImagePath(uri);
+                        File file = new File(path);
+                        String fileName = file.getName();
+                        String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+                        String[] args = {fileName};
 
-                    Cursor cursor = applicationContext.getContentResolver().query(selectedImage, imageProjection,selectionClause, args, null);
-                    if (cursor.getCount()>0) {
-                        cursor.moveToPosition(0);
-                        part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-                        cursor.close();
-                        try {
-                            byte[] buffer = new byte[(int) file.length() + 100];
-                            @SuppressWarnings("resource")
-                            int length = new FileInputStream(file).read(buffer);
-                            sImage = Base64.encodeToString(buffer, 0, length,
-                                    Base64.DEFAULT);
+                        Cursor cursor = applicationContext.getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+                        if (cursor.getCount() > 0) {
+                            cursor.moveToPosition(0);
+                            part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+                            cursor.close();
+                            try {
+                                byte[] buffer = new byte[(int) file.length() + 100];
+                                @SuppressWarnings("resource")
+                                int length = new FileInputStream(file).read(buffer);
+                                sImage = Base64.encodeToString(buffer, 0, length,
+                                        Base64.DEFAULT);
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Algo Salio mal", Toast.LENGTH_SHORT);
                         }
-                    }
-                    else {
-                        Toast.makeText(getActivity(), "Algo Salio mal", Toast.LENGTH_SHORT);
                     }
                 }
             });
