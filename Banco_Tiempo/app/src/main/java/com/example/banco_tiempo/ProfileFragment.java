@@ -39,11 +39,13 @@ import androidx.fragment.app.Fragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -184,8 +186,9 @@ public class ProfileFragment extends Fragment {
         if (imageProfile.equals("NULL")){
             image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
         }else{
+            Transformation transformation = new RoundedCornersTransformation(100,5);
             Picasso.get().invalidate(imageProfile);
-            Picasso.get().load(imageProfile).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
+            Picasso.get().load(imageProfile).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
         }
 
         pick(image, root);
@@ -260,8 +263,9 @@ public class ProfileFragment extends Fragment {
                 if (imageProfile.equals("NULL")){
                     image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
                 }else{
+                    Transformation transformation = new RoundedCornersTransformation(100,5);
                     Picasso.get().invalidate(imageProfile);
-                    Picasso.get().load(imageProfile).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
+                    Picasso.get().load(imageProfile).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
                 }
                 popupWindow.dismiss();
             }
@@ -293,7 +297,8 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onActivityResult(Uri uri) {
                     if (uri != null) {
-                        image.setImageURI(uri);
+                        Transformation transformation = new RoundedCornersTransformation(100,5);
+                        Picasso.get().load(Uri.parse(uri.toString())).resize(120,120).centerCrop().transform(transformation).into(image);
                         selectedImage = MediaStore.Images.Media.getContentUri("external");// Get the image file URI
                         String[] imageProjection = {MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME};
 
