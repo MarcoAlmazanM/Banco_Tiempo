@@ -18,15 +18,18 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,13 +51,15 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     TextView inePath, domPath, antPath, certPath;
     ImageView ine, dom, ant, cert;
-    Button bIne, bDom, bAnt, bCert;
+    Button bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload, bCert;
     String sIne, sDom, sAnt, sCert;
+
+    ProgressBar ineBar, domBar, antBar;
 
     ActivityResultLauncher<String>ineGetContent;
     ActivityResultLauncher<String>domGetContent;
     ActivityResultLauncher<String>antGetContent;
-    ActivityResultLauncher<String>certGetContent;
+    //ActivityResultLauncher<String>certGetContent;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -81,18 +86,28 @@ public class UserDocumentsActivity extends AppCompatActivity {
         inePath = findViewById(R.id.rutaIne);
         ine = findViewById(R.id.ineView);
         bIne = findViewById(R.id.ine);
+        bIneUpload=findViewById(R.id.ineUpload);
+        ineBar=findViewById(R.id.ineBar);
+        ineBar.setVisibility(View.GONE);
 
         domPath = findViewById(R.id.rutaDom);
         dom = findViewById(R.id.domView);
         bDom = findViewById(R.id.dom);
+        bDomUpload=findViewById(R.id.domUpload);
+        domBar=findViewById(R.id.domBar);
+        domBar.setVisibility(View.GONE);
 
         antPath = findViewById(R.id.rutaAnt);
         ant = findViewById(R.id.antView);
         bAnt = findViewById(R.id.ant);
-
+        bAntUpload=findViewById(R.id.antUpload);
+        antBar=findViewById(R.id.antBar);
+        antBar.setVisibility(View.GONE);
+        /*
         certPath = findViewById(R.id.rutaCert);
         cert = findViewById(R.id.certView);
         bCert = findViewById(R.id.cert);
+         */
 
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -118,7 +133,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     //Uri filename = Uri.parse(imageProjection[0]);
 
                     cursor.close();
-                    bIne.setText("Documento cargado");
+                    changeBtn(bIne, inePath);
 
                     // Get the image file absolute path
                     Bitmap bitmap = null;
@@ -161,7 +176,9 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
                     cursor.close();
 
-                    bDom.setText("Documento cargado");
+                    changeBtn(bDom, domPath);
+
+
 
                     // Get the image file absolute path
                     Bitmap bitmap = null;
@@ -204,7 +221,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
                     cursor.close();
 
-                    bAnt.setText("Documento cargado");
+                    changeBtn(bAnt, antPath);
 
                     // Get the image file absolute path
                     Bitmap bitmap = null;
@@ -228,7 +245,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
             }
         });
 
-        certGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        /*certGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @SuppressLint("Range")
             @RequiresApi(api = Build.VERSION_CODES.R)
             @Override
@@ -246,8 +263,12 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     //Uri filename = Uri.parse(imageProjection[0]);
 
                     cursor.close();
-
-                    bCert.setText("Documento cargado");
+                    changeBtn(bCert, certPath);
+                    /*bCert.setText("Documento cargado");
+                    bCert.setBackgroundColor(getColor(R.color.green));
+                    bCert.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.username, 0);
+                    certPath.setText("Carga exitosa");
+                    certPath.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_upload_black_24, 0);
 
                     // Get the image file absolute path
                     Bitmap bitmap = null;
@@ -269,8 +290,35 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
                 }
             }
-        });
+        });*/
 
+
+    }
+
+    private void changeBtn(Button b, TextView t) {
+        b.setText("Documento cargado");
+        b.setBackgroundColor(getColor(R.color.green));
+        b.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.username, 0);
+        t.setText("Carga exitosa");
+        t.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_upload_black_24, 0);
+    }
+
+    private void uploadEffect(ProgressBar bar, Button b){
+        bar.setVisibility(View.VISIBLE);
+        b.setBackgroundColor(getColor(R.color.white));
+        b.setTextColor(Color.parseColor("#36CBF9"));
+        b.setText("Subiendo...");
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                bar.setVisibility(View.GONE);
+                b.setTextColor(Color.parseColor("#FFFFFF"));
+                b.setBackgroundColor(getColor(R.color.green));
+                b.setText("Listo");
+            }
+        }, 7000);
 
     }
 
@@ -286,10 +334,12 @@ public class UserDocumentsActivity extends AppCompatActivity {
         verifyStoragePermissions(UserDocumentsActivity.this);
         antGetContent.launch("image/*");
     }
-    public void clickBtnCert(View view){
+
+    /*public void clickBtnCert(View view){
         verifyStoragePermissions(UserDocumentsActivity.this);
         certGetContent.launch("image/*");
     }
+     */
 
 
     // Upload the images to the remote database
@@ -299,6 +349,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         imageRequest.setUsername(username);
         imageRequest.setType("INEPicture");
         uploadImageServer(imageRequest);
+        uploadEffect(ineBar, bIneUpload);
     }
 
     public void uploadDom(View view) {
@@ -307,6 +358,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         imageRequest.setUsername(username);
         imageRequest.setType("ComprobantePicture");
         uploadImageServer(imageRequest);
+        uploadEffect(domBar, bDomUpload);
     }
 
     public void uploadAnt(View view) {
@@ -315,8 +367,9 @@ public class UserDocumentsActivity extends AppCompatActivity {
         imageRequest.setUsername(username);
         imageRequest.setType("CartaAntecedentesPicture");
         uploadImageServer(imageRequest);
+        uploadEffect(antBar, bAntUpload);
     }
-
+/*
     public void uploadCert(View view) {
         ImageRequest imageRequest = new ImageRequest();
         imageRequest.setImage(sCert);
@@ -324,6 +377,8 @@ public class UserDocumentsActivity extends AppCompatActivity {
         imageRequest.setType("ProfilePicture");
         uploadImageServer(imageRequest);
     }
+
+ */
 
     public void uploadImageServer(ImageRequest imageRequest){
         Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
