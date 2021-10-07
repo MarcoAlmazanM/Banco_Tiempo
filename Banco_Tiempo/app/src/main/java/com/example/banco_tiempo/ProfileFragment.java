@@ -441,10 +441,9 @@ public class ProfileFragment extends Fragment {
             public void onResponse(Call<ImageResponse>  call, Response<ImageResponse> response) {
                 if (response.isSuccessful()) {
                     ImageResponse imageResponse = response.body();
-                    startActivity(new Intent(getActivity(), MainActivity.class).putExtra("data", imageResponse));
                     String message = "Image Uploaded Successfully";
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
-
+                    startActivity(new Intent(getActivity(), MainActivity.class).putExtra("data", imageResponse));
                 } else {
                     String message = "An error occurred, please try again...";
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
