@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -236,6 +235,7 @@ public class ProfileFragment extends Fragment {
                 @RequiresApi(api = Build.VERSION_CODES.R)
                 @Override
                 public void onActivityResult(Uri uri) {
+                    image.setImageURI(uri);
                     selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
                     String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
                     Cursor cursor = applicationContext.getContentResolver().query(selectedImage, imageProjection, null, null, null);
@@ -261,7 +261,7 @@ public class ProfileFragment extends Fragment {
                         }
 
                         // Set the ImageView with the bitmap of the image.
-                        image.setImageBitmap(bitmap);
+                        //image.setImageBitmap(bitmap);
                     }
 
                     else {
