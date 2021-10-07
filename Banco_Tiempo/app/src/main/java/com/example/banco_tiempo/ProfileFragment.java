@@ -69,6 +69,7 @@ public class ProfileFragment extends Fragment {
     String sImage;
     Context applicationContext = MainActivity.getContextOfApplication();
 
+    TextView tVemail;
     TextView nameTextView;
     TextView emailTextView;
     TextView usernameTextView;
@@ -144,6 +145,7 @@ public class ProfileFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         nameTextView = root.findViewById(R.id.tVUserName);
+        tVemail = root.findViewById(R.id.tVemail);
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -154,6 +156,8 @@ public class ProfileFragment extends Fragment {
 
         username = preferences.getString("username","username");
         email = preferences.getString("email", "correo@prueba.com");
+        tVemail.setText(email);
+
 
         statusHours = preferences.getInt("statusHours", 0);
         documentosApproval = preferences.getInt("documentosApproval", 0);
@@ -161,10 +165,20 @@ public class ProfileFragment extends Fragment {
         status = root.findViewById(R.id.statusHours);
         document_status = root.findViewById(R.id.document);
 
+        tVHours = root.findViewById(R.id.tVverHoras);
+        tVDocuments = root.findViewById(R.id.tVverDocu);
+
         if (statusHours == 0) {
             status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
         }else {
             status.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.greentick, null));
+        }
+
+        if (documentosApproval == 0) {
+            document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
+        }else {
+            document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.greentick, null));
+            tVDocuments.setVisibility(View.GONE);
         }
 
         // Set listener en btnUserData
@@ -193,8 +207,7 @@ public class ProfileFragment extends Fragment {
 
         pick(image, root);
 
-        tVHours = root.findViewById(R.id.tVverHoras);
-        tVDocuments = root.findViewById(R.id.tVverDocu);
+
 
         checkHours(tVHours);
         checkDocuments(tVDocuments);
@@ -283,8 +296,9 @@ public class ProfileFragment extends Fragment {
                     try{
                         if (hoursDocumentResponse.getStatusDocumentos() == 1) {
                             document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
+                            tVDocuments.setVisibility(View.GONE);
                         } else {
-                            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
+                            document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                         }
                     }catch (NullPointerException e){
                         String message = "Error";
