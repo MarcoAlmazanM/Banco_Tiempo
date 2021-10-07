@@ -34,6 +34,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -56,10 +58,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     ProgressBar ineBar, domBar, antBar;
 
-    ActivityResultLauncher<String>ineGetContent;
-    ActivityResultLauncher<String>domGetContent;
-    ActivityResultLauncher<String>antGetContent;
-    //ActivityResultLauncher<String>certGetContent;
+
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -116,181 +115,6 @@ public class UserDocumentsActivity extends AppCompatActivity {
         username = preferences.getString("username","username");
 
 
-        ineGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onActivityResult(Uri result) {
-                ine.setImageURI(result);
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-                    changeBtn(bIne, inePath);
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sIne = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
-            }
-        });
-
-        domGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onActivityResult(Uri result) {
-                dom.setImageURI(result);
-
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-
-                    changeBtn(bDom, domPath);
-
-
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sDom = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
-            }
-        });
-
-        antGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onActivityResult(Uri result) {
-                ant.setImageURI(result);
-
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-
-                    changeBtn(bAnt, antPath);
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sAnt = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
-            }
-        });
-
-        /*certGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-            @SuppressLint("Range")
-            @RequiresApi(api = Build.VERSION_CODES.R)
-            @Override
-            public void onActivityResult(Uri result) {
-                cert.setImageURI(result);
-
-                selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-                String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                Cursor cursor = getContentResolver().query(selectedImage, imageProjection, null, null, null);
-
-                if (cursor.getCount()>0) {
-                    cursor.moveToPosition(0);
-                    part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                    //Uri filename = Uri.parse(imageProjection[0]);
-
-                    cursor.close();
-                    changeBtn(bCert, certPath);
-                    /*bCert.setText("Documento cargado");
-                    bCert.setBackgroundColor(getColor(R.color.green));
-                    bCert.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.username, 0);
-                    certPath.setText("Carga exitosa");
-                    certPath.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_upload_black_24, 0);
-
-                    // Get the image file absolute path
-                    Bitmap bitmap = null;
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
-                        byte[] bytes = stream.toByteArray();
-                        sCert = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //image.setImageBitmap(bitmap);
-                    // Set the ImageView with the bitmap of the image
-                }
-
-                else {
-                    Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-                }
-            }
-        });*/
 
 
     }
@@ -335,12 +159,6 @@ public class UserDocumentsActivity extends AppCompatActivity {
         antGetContent.launch("image/*");
     }
 
-    /*public void clickBtnCert(View view){
-        verifyStoragePermissions(UserDocumentsActivity.this);
-        certGetContent.launch("image/*");
-    }
-     */
-
 
     // Upload the images to the remote database
     public void uploadIne(View view) {
@@ -369,16 +187,159 @@ public class UserDocumentsActivity extends AppCompatActivity {
         uploadImageServer(imageRequest);
         uploadEffect(antBar, bAntUpload);
     }
-/*
-    public void uploadCert(View view) {
-        ImageRequest imageRequest = new ImageRequest();
-        imageRequest.setImage(sCert);
-        imageRequest.setUsername("JoseLuis");
-        imageRequest.setType("ProfilePicture");
-        uploadImageServer(imageRequest);
+
+    public String getImagePath(Uri uri){
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        String document_id = cursor.getString(0);
+        document_id = document_id.substring(document_id.lastIndexOf(":")+1);
+        cursor.close();
+
+        cursor = getContentResolver().query(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+        cursor.moveToFirst();
+        @SuppressLint("Range") String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+        cursor.close();
+
+        return path;
     }
 
- */
+    ActivityResultLauncher<String>ineGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @SuppressLint("Range")
+        @RequiresApi(api = Build.VERSION_CODES.R)
+        @Override
+        public void onActivityResult(Uri uri) {
+            ine.setImageURI(uri);
+            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+            // Obtain path image & fileName image
+            String path = getImagePath(uri);
+            File file = new File(path);
+            String fileName = file.getName();
+            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+            String[] args = {fileName};
+
+            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+
+            if (cursor.getCount()>0) {
+                cursor.moveToPosition(0);
+                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+
+                cursor.close();
+                changeBtn(bIne, inePath);
+
+                try {
+                    byte[] buffer = new byte[(int) file.length() + 100];
+                    @SuppressWarnings("resource")
+                    int length = new FileInputStream(file).read(buffer);
+                    sIne = Base64.encodeToString(buffer, 0, length,
+                            Base64.DEFAULT);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            else {
+                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
+            }
+        }
+    });
+
+    ActivityResultLauncher<String> domGetContent =registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @SuppressLint("Range")
+        @RequiresApi(api = Build.VERSION_CODES.R)
+        @Override
+        public void onActivityResult(Uri uri) {
+            dom.setImageURI(uri);
+
+            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+
+            // Obtain path image & fileName image
+            String path = getImagePath(uri);
+            File file = new File(path);
+            String fileName = file.getName();
+            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+            String[] args = {fileName};
+
+            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+
+            if (cursor.getCount()>0) {
+                cursor.moveToPosition(0);
+                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+
+                cursor.close();
+
+                changeBtn(bDom, domPath);
+
+                try {
+                    byte[] buffer = new byte[(int) file.length() + 100];
+                    @SuppressWarnings("resource")
+                    int length = new FileInputStream(file).read(buffer);
+                    sDom = Base64.encodeToString(buffer, 0, length,
+                            Base64.DEFAULT);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            else {
+                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
+            }
+        }
+    });
+
+    ActivityResultLauncher<String> antGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @SuppressLint("Range")
+        @RequiresApi(api = Build.VERSION_CODES.R)
+        @Override
+        public void onActivityResult(Uri uri) {
+            ant.setImageURI(uri);
+
+            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+
+            // Obtain path image & fileName image
+            String path = getImagePath(uri);
+            File file = new File(path);
+            String fileName = file.getName();
+            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
+            String[] args = {fileName};
+
+            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
+
+            if (cursor.getCount()>0) {
+                cursor.moveToPosition(0);
+                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
+
+                cursor.close();
+
+                changeBtn(bAnt, antPath);
+
+                // Get the image file absolute path
+                Bitmap bitmap = null;
+                try {
+                    byte[] buffer = new byte[(int) file.length() + 100];
+                    @SuppressWarnings("resource")
+                    int length = new FileInputStream(file).read(buffer);
+                    sAnt = Base64.encodeToString(buffer, 0, length,
+                            Base64.DEFAULT);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            else {
+                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
+            }
+        }
+    });
 
     public void uploadImageServer(ImageRequest imageRequest){
         Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
