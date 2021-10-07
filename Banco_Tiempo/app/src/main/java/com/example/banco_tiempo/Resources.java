@@ -1,5 +1,11 @@
 package com.example.banco_tiempo;
 
+import android.database.Cursor;
+import android.util.Base64;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="250dp"
-    android:layout_height="100dp"
-    android:background="#62def8">
+    android:layout_width="450dp"
+    android:layout_height="250dp"
+    android:background="#FFF">
 
-    <Button
-        android:id="@+id/btnImg"
+    <TextView
+        android:id="@+id/tVConfirmar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue_4_btn"
-        android:text="@string/uploadimg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCncl"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/selection"
+        android:textSize="22dp"/>
 
-    <Button
-        android:id="@+id/btnCncl"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue_4_btn"
-        android:text="@string/cancelimg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnImg"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@+id/tVConfirmar">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="30dp"
+            android:backgroundTint="@color/blue_4_btn"
+            android:text="@string/uploadimg" />
+
+        <Button
+            android:id="@+id/btnCncl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="30dp"
+            android:backgroundTint="@color/blue_4_btn"
+            android:text="@string/cancelimg" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

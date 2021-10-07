@@ -138,6 +138,7 @@
     //Pop Up Window
     <string name="uploadimg" translatable="false">Subir</string>
     <string name="cancelimg" translatable="false">Cancelar</string>
+    <string name="selection" translatable="false">¿Confirmar?</string>
 
     //Nueva Oferta RecyclerView
     <string-array name="empleos">

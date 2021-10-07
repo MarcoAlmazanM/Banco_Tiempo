@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("name",loginResponse.getName());
                 editor.putString("lastName",loginResponse.getLastName());
                 editor.putString("username",loginResponse.getUsername());
+                editor.putString("foto",loginResponse.getFoto());
                 editor.putBoolean("SaveSession",true);
                 editor.apply();
                 Intent menu = new Intent(LoginActivity.this, MainActivity.class);

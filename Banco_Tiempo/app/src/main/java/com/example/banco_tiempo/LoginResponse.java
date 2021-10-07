@@ -10,6 +10,8 @@ public class LoginResponse implements Serializable {
     private Integer loginApproval;
     private Integer statusHours;
     private Integer documentosApproval;
+    private String foto;
+    private String colonia;
 
     public Integer getLoginApproval() {
         return loginApproval;
@@ -65,6 +67,22 @@ public class LoginResponse implements Serializable {
 
     public void setDocumentosApproval(Integer documentosApproval) {
         this.documentosApproval = documentosApproval;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
     }
 }
 
