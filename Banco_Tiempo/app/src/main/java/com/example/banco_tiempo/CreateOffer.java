@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -55,6 +56,8 @@ public class CreateOffer extends AppCompatActivity {
     String sCert;
     Button bCert;
     ImageView cert;
+    TextView category, title, description;
+    String cat, titxd, des, message;
 
     AutoCompleteTextView autoCTV, autoCTV2;
     ArrayAdapter<String> adapterItems, adapterItems2;
@@ -120,6 +123,25 @@ public class CreateOffer extends AppCompatActivity {
         certGetContent.launch("image/*");
     }
 
+    public void addNewOffer(View view){
+        img1 = findViewById(R.id.iVPhoto1);
+        cert = findViewById(R.id.certiView);
+        category = findViewById(R.id.tVAutoComplete);
+        title = findViewById(R.id.tVAutoComplete2);
+        description = findViewById(R.id.tVDescription);
+
+        cat = category.getText().toString();
+        titxd = title.getText().toString();
+        des = description.getText().toString();
+
+        if (TextUtils.isEmpty(cat) || TextUtils.isEmpty(titxd) || TextUtils.isEmpty(sImage)) {
+            message = "All inputs required ...";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+        } else {
+            //Inserte código aquí
+        }
+    }
+
     public String getImagePath(Uri uri){
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
@@ -172,7 +194,7 @@ public class CreateOffer extends AppCompatActivity {
                         }
                     }
                     else {
-                        Toast.makeText(CreateOffer.this, "Algo Salio mal", Toast.LENGTH_SHORT);
+                        Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
                     }
 
                 }
@@ -214,7 +236,7 @@ public class CreateOffer extends AppCompatActivity {
                         }
                     }
                     else {
-                        Toast.makeText(CreateOffer.this, "Algo Salio mal", Toast.LENGTH_SHORT);
+                        Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
                     }
 
                 }
