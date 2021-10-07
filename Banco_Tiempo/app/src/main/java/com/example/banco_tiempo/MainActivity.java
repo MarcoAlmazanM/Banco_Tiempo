@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         imageIntent();
 
-        String imageUrl = preferences.getString("foto",null);
+        String imageUrl = preferences.getString("foto","");
 
         //Agregar if
 

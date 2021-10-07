@@ -1,5 +1,7 @@
 package com.example.banco_tiempo;
 
+import android.database.Cursor;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -29,5 +31,6 @@ public class Resources {
         }
         return hash;
     }
+
 
 }

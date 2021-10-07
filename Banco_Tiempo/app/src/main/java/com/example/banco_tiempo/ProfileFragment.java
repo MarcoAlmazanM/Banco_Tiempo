@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,12 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -140,8 +146,9 @@ public class ProfileFragment extends Fragment {
         clickBtnUserDocuments(btnUserDocuments);
 
         image = root.findViewById(R.id.iVUserProfile);
-
-
+        String imageProfile = preferences.getString("foto","");
+        Picasso.get().invalidate(imageProfile);
+        Picasso.get().load(imageProfile).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
         pick(image, root);
 
         return root;
@@ -228,6 +235,22 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    public String getImagePath(Uri uri){
+        Cursor cursor = applicationContext.getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        String document_id = cursor.getString(0);
+        document_id = document_id.substring(document_id.lastIndexOf(":")+1);
+        cursor.close();
+
+        cursor = applicationContext.getContentResolver().query(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+        cursor.moveToFirst();
+        @SuppressLint("Range") String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+        cursor.close();
+
+        return path;
+    }
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -236,13 +259,16 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onActivityResult(Uri uri) {
                     image.setImageURI(uri);
-                    selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
+                    selectedImage = MediaStore.Images.Media.getContentUri("external");// Get the image file URI
                     String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-                    Cursor cursor = applicationContext.getContentResolver().query(selectedImage, imageProjection, null, null, null);
+                    File f = new File(getImagePath(uri));
+                    String fileName = f.getName();
+                    Log.e("TAG1",fileName);
+                    Cursor cursor = applicationContext.getContentResolver().query(selectedImage, imageProjection,fileName, null, null);
                     if (cursor.getCount()>0) {
                         cursor.moveToPosition(0);
                         part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
+                        Log.e("Tag3",part_image);
                         Uri filename = Uri.parse(imageProjection[0]);
 
                         cursor.close();
@@ -250,7 +276,8 @@ public class ProfileFragment extends Fragment {
                         // Get the image file absolute path
                         Bitmap bitmap = null;
                         try {
-                            bitmap = MediaStore.Images.Media.getBitmap(applicationContext.getContentResolver(), selectedImage);
+                            bitmap = MediaStore.Images.Media.getBitmap(applicationContext.getContentResolver(), Uri.fromFile(new File(part_image)));
+                            Log.e("Tag4", bitmap.toString());
                             ByteArrayOutputStream stream = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.PNG, 100,stream);
                             byte[] bytes = stream.toByteArray();
