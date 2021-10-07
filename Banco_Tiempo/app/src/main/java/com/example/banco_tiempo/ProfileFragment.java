@@ -141,10 +141,7 @@ public class ProfileFragment extends Fragment {
         username = preferences.getString("username","username");
 
         // Set listener en btnUserData
-        btnUserData = (Button)root.findViewById(R.id.btnUserData);
-        clickBtnUserData(btnUserData);
-
-        btnUserDocuments = (Button) root.findViewById(R.id.btnUserDocuments);
+        btnUserDocuments = root.findViewById(R.id.btnUserDocuments);
         clickBtnUserDocuments(btnUserDocuments);
 
         image = root.findViewById(R.id.iVUserProfile);
@@ -161,16 +158,6 @@ public class ProfileFragment extends Fragment {
         return root;
     }
 
-    public void clickBtnUserData(Button btnUserData){
-        btnUserData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent userData = new Intent(getActivity().getApplicationContext(), UserDataActivity.class);
-                getActivity().startActivity(userData);
-            }
-        });
-
-    }
 
     public void clickBtnUserDocuments(Button btnUserDocuments){
         btnUserDocuments.setOnClickListener(new View.OnClickListener() {

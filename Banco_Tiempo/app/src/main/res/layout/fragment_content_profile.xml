@@ -105,7 +105,6 @@
 
         <TextView
             android:id="@+id/btnUserDocuments"
-            android:onClick="goUserDoc"
             style="@style/profileStyledBackButton1"
             android:text="@string/documentosUsuario"
             android:drawableEnd="@drawable/baseline_description_black_20"/>
