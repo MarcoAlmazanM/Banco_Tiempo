@@ -134,6 +134,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputPassword"
                         style="@style/parent"
+                        app:passwordToggleEnabled="true"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
@@ -148,6 +149,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputPasswordConf"
                         style="@style/parent"
+                        app:passwordToggleEnabled="true"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
