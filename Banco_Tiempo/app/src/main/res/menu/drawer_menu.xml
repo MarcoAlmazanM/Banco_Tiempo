@@ -13,11 +13,6 @@
             android:icon="@drawable/ic_baseline_person_24"
         />
         <item
-            android:id="@+id/nav_searchOffers"
-            android:title="Búsqueda de Ofertas"
-            android:icon="@drawable/ic_baseline_event_24"
-            />
-        <item
             android:id="@+id/nav_newOffer"
             android:title="Ofertas del Usuario"
             android:icon="@drawable/ic_baseline_event_24"
