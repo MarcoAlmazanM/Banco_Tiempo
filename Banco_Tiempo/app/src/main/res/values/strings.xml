@@ -154,9 +154,33 @@
 
     <string-array name="descripciones">
         <item>Descripción de prueba.</item>
-        <item>Descripción de prueba.</item>
-        <item>Descripción de prueba.</item>
-        <item>Descripción de prueba.</item>
+        <item>Descripción larga de prueba para ver que quepa en el card View.</item>
+        <item>"Agua. Tierra. Fuego. Aire. Hace muchos años, las cuatro naciones vivían en armonía. Pero todo cambió cuando la Nación del Fuego atacó. Sólo el Avatar, maestro de los cuatro elementos, podía detenerlos, pero cuando el mundo más lo necesitaba, desapareció. Después de cien años mi hermano y yo encontramos al nuevo Avatar, un Maestro Aire llamado Aang. Aunque sus habilidades para controlar el aire eran grandiosas, tenía mucho que aprender antes de poder salvar al mundo. Y yo creo que Aang podrá salvarnos. "</item>
+        <item>Cruzando la frontera me encontré con el\n
+            Era un tipo medio raro pero me cayo bien,\n
+            Me dijo viajo en carretera espero pronto\n
+            Llegar al rodeo que me espera allá.\n
+            Me dijo con certeza que no hay mas emoción\n
+            Que romper un sombrero disparar un cañón\n
+            Salvar la vida de un jinete cuando mal anda su suerte\n
+            Soy payaso de rodeo\n
+            Les digo ven, ven, ven, animalito ven,\n
+            Ven y sígueme y veras lo que vas a aprender,\n
+            No ves que soy muy poco artístico\n
+            Muy listo muy gracioso soy payaso de rodeo\n
+            Así llevamos largo tiempo luego se marcho,\n
+            Dejándome un mensaje que recuerdo hoy\n
+            Lo peligroso es gracioso\n
+            Lo difícil es hermoso\n
+            Lo mas grande es el rodeo\n
+            Me dijo con certeza que no hay mas emoción\n
+            Que romper un sombrero disparar un cañón\n
+            Salvar la vida de un jinete cuando mal anda su suerte\n
+            Ser payaso de rodeo\n
+            Les digo ven, ven, ven, animalito ven,\n
+            Ven y sígueme y veras lo que vas a aprender,\n
+            No ves que soy muy poco artístico\n
+            Muy listo muy gracioso soy payaso de rodeo.</item>
         <item>Descripción de prueba.</item>
         <item>Descripción de prueba.</item>
     </string-array>
@@ -168,6 +192,10 @@
     <string name="emailProf" translatable="false">Correo Electrónico</string>
     <string name="usernameProf" translatable="false">Nombre de Usuario</string>
     <string name="nameProf" translatable="false">Nombre</string>
+    <string name="verHoras" translatable="false">Verificar\nHoras</string>
+    <string name="verDocs" translatable="false">Verificar\nDocumentos</string>
+    <string name="estHoras" translatable="false">Estatus Horas</string>
+    <string name="estDocu" translatable="false">Estatus Documentos</string>
 
     //Home Page
     <string name="bdt" translatable="false">Banco\nde Tiempo</string>

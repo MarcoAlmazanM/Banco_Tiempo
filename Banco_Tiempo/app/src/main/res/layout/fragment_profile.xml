@@ -88,6 +88,14 @@
                 app:cardBackgroundColor="@color/blue_2"
                 app:cardElevation="10dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/estHoras"
+                    android:textStyle="bold"
+                    android:textSize="15dp" />
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -107,11 +115,11 @@
                         style="@style/profileStyledBackButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="75dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="65dp"
                         android:gravity="center"
-                        android:text="Verificar Horas"
-                        android:textSize="10sp" />
+                        android:text="@string/verHoras"
+                        android:textSize="13sp" />
 
 
                 </RelativeLayout>
@@ -125,6 +133,14 @@
                 android:layout_margin="10dp"
                 app:cardBackgroundColor="@color/blue_2"
                 app:cardElevation="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/estDocu"
+                    android:textStyle="bold"
+                    android:textSize="15dp" />
 
 
                 <RelativeLayout
@@ -145,12 +161,11 @@
                         style="@style/profileStyledBackButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/document"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="65dp"
                         android:gravity="center"
-                        android:text="Verificar Documentos"
-                        android:textSize="10sp" />
+                        android:text="@string/verDocs"
+                        android:textSize="13sp" />
 
 
                 </RelativeLayout>

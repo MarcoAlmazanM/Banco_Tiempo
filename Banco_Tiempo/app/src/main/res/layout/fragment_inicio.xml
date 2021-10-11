@@ -32,7 +32,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/hero"
+                    android:src="@drawable/hourglass"
                     android:adjustViewBounds="true" />
             </LinearLayout>
 
@@ -65,7 +65,7 @@
                             <ImageView
                                 style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_maths" />
+                                android:src="@drawable/administration"/>
 
                             <TextView
                                 android:id="@+id/textViewSub1Title"
@@ -96,9 +96,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_chemistry"
-                                style="@style/homeCardImage"/>
+                                android:src="@drawable/maths" />
 
                             <TextView
                                 android:id="@+id/textViewSub3Title"
@@ -130,9 +130,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_geography"
-                                style="@style/homeCardImage"/>
+                                android:src="@drawable/law" />
 
                             <TextView
                                 android:id="@+id/textViewSub5Title"
@@ -164,16 +164,16 @@
 
                             <ImageView
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_chemistry"
+                                android:src="@drawable/arts"
                                 style="@style/homeCardImage"/>
 
                             <TextView
                                 style="@style/viewParent.headerText.HomeCardTitle"
-                                android:text="@string/menuADCo"
                                 android:shadowColor="#000"
                                 android:shadowDx="-2"
                                 android:shadowDy="-2"
                                 android:shadowRadius="1"
+                                android:text="@string/menuADCo"
                                 android:textSize="20dp" />
 
 
@@ -207,9 +207,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_physics"
-                                style="@style/homeCardImage"/>
+                                android:src="@drawable/computing" />
 
                             <TextView
                                 android:id="@+id/textViewSub2Title"
@@ -240,9 +240,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_biology"
-                                style="@style/homeCardImage" />
+                                android:src="@drawable/engineering" />
 
                             <TextView
                                 android:id="@+id/textViewSub4Title"
@@ -274,9 +274,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_chemistry"
-                                style="@style/homeCardImage" />
+                                android:src="@drawable/education" />
 
                             <TextView
                                 android:id="@+id/textViewSub6Title"
@@ -307,9 +307,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_biology"
-                                style="@style/homeCardImage" />
+                                android:src="@drawable/food" />
 
                             <TextView
                                 style="@style/viewParent.headerText.HomeCardTitle"
@@ -355,7 +355,7 @@
                             <ImageView
                                 style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_maths" />
+                                android:src="@drawable/cleaning" />
 
                             <TextView
                                 android:id="@+id/textViewSub7Title"
@@ -386,9 +386,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_chemistry"
-                                style="@style/homeCardImage"/>
+                                android:src="@drawable/sports" />
 
                             <TextView
                                 android:id="@+id/textViewSub8Title"
@@ -420,9 +420,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_geography"
-                                style="@style/homeCardImage"/>
+                                android:src="@drawable/sales" />
 
                             <TextView
                                 android:id="@+id/textViewSub9Title"
@@ -454,7 +454,7 @@
 
                             <ImageView
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_chemistry"
+                                android:src="@drawable/repairs"
                                 style="@style/homeCardImage"/>
 
                             <TextView
@@ -487,7 +487,7 @@
                             <ImageView
                                 style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_maths" />
+                                android:src="@drawable/transportation" />
 
                             <TextView
                                 android:id="@+id/textViewSub13Title"
@@ -529,18 +529,18 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_physics"
-                                style="@style/homeCardImage"/>
+                                android:src="@drawable/construction" />
 
                             <TextView
                                 android:id="@+id/textViewSub10Title"
                                 style="@style/viewParent.headerText.HomeCardTitle"
-                                android:text="@string/menuCons"
                                 android:shadowColor="#000"
                                 android:shadowDx="-2"
                                 android:shadowDy="-2"
                                 android:shadowRadius="1"
+                                android:text="@string/menuCons"
                                 android:textSize="20dp" />
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
@@ -562,9 +562,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_biology"
-                                style="@style/homeCardImage" />
+                                android:src="@drawable/personal_care" />
 
                             <TextView
                                 android:id="@+id/textViewSub11Title"
@@ -596,9 +596,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_chemistry"
-                                style="@style/homeCardImage" />
+                                android:src="@drawable/agriculture" />
 
                             <TextView
                                 android:id="@+id/textViewSub12Title"
@@ -629,9 +629,9 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_biology"
-                                style="@style/homeCardImage" />
+                                android:src="@drawable/materials" />
 
                             <TextView
                                 style="@style/viewParent.headerText.HomeCardTitle"
