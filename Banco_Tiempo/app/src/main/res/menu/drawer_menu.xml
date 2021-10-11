@@ -19,7 +19,7 @@
             />
         <item
             android:id="@+id/nav_newOffer"
-            android:title="Agregar Nueva Ofertas"
+            android:title="Ofertas del Usuario"
             android:icon="@drawable/ic_baseline_event_24"
             />
     </group>
