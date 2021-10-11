@@ -43,6 +43,10 @@
     <color name="colorPrimary1">#3F51B5</color>
     <color name="colorPrimaryDark1">#303F9F</color>
     <color name="colorAccent1">#FF4081</color>
+    <color name="gradientLightOrange">#FF641A</color>
+    <color name="gradientOrange">#FF416C</color>
+    <color name="gradientLightOrange2">#FF7765</color>
+    <color name="gradientOrange3">#F7A23C</color>
 
     <!--colors for profile-->
     <color name="profilePrimaryDark">#FF3B30</color>
