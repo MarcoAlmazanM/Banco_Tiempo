@@ -18,9 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
-            android:name=".register_second"
-            android:exported="true" />
-        <activity
             android:name=".CreateOffer"
             android:exported="true" />
         <activity
@@ -40,13 +37,15 @@
             android:exported="true" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

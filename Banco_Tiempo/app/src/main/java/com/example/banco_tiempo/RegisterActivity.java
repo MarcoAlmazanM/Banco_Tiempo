@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
             eTColonia,eTMunicipio, eTEstado, eTCP,
             eTEmailR, eTUsername, eTPassword, eTPasswordConfirm;
     String nombre, apellidoPaterno, apellidoMaterno, calle, numInt, colonia,
-            municipio, estado, cP, email, username, password, passwordConfirm, message;
+            municipio, estado, cP, email, username, password, passwordConfirm, message, passwordHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,51 +44,63 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void verifyData(View view){
-        // Find Id EditText & CheckBox
+        // Find Id EditText
         eTNombre =findViewById(R.id.eTNombre);
         eTAP = findViewById(R.id.eTAP);
         eTAM = findViewById(R.id.eTAM);
+        eTEmailR = findViewById(R.id.eTEmailR);
+        eTUsername = findViewById(R.id.eTUsernameR);
+        eTPassword = findViewById(R.id.eTPasswordR);
+        eTPasswordConfirm = findViewById(R.id.eTPasswordConfirm);
+
+        // Set strings UI
+        nombre = eTNombre.getText().toString();
+        apellidoPaterno = eTAP.getText().toString();
+        apellidoMaterno = eTAM.getText().toString();
+        email = eTEmailR.getText().toString();
+        username = eTUsername.getText().toString();
+        password = eTPassword.getText().toString();
+        passwordConfirm = eTPasswordConfirm.getText().toString();
+
+        if(TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellidoPaterno) || TextUtils.isEmpty(apellidoMaterno)  ||
+                TextUtils.isEmpty(email) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(passwordConfirm)){
+            message = "Todos los campos son requeridos ...";
+            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+        }else if (!password.equals(passwordConfirm)){
+            message = "Las contraseñas no coinciden .";
+            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+        } else{
+            Resources resources = new Resources();
+            passwordHash = resources.hash256(password);
+            setContentView(R.layout.activity_register_second);
+        }
+    }
+
+    public void verifyData2(View view){
+        // Find Id EditText
         eTCalle = findViewById(R.id.eTCalle);
         eTNumInt = findViewById(R.id.eTNumInt);
         eTColonia = findViewById(R.id.eTColonia);
         eTMunicipio = findViewById(R.id.eTMunicipio);
         eTEstado = findViewById(R.id.eTEstado);
         eTCP = findViewById(R.id.eTCP);
-        eTEmailR = findViewById(R.id.eTEmailR);
-        eTUsername = findViewById(R.id.eTUsernameR);
-        eTPassword = findViewById(R.id.eTPasswordR);
-        eTPasswordConfirm = findViewById(R.id.eTPasswordConfirm);
         checkPrivacity = findViewById(R.id.cBPrivacity);
 
         // Set strings UI
-        nombre = eTNombre.getText().toString();
-        apellidoPaterno = eTAP.getText().toString();
-        apellidoMaterno = eTAM.getText().toString();
         calle = eTCalle.getText().toString();
         numInt = eTNumInt.getText().toString();
         colonia = eTColonia.getText().toString();
         municipio = eTMunicipio.getText().toString();
         estado = eTEstado.getText().toString();
         cP = eTCP.getText().toString();
-        email = eTEmailR.getText().toString();
-        username = eTUsername.getText().toString();
-        password = eTPassword.getText().toString();
-        passwordConfirm = eTPasswordConfirm.getText().toString();
 
-        if(TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellidoPaterno) || TextUtils.isEmpty(apellidoMaterno) || TextUtils.isEmpty(calle)||
-                TextUtils.isEmpty(numInt) || TextUtils.isEmpty(colonia) || TextUtils.isEmpty(municipio) || TextUtils.isEmpty(estado) ||
-                TextUtils.isEmpty(cP) || TextUtils.isEmpty(email) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(passwordConfirm)){
-            message = "All inputs required ...";
-            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-        }else if (!password.equals(passwordConfirm)){
-            message = "Both Passwords have to be equal ...";
-            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(calle)|| TextUtils.isEmpty(numInt) || TextUtils.isEmpty(colonia) ||
+                TextUtils.isEmpty(municipio) || TextUtils.isEmpty(estado) || TextUtils.isEmpty(cP)){
+
         }else if(!checkPrivacity.isChecked()){
-            message = "You need to accept the notice of privacy ...";
+            message = "Se requiere aceptar las condiciones de uso y privacidad de la aplicación.";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-        } else{
-            Resources resources = new Resources();
-            String passwordHash = resources.hash256(password);
+        }else{
             RegisterRequest registerRequest = new RegisterRequest();
             registerRequest.setNombre(nombre);
             registerRequest.setApellidoP(apellidoPaterno);
@@ -105,6 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
             registerUser(registerRequest);
         }
     }
+
 
     public void registerIntent(){
         Intent intent = getIntent();
@@ -131,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(new Intent(RegisterActivity.this, RegisterActivity.class).putExtra("data", registerResponse));
                     finish();
                 } else {
-                    message = "An error occurred, please try again...";
+                    message ="Ocurrió un error, favor de intentar más tarde.";
                     Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }
@@ -150,4 +163,9 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
+    public void goBackRegister(View view){
+        Intent register = new Intent(RegisterActivity.this, RegisterActivity.class);
+        startActivity(register);
+        finish();
+    }
 }

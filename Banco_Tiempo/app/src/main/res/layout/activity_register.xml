@@ -39,7 +39,7 @@
                 <ImageView
                     android:id="@+id/iVProfPic"
                     android:layout_width="175dp"
-                    android:layout_height="175dp"
+                    android:layout_height="125dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="25dp"
