@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
+            android:name=".register_second"
+            android:exported="true" />
+        <activity
             android:name=".CreateOffer"
             android:exported="true" />
         <activity
