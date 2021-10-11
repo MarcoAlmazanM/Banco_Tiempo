@@ -129,7 +129,7 @@ public class CreateOffer extends AppCompatActivity {
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
-        mGetContent.launch(Intent.createChooser(i, "Select Picture"));
+        certGetContent.launch(Intent.createChooser(i, "Select Picture"));
     }
 
     public void addNewOffer(View view){
