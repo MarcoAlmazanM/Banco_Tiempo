@@ -139,19 +139,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction ft = fm.beginTransaction();
         switch(item.getItemId()){
             case R.id.nav_home:
-                ft.replace(R.id.content, new FragmentInicio()).commit();
+                ft.replace(R.id.content, new FragmentInicio());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_profile:
-                ft.replace(R.id.content, new ProfileFragment()).commit();
+                ft.replace(R.id.content, new ProfileFragment());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_newOffer:
-                ft.replace(R.id.content, new NewOfferFragment()).commit();
+                ft.replace(R.id.content, new NewOfferFragment());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_settings:
-                ft.replace(R.id.content, new SettingsFragment()).commit();
+                ft.replace(R.id.content, new SettingsFragment());
+                ft.addToBackStack(null);
                 break;
 
         }
+        ft.commit();
         setTitle(item.getTitle());
         mDrawerLayout.closeDrawers();
     }
