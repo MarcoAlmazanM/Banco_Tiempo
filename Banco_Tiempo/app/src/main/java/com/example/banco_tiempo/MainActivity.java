@@ -144,9 +144,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_profile:
                 ft.replace(R.id.content, new ProfileFragment()).commit();
                 break;
-            case R.id.nav_searchOffers:
-                ft.replace(R.id.content, new FilterFragment()).commit();
-                break;
             case R.id.nav_newOffer:
                 ft.replace(R.id.content, new NewOfferFragment()).commit();
                 break;
