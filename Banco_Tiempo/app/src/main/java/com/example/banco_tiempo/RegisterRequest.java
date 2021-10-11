@@ -13,6 +13,7 @@ public class RegisterRequest {
     private String correo;
     private String CPP;
     private String contrasena;
+    private String image;
 
     public String getIdUsuario() {
         return idUsuario;
@@ -108,5 +109,13 @@ public class RegisterRequest {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

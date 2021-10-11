@@ -1,5 +1,6 @@
 package com.example.banco_tiempo;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -51,10 +52,10 @@ public class UserDocumentsActivity extends AppCompatActivity {
     Uri selectedImage;
     String part_image;
 
-    TextView inePath, domPath, antPath, certPath;
-    ImageView ine, dom, ant, cert;
+    TextView inePath, domPath, antPath;
+    ImageView ine, dom, ant;
     Button bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload, bCert;
-    String sIne, sDom, sAnt, sCert;
+    String sIne, sDom, sAnt;
 
     ProgressBar ineBar, domBar, antBar;
 
@@ -141,15 +142,24 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     public void clickBtnIne(View view){
         verifyStoragePermissions(UserDocumentsActivity.this);
-        ineGetContent.launch("image/*");
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        ineGetContent.launch(Intent.createChooser(i, "Select Picture"));
     }
     public void clickBtnDom(View view){
         verifyStoragePermissions(UserDocumentsActivity.this);
-        domGetContent.launch("image/*");
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        domGetContent.launch(Intent.createChooser(i, "Select Picture"));
     }
     public void clickBtnAnt(View view){
         verifyStoragePermissions(UserDocumentsActivity.this);
-        antGetContent.launch("image/*");
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        antGetContent.launch(Intent.createChooser(i, "Select Picture"));
     }
 
 
@@ -181,158 +191,92 @@ public class UserDocumentsActivity extends AppCompatActivity {
         uploadEffect(antBar, bAntUpload);
     }
 
-    public String getImagePath(Uri uri){
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        String document_id = cursor.getString(0);
-        document_id = document_id.substring(document_id.lastIndexOf(":")+1);
-        cursor.close();
+    ActivityResultLauncher<Intent>  ineGetContent =  registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        Uri uri = data.getData();
+                        if (null != uri) {
 
-        cursor = getContentResolver().query(
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
-        cursor.moveToFirst();
-        @SuppressLint("Range") String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-        cursor.close();
+                            ine.setImageURI(uri);
+                            Bitmap bitmap = null;
+                            try {
+                                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
+                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                byte[] byteArray = outputStream.toByteArray();
+                                //Encode Base 64 Image
+                                sIne = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-        return path;
-    }
-
-    ActivityResultLauncher<String>ineGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-        @SuppressLint("Range")
-        @RequiresApi(api = Build.VERSION_CODES.R)
-        @Override
-        public void onActivityResult(Uri uri) {
-            ine.setImageURI(uri);
-            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-            // Obtain path image & fileName image
-            String path = getImagePath(uri);
-            File file = new File(path);
-            String fileName = file.getName();
-            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
-            String[] args = {fileName};
-
-            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
-
-            if (cursor.getCount()>0) {
-                cursor.moveToPosition(0);
-                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                cursor.close();
-                changeBtn(bIne, inePath);
-
-                try {
-                    byte[] buffer = new byte[(int) file.length() + 100];
-                    @SuppressWarnings("resource")
-                    int length = new FileInputStream(file).read(buffer);
-                    sIne = Base64.encodeToString(buffer, 0, length,
-                            Base64.DEFAULT);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
+            });
 
-            }
+    ActivityResultLauncher<Intent>  domGetContent =  registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        Uri uri = data.getData();
+                        if (null != uri) {
 
-            else {
-                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-            }
-        }
-    });
+                            dom.setImageURI(uri);
+                            Bitmap bitmap = null;
+                            try {
+                                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
+                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                byte[] byteArray = outputStream.toByteArray();
+                                //Encode Base 64 Image
+                                sDom = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-    ActivityResultLauncher<String> domGetContent =registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-        @SuppressLint("Range")
-        @RequiresApi(api = Build.VERSION_CODES.R)
-        @Override
-        public void onActivityResult(Uri uri) {
-            dom.setImageURI(uri);
-
-            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-
-            // Obtain path image & fileName image
-            String path = getImagePath(uri);
-            File file = new File(path);
-            String fileName = file.getName();
-            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
-            String[] args = {fileName};
-
-            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
-
-            if (cursor.getCount()>0) {
-                cursor.moveToPosition(0);
-                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                cursor.close();
-
-                changeBtn(bDom, domPath);
-
-                try {
-                    byte[] buffer = new byte[(int) file.length() + 100];
-                    @SuppressWarnings("resource")
-                    int length = new FileInputStream(file).read(buffer);
-                    sDom = Base64.encodeToString(buffer, 0, length,
-                            Base64.DEFAULT);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
+            });
 
-            }
+    ActivityResultLauncher<Intent>  antGetContent =  registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        Uri uri = data.getData();
+                        if (null != uri) {
 
-            else {
-                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-            }
-        }
-    });
+                            ant.setImageURI(uri);
+                            Bitmap bitmap = null;
+                            try {
+                                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
+                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                byte[] byteArray = outputStream.toByteArray();
+                                //Encode Base 64 Image
+                                sAnt = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-    ActivityResultLauncher<String> antGetContent=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
-        @SuppressLint("Range")
-        @RequiresApi(api = Build.VERSION_CODES.R)
-        @Override
-        public void onActivityResult(Uri uri) {
-            ant.setImageURI(uri);
-
-            selectedImage = MediaStore.Images.Media.getContentUri("external");                                                         // Get the image file URI
-            String[] imageProjection = {MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
-
-            // Obtain path image & fileName image
-            String path = getImagePath(uri);
-            File file = new File(path);
-            String fileName = file.getName();
-            String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
-            String[] args = {fileName};
-
-            Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
-
-            if (cursor.getCount()>0) {
-                cursor.moveToPosition(0);
-                part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-
-                cursor.close();
-
-                changeBtn(bAnt, antPath);
-
-                // Get the image file absolute path
-                Bitmap bitmap = null;
-                try {
-                    byte[] buffer = new byte[(int) file.length() + 100];
-                    @SuppressWarnings("resource")
-                    int length = new FileInputStream(file).read(buffer);
-                    sAnt = Base64.encodeToString(buffer, 0, length,
-                            Base64.DEFAULT);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
-            }
-
-            else {
-                Toast.makeText(UserDocumentsActivity.this,"Algo Salio mal", Toast.LENGTH_SHORT);
-            }
-        }
-    });
+            });
 
     public void uploadImageServer(ImageRequest imageRequest){
         Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
@@ -342,15 +286,19 @@ public class UserDocumentsActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     ImageResponse imageResponse = response.body();
                     String message;
-                    if(imageResponse.getTransactionApproval() == 1){
-                        message = "Image Uploaded Successfully";
-                    }else{
-                        message = "Error in Upload Image";
+                    try{
+                        if(imageResponse.getTransactionApproval() == 1){
+                            message = "Imagen Cargada Correctamente";
+                        }else{
+                            message = "Error al Cargar la Imagen";
+                        }
+                    }catch(NullPointerException nullPointerException){
+                        message = "Error al Cargar la Imagen";
                     }
                     Toast.makeText(UserDocumentsActivity.this, message, Toast.LENGTH_LONG).show();
 
                 } else {
-                    String message = "An error occurred, please try again...";
+                    String message = "Ocurrió un error, favor de intentar más tarde.";
                     Toast.makeText(UserDocumentsActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }

@@ -4,11 +4,13 @@ import static java.lang.Thread.sleep;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -40,6 +43,7 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -231,7 +235,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 verifyStoragePermissions();
-                mGetContent.launch("image/*");
+                Intent i = new Intent();
+                i.setType("image/*");
+                i.setAction(Intent.ACTION_GET_CONTENT);
+                mGetContent.launch(Intent.createChooser(i, "Select Picture"));
                 try {
                     sleep(1000);
                 } catch (InterruptedException e) {
@@ -367,59 +374,30 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    public String getImagePath(Uri uri){
-        Cursor cursor = applicationContext.getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        String document_id = cursor.getString(0);
-        document_id = document_id.substring(document_id.lastIndexOf(":")+1);
-        cursor.close();
-
-        cursor = applicationContext.getContentResolver().query(
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
-        cursor.moveToFirst();
-        @SuppressLint("Range") String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-        cursor.close();
-
-        return path;
-    }
-
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-            new ActivityResultCallback<Uri>() {
-                @SuppressLint("Range")
-                @RequiresApi(api = Build.VERSION_CODES.R)
+    ActivityResultLauncher<Intent> mGetContent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
                 @Override
-                public void onActivityResult(Uri uri) {
-                    if (uri != null) {
-                        Transformation transformation = new RoundedCornersTransformation(100,5);
-                        Picasso.get().load(Uri.parse(uri.toString())).resize(120,120).centerCrop().transform(transformation).into(image);
-                        selectedImage = MediaStore.Images.Media.getContentUri("external");// Get the image file URI
-                        String[] imageProjection = {MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME};
-
-                        // Obtain path image & fileName image
-                        String path = getImagePath(uri);
-                        File file = new File(path);
-                        String fileName = file.getName();
-                        String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
-                        String[] args = {fileName};
-
-                        Cursor cursor = applicationContext.getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
-                        if (cursor.getCount() > 0) {
-                            cursor.moveToPosition(0);
-                            part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-                            cursor.close();
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        Uri uri = data.getData();
+                        if (null != uri) {
+                            Transformation transformation = new RoundedCornersTransformation(100,5);
+                            Picasso.get().load(Uri.parse(uri.toString())).resize(120,120).centerCrop().transform(transformation).into(image);
+                            Bitmap bitmap = null;
                             try {
-                                byte[] buffer = new byte[(int) file.length() + 100];
-                                @SuppressWarnings("resource")
-                                int length = new FileInputStream(file).read(buffer);
-                                sImage = Base64.encodeToString(buffer, 0, length,
-                                        Base64.DEFAULT);
+                                bitmap = MediaStore.Images.Media.getBitmap(applicationContext.getContentResolver(), uri);
+                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                byte[] byteArray = outputStream.toByteArray();
+                                //Encode Base 64 Image
+                                sImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } else {
-                            Toast.makeText(getActivity(), "Algo Salio mal", Toast.LENGTH_SHORT);
                         }
                     }
                 }
@@ -441,9 +419,19 @@ public class ProfileFragment extends Fragment {
             public void onResponse(Call<ImageResponse>  call, Response<ImageResponse> response) {
                 if (response.isSuccessful()) {
                     ImageResponse imageResponse = response.body();
-                    String message = "Image Uploaded Successfully";
-                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getActivity(), MainActivity.class).putExtra("data", imageResponse));
+                    try{
+                        if(imageResponse.getTransactionApproval() == 1) {
+                            String message = "Imagen cargada correctamente.";
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(getActivity(), MainActivity.class).putExtra("data", imageResponse));
+                        }else{
+                            String message = "Error al cargar la imagen";
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                        }
+                    }catch (NullPointerException nullPointerException){
+                        String message = "Error al cargar la imagen, favor de intentar más tarde";
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     String message = "An error occurred, please try again...";
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();

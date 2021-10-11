@@ -98,10 +98,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             ImageResponse imageResponse = (ImageResponse) intent.getSerializableExtra("data");
-            if(imageResponse.getTransactionApproval() == 1){
-                preferences = getSharedPreferences("userData",Context.MODE_PRIVATE);
+            if (imageResponse.getTransactionApproval() == 1) {
+                preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
                 editor = preferences.edit();
-                editor.putString("foto",imageResponse.getUrl());
+                editor.putString("foto", imageResponse.getUrl());
                 editor.apply();
             }
         }

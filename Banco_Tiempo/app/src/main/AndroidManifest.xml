@@ -19,7 +19,9 @@
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
             android:name=".CreateOffer"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".OfferDetails"
             android:exported="true" />

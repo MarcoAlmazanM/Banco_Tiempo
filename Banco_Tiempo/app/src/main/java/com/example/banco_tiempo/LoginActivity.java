@@ -72,25 +72,30 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("data");
-            if (loginResponse.getLoginApproval() == 1) {
-                preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
-                editor = preferences.edit();
-                editor.putString("name",loginResponse.getName());
-                editor.putString("lastName",loginResponse.getLastName());
-                editor.putString("username",loginResponse.getUsername());
-                editor.putString("colonia",loginResponse.getColonia());
-                editor.putString("foto",loginResponse.getFoto());
-                editor.putString("email", loginResponse.getEmail());
-                editor.putInt("statusHours", loginResponse.getStatusHours());
-                editor.putInt("documentosApproval", loginResponse.getDocumentosApproval());
-                editor.putBoolean("SaveSession",true);
-                editor.apply();
-                Intent menu = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(menu);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
-                finish();
-            }else{
-                message = "Inicio Fallido";
+            try {
+                if (loginResponse.getLoginApproval() == 1) {
+                    preferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE);
+                    editor = preferences.edit();
+                    editor.putString("name", loginResponse.getName());
+                    editor.putString("lastName", loginResponse.getLastName());
+                    editor.putString("username", loginResponse.getUsername());
+                    editor.putString("colonia", loginResponse.getColonia());
+                    editor.putString("foto", loginResponse.getFoto());
+                    editor.putString("email", loginResponse.getEmail());
+                    editor.putInt("statusHours", loginResponse.getStatusHours());
+                    editor.putInt("documentosApproval", loginResponse.getDocumentosApproval());
+                    editor.putBoolean("SaveSession", true);
+                    editor.apply();
+                    Intent menu = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(menu);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+                    finish();
+                } else {
+                    message = "Inicio Fallido";
+                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                }
+            }catch(NullPointerException nullPointerException){
+                message = "Inicio Fallido, favor de intentar más tarde";
                 Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
             }
         }
