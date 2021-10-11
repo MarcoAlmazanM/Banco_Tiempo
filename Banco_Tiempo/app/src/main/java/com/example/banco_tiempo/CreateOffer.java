@@ -205,7 +205,7 @@ public class CreateOffer extends AppCompatActivity {
         });
     }
 
-    
+
     ActivityResultLauncher<Intent> mGetContent = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
