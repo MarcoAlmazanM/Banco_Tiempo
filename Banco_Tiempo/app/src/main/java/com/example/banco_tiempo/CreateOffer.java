@@ -1,5 +1,6 @@
 package com.example.banco_tiempo;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -116,7 +117,11 @@ public class CreateOffer extends AppCompatActivity {
 
     public void pick(View view) {
         verifyStoragePermissions(CreateOffer.this);
-        mGetContent.launch("image/*");
+        /*mGetContent.launch("image/*");*/
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        mGetContent.launch(Intent.createChooser(i, "Select Picture"));
     }
 
     public void clickBtnCert(View view){
@@ -214,43 +219,14 @@ public class CreateOffer extends AppCompatActivity {
         return path;
     }
 
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-            new ActivityResultCallback<Uri>() {
-                @SuppressLint("Range")
-                @RequiresApi(api = Build.VERSION_CODES.R)
+    ActivityResultLauncher<Intent> mGetContent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
                 @Override
-                public void onActivityResult(Uri uri) {
-                    if (uri != null) {
-                        img1.setImageURI(uri);
-                        selectedImage = MediaStore.Images.Media.getContentUri("external");
-                        // Get the image file URI
-                        String[] imageProjection = {MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME};
-
-                        // Obtain path image & fileName image
-                        String path = getImagePath(uri);
-                        File file = new File(path);
-                        String fileName = file.getName();
-                        String selectionClause = MediaStore.Images.ImageColumns.DISPLAY_NAME + "=?";
-                        String[] args = {fileName};
-
-                        Cursor cursor = getContentResolver().query(selectedImage, imageProjection, selectionClause, args, null);
-                        if (cursor.getCount() > 0) {
-                            cursor.moveToPosition(0);
-                            part_image = cursor.getString(cursor.getColumnIndex(imageProjection[0]));
-                            cursor.close();
-                            try {
-                                byte[] buffer = new byte[(int) file.length() + 100];
-                                @SuppressWarnings("resource")
-                                int length = new FileInputStream(file).read(buffer);
-                                sImage = Base64.encodeToString(buffer, 0, length,
-                                        Base64.DEFAULT);
-
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            Toast.makeText(CreateOffer.this, "Algo Salió mal", Toast.LENGTH_SHORT);
-                        }
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Uri uri = result.getData();
 
                     }
                 }

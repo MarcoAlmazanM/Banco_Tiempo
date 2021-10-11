@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".register_second"
+    tools:context=".RegisterActivity"
     android:layout_gravity="center"
     android:background="@color/register_bk_color"
     android:focusableInTouchMode="true"
@@ -154,7 +154,7 @@
                         style="@style/loginButton"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:onClick="verifyData"
+                        android:onClick="verifyData2"
                         android:text="@string/registrarse"
                         app:initialCornerAngle="27dp"
                         app:spinning_bar_color="#FFF"
@@ -198,7 +198,7 @@
         android:layout_marginRight="11dp"
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="false"
-        android:onClick="goBackLogin"
+        android:onClick="goBackRegister"
         android:src="@drawable/ic_back_img" />
 
     <!--android:onClick="onLoginClick" -->
