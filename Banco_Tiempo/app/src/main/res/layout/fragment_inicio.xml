@@ -19,12 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="School \nEducation"
+                    android:text="@string/bdt"
                     style="@style/viewParent.headerText"
                     android:layout_gravity="bottom"/>
 
@@ -34,6 +35,7 @@
                     android:src="@drawable/hero"
                     android:adjustViewBounds="true" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,14 +63,19 @@
                             android:padding="10dp">
 
                             <ImageView
+                                style="@style/homeCardImage"
                                 android:maxHeight="90dp"
-                                android:src="@drawable/home_ic_maths"
-                                style="@style/homeCardImage"/>
+                                android:src="@drawable/home_ic_maths" />
 
                             <TextView
                                 android:id="@+id/textViewSub1Title"
-                                android:text="Maths"
-                                style="@style/viewParent.headerText.HomeCardTitle" />
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:text="@string/menuAdmin"
+                                android:textSize="20dp" />
 
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -95,8 +102,13 @@
 
                             <TextView
                                 android:id="@+id/textViewSub3Title"
-                                android:text="Chemistry"
-                                style="@style/viewParent.headerText.HomeCardTitle" />
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuMate"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
 
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
@@ -124,8 +136,13 @@
 
                             <TextView
                                 android:id="@+id/textViewSub5Title"
-                                android:text="Geography"
-                                style="@style/viewParent.headerText.HomeCardTitle" />
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuActu"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -151,8 +168,13 @@
                                 style="@style/homeCardImage"/>
 
                             <TextView
-                                android:text="Chemistry"
-                                style="@style/viewParent.headerText.HomeCardTitle" />
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuADCo"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
 
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
@@ -191,8 +213,13 @@
 
                             <TextView
                                 android:id="@+id/textViewSub2Title"
-                                android:text="Physics"
-                                style="@style/viewParent.headerText.HomeCardTitle" />
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuCompu"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -219,8 +246,13 @@
 
                             <TextView
                                 android:id="@+id/textViewSub4Title"
-                                android:text="Biology"
-                                style="@style/viewParent.headerText.HomeCardTitle" />
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuInge"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
 
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
@@ -248,8 +280,13 @@
 
                             <TextView
                                 android:id="@+id/textViewSub6Title"
-                                android:text="Politics"
-                                style="@style/viewParent.headerText.HomeCardTitle" />
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuEduc"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -275,14 +312,345 @@
                                 style="@style/homeCardImage" />
 
                             <TextView
-                                android:text="Biology"
-                                style="@style/viewParent.headerText.HomeCardTitle" />
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuCom"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
 
 
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
                     </androidx.cardview.widget.CardView>
+
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            android:background="@drawable/home_gradient_maths"
+                            android:padding="10dp">
+
+                            <ImageView
+                                style="@style/homeCardImage"
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_maths" />
+
+                            <TextView
+                                android:id="@+id/textViewSub7Title"
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuLim"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <net.colindodd.gradientlayout.GradientRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            gl:end_color="@color/gradientLightYellow2"
+                            gl:start_color="@color/gradientLightOrange2"
+                            gl:orientation="LEFT_RIGHT"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_chemistry"
+                                style="@style/homeCardImage"/>
+
+                            <TextView
+                                android:id="@+id/textViewSub8Title"
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuDep"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
+
+
+                        </net.colindodd.gradientlayout.GradientRelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <net.colindodd.gradientlayout.GradientRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            gl:start_color="@color/gradientViolet"
+                            gl:end_color="@color/gradientLightBlue"
+                            gl:orientation="LEFT_RIGHT"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_geography"
+                                style="@style/homeCardImage"/>
+
+                            <TextView
+                                android:id="@+id/textViewSub9Title"
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuVen"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
+
+                        </net.colindodd.gradientlayout.GradientRelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <net.colindodd.gradientlayout.GradientRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            gl:end_color="@color/gradientLightYellow2"
+                            gl:start_color="@color/gradientLightOrange2"
+                            gl:orientation="LEFT_RIGHT"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_chemistry"
+                                style="@style/homeCardImage"/>
+
+                            <TextView
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:text="@string/menuIMRe"
+                                android:textSize="20dp" />
+
+
+                        </net.colindodd.gradientlayout.GradientRelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            android:background="@drawable/home_gradient_maths"
+                            android:padding="10dp">
+
+                            <ImageView
+                                style="@style/homeCardImage"
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_maths" />
+
+                            <TextView
+                                android:id="@+id/textViewSub13Title"
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:text="@string/menuTraPM"
+                                android:textSize="20dp"/>
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <net.colindodd.gradientlayout.GradientRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            gl:start_color="@color/gradientLightYellow"
+                            gl:end_color="@color/gradientOrange"
+                            gl:orientation="LEFT_RIGHT"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_physics"
+                                style="@style/homeCardImage"/>
+
+                            <TextView
+                                android:id="@+id/textViewSub10Title"
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuCons"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
+
+                        </net.colindodd.gradientlayout.GradientRelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <net.colindodd.gradientlayout.GradientRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            gl:start_color="@color/gradientLightOrange2"
+                            gl:end_color="@color/gradientOrange3"
+                            gl:orientation="LEFT_RIGHT"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_biology"
+                                style="@style/homeCardImage" />
+
+                            <TextView
+                                android:id="@+id/textViewSub11Title"
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuCui"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
+
+
+                        </net.colindodd.gradientlayout.GradientRelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <net.colindodd.gradientlayout.GradientRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            gl:start_color="@color/gradientLightGreen"
+                            gl:end_color="@color/gradientLightBlue"
+                            gl:orientation="LEFT_RIGHT"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_chemistry"
+                                style="@style/homeCardImage" />
+
+                            <TextView
+                                android:id="@+id/textViewSub12Title"
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:text="@string/menuAPSi"
+                                android:textSize="20dp" />
+
+                        </net.colindodd.gradientlayout.GradientRelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:layout_marginTop="10dp">
+
+                        <net.colindodd.gradientlayout.GradientRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minHeight="100dp"
+                            gl:start_color="@color/gradientLightOrange2"
+                            gl:end_color="@color/gradientOrange3"
+                            gl:orientation="LEFT_RIGHT"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:maxHeight="90dp"
+                                android:src="@drawable/home_ic_biology"
+                                style="@style/homeCardImage" />
+
+                            <TextView
+                                style="@style/viewParent.headerText.HomeCardTitle"
+                                android:text="@string/menuPro"
+                                android:shadowColor="#000"
+                                android:shadowDx="-2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="1"
+                                android:textSize="20dp" />
+
+
+                        </net.colindodd.gradientlayout.GradientRelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
