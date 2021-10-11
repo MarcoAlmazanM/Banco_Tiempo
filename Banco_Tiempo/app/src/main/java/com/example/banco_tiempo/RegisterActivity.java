@@ -150,6 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
             registerRequest.setCorreo(email);
             registerRequest.setIdUsuario(username);
             registerRequest.setContrasena(passwordHash);
+            //registerRequest.setImage(sImage);
             registerUser(registerRequest);
         }
     }

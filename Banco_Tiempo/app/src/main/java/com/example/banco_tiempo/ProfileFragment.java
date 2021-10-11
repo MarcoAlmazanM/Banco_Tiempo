@@ -297,7 +297,8 @@ public class ProfileFragment extends Fragment {
                         }
 
                     }catch (NullPointerException e){
-                        String message = "Error";
+                        String message = "Error al checar el estatus de las horas, favor de intentar más tarde";
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                     }
 
                     try{
@@ -308,7 +309,8 @@ public class ProfileFragment extends Fragment {
                             document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                         }
                     }catch (NullPointerException e){
-                        String message = "Error";
+                        String message = "Error al checar el estatus de los documentos, favor de intentar más tarde";
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                     }
 
                 } else {
