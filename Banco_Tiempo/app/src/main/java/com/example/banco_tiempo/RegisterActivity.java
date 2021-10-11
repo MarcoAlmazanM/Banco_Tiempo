@@ -150,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
             registerRequest.setCorreo(email);
             registerRequest.setIdUsuario(username);
             registerRequest.setContrasena(passwordHash);
-            //registerRequest.setImage(sImage);
+            registerRequest.setImage(sImage);
             registerUser(registerRequest);
         }
     }
@@ -199,6 +199,8 @@ public class RegisterActivity extends AppCompatActivity {
             RegisterResponse registerResponse = (RegisterResponse) intent.getSerializableExtra("data");
             try {
                 if (registerResponse.getRegisterApproval() == 1) {
+                    message = "Usuario Registrado Exitosamente";
+                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                     Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(login);
                     finish();
