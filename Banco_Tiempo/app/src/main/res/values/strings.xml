@@ -14,6 +14,8 @@
     <string name="correo" translatable="false">Correo</string>
     <string name="confirmaContra" translatable="false">Confirma contraseña</string>
     <string name="registrarse" translatable="false">Regístrate</string>
+    <string name="regcontinuar" translatable="false">Continuar</string>
+    <string name="regFoto" translatable="false">¡Elije una\n foto de\n perfil!</string>
     <string name="nombreUsuario" translatable="false">Nombre de Usuario</string>
     <string name="datosUsuario" translatable="false">Datos del Usuario</string>
     <string name="documentosUsuario" translatable="false">Documentos / Certificados</string>
@@ -134,7 +136,7 @@
     //Registro
     <string name="registrate" translatable="false">¡Tu primer\n paso con \nnosotros!</string>
     <string name="goback" translatable="false">¿Ya tienes una cuenta?</string>
-    
+
     //Pop Up Window
     <string name="uploadimg" translatable="false">Subir</string>
     <string name="cancelimg" translatable="false">Cancelar</string>
@@ -158,7 +160,7 @@
         <item>Descripción de prueba.</item>
         <item>Descripción de prueba.</item>
     </string-array>
-    
+
     //Profile View
     <string name="profileEmail" translatable="false">prueba@correo.com</string>
     <string name="returnMain" translatable="false">Regresar \n a menú principal</string>

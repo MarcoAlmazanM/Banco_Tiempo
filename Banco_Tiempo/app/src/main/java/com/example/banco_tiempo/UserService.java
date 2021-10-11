@@ -17,7 +17,6 @@ public interface UserService {
     @POST("register")
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
 
-
     // POST request to upload an image from storage
     @POST("uploadimage")
     Call<ImageResponse> uploadImageServer(@Body ImageRequest imageRequest);
