@@ -66,6 +66,7 @@
                             android:id="@+id/eTCalle"
                             style="@style/modifiedEditText"
                             android:hint="@string/calle"
+                            android:backgroundTint="@color/darker_gray"
                             android:textColor="@color/black"
                             android:inputType="text"
                             android:maxLines="1" />
@@ -81,6 +82,7 @@
                             android:id="@+id/eTColonia"
                             style="@style/modifiedEditText"
                             android:hint="@string/colonia"
+                            android:backgroundTint="@color/darker_gray"
                             android:inputType="text"
                             android:textColor="@color/black"
                             android:maxLines="1" />
@@ -96,6 +98,7 @@
                             android:id="@+id/eTMunicipio"
                             style="@style/modifiedEditText"
                             android:hint="@string/municipio"
+                            android:backgroundTint="@color/darker_gray"
                             android:inputType="text"
                             android:textColor="@color/black"
                             android:maxLines="1" />
@@ -111,6 +114,7 @@
                             android:id="@+id/eTEstado"
                             style="@style/modifiedEditText"
                             android:hint="@string/estado"
+                            android:backgroundTint="@color/darker_gray"
                             android:inputType="text"
                             android:textColor="@color/black"
                             android:maxLines="1" />
@@ -127,6 +131,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/numInt"
                             android:inputType="number"
+                            android:backgroundTint="@color/darker_gray"
                             android:textColor="@color/black"
                             android:maxLines="1" />
 
@@ -142,6 +147,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/codigoPostal"
                             android:inputType="number"
+                            android:backgroundTint="@color/darker_gray"
                             android:textColor="@color/black"
                             android:maxLines="1" />
 

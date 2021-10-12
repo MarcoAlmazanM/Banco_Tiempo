@@ -70,6 +70,7 @@
                             android:id="@+id/eTNombre"
                             style="@style/modifiedEditText"
                             android:hint="@string/nombreLogin"
+                            android:backgroundTint="@color/darker_gray"
                             android:textColor="@color/black"
                             android:inputType="textPersonName"
                             android:maxLines="1" />
@@ -85,6 +86,7 @@
                             android:id="@+id/eTAM"
                             style="@style/modifiedEditText"
                             android:hint="@string/apellidoMaterno"
+                            android:backgroundTint="@color/darker_gray"
                             android:inputType="textPersonName"
                             android:textColor="@color/black"
                             android:maxLines="1" />
@@ -100,6 +102,7 @@
                             android:id="@+id/eTAP"
                             style="@style/modifiedEditText"
                             android:hint="@string/apellidoPaterno"
+                            android:backgroundTint="@color/darker_gray"
                             android:textColor="@color/black"
                             android:inputType="textPersonName"
                             android:maxLines="1" />
@@ -116,6 +119,7 @@
                             android:id="@+id/eTEmailR"
                             style="@style/modifiedEditText"
                             android:hint="@string/correo"
+                            android:backgroundTint="@color/darker_gray"
                             android:textColor="@color/black"
                             android:inputType="textEmailAddress"
                             android:maxLines="1" />
@@ -131,6 +135,7 @@
                             android:id="@+id/eTUsernameR"
                             style="@style/modifiedEditText"
                             android:hint="@string/nombreUsuario"
+                            android:backgroundTint="@color/darker_gray"
                             android:textColor="@color/black"
                             android:inputType="text"
                             android:maxLines="1" />
@@ -148,6 +153,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/passwordLogin"
                             android:textColor="@color/black"
+                            android:backgroundTint="@color/darker_gray"
                             android:inputType="textPassword"
                             android:maxLines="1" />
 
@@ -164,6 +170,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/passwordLogin"
                             android:textColor="@color/black"
+                            android:backgroundTint="@color/darker_gray"
                             android:inputType="textPassword"
                             android:maxLines="1" />
 
