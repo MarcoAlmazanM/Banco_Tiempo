@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class NewOfferFragment extends Fragment {
     }
 
     Button btnCreaOffer;
+    ImageView btnBorraOffer;
     ArrayList<OfferVO> listOffer;
 
     RecyclerView recyclerOfertas;
@@ -81,11 +83,16 @@ public class NewOfferFragment extends Fragment {
         llenarLista();
 
         AdapterNewOffer myadapter = new AdapterNewOffer(listOffer);
+        btnBorraOffer = vista.findViewById(R.id.btnDelOffer);
 
         myadapter.setOnClickListener(new View.OnClickListener() {
+        //btnBorraOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Selección: "+listOffer.get(recyclerOfertas.getChildAdapterPosition(view)).getTrabajo(), Toast.LENGTH_SHORT).show();
+                int position = recyclerOfertas.getChildAdapterPosition(view);
+                //Toast.makeText(getContext(), "Selección: "+listOffer.get(position).getTrabajo(), Toast.LENGTH_SHORT).show();
+                listOffer.remove(position);
+                myadapter.notifyItemRemoved(position);
             }
         });
 

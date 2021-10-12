@@ -40,6 +40,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.Normalizer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -143,6 +144,9 @@ public class CreateOffer extends AppCompatActivity {
         description = findViewById(R.id.tVDescription);
 
         cat = category.getText().toString();
+        cat = Normalizer.normalize(cat, Normalizer.Form.NFD);
+        cat = cat.replaceAll("[^\\p{ASCII}]", "");
+
         titxd = title.getText().toString();
         des = description.getText().toString();
 
