@@ -1,124 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OfferDetails">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <include
             layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <FrameLayout
-            android:id="@+id/content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/userJobImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="225dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/ic_work"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <TextView
+            android:id="@+id/trabajo"
+            style="@style/headerText"
+            android:layout_marginBottom="20dp"
+            android:text="Nombre Oferta:"
+            android:textAlignment="center" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/idServicioOfer"
+                android:src="@drawable/name1"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/idServicioOfer"
+                android:text="ID del Servicio:" />
+
+            <TextView
+                android:id="@+id/serviceGiven"
+                android:text="#00000"
+                android:layout_toRightOf="@id/idServicioOfer"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/proifleDetailsView" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/mobileImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/username" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/mobileImageView"
+                android:text="Nombre de Usuario:" />
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/mobileImageView"
+                android:text="@string/usernameProf" />
+
+        </RelativeLayout>
+        <View style="@style/proifleDetailsView" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/emailImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_jobs" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/emailImageView"
+                android:text="Trabajo:" />
+
+            <TextView
+                android:id="@+id/userTrabajo"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/emailImageView"
+                android:text="trabajo" />
+
+        </RelativeLayout>
+        <View style="@style/proifleDetailsView" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/descView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/baseline_description_black_20" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/descView"
+                android:text="Descripción de la Oferta:" />
+
+            <TextView
+                android:id="@+id/jobDescription"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/descView"
+                android:text="@string/descripcion"
+                android:scrollHorizontally="false"/>
+
+        </RelativeLayout>
+
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+            android:id="@+id/aceptarServicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/loginButton"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Aceptar"/>
+
+
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/userJobImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_work" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle"
-        android:text="@string/nombreUsuario"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/serviceGiven"
-        app:layout_constraintEnd_toStartOf="@+id/serviceGiven"
-        app:layout_constraintStart_toEndOf="@+id/trabajo" />
-
-    <TextView
-        android:id="@+id/jobDescription"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rectangle"
-        android:textColor="@android:color/black"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/horario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/serviceGiven"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="#servicio"
-        android:textColor="@android:color/black"
-        android:background="@drawable/rectangle"
-        app:layout_constraintBottom_toBottomOf="@+id/trabajo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/trabajo"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ListView
-        android:id="@+id/horario"
-        android:layout_width="320dp"
-        android:layout_height="138dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" >
-
-    </ListView>
-
-    <TextView
-        android:id="@+id/trabajo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rectangle"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="Trabajo"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/jobDescription"
-        app:layout_constraintStart_toStartOf="@+id/jobDescription" />
-
-    <Button
-        android:id="@+id/aceptarServicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:text="Aceptar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horario" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

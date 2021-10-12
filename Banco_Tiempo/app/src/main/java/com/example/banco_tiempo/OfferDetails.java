@@ -22,6 +22,7 @@ public class OfferDetails extends AppCompatActivity {
     TextView servicio;
     TextView descripcion;
     TextView id;
+    TextView trabajo2;
 
     ImageView perfil;
 
@@ -36,6 +37,7 @@ public class OfferDetails extends AppCompatActivity {
         ElementList oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
         nombre=findViewById(R.id.textView);
         servicio=findViewById(R.id.trabajo);
+        trabajo2=findViewById(R.id.userTrabajo);
         descripcion=findViewById(R.id.jobDescription);
         perfil=findViewById(R.id.userJobImage);
         id = findViewById(R.id.serviceGiven);
@@ -43,6 +45,7 @@ public class OfferDetails extends AppCompatActivity {
         nombre.setText(oferta.getNombreUsuario());
         servicio.setText(oferta.getNombre());
         descripcion.setText(oferta.getDescripcion());
+        trabajo2.setText(oferta.getNombre());
         Integer value = oferta.getIdServicio();
         id.setText((("#"+value.toString())));
 
