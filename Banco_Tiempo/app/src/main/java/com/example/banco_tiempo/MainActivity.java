@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     View headerView;
     TextView nameTextView;
-    ImageView userProfileImage;
+    //ImageView userProfileImage;
+    ImageButton userProfileImage;
 
     ActionBarDrawerToggle toggle;
 
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         headerView = navigationView.getHeaderView(0);
-        userProfileImage =(ImageView)headerView.findViewById(R.id.user_profile_image);
+        userProfileImage =(ImageButton)headerView.findViewById(R.id.user_profile_image);
         nameTextView = (TextView)headerView.findViewById(R.id.nameTextView);
         toolbar = findViewById(R.id.toolbar);
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
@@ -92,6 +94,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        userProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.content, new ProfileFragment()).commit();
+            }
+        });
     }
 
     public void imageIntent(){
@@ -133,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         selectItemNav(item);
         return true;
     }
+
 
     private void selectItemNav(MenuItem item) {
         FragmentManager fm = getSupportFragmentManager();
