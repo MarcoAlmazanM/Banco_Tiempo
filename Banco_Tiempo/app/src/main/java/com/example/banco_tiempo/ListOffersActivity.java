@@ -120,6 +120,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
             String nombreUsuario = offersD.get(i).getNombreUsuario();
             String apellidoUsuario = offersD.get(i).getApellidoUsuario();
             String foto = offersD.get(i).getFoto();
+            //String trabajo=offersD.get(i).getTrabajo();
 
             ElementList oferta = new ElementList(idServicio,idUsuario,colonia,
                                                 nombre,descripcion,certificado,
@@ -143,7 +144,6 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
         ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
         */
-
 
         adapter=new ListAdapter(ofertas, this, new ListAdapter.ClickListener() {
             @Override

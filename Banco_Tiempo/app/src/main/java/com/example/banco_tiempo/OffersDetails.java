@@ -56,7 +56,9 @@ public class OffersDetails {
     // Constructor
     public OffersDetails(int idServicio, String idUsuario, String colonia,
                          String nombre, String descripcion, String certificado,
-                         String image, String nombreUsuario, String apellidoUsuario, String foto) {
+                         String image, String nombreUsuario, String apellidoUsuario,
+                         String foto) {
+
         this.idServicio = idServicio;
         this.idUsuario = idUsuario;
         this.colonia = colonia;
