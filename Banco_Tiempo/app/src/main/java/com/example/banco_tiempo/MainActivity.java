@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +93,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        userProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.content, new ProfileFragment()).commit();
+                ft.addToBackStack(null);
+                mDrawerLayout.closeDrawers();
+            }
+        });
+
+
     }
 
     public void imageIntent(){
@@ -134,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
     private void selectItemNav(MenuItem item) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -144,10 +159,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_profile:
                 ft.replace(R.id.content, new ProfileFragment());
-                ft.addToBackStack(null);
-                break;
-            case R.id.nav_searchOffers:
-                ft.replace(R.id.content, new FilterFragment());
                 ft.addToBackStack(null);
                 break;
             case R.id.nav_newOffer:

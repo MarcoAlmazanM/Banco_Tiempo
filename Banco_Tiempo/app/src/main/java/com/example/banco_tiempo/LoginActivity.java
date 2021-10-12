@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, LoginActivity.class).putExtra("data", loginResponse));
                     finish();
                 } else {
-                    message = "An error occurred, please try again...";
+                    message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }

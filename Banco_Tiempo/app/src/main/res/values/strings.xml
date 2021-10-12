@@ -169,6 +169,10 @@
     <string name="emailProf" translatable="false">Correo Electrónico</string>
     <string name="usernameProf" translatable="false">Nombre de Usuario</string>
     <string name="nameProf" translatable="false">Nombre</string>
+    <string name="verHoras" translatable="false">Verificar\nHoras</string>
+    <string name="verDocs" translatable="false">Verificar\nDocumentos</string>
+    <string name="estHoras" translatable="false">Estatus Horas</string>
+    <string name="estDocu" translatable="false">Estatus Documentos</string>
 
     //Home Page
     <string name="bdt" translatable="false">Banco\nde Tiempo</string>
@@ -191,9 +195,6 @@
     <string name="menuIMRe" translatable="false">Instalación,\nMantenimiento,\ny Reparación</string>
     <string name="menuPro" translatable="false">Producción\nde Materiales</string>
     <string name="menuTraPM" translatable="false">Transporte\nde Personas\ny Materiales</string>
-
-
-
 
 
 </resources>
