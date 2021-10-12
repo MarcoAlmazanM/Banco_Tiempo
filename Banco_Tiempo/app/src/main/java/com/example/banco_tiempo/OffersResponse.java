@@ -1,30 +1,19 @@
 package com.example.banco_tiempo;
 
-public class OffersResponse {
-    private String id;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private OffersDetails offersDetails;
+import java.io.Serializable;
 
-    //Constructor
-    public OffersResponse(String id, OffersDetails offersDetails) {
-        this.id = id;
-        this.offersDetails = offersDetails;
+public class OffersResponse implements Serializable {
+
+    private OffersDetails[] ofertas;
+
+    public OffersDetails[] getOfertas() {
+        return ofertas;
     }
 
-    //Getters && Setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public OffersDetails getOffersDetails() {
-        return offersDetails;
-    }
-
-    public void setOffersDetails(OffersDetails offersDetails) {
-        this.offersDetails = offersDetails;
+    public void setOfertas(OffersDetails[] ofertas) {
+        this.ofertas = ofertas;
     }
 }

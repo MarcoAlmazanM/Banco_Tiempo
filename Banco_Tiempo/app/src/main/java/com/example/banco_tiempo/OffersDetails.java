@@ -9,7 +9,8 @@ public class OffersDetails {
     private String certificado;
     private String image;
     private String nombreUsuario;
-    private String categoria;
+    private String apellidoUsuario;
+    private String foto;
 
     //Getters
     public int getIdServicio() {
@@ -44,13 +45,18 @@ public class OffersDetails {
         return nombreUsuario;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getApellidoUsuario() {
+        return apellidoUsuario;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
     // Constructor
     public OffersDetails(int idServicio, String idUsuario, String colonia,
                          String nombre, String descripcion, String certificado,
-                         String image, String nombreUsuario, String categoria) {
+                         String image, String nombreUsuario, String apellidoUsuario, String foto) {
         this.idServicio = idServicio;
         this.idUsuario = idUsuario;
         this.colonia = colonia;
@@ -59,6 +65,7 @@ public class OffersDetails {
         this.certificado = certificado;
         this.image = image;
         this.nombreUsuario = nombreUsuario;
-        this.categoria = categoria;
+        this.apellidoUsuario = apellidoUsuario;
+        this.foto = foto;
     }
 }
