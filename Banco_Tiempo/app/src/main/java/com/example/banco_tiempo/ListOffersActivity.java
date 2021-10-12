@@ -52,7 +52,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         setContentView(R.layout.activity_list_offers);
         toolbar = findViewById(R.id.toolbar);
         setTitle("Listado de Ofertas");
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
 
         chartView = findViewById(R.id.pVprogressPie);

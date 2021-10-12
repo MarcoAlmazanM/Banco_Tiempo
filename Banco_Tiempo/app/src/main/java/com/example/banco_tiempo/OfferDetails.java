@@ -32,7 +32,7 @@ public class OfferDetails extends AppCompatActivity {
         setContentView(R.layout.activity_offer_details);
         toolbar = findViewById(R.id.toolbar);
         setTitle("Detalles de la Oferta");
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         ElementList oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
         nombre=findViewById(R.id.textView);

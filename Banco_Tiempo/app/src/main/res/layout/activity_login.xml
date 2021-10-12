@@ -53,7 +53,8 @@
                     android:id="@+id/eTUsername"
                     style="@style/modifiedEditText"
                     android:hint="@string/user_name"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/darker_gray"
+                    android:textColor="@color/black"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
 
@@ -70,6 +71,8 @@
                     style="@style/modifiedEditText"
                     android:hint="@string/login_password_hint"
                     android:inputType="textPassword"
+                    android:backgroundTint="@color/darker_gray"
+                    android:textColor="@color/black"
                     android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
