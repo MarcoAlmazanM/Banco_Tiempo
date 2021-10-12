@@ -1,14 +1,16 @@
 package com.example.banco_tiempo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +19,10 @@ import android.widget.Button;
  */
 public class FragmentInicio extends Fragment {
 
+    CardView cardViewComida;
+    View root;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +68,22 @@ public class FragmentInicio extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio, container, false);
+        root = inflater.inflate(R.layout.fragment_inicio, container, false);
+        preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        cardViewComida = root.findViewById(R.id.cVComida);
+        onClickCardView(cardViewComida);
+        return root;
+    }
+    public void onClickCardView(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Comida");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
     }
 }

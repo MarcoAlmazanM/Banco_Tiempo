@@ -1,23 +1,27 @@
 package com.example.banco_tiempo;
 
-public class OffersResponse {
-    private String id;
+import java.io.Serializable;
+
+public class OffersResponse implements Serializable {
+    private String ofertas;
 
     private OffersDetails offersDetails;
 
     //Constructor
     public OffersResponse(String id, OffersDetails offersDetails) {
-        this.id = id;
+        this.ofertas = ofertas;
         this.offersDetails = offersDetails;
     }
 
     //Getters && Setters
-    public String getId() {
-        return id;
+
+
+    public String getOfertas() {
+        return ofertas;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOfertas(String ofertas) {
+        this.ofertas = ofertas;
     }
 
     public OffersDetails getOffersDetails() {
