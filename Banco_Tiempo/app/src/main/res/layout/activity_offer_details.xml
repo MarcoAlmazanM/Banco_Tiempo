@@ -131,7 +131,5 @@
             android:layout_gravity="center_horizontal"
             android:text="Aceptar"/>
 
-
     </LinearLayout>
-
 </RelativeLayout>

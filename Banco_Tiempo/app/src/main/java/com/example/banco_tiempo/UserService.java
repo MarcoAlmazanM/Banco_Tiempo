@@ -32,4 +32,8 @@ public interface UserService {
     //POST request to obtain services
     @POST("getservices")
     Call<OffersResponse> getOffers(@Body OffersRequest offersRequest);
+
+    //POST request to obtain user services
+    @POST("getuserservices")
+    Call<UserOffersResponse> getUserOffers(@Body UserOffersRequest userOffersRequest);
 }

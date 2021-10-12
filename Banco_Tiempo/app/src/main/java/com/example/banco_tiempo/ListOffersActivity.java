@@ -64,25 +64,17 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         colonia = preferences.getString("colonia", "NULL");
 
         uploadEffect(chartView);
-        //setOffersValues();
+
 
 
         initViews();
         initListener();
 
-        //searchList.setOnQueryTextListener(this);
     }
 
     private void uploadEffect(PercentageChartView chartView){
         chartView.setVisibility(View.VISIBLE);
         chartView.setProgress(100, true);
-        /*final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                chartView.setProgress(100, true);
-            }
-        }, 9000);*/
         setOffersValues();
     }
 
