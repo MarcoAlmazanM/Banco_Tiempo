@@ -27,9 +27,9 @@ public class AdapterNewOffer
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_offer_row, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_offer_row, parent, false);
         view.setOnClickListener(this);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view).linkAdapter(this);
     }
 
     @Override
@@ -57,12 +57,22 @@ public class AdapterNewOffer
 
         TextView myText1, myText2;
         ImageView myImage;
+        private AdapterNewOffer adapter;
 
         public MyViewHolder (@NonNull View itemView){
             super(itemView);
             myText1 = itemView.findViewById(R.id.tVJob);
             myText2 = itemView.findViewById(R.id.tVDescription);
             myImage = itemView.findViewById(R.id.iVUserPhoto);
+            itemView.findViewById(R.id.btnDelOffer).setOnClickListener(view-> {
+                adapter.listaOffer.remove(getAdapterPosition());
+                adapter.notifyItemRemoved(getAdapterPosition());
+            });
+        }
+
+        public MyViewHolder linkAdapter(AdapterNewOffer adapter){
+            this.adapter = adapter;
+            return this;
         }
     }
 }

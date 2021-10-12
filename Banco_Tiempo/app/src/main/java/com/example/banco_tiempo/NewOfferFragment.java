@@ -83,18 +83,18 @@ public class NewOfferFragment extends Fragment {
         llenarLista();
 
         AdapterNewOffer myadapter = new AdapterNewOffer(listOffer);
-        btnBorraOffer = vista.findViewById(R.id.btnDelOffer);
 
+        /*
         myadapter.setOnClickListener(new View.OnClickListener() {
-        //btnBorraOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int position = recyclerOfertas.getChildAdapterPosition(view);
-                //Toast.makeText(getContext(), "Selección: "+listOffer.get(position).getTrabajo(), Toast.LENGTH_SHORT).show();
-                listOffer.remove(position);
-                myadapter.notifyItemRemoved(position);
+                Toast.makeText(getContext(), "Selección: "+listOffer.get(position).getTrabajo(), Toast.LENGTH_SHORT).show();
+                //listOffer.remove(position);
+                //myadapter.notifyItemRemoved(position);
             }
         });
+         */
 
         recyclerOfertas.setAdapter(myadapter);
 
