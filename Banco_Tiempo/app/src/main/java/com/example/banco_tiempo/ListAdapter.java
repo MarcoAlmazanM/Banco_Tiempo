@@ -98,6 +98,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         ImageView badge, perfil;
         TextView nombre, trabajo;
         CardView cardView;
+        TextView trabajo1;
 
         ViewHolder(View itemView){
             super(itemView);
@@ -113,7 +114,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             badge.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             nombre.setText(item.getNombreUsuario());
             trabajo.setText(item.getNombre());
-
             //Set profile picture
             String url = item.getFoto();
             Transformation transformation = new RoundedCornersTransformation(100,5);
