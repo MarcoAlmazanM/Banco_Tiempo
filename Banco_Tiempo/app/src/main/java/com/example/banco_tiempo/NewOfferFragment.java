@@ -11,6 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,10 +37,10 @@ public class NewOfferFragment extends Fragment {
     }
 
     Button btnCreaOffer;
+    ImageView btnBorraOffer;
+    ArrayList<OfferVO> listOffer;
 
     RecyclerView recyclerOfertas;
-    String s1[], s2[];
-    int images[] = {R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48, R.drawable.baseline_account_circle_black_48};
 
     /**
      * Use this factory method to create a new instance of
@@ -70,21 +74,68 @@ public class NewOfferFragment extends Fragment {
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_new_offer, container, false);
 
+        listOffer = new ArrayList<>();
+
         recyclerOfertas = (RecyclerView) vista.findViewById(R.id.rVNewOffer);
 
-        s1 = getResources().getStringArray(R.array.empleos);
-        s2 = getResources().getStringArray(R.array.descripciones);
+        recyclerOfertas.setLayoutManager(new LinearLayoutManager(getContext()));
+        
+        llenarLista();
 
-        AdapterNewOffer myadapter = new AdapterNewOffer(getContext(), s1, s2, images);
+        AdapterNewOffer myadapter = new AdapterNewOffer(listOffer);
+
+        /*
+        myadapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = recyclerOfertas.getChildAdapterPosition(view);
+                Toast.makeText(getContext(), "Selección: "+listOffer.get(position).getTrabajo(), Toast.LENGTH_SHORT).show();
+                //listOffer.remove(position);
+                //myadapter.notifyItemRemoved(position);
+            }
+        });
+         */
 
         recyclerOfertas.setAdapter(myadapter);
-        recyclerOfertas.setLayoutManager(new LinearLayoutManager(getContext()));
 
         btnCreaOffer = (Button)vista.findViewById(R.id.btnNOffer);
         clickBtnCreateOffer(btnCreaOffer);
 
 
         return vista;
+    }
+
+    private void llenarLista() {
+        listOffer.add(new OfferVO("Sastre", "Descripción de prueba", R.drawable.baseline_account_circle_black_48));
+        listOffer.add(new OfferVO("Carpintero", "Descripción de prueba", R.drawable.baseline_account_circle_black_48));
+        listOffer.add(new OfferVO("Plomero", "Cruzando la frontera me encontré con el\n" +
+                "Era un tipo medio raro pero me cayo bien,\n" +
+                "Me dijo viajo en carretera espero pronto\n" +
+                "Llegar al rodeo que me espera allá.\n" +
+                "Me dijo con certeza que no hay mas emoción\n" +
+                "Que romper un sombrero disparar un cañón\n" +
+                "Salvar la vida de un jinete cuando mal anda su suerte\n" +
+                "Soy payaso de rodeo\n" +
+                "Les digo ven, ven, ven, animalito ven,\n" +
+                "Ven y sígueme y veras lo que vas a aprender,\n" +
+                "No ves que soy muy poco artístico\n" +
+                "Muy listo muy gracioso soy payaso de rodeo\n" +
+                "Así llevamos largo tiempo luego se marcho,\n" +
+                "Dejándome un mensaje que recuerdo hoy\n" +
+                "Lo peligroso es gracioso\n" +
+                "Lo difícil es hermoso\n" +
+                "Lo mas grande es el rodeo\n" +
+                "Me dijo con certeza que no hay mas emoción\n" +
+                "Que romper un sombrero disparar un cañón\n" +
+                "Salvar la vida de un jinete cuando mal anda su suerte\n" +
+                "Ser payaso de rodeo\n" +
+                "Les digo ven, ven, ven, animalito ven,\n" +
+                "Ven y sígueme y veras lo que vas a aprender,\n" +
+                "No ves que soy muy poco artístico\n" +
+                "Muy listo muy gracioso soy payaso de rodeo.", R.drawable.baseline_account_circle_black_48));
+        listOffer.add(new OfferVO("Tutor", "Agua. Tierra. Fuego. Aire. Hace muchos años, las cuatro naciones vivían en armonía. Pero todo cambió cuando la Nación del Fuego atacó. Sólo el Avatar, maestro de los cuatro elementos, podía detenerlos, pero cuando el mundo más lo necesitaba, desapareció. Después de cien años mi hermano y yo encontramos al nuevo Avatar, un Maestro Aire llamado Aang. Aunque sus habilidades para controlar el aire eran grandiosas, tenía mucho que aprender antes de poder salvar al mundo. Y yo creo que Aang podrá salvarnos.", R.drawable.baseline_account_circle_black_48));
+        listOffer.add(new OfferVO("Pintor", "Descripción de prueba", R.drawable.baseline_account_circle_black_48));
+        listOffer.add(new OfferVO("Médico", "Descripción de prueba", R.drawable.baseline_account_circle_black_48));
     }
 
     public void clickBtnCreateOffer(Button btnCreateOffer){

@@ -199,7 +199,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVCompu">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -232,7 +233,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVInge">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -266,7 +268,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVEdu">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -528,7 +531,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVCons">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -561,7 +565,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVPer">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -595,7 +600,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVAgri">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -628,7 +634,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVPMate">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
