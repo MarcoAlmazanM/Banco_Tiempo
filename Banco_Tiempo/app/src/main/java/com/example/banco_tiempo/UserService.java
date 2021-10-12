@@ -31,5 +31,5 @@ public interface UserService {
 
     //POST request to obtain services
     @POST("getservices")
-    Call<OffersResponse> getOffers();
+    Call<OffersResponse> getOffers(@Body OffersRequest offersRequest);
 }

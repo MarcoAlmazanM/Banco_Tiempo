@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     View headerView;
     TextView nameTextView;
     ImageView userProfileImage;
-    //ImageButton userProfileImage;
 
     ActionBarDrawerToggle toggle;
 
