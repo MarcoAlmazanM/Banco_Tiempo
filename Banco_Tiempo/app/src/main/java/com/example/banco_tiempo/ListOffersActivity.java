@@ -131,6 +131,8 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
         */
 
+         */
+
 
         adapter=new ListAdapter(ofertas, this, new ListAdapter.ClickListener() {
             @Override
