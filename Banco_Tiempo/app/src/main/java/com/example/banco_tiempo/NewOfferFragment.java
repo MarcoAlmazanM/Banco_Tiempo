@@ -51,7 +51,6 @@ public class NewOfferFragment extends Fragment {
     }
 
     Button btnCreaOffer;
-    ImageView btnBorraOffer;
     ArrayList<OfferVO> listOffer;
 
     RecyclerView recyclerOfertas;
@@ -142,6 +141,7 @@ public class NewOfferFragment extends Fragment {
     }
 
     private void llenarLista() {
+        /*
         listOffer.add(new OfferVO("Sastre", "Descripción de prueba", R.drawable.baseline_account_circle_black_48));
         listOffer.add(new OfferVO("Carpintero", "Descripción de prueba", R.drawable.baseline_account_circle_black_48));
         listOffer.add(new OfferVO("Plomero", "Cruzando la frontera me encontré con el\n" +
@@ -172,6 +172,19 @@ public class NewOfferFragment extends Fragment {
         listOffer.add(new OfferVO("Tutor", "Agua. Tierra. Fuego. Aire. Hace muchos años, las cuatro naciones vivían en armonía. Pero todo cambió cuando la Nación del Fuego atacó. Sólo el Avatar, maestro de los cuatro elementos, podía detenerlos, pero cuando el mundo más lo necesitaba, desapareció. Después de cien años mi hermano y yo encontramos al nuevo Avatar, un Maestro Aire llamado Aang. Aunque sus habilidades para controlar el aire eran grandiosas, tenía mucho que aprender antes de poder salvar al mundo. Y yo creo que Aang podrá salvarnos.", R.drawable.baseline_account_circle_black_48));
         listOffer.add(new OfferVO("Pintor", "Descripción de prueba", R.drawable.baseline_account_circle_black_48));
         listOffer.add(new OfferVO("Médico", "Descripción de prueba", R.drawable.baseline_account_circle_black_48));
+        */
+
+        listOffer = new ArrayList<>();
+
+        for (int i = 0; i < offersD.size(); i++){
+            String nombre = offersD.get(i).getNombre();
+            String descripcion = offersD.get(i).getDescripcion();
+            String categoria = offersD.get(i).getCategoria();
+            String imagen = offersD.get(i).getImagen();
+
+            OfferVO oferta = new OfferVO(nombre, descripcion, imagen, categoria);
+            listOffer.add(oferta);
+        }
     }
 
     public void clickBtnCreateOffer(Button btnCreateOffer){
