@@ -30,9 +30,10 @@ public class ElementList implements Serializable {
     }
 
      */
-    public ElementList(int idServicio, String idUsuario, String colonia,
+    public ElementList(Integer idServicio, String idUsuario, String colonia,
                          String nombre, String descripcion, String certificado,
-                         String image, String nombreUsuario, String apellidoUsuario, String foto) {
+                         String image, String nombreUsuario, String apellidoUsuario,
+                         String foto, String color) {
         this.idServicio = idServicio;
         this.idUsuario = idUsuario;
         this.colonia = colonia;
@@ -43,6 +44,7 @@ public class ElementList implements Serializable {
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.foto = foto;
+        this.color = color;
     }
 
     public int getIdServicio() {
@@ -53,12 +55,20 @@ public class ElementList implements Serializable {
         this.idServicio = idServicio;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
     }
 
     public String getNombre() {
@@ -77,6 +87,54 @@ public class ElementList implements Serializable {
         this.trabajo = trabajo;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCertificado() {
+        return certificado;
+    }
+
+    public void setCertificado(String certificado) {
+        this.certificado = certificado;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getApellidoUsuario() {
+        return apellidoUsuario;
+    }
+
+    public void setApellidoUsuario(String apellidoUsuario) {
+        this.apellidoUsuario = apellidoUsuario;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     public String getColor() {
         return color;
     }
@@ -84,6 +142,4 @@ public class ElementList implements Serializable {
     public void setColor(String color) {
         this.color = color;
     }
-
-
 }
