@@ -3,13 +3,11 @@ package com.example.banco_tiempo;
 import static java.lang.Thread.sleep;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -18,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,7 +30,6 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -44,8 +42,6 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
@@ -335,9 +331,8 @@ public class ProfileFragment extends Fragment {
 
         // create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;// lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, false);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             popupWindow.setElevation(20);
@@ -345,7 +340,31 @@ public class ProfileFragment extends Fragment {
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window token
+        popupWindow.setOutsideTouchable(true);
         popupWindow.showAtLocation(root, Gravity.CENTER, 0, 0);
+
+        popupWindow.setTouchInterceptor(new View.OnTouchListener()
+        {
+
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                if (event.getAction() == MotionEvent.ACTION_OUTSIDE)
+                {
+                    if (imageProfile.equals("NULL")){
+                        image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_account_circle_black_48,null));
+                    }else{
+                        Transformation transformation = new RoundedCornersTransformation(100,5);
+                        Picasso.get().invalidate(imageProfile);
+                        Picasso.get().load(imageProfile).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(image);
+                    }
+                    popupWindow.dismiss();
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
 
         // dismiss the popup window when touched
         btnImg = (Button)popupView.findViewById(R.id.btnImg);
