@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 public class FragmentInicio extends Fragment {
 
     CardView cardViewComida;
+    CardView cardViewMateriales, cardViewAgri, cardViewPer, cardViewConst, cardViewEdu, cardViewInge, cardViewCompu;
     View root;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -72,7 +73,21 @@ public class FragmentInicio extends Fragment {
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         cardViewComida = root.findViewById(R.id.cVComida);
+        cardViewAgri = root.findViewById(R.id.cVAgri);
+        cardViewPer = root.findViewById(R.id.cVPer);
+        cardViewConst = root.findViewById(R.id.cVCons);
+        cardViewEdu = root.findViewById(R.id.cVEdu);
+        cardViewInge = root.findViewById(R.id.cVInge);
+        cardViewCompu = root.findViewById(R.id.cVCompu);
+        cardViewMateriales = root.findViewById(R.id.cVPMate);
         onClickCardView(cardViewComida);
+        onClickCardView2(cardViewCompu);
+        onClickCardView4(cardViewInge);
+        onClickCardView6(cardViewEdu);
+        onClickCardView10(cardViewConst);
+        onClickCardView12(cardViewPer);
+        onClickCardView14(cardViewAgri);
+        onClickCardView16(cardViewMateriales);
         return root;
     }
     public void onClickCardView(CardView cardViewAdmin){
@@ -80,6 +95,90 @@ public class FragmentInicio extends Fragment {
             @Override
             public void onClick(View view) {
                 editor.putString("categoria", "Comida");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
+    }
+
+    public void onClickCardView2(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Computación");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
+    }
+
+    public void onClickCardView4(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Ingeniería");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
+    }
+
+    public void onClickCardView6(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Educación");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
+    }
+
+    public void onClickCardView10(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Construcción");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
+    }
+
+    public void onClickCardView12(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Cuidado Personal");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
+    }
+
+    public void onClickCardView14(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Agricultura, Pesca, y Silvicultura");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
+    }
+
+    public void onClickCardView16(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Producción de Materiales");
                 editor.apply();
                 Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
                 getActivity().startActivity(listOffers);
