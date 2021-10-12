@@ -25,8 +25,8 @@ public class OfferDetails extends AppCompatActivity {
         descripcion=findViewById(R.id.jobDescription);
         perfil=findViewById(R.id.userJobImage);
 
-        nombre.setText(oferta.getNombre());
-        servicio.setText(oferta.getTrabajo());
+        nombre.setText(oferta.getNombreUsuario());
+        servicio.setText(oferta.getNombre());
         //descripcion.setText(oferta.get);
         //perfil.setImageBitmap(oferta.get);
     }
