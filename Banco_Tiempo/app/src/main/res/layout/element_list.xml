@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
-    android:backgroundTint="@color/blue_9"
+    android:backgroundTint="@color/themeColor"
     app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
@@ -25,6 +25,7 @@
                 android:id="@+id/badge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 app:srcCompat="@drawable/ic_work" />
 
             <ImageView
@@ -46,8 +47,9 @@
                     android:id="@+id/userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="TextView"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -55,9 +57,11 @@
                     android:id="@+id/userJob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+
                     android:text="TextView"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <Button
