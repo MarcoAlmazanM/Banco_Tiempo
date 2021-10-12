@@ -9,7 +9,7 @@ public class OffersDetails {
     private String certificado;
     private String image;
     private String nombreUsuario;
-    private String apellidoUsuario
+    private String apellidoUsuario;
     private String foto;
 
     //Getters
