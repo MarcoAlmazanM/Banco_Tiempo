@@ -26,7 +26,9 @@
             android:exported="true" />
         <activity
             android:name=".ListOffersActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".UserDocumentsActivity"
             android:exported="true" />

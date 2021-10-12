@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -14,6 +15,8 @@ import com.squareup.picasso.Transformation;
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class OfferDetails extends AppCompatActivity {
+
+    Toolbar toolbar;
 
     TextView nombre;
     TextView servicio;
@@ -26,6 +29,9 @@ public class OfferDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_details);
+        toolbar = findViewById(R.id.toolbar);
+        setTitle("Detalles de la Oferta");
+        setSupportActionBar(toolbar);
 
         ElementList oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
         nombre=findViewById(R.id.textView);

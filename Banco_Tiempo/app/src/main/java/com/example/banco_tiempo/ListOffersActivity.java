@@ -50,9 +50,10 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_offers);
-
-        setTitle("Lista de Ofertas");
+        toolbar = findViewById(R.id.toolbar);
+        setTitle("Listado de Ofertas");
         setSupportActionBar(toolbar);
+
 
         chartView = findViewById(R.id.pVprogressPie);
 
@@ -63,7 +64,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         colonia = preferences.getString("colonia", "NULL");
 
         uploadEffect(chartView);
-        setOffersValues();
+        //setOffersValues();
 
 
         initViews();
@@ -74,14 +75,15 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
 
     private void uploadEffect(PercentageChartView chartView){
         chartView.setVisibility(View.VISIBLE);
-
-        final Handler handler = new Handler();
+        chartView.setProgress(100, true);
+        /*final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 chartView.setProgress(100, true);
             }
-        }, 9000);
+        }, 9000);*/
+        setOffersValues();
     }
 
     private void removeEffect(PercentageChartView chartView){
@@ -103,7 +105,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
                 if (response.isSuccessful()) {
                     OffersResponse offersResponse = response.body();
                     offersD = new ArrayList<>(Arrays.asList(offersResponse.getOfertas()));
-                    Log.e("lol", Arrays.deepToString(offersD.toArray()));
+                    //Log.e("lol", Arrays.deepToString(offersD.toArray()));
                     init();
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
@@ -155,21 +157,8 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
             ofertas.add(oferta);
         }
 
+
         chartView.setVisibility(View.GONE);
-        /*
-        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
-        */
 
         adapter=new ListAdapter(ofertas, this, new ListAdapter.ClickListener() {
             @Override
