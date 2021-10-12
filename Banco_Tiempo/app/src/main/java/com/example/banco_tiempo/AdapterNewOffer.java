@@ -10,38 +10,47 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AdapterNewOffer extends RecyclerView.Adapter<AdapterNewOffer.MyViewHolder> {
+import java.util.ArrayList;
 
-    String data1[], data2[];
-    int images[];
+public class AdapterNewOffer
+        extends RecyclerView.Adapter<AdapterNewOffer.MyViewHolder>
+        implements View.OnClickListener{
+
     Context context;
+    private View.OnClickListener listener;
+    ArrayList<OfferVO> listaOffer;
 
-    public AdapterNewOffer(Context ct, String[] s1, String[] s2, int[] img){
-        context = ct;
-        data1 = s1;
-        data2 = s2;
-        images = img;
+    public AdapterNewOffer(ArrayList<OfferVO> listaOffer){
+        this.listaOffer = listaOffer;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater;
-        inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.new_offer_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_offer_row, null, false);
+        view.setOnClickListener(this);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.myText1.setText(data1[position]);
-        holder.myText2.setText(data2[position]);
-        holder.myImage.setImageResource(images[position]);
+        holder.myText1.setText(listaOffer.get(position).getTrabajo());
+        holder.myText2.setText(listaOffer.get(position).getInfo());
+        holder.myImage.setImageResource(listaOffer.get(position).getImagen());
     }
 
     @Override
-    public int getItemCount() {
-        return data1.length;
+    public int getItemCount() {return listaOffer.size();}
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (listener != null){
+            listener.onClick(view);
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
