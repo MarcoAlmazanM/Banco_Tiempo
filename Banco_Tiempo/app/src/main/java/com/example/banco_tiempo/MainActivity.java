@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTitle("Inicio");
 
         // Setup Toolbar
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
 
         toggle = setUpDrawerToggle();
