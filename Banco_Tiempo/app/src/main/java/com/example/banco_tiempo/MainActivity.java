@@ -98,10 +98,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             ImageResponse imageResponse = (ImageResponse) intent.getSerializableExtra("data");
-            if(imageResponse.getTransactionApproval() == 1){
-                preferences = getSharedPreferences("userData",Context.MODE_PRIVATE);
+            if (imageResponse.getTransactionApproval() == 1) {
+                preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
                 editor = preferences.edit();
-                editor.putString("foto",imageResponse.getUrl());
+                editor.putString("foto", imageResponse.getUrl());
                 editor.apply();
             }
         }
@@ -139,19 +139,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction ft = fm.beginTransaction();
         switch(item.getItemId()){
             case R.id.nav_home:
-                ft.replace(R.id.content, new FragmentInicio()).commit();
+                ft.replace(R.id.content, new FragmentInicio());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_profile:
-                ft.replace(R.id.content, new ProfileFragment()).commit();
+                ft.replace(R.id.content, new ProfileFragment());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_newOffer:
-                ft.replace(R.id.content, new NewOfferFragment()).commit();
+                ft.replace(R.id.content, new NewOfferFragment());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_settings:
-                ft.replace(R.id.content, new SettingsFragment()).commit();
+                ft.replace(R.id.content, new SettingsFragment());
+                ft.addToBackStack(null);
                 break;
 
         }
+        ft.commit();
         setTitle(item.getTitle());
         mDrawerLayout.closeDrawers();
     }

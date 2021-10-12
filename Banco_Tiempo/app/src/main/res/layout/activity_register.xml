@@ -43,6 +43,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="25dp"
+                    android:onClick="clickBtnProfileImage"
                     android:src="@drawable/baseline_account_circle_black_48" />
 
             </RelativeLayout>

@@ -172,11 +172,16 @@ public class CreateOffer extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             NewOfferResponse newOfferResponse = (NewOfferResponse) intent.getSerializableExtra("data");
-            if(newOfferResponse.getTransactionApproval() == 1) {
-                message = "New Offer created successfully";
-                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
-            }else{
-                message = "Error in New Offer Creation";
+            try {
+                if (newOfferResponse.getTransactionApproval() == 1) {
+                    message = "Oferta creada correctamente";
+                    Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+                } else {
+                    message = "Error al crear la oferta";
+                    Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+                }
+            }catch(NullPointerException nullPointerException){
+                message = "Error al crear la oferta, favor de intentar más tarde";
                 Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
             }
         }
@@ -265,30 +270,6 @@ public class CreateOffer extends AppCompatActivity {
                 }
             });
 
-
-    public void uploadImageServer(ImageRequest imageRequest){
-        Call<ImageResponse> registerResponseCall = ApiClient.getService().uploadImageServer(imageRequest);
-        registerResponseCall.enqueue(new Callback<ImageResponse>() {
-            @Override
-            public void onResponse(Call<ImageResponse>  call, Response<ImageResponse> response) {
-                if (response.isSuccessful()) {
-                    ImageResponse registerResponse = response.body();
-                    String message = "Image Uploaded Successfully";
-                    Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
-
-                } else {
-                    String message = "An error occurred, please try again...";
-                    Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ImageResponse> call, Throwable t) {
-                String message = t.getLocalizedMessage();
-                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
     public static void verifyStoragePermissions(Activity activity) {
         // Check if we have write permission
