@@ -1,6 +1,8 @@
 package com.example.banco_tiempo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +30,12 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class NewOfferFragment extends Fragment {
+
+    String message;
+    List<UserOffersDetails> offersD;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+    String username;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,6 +87,10 @@ public class NewOfferFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_new_offer, container, false);
+        preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        username = preferences.getString("username","username");
+        setUserOffersValues();
 
         listOffer = new ArrayList<>();
 
@@ -84,17 +102,6 @@ public class NewOfferFragment extends Fragment {
 
         AdapterNewOffer myadapter = new AdapterNewOffer(listOffer);
 
-        /*
-        myadapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = recyclerOfertas.getChildAdapterPosition(view);
-                Toast.makeText(getContext(), "Selección: "+listOffer.get(position).getTrabajo(), Toast.LENGTH_SHORT).show();
-                //listOffer.remove(position);
-                //myadapter.notifyItemRemoved(position);
-            }
-        });
-         */
 
         recyclerOfertas.setAdapter(myadapter);
 
@@ -103,6 +110,35 @@ public class NewOfferFragment extends Fragment {
 
 
         return vista;
+    }
+
+    public void setUserOffersValues(){
+        UserOffersRequest userOffersRequest = new UserOffersRequest();
+        userOffersRequest.setUsername(username);
+        getUserOffers(userOffersRequest);
+    }
+
+    public void getUserOffers(UserOffersRequest userOffersRequest){
+        Call<UserOffersResponse> userOffersResponseCall = ApiClient.getService().getUserOffers(userOffersRequest);
+        userOffersResponseCall.enqueue(new Callback<UserOffersResponse>() {
+            @Override
+            public void onResponse(Call<UserOffersResponse> call, Response<UserOffersResponse> response) {
+                if (response.isSuccessful()) {
+                    UserOffersResponse userOffersResponse = response.body();
+                    offersD = new ArrayList<>(Arrays.asList(userOffersResponse.getOfertas()));
+
+                } else {
+                    message = "Ocurrió un error, favor de intentar más tarde";
+                    Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserOffersResponse> call, Throwable t) {
+                message = t.getLocalizedMessage();
+                Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void llenarLista() {
