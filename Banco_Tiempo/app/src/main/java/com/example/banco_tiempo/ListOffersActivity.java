@@ -14,8 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.banco_tiempo.ListAdapter.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +58,6 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
 
 
         initViews();
-        init();
         initListener();
 
         //searchList.setOnQueryTextListener(this);
@@ -81,6 +78,8 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
                 if (response.isSuccessful()) {
                     OffersResponse offersResponse = response.body();
                     offersD = new ArrayList<>(Arrays.asList(offersResponse.getOfertas()));
+                    Log.e("lol", Arrays.deepToString(offersD.toArray()));
+                    init();
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(ListOffersActivity.this, message, Toast.LENGTH_LONG).show();
@@ -109,6 +108,15 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
     public void init(){
 
         ofertas=new ArrayList<>();
+
+        for (int i = 0; i < offersD.size(); i++){
+            String name = offersD.get(i).getNombre();
+            String desc = offersD.get(i).getDescripcion();
+
+            ElementList oferta = new ElementList(name,desc,"#ff0000","foto");
+            ofertas.add(oferta);
+        }
+        /*
         ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
         ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
         ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
@@ -121,6 +129,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
         ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
         ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
+        */
 
 
         adapter=new ListAdapter(ofertas, this, new ListAdapter.ClickListener() {
