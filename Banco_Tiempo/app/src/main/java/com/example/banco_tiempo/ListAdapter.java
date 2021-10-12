@@ -1,9 +1,13 @@
 package com.example.banco_tiempo;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Build;
+import android.sax.Element;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,24 +18,29 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
+
     private List<ElementList>mData;
+    private List<ElementList>oData;
+
     private LayoutInflater mInflater;
     private Context context;
     final ListAdapter.ClickListener action;
 
-    public interface ClickListener{
-        void clickListener(ElementList element);
-    }
-
-    public ListAdapter(List<ElementList> itemList, Context context, ListAdapter.ClickListener action){
+    public ListAdapter(List<ElementList> itemList,Context context, ListAdapter.ClickListener action){
         this.mInflater=LayoutInflater.from(context);
         this.context=context;
         this.mData=itemList;
         this.action=action;
+        this.oData=new ArrayList<>();
+        oData.addAll(mData);
+    }
+    public interface ClickListener{
+        void clickListener(ElementList element);
     }
 
     @Override
@@ -49,6 +58,30 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position){
         holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
         holder.bindData(mData.get(position));
+    }
+
+    public void filtro(@NonNull String search){
+        int len=search.length();
+        if(len==0){
+            mData.clear();
+            mData.addAll(oData);
+        }else{
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                List<ElementList> collect = mData.stream()
+                        .filter(i -> i.getNombre().toLowerCase().contains(search))
+                        .collect(Collectors.toList());
+                mData.clear();
+                mData.addAll(collect);
+            }else{
+                mData.clear();
+                for(ElementList i: oData){
+                    if(i.getNombre().toLowerCase().contains(search)){
+                        mData.add(i);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     public void setItems(List<ElementList> items){
@@ -83,4 +116,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             });
         }
     }
+
+
 }
+
+
+
