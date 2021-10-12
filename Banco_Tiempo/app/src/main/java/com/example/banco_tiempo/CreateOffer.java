@@ -59,10 +59,13 @@ public class CreateOffer extends AppCompatActivity {
     TextView category, title, description;
     String cat, titxd, des, message;
 
-    AutoCompleteTextView autoCTV, autoCTV2;
-    ArrayAdapter<String> adapterItems, adapterItems2;
-    String[] items = {"Carpintería", "Sastrería", "Repostería", "Tutoría", "Plomería"};
-    //String[] items2 = {"Toluca", "Metepec", "Otro pueblo xd"};
+    AutoCompleteTextView autoCTV;
+    ArrayAdapter<String> adapterItems;
+    String[] items = {"Administración", "Computación", "Matemáticas", "Ingeniería",
+            "Actuaría", "Educación", "Artes, Diseño, y Comunicación", "Comida",
+            "Limpieza", "Construcción", "Deportes", "Cuidado Personal", "Ventas",
+            "Agricultura, Pesca, y Silvicultura", "Instalación, Mantenimiento, y Reparación",
+            "Producción de Materiales", "Transporte de Personas y Materiales"};
 
     // Permissions for accessing the storage
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
