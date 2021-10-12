@@ -80,12 +80,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
+
         //Always Display Inicio UI
         getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentInicio()).commit();
         setTitle("Inicio");
-
         // Setup Toolbar
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+
+
+
 
 
         toggle = setUpDrawerToggle();
