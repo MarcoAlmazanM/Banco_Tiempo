@@ -55,6 +55,7 @@ dependencies {
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     implementation 'net.colindodd:gradientlayout:1.2'
     implementation 'androidx.core:core:1.6.0'
+    implementation 'com.ramijemli.percentagechartview:percentagechartview:0.3.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

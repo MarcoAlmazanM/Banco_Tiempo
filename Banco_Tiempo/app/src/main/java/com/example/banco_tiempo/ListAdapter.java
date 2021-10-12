@@ -1,19 +1,13 @@
 package com.example.banco_tiempo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
-import android.sax.Element;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-
-import android.content.Context;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +15,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
@@ -106,8 +111,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
         void bindData(final ElementList item){
             badge.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
-            nombre.setText(item.getNombre());
-            trabajo.setText(item.getTrabajo());
+            nombre.setText(item.getNombreUsuario());
+            trabajo.setText(item.getNombre());
+
+            //Set profile picture
+            String url = item.getFoto();
+            Transformation transformation = new RoundedCornersTransformation(100,5);
+            Picasso.get().invalidate(url);
+            Picasso.get().load(url).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(perfil);
+
             itemView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {

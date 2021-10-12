@@ -7,7 +7,7 @@ public class OffersDetails {
     private String nombre;
     private String descripcion;
     private String certificado;
-    private String image;
+    private String imagen;
     private String nombreUsuario;
     private String apellidoUsuario;
     private String foto;
@@ -37,8 +37,8 @@ public class OffersDetails {
         return certificado;
     }
 
-    public String getImage() {
-        return image;
+    public String getImagen() {
+        return imagen;
     }
 
     public String getNombreUsuario() {
@@ -56,14 +56,16 @@ public class OffersDetails {
     // Constructor
     public OffersDetails(int idServicio, String idUsuario, String colonia,
                          String nombre, String descripcion, String certificado,
-                         String image, String nombreUsuario, String apellidoUsuario, String foto) {
+                         String image, String nombreUsuario, String apellidoUsuario,
+                         String foto) {
+
         this.idServicio = idServicio;
         this.idUsuario = idUsuario;
         this.colonia = colonia;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.certificado = certificado;
-        this.image = image;
+        this.imagen = getImagen();
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.foto = foto;

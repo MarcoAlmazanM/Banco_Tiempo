@@ -49,6 +49,7 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVAdmin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -80,6 +81,7 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVMate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -114,6 +116,7 @@
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVActu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -147,6 +150,7 @@
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVArte"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -195,7 +199,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVCompu">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -228,7 +233,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVInge">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -262,7 +268,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVEdu">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -341,6 +348,7 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVLimp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -372,6 +380,7 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVDepo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -406,6 +415,7 @@
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVVent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -439,6 +449,7 @@
                         </net.colindodd.gradientlayout.GradientRelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVMant"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -473,6 +484,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cVTran"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
@@ -499,7 +511,7 @@
                                 android:shadowDy="-2"
                                 android:shadowRadius="1"
                                 android:text="@string/menuTraPM"
-                                android:textSize="20dp"/>
+                                android:textSize="20dp" />
 
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -519,7 +531,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVCons">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -552,7 +565,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVPer">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -586,7 +600,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVAgri">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"
@@ -619,7 +634,8 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cVPMate">
 
                         <net.colindodd.gradientlayout.GradientRelativeLayout
                             android:layout_width="match_parent"

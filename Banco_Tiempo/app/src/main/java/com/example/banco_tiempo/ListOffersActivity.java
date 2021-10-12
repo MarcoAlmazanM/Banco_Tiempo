@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.banco_tiempo.ListAdapter.*;
+import com.ramijemli.percentagechartview.PercentageChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +30,8 @@ import retrofit2.Response;
 public class ListOffersActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
     ConstraintLayout listOffersLayout;
     Toolbar toolbar;
+
+    PercentageChartView chartView;
 
     List<ElementList>ofertas;
     List<OffersDetails>offersD;
@@ -50,20 +54,38 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         setTitle("Lista de Ofertas");
         setSupportActionBar(toolbar);
 
+        chartView = findViewById(R.id.pVprogressPie);
 
         ofertas = new ArrayList<>();
         preferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         categoria = preferences.getString("categoria","NULL");
         colonia = preferences.getString("colonia", "NULL");
+
+        uploadEffect(chartView);
         setOffersValues();
 
 
         initViews();
-        init();
         initListener();
 
         //searchList.setOnQueryTextListener(this);
+    }
+
+    private void uploadEffect(PercentageChartView chartView){
+        chartView.setVisibility(View.VISIBLE);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                chartView.setProgress(100, true);
+            }
+        }, 9000);
+    }
+
+    private void removeEffect(PercentageChartView chartView){
+        chartView.setVisibility(View.GONE);
     }
 
     public void setOffersValues(){
@@ -81,6 +103,8 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
                 if (response.isSuccessful()) {
                     OffersResponse offersResponse = response.body();
                     offersD = new ArrayList<>(Arrays.asList(offersResponse.getOfertas()));
+                    Log.e("lol", Arrays.deepToString(offersD.toArray()));
+                    init();
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(ListOffersActivity.this, message, Toast.LENGTH_LONG).show();
@@ -109,19 +133,43 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
     public void init(){
 
         ofertas=new ArrayList<>();
-        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
-        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
-        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
 
+        for (int i = 0; i < offersD.size(); i++){
+            Integer idServicio = offersD.get(i).getIdServicio();
+            String idUsuario = offersD.get(i).getIdUsuario();
+            String colonia = offersD.get(i).getColonia();
+            String nombre = offersD.get(i).getNombre();
+            String descripcion = offersD.get(i).getDescripcion();
+            String certificado = offersD.get(i).getCertificado();
+            String imagen = offersD.get(i).getImagen();
+            String nombreUsuario = offersD.get(i).getNombreUsuario();
+            String apellidoUsuario = offersD.get(i).getApellidoUsuario();
+            String foto = offersD.get(i).getFoto();
+
+            ElementList oferta = new ElementList(idServicio,idUsuario,colonia,
+                                                nombre,descripcion,certificado,
+                                                imagen,nombreUsuario,apellidoUsuario,
+                                                foto, "#ff0000");
+
+
+            ofertas.add(oferta);
+        }
+
+        chartView.setVisibility(View.GONE);
+        /*
+        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
+        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
+        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
+        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
+        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
+        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
+        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
+        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
+        ofertas.add(new ElementList("Marco", "Carpintero", "#ff0000", "foto"));
+        ofertas.add(new ElementList("Sandra", "ABCDE", "#ff0000", "foto"));
+        ofertas.add(new ElementList("Pedro", "AAAAAAAAAAAAA", "#ffcd00", "foto"));
+        ofertas.add(new ElementList("Sandra", "AFGHJ", "#ffcd00", "foto"));
+        */
 
         adapter=new ListAdapter(ofertas, this, new ListAdapter.ClickListener() {
             @Override
