@@ -111,7 +111,7 @@ public class FragmentInicio extends Fragment {
         cardViewInge = root.findViewById(R.id.cVInge);
         cardViewCompu = root.findViewById(R.id.cVCompu);
         cardViewMateriales = root.findViewById(R.id.cVPMate);
-        onClickCardView(cardViewComida);
+        onClickCardView8(cardViewComida);
         onClickCardView2(cardViewCompu);
         onClickCardView4(cardViewInge);
         onClickCardView6(cardViewEdu);
@@ -163,6 +163,18 @@ public class FragmentInicio extends Fragment {
             @Override
             public void onClick(View view) {
                 editor.putString("categoria", "Artes, Diseño, y Comunicación");
+                editor.apply();
+                Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
+                getActivity().startActivity(listOffers);
+            }
+        });
+    }
+
+    public void onClickCardView8(CardView cardViewAdmin){
+        cardViewAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("categoria", "Comida");
                 editor.apply();
                 Intent listOffers = new Intent(getActivity().getApplicationContext(), ListOffersActivity.class);
                 getActivity().startActivity(listOffers);

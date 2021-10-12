@@ -36,6 +36,22 @@
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
         app:queryHint="Buscar nombre" />
 
+    <com.ramijemli.percentagechartview.PercentageChartView
+        android:id="@+id/pVprogressPie"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:pcv_animDuration="800"
+        app:pcv_animInterpolator="linear"
+        app:pcv_mode="pie"
+        app:pcv_orientation="counter_clockwise"
+        app:pcv_progress="10"
+        android:elevation="20dp"
+        app:pcv_startAngle="90" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaOfertas"
         android:layout_width="0dp"
