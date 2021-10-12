@@ -144,8 +144,8 @@ public class CreateOffer extends AppCompatActivity {
         description = findViewById(R.id.tVDescription);
 
         cat = category.getText().toString();
-        cat = Normalizer.normalize(cat, Normalizer.Form.NFD);
-        cat = cat.replaceAll("[^\\p{ASCII}]", "");
+        //cat = Normalizer.normalize(cat, Normalizer.Form.NFD);
+        //cat = cat.replaceAll("[^\\p{ASCII}]", "");
 
         titxd = title.getText().toString();
         des = description.getText().toString();
