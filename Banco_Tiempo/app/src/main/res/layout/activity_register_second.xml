@@ -66,6 +66,7 @@
                             android:id="@+id/eTCalle"
                             style="@style/modifiedEditText"
                             android:hint="@string/calle"
+                            android:textColor="@color/black"
                             android:inputType="text"
                             android:maxLines="1" />
 
@@ -81,6 +82,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/colonia"
                             android:inputType="text"
+                            android:textColor="@color/black"
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +97,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/municipio"
                             android:inputType="text"
+                            android:textColor="@color/black"
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -109,6 +112,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/estado"
                             android:inputType="text"
+                            android:textColor="@color/black"
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -123,6 +127,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/numInt"
                             android:inputType="number"
+                            android:textColor="@color/black"
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -137,6 +142,7 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/codigoPostal"
                             android:inputType="number"
+                            android:textColor="@color/black"
                             android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
