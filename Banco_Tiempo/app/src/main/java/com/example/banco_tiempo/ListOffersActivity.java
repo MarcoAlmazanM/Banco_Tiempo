@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.banco_tiempo.ListAdapter.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,6 +30,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
     Toolbar toolbar;
 
     List<ElementList>ofertas;
+    List<OffersDetails>offersD;
     ListAdapter adapter;
     //List<ElementList>filtrado;
     SearchView searchList;
@@ -48,11 +50,14 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         setTitle("Lista de Ofertas");
         setSupportActionBar(toolbar);
 
+
+        ofertas = new ArrayList<>();
         preferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         categoria = preferences.getString("categoria","NULL");
         colonia = preferences.getString("colonia", "NULL");
         setOffersValues();
+
 
         initViews();
         init();
@@ -75,9 +80,8 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
             public void onResponse(Call<OffersResponse> call, Response<OffersResponse> response) {
                 if (response.isSuccessful()) {
                     OffersResponse offersResponse = response.body();
-                    Log.e("Hola",offersResponse.toString());
-                    message = "Llegamos perros";
-                    Toast.makeText(ListOffersActivity.this, message, Toast.LENGTH_LONG).show();
+                    offersD = new ArrayList<>(Arrays.asList(offersResponse.getOfertas()));
+
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(ListOffersActivity.this, message, Toast.LENGTH_LONG).show();
