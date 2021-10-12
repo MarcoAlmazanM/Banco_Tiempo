@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,11 +12,11 @@
         android:id="@+id/user_profile_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/img"
-        android:translationZ="30dp"
-        android:src="@drawable/ic_baseline_account_circle_24"
         android:layout_gravity="center"
-        />
+        android:background="@drawable/img"
+        android:src="@drawable/ic_baseline_account_circle_24"
+        android:translationZ="30dp"
+        tools:ignore="SpeakableTextPresentCheck" />
     <TextView
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
@@ -24,5 +25,6 @@
         android:textSize="20sp"
         android:layout_gravity="center"
         />
+
 
 </LinearLayout>
