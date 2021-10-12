@@ -74,7 +74,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         userDocumentsLayout = findViewById(R.id.user_documents);
         toolbar = findViewById(R.id.toolbar);
         setTitle("User Documents");
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         inePath = findViewById(R.id.rutaIne);
         ine = findViewById(R.id.ineView);
