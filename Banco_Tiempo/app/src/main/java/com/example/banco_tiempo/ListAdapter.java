@@ -111,8 +111,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
         void bindData(final ElementList item){
             badge.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
-            nombre.setText(item.getNombre());
-            trabajo.setText(item.getDescripcion());
+            nombre.setText(item.getNombreUsuario());
+            trabajo.setText(item.getNombre());
 
             //Set profile picture
             String url = item.getFoto();
