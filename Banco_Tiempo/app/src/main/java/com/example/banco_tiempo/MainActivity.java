@@ -149,6 +149,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            while (count > 0) {
+                getSupportFragmentManager().popBackStack();
+                count = count - 1;
+            }
+        }
+
+    }
+
 
     private void selectItemNav(MenuItem item) {
         FragmentManager fm = getSupportFragmentManager();
