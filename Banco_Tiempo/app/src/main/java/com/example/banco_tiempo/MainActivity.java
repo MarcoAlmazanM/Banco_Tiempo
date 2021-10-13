@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().popBackStack();
                 count = count - 1;
             }
+            setTitle("Inicio");
         }
 
     }
