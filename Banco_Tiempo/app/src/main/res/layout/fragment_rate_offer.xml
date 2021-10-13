@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OfferDetails">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/userJobImage"
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/ic_work"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <TextView
+            android:id="@+id/trabajo"
+            style="@style/headerText"
+            android:layout_marginBottom="20dp"
+            android:text="Nombre oferta:"
+            android:textAlignment="center" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/idServicioOfer"
+                android:src="@drawable/name1"
+                style="@style/profileDetailsImage" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/idServicioOfer"
+                android:text="ID del Servicio:" />
+
+            <TextView
+                android:id="@+id/serviceGiven"
+                android:text="#00000"
+                android:layout_toRightOf="@id/idServicioOfer"
+                style="@style/profileDetailsMiniText" />
+
+        </RelativeLayout>
+        <View style="@style/proifleDetailsView" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/mobileImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/username" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/mobileImageView"
+                android:text="Nombre de Usuario:" />
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/mobileImageView"
+                android:text="@string/usernameProf" />
+
+        </RelativeLayout>
+        <View style="@style/proifleDetailsView" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/emailImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_jobs" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/emailImageView"
+                android:text="Trabajo:" />
+
+            <TextView
+                android:id="@+id/userTrabajo"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/emailImageView"
+                android:text="trabajo" />
+
+        </RelativeLayout>
+        <View style="@style/proifleDetailsView" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/descView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/baseline_description_black_20" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/descView"
+                android:text="Descripción de la Oferta:" />
+
+            <TextView
+                android:id="@+id/jobDescription"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/descView"
+                android:text="@string/descripcion"
+                android:scrollHorizontally="false"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Califica la oferta:"
+            android:layout_marginTop="30dp"
+            android:textAlignment="center"
+            style="@style/headerText"/>
+
+        <RatingBar
+            android:id="@+id/rBCOferta"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+
+        <CheckBox
+            android:id="@+id/cBPpersona"
+            android:layout_width="267dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:text="¿Se presentó la persona?" />
+
+
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+            android:id="@+id/aceptarServicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/loginButton"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Calificar Oferta"/>
+
+    </LinearLayout>
+</ScrollView>
