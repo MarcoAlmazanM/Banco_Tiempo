@@ -45,6 +45,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
     String categoria;
     String colonia;
     String message;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         editor = preferences.edit();
         categoria = preferences.getString("categoria","NULL");
         colonia = preferences.getString("colonia", "NULL");
+        username = preferences.getString("username","NULL");
 
         uploadEffect(chartView);
 
@@ -86,6 +88,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         OffersRequest offersRequest = new OffersRequest();
         offersRequest.setCategoria(categoria);
         offersRequest.setColonia(colonia);
+        offersRequest.setUsername(username);
         getOffers(offersRequest);
     }
 
