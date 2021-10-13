@@ -102,8 +102,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content, new ProfileFragment()).commit();
+                ft.replace(R.id.content, new ProfileFragment());
                 ft.addToBackStack(null);
+                ft.commit();
                 mDrawerLayout.closeDrawers();
             }
         });
@@ -149,6 +150,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         selectItemNav(item);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            while (count > 0) {
+                getSupportFragmentManager().popBackStack();
+                count = count - 1;
+            }
+        }
+
     }
 
 
