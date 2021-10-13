@@ -182,6 +182,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.replace(R.id.content, new NewOfferFragment());
 
                 break;
+            case R.id.nav_rateOffer:
+                ft.replace(R.id.content, new rate_offer());
+
+                break;
             case R.id.nav_settings:
                 ft.replace(R.id.content, new SettingsFragment());
 
