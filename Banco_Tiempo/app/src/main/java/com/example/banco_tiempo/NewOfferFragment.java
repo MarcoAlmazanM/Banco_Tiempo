@@ -148,7 +148,6 @@ public class NewOfferFragment extends Fragment {
 
         AdapterNewOffer myadapter = new AdapterNewOffer(listOffer);
 
-
         recyclerOfertas.setAdapter(myadapter);
     }
 

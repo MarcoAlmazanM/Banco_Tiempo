@@ -80,14 +80,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-
         //Always Display Inicio UI
         getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentInicio()).commit();
         setTitle("Inicio");
         // Setup Toolbar
         setSupportActionBar(toolbar);
-
-
 
 
 
@@ -165,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().popBackStack();
                 count = count - 1;
             }
+            setTitle("Inicio");
         }
 
     }
@@ -176,22 +174,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch(item.getItemId()){
             case R.id.nav_home:
                 ft.replace(R.id.content, new FragmentInicio());
-                ft.addToBackStack(null);
                 break;
             case R.id.nav_profile:
                 ft.replace(R.id.content, new ProfileFragment());
-                ft.addToBackStack(null);
                 break;
             case R.id.nav_newOffer:
                 ft.replace(R.id.content, new NewOfferFragment());
-                ft.addToBackStack(null);
+
                 break;
             case R.id.nav_settings:
                 ft.replace(R.id.content, new SettingsFragment());
-                ft.addToBackStack(null);
+
                 break;
 
         }
+        ft.addToBackStack(null);
         ft.commit();
         setTitle(item.getTitle());
         mDrawerLayout.closeDrawers();
