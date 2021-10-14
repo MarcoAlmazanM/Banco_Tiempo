@@ -318,7 +318,7 @@ public class ProfileFragment extends Fragment {
                         }
                     }
                 } else {
-                    String message = "An error occurred, please try again...";
+                    String message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 }
             }
