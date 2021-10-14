@@ -180,11 +180,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_newOffer:
                 ft.replace(R.id.content, new NewOfferFragment());
-
+            case R.id.nav_notification:
+                ft.replace(R.id.content, new NotificationFragment());
                 break;
             case R.id.nav_settings:
                 ft.replace(R.id.content, new SettingsFragment());
-
                 break;
 
         }
