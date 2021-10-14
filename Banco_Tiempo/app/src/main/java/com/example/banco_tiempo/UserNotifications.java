@@ -4,7 +4,7 @@ public class UserNotifications {
     private Integer idNot;
     private String idEmisor;
     private String idReceptor;
-    private String idServicio;
+    private Integer idServicio;
     private String tipo;
     private String nombre;
     private String descripcion;
@@ -21,7 +21,7 @@ public class UserNotifications {
         return idReceptor;
     }
 
-    public String getIdServicio() {
+    public Integer getIdServicio() {
         return idServicio;
     }
 
@@ -37,7 +37,7 @@ public class UserNotifications {
         return descripcion;
     }
 
-    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, String idServicio, String nombre, String tipo) {
+    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String nombre, String tipo) {
         this.idNot = idNot;
         this.idEmisor = idEmisor;
         this.idReceptor = idReceptor;
