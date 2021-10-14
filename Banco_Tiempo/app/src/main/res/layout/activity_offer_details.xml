@@ -36,10 +36,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp">
+
             <ImageView
                 android:id="@+id/idServicioOfer"
-                android:src="@drawable/name1"
-                style="@style/profileDetailsImage" />
+                style="@style/profileDetailsImage"
+                android:src="@drawable/name1" />
 
             <TextView
                 android:id="@+id/nameTextView"
@@ -49,12 +50,15 @@
 
             <TextView
                 android:id="@+id/serviceGiven"
-                android:text="#00000"
+                android:layout_below="@+id/nameTextView"
+                style="@style/wrapperforlongtitles"
                 android:layout_toRightOf="@id/idServicioOfer"
-                style="@style/profileDetailsMiniText" />
+                android:text="#00000" />
 
         </RelativeLayout>
+
         <View style="@style/proifleDetailsView" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp">
@@ -65,18 +69,22 @@
                 android:src="@drawable/username" />
 
             <TextView
+                android:id="@id/mobileText"
                 style="@style/profileDetailsTextMain"
                 android:layout_toRightOf="@id/mobileImageView"
                 android:text="Nombre de Usuario:" />
 
             <TextView
                 android:id="@+id/textView"
-                style="@style/profileDetailsMiniText"
+                android:layout_below="@+id/mobileText"
+                style="@style/wrapperforlongtitles"
                 android:layout_toRightOf="@id/mobileImageView"
                 android:text="@string/usernameProf" />
 
         </RelativeLayout>
+
         <View style="@style/proifleDetailsView" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp">
@@ -87,49 +95,55 @@
                 android:src="@drawable/ic_jobs" />
 
             <TextView
+                android:id="@+id/emailText"
                 style="@style/profileDetailsTextMain"
                 android:layout_toRightOf="@id/emailImageView"
                 android:text="Trabajo:" />
 
             <TextView
                 android:id="@+id/userTrabajo"
-                style="@style/profileDetailsMiniText"
+                style="@style/wrapperforlongtitles"
+                android:layout_below="@+id/emailText"
                 android:layout_toRightOf="@id/emailImageView"
                 android:text="trabajo" />
 
         </RelativeLayout>
+
         <View style="@style/proifleDetailsView" />
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content">
 
             <ImageView
+
                 android:id="@+id/descView"
                 style="@style/profileDetailsImage"
                 android:src="@drawable/baseline_description_black_20" />
 
             <TextView
+                android:id="@+id/tVDetOffer"
                 style="@style/profileDetailsTextMain"
                 android:layout_toRightOf="@id/descView"
                 android:text="Descripción de la Oferta:" />
 
             <TextView
                 android:id="@+id/jobDescription"
-                style="@style/profileDetailsMiniText"
+                style="@style/wrapperforlongtitles"
+                android:layout_below="@+id/tVDetOffer"
                 android:layout_toRightOf="@id/descView"
-                android:text="@string/descripcion"
-                android:scrollHorizontally="false"/>
+                android:text="@string/descripcion" />
 
         </RelativeLayout>
 
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
             android:id="@+id/aceptarServicio"
+            style="@style/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/loginButton"
-            android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal"
-            android:text="Aceptar"/>
+            android:layout_marginTop="30dp"
+            android:text="Aceptar" />
 
     </LinearLayout>
 </RelativeLayout>

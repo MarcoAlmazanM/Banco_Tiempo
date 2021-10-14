@@ -1,9 +1,12 @@
 package com.example.banco_tiempo;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RatingBar;
 
 import androidx.fragment.app.Fragment;
 
@@ -13,6 +16,9 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class rate_offer extends Fragment {
+
+    RatingBar bar;
+    Button btnRateOffer;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,7 +63,26 @@ public class rate_offer extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.fragment_rate_offer, container, false);
+
+        bar = root.findViewById(R.id.rBCOferta);
+        bar.setStepSize(1);
+        btnRateOffer = root.findViewById(R.id.btnRateOffer);
+
+        clickBtnRateOffer(btnRateOffer);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rate_offer, container, false);
+        return root;
     }
+
+    public void clickBtnRateOffer(Button btnRateOffer){
+        btnRateOffer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer rating = (int)bar.getRating();
+                Log.e("lol", String.valueOf(rating));
+            }
+        });
+    }
+
 }
