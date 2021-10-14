@@ -1,27 +1,78 @@
 package com.example.banco_tiempo;
 
 public class NotificationList {
-    private String trabajo;
-    private String info;
-    private String categoria;
+    private Integer idNot;
+    private String idEmisor;
+    private String idReceptor;
+    private Integer idServicio;
+    private String tipo;
+    private String nombre;
+    private String descripcion;
 
-    public NotificationList(String trabajo, String info, String categoria){
-        this.trabajo = trabajo;
-        this.info = info;
-        this.categoria = categoria;
+    public NotificationList(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String tipo, String nombre, String descripcion) {
+        this.idNot = idNot;
+        this.idEmisor = idEmisor;
+        this.idReceptor = idReceptor;
+        this.idServicio = idServicio;
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
-    public String getTrabajo() {return trabajo;}
+    public Integer getIdNot() {
+        return idNot;
+    }
 
-    public void setTrabajo(String trabajo) {this.trabajo = trabajo;}
+    public void setIdNot(Integer idNot) {
+        this.idNot = idNot;
+    }
 
-    public String getInfo() {return info;}
+    public String getIdEmisor() {
+        return idEmisor;
+    }
 
-    public void setInfo(String info) {this.info = info;}
+    public void setIdEmisor(String idEmisor) {
+        this.idEmisor = idEmisor;
+    }
 
-    public String getCate() {return categoria;}
+    public String getIdReceptor() {
+        return idReceptor;
+    }
 
-    public void setCate(String cate) {this.categoria = cate;}
+    public void setIdReceptor(String idReceptor) {
+        this.idReceptor = idReceptor;
+    }
 
+    public Integer getIdServicio() {
+        return idServicio;
+    }
+
+    public void setIdServicio(Integer idServicio) {
+        this.idServicio = idServicio;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
 }

@@ -58,9 +58,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderNotifications holder, int position) {
-        holder.trabajo.setText(notificationList.get(position).getTrabajo());
-        holder.tipo.setText(notificationList.get(position).getInfo());
-        holder.desc.setText(notificationList.get(position).getCate());
+
+        holder.trabajo.setText( notificationList.get(position).getNombre());
+
+
+        holder.tipo.setText(notificationList.get(position).getTipo());
+        holder.desc.setText(notificationList.get(position).getDescripcion());
         //holder.cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
         holder.bindCardColor(notificationList.get(position));
 
@@ -191,11 +194,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         void bindCardColor(final NotificationList item){
             //tipo.setText(item.getCate());
 
-            if(item.getInfo().toString().contains("q")){
+            if(item.getTipo().contains("ACCEPTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
                 dinChange(btnA, btnR, btnT, btnC, tipo,2);
             }
-            else if(item.getInfo().toString().contains("xd")){
+            else if(item.getTipo().contains("REJECTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorRed)));
                 dinChange(btnA, btnR, btnT, btnC, tipo,3);
             }
