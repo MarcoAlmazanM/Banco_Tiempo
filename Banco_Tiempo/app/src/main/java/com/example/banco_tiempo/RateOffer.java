@@ -130,7 +130,7 @@ public class RateOffer extends Fragment {
                     UserAcceptedServicesResponse userAcceptedServicesResponse = response.body();
                     try{
                         if(userAcceptedServicesResponse.getSomething() == 1){
-                            
+                           String message ="Hola";
                         }else{
                             principal = root.findViewById(R.id.principalRateOfferLayout);
                             principal.setVisibility(View.GONE);
