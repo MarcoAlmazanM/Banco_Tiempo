@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,10 +28,9 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchList"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
@@ -45,10 +45,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:pcv_animDuration="800"
-        app:pcv_animInterpolator="linear"
+        app:pcv_animInterpolator="anticipate_overshoot"
         app:pcv_mode="pie"
         app:pcv_orientation="counter_clockwise"
         app:pcv_progress="10"
+        app:pcv_progressColor="@color/gradientLightOrange"
         android:elevation="20dp"
         app:pcv_startAngle="90" />
 
