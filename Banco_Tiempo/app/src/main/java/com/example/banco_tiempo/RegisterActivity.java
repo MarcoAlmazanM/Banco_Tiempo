@@ -59,6 +59,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     ImageView profileImage;
 
+    Uri uri;
+
     // Permissions for accessing the storage
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -185,7 +187,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // There are no request codes
                         Intent data = result.getData();
-                        Uri uri = data.getData();
+                        uri = data.getData();
                         if (null != uri) {
                             Transformation transformation = new RoundedCornersTransformation(100,5);
                             Picasso.get().load(Uri.parse(uri.toString())).resize(120,120).centerCrop().transform(transformation).into(profileImage);
@@ -217,17 +219,31 @@ public class RegisterActivity extends AppCompatActivity {
         tEmailR = findViewById(R.id.textInputEmail);
         tPassword = findViewById(R.id.textInputPassword);
         tPasswordConfirm = findViewById(R.id.textInputPasswordConf);
+        Transformation transformation = new RoundedCornersTransformation(100,5);
+        Picasso.get().load(Uri.parse(uri.toString())).resize(120,120).centerCrop().transform(transformation).into(profileImage);
         tNombre.getEditText().setText(nombre);
         tAM.getEditText().setText(apellidoMaterno);
         tAP.getEditText().setText(apellidoPaterno);
         if(codigo == 0){
             tUsername.getEditText().setTextColor(Color.parseColor("#ff0000"));
             tUsername.getEditText().setText(username);
+            tUsername.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    tUsername.getEditText().setTextColor(Color.BLACK);
+                }
+            });
             tEmailR.getEditText().setText(email);
         }else if(codigo == 1){
             tUsername.getEditText().setText(username);
             tEmailR.getEditText().setTextColor(Color.parseColor("#ff0000"));
             tEmailR.getEditText().setText(email);
+            tEmailR.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    tEmailR.getEditText().setTextColor(Color.BLACK);
+                }
+            });
         }else if(codigo == 2){
             tUsername.getEditText().setText(username);
             tEmailR.getEditText().setText(email);
