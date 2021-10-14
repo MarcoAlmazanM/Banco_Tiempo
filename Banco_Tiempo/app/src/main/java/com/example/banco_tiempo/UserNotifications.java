@@ -5,8 +5,9 @@ public class UserNotifications {
     private String idEmisor;
     private String idReceptor;
     private String idServicio;
-    private String nombreServicio;
     private String tipo;
+    private String nombre;
+    private String descripcion;
 
     public Integer getIdNot() {
         return idNot;
@@ -24,20 +25,24 @@ public class UserNotifications {
         return idServicio;
     }
 
-    public String getNombreServicio() {
-        return nombreServicio;
-    }
-
     public String getTipo() {
         return tipo;
     }
 
-    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, String idServicio, String nombreServicio, String tipo) {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, String idServicio, String nombre, String tipo) {
         this.idNot = idNot;
         this.idEmisor = idEmisor;
         this.idReceptor = idReceptor;
         this.idServicio = idServicio;
-        this.nombreServicio = nombreServicio;
+        this.nombre = nombre;
         this.tipo = tipo;
     }
 }
