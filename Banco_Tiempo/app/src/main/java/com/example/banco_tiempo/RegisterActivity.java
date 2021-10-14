@@ -12,12 +12,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -46,6 +49,14 @@ public class RegisterActivity extends AppCompatActivity {
     String nombre, apellidoPaterno, apellidoMaterno, calle, numInt, colonia,
             municipio, estado, cP, email, username, password, passwordConfirm, message, passwordHash, sImage;
 
+    Boolean saveUserData =false;
+
+    Integer codigo;
+
+    TextInputLayout tNombre, tAP,tAM, tCalle, tNumInt,
+            tColonia,tMunicipio, tEstado, tCP,
+            tEmailR, tUsername, tPassword, tPasswordConfirm;
+
     ImageView profileImage;
 
     // Permissions for accessing the storage
@@ -60,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         changeStatusBarColor();
-        registerIntent();
+        //registerIntent();
         // Image View
         profileImage = findViewById(R.id.iVProfPic);
     }
@@ -108,6 +119,9 @@ public class RegisterActivity extends AppCompatActivity {
             Resources resources = new Resources();
             passwordHash = resources.hash256(password);
             setContentView(R.layout.activity_register_second);
+            if(saveUserData){
+                userInfo2();
+            }
         }
     }
 
@@ -193,26 +207,45 @@ public class RegisterActivity extends AppCompatActivity {
             });
 
 
-    public void registerIntent(){
-        Intent intent = getIntent();
-        if (intent.getExtras() != null) {
-            RegisterResponse registerResponse = (RegisterResponse) intent.getSerializableExtra("data");
-            try {
-                if (registerResponse.getRegisterApproval() == 1) {
-                    message = "Usuario Registrado Exitosamente";
-                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-                    Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(login);
-                    finish();
-                } else {
-                    message = registerResponse.getError();
-                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-                }
-            }catch (NullPointerException nullPointerException){
-                message = "Error al registar, favor de intentar más tarde";
-                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-            }
+    public void userInfo(Integer codigo){
+        tNombre = findViewById(R.id.textInputName);
+        tAM = findViewById(R.id.textInputAM);
+        tAP = findViewById(R.id.textInputAP);
+        tUsername=findViewById(R.id.textInputUsername);
+        tEmailR = findViewById(R.id.textInputEmail);
+        tPassword = findViewById(R.id.textInputPassword);
+        tPasswordConfirm = findViewById(R.id.textInputPasswordConf);
+        tNombre.getEditText().setText(nombre);
+        tAM.getEditText().setText(apellidoMaterno);
+        tAP.getEditText().setText(apellidoPaterno);
+        if(codigo == 0){
+            tUsername.getEditText().setTextColor(Color.parseColor("#ff0000"));
+            tUsername.getEditText().setText(username);
+            tEmailR.getEditText().setText(email);
+        }else if(codigo == 1){
+            tUsername.getEditText().setText(username);
+            tEmailR.getEditText().setTextColor(Color.parseColor("#ff0000"));
+            tEmailR.getEditText().setText(email);
         }
+        tPassword.getEditText().setText(password);
+        tPasswordConfirm.getEditText().setText(password);
+    }
+
+    public void userInfo2(){
+        tCalle = findViewById(R.id.textInputCalle);
+        tColonia = findViewById(R.id.textInputColonia);
+        tMunicipio = findViewById(R.id.textInputMunicipio);
+        tEstado = findViewById(R.id.textInputEstado);
+        tNumInt = findViewById(R.id.textInputNumInt);
+        checkPrivacity = findViewById(R.id.cBPrivacity);
+        tCP = findViewById(R.id.textInputCP);
+        tCalle.getEditText().setText(calle);
+        tColonia.getEditText().setText(colonia);
+        tMunicipio.getEditText().setText(municipio);
+        tEstado.getEditText().setText(estado);
+        tNumInt.getEditText().setText(numInt);
+        tCP.getEditText().setText(cP);
+        checkPrivacity.setChecked(true);
     }
 
     public void registerUser(RegisterRequest registerRequest) {
@@ -222,8 +255,29 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 if (response.isSuccessful()) {
                     RegisterResponse registerResponse = response.body();
-                    startActivity(new Intent(RegisterActivity.this, RegisterActivity.class).putExtra("data", registerResponse));
-                    finish();
+                    try {
+                        if (registerResponse.getRegisterApproval() == 1) {
+                            message = "Usuario Registrado Exitosamente";
+                            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+                            Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(login);
+                            finish();
+                        } else {
+                            setContentView(R.layout.activity_register);
+                            message = registerResponse.getError();
+                            if(message.equals("Usuario duplicado")){
+                                codigo = 0;
+                            }else if(message.equals("Correo duplicado")){
+                                codigo=1;
+                            }
+                            userInfo(codigo);
+                            saveUserData = true;
+                            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+                        }
+                    }catch (NullPointerException nullPointerException){
+                        message = "Error al registar, favor de intentar más tarde";
+                        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     message ="Ocurrió un error, favor de intentar más tarde.";
                     Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();

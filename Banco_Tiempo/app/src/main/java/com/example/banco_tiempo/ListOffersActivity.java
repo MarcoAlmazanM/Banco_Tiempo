@@ -101,7 +101,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
                 if (response.isSuccessful()) {
                     OffersResponse offersResponse = response.body();
                     offersD = new ArrayList<>(Arrays.asList(offersResponse.getOfertas()));
-                    //Log.e("lol", Arrays.deepToString(offersD.toArray()));
+
                     init();
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";

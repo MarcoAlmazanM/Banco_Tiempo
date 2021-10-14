@@ -32,7 +32,7 @@ public class NotificationFragment extends Fragment {
 
     String message, username;
     Button bAcept, bReject;
-    List<UserOffersDetails> offersD;
+    List<UserNotifications> notifications;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -106,10 +106,10 @@ public class NotificationFragment extends Fragment {
 
     private void llenarLista() {
 
-        for (int i = 0; i < offersD.size(); i++){
-            String nombre = offersD.get(i).getNombre();
-            String descripcion = offersD.get(i).getDescripcion();
-            String categoria = offersD.get(i).getCategoria();
+        for (int i = 0; i < notifications.size(); i++){
+            String nombre = notifications.get(i).getIdEmisor();
+            String descripcion = notifications.get(i).getIdReceptor();
+            String categoria = notifications.get(i).getTipo();
 
             NotificationList oferta = new NotificationList(categoria, nombre, descripcion);
             listaNotificacion.add(oferta);
@@ -143,6 +143,8 @@ public class NotificationFragment extends Fragment {
             public void onResponse(Call<UserNotificationsResponse> call, Response<UserNotificationsResponse> response) {
                 if (response.isSuccessful()) {
                     UserNotificationsResponse userNotificationsResponse = response.body();
+                    notifications = new ArrayList<>(Arrays.asList(userNotificationsResponse.getNotificaciones()));
+                    llenarLista();
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
