@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         edUsername = findViewById(R.id.eTUsername);
         edPassword = findViewById(R.id.eTPassword);
         if (TextUtils.isEmpty(edUsername.getText().toString()) || TextUtils.isEmpty(edPassword.getText().toString())) {
-            message = "All inputs required ...";
+            message = "Todos los campos son requeridos.";
             Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
         } else {
             LoginRequest loginRequest = new LoginRequest();
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                     overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                     finish();
                 } else {
-                    message = "Inicio Fallido";
+                    message = "Usuario o Contraseña Incorrectos";
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }catch(NullPointerException nullPointerException){

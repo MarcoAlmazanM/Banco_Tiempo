@@ -89,6 +89,7 @@ public class ProfileFragment extends Fragment {
     TextView tVDocuments;
     ImageView document_status;
 
+    Integer codigoStatus;
     NestedScrollView nestedScrollView;
 
     private final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -265,6 +266,7 @@ public class ProfileFragment extends Fragment {
     }
 
     public void checkDocumentsServer(){
+        codigoStatus = 2;
         HoursDocumentsRequest hoursDocumentRequest = new HoursDocumentsRequest();
         hoursDocumentRequest.setUsername(username);
         hoursDocumentRequest.setType("documentos");
@@ -272,6 +274,7 @@ public class ProfileFragment extends Fragment {
     }
 
     public void checkHoursServer(){
+        codigoStatus = 1;
         HoursDocumentsRequest hoursDocumentRequest = new HoursDocumentsRequest();
         hoursDocumentRequest.setUsername(username);
         hoursDocumentRequest.setType("horas");
@@ -285,32 +288,37 @@ public class ProfileFragment extends Fragment {
             public void onResponse(Call<HoursDocumentResponse>  call, Response<HoursDocumentResponse> response) {
                 if (response.isSuccessful()) {
                     HoursDocumentResponse hoursDocumentResponse = response.body();
-                    try {
-                        if (hoursDocumentResponse.getStatusHoras() == 1) {
-                            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
-                        }else {
-                            status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
+                    if (codigoStatus == 1) {
+                        try {
+                            if (hoursDocumentResponse.getStatusHoras() == 1) {
+                                status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
+                            } else {
+                                status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
+                            }
+                            String message = "El estatus de las horas ha sido actualizado.";
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                        } catch (NullPointerException e) {
+                            String message = "Error al checar el estatus de las horas, favor de intentar más tarde";
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                         }
-
-                    }catch (NullPointerException e){
-                        String message = "Error al checar el estatus de las horas, favor de intentar más tarde";
-                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                     }
-
-                    try{
-                        if (hoursDocumentResponse.getStatusDocumentos() == 1) {
-                            document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
-                            tVDocuments.setVisibility(View.GONE);
-                        } else {
-                            document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
+                    else if(codigoStatus == 2) {
+                        try {
+                            if (hoursDocumentResponse.getStatusDocumentos() == 1) {
+                                document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
+                                tVDocuments.setVisibility(View.GONE);
+                            } else {
+                                document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
+                            }
+                            String message = "El estatus de los documentos ha sido actualizado.";
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                        } catch (NullPointerException e) {
+                            String message = "Error al checar el estatus de los documentos, favor de intentar más tarde";
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                         }
-                    }catch (NullPointerException e){
-                        String message = "Error al checar el estatus de los documentos, favor de intentar más tarde";
-                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                     }
-
                 } else {
-                    String message = "An error occurred, please try again...";
+                    String message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 }
             }

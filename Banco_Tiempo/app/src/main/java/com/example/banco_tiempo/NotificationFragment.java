@@ -32,7 +32,7 @@ public class NotificationFragment extends Fragment {
 
     String message, username;
     Button bAcept, bReject;
-    List<UserOffersDetails> offersD;
+    List<UserNotifications> notifications;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -90,7 +90,7 @@ public class NotificationFragment extends Fragment {
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         username = preferences.getString("username","username");
-        setUserOffersValues();
+        setUserNotificationsValues();
 
         listaNotificacion = new ArrayList<>();
 
@@ -106,10 +106,10 @@ public class NotificationFragment extends Fragment {
 
     private void llenarLista() {
 
-        for (int i = 0; i < offersD.size(); i++){
-            String nombre = offersD.get(i).getNombre();
-            String descripcion = offersD.get(i).getDescripcion();
-            String categoria = offersD.get(i).getCategoria();
+        for (int i = 0; i < notifications.size(); i++){
+            String nombre = notifications.get(i).getIdEmisor();
+            String descripcion = notifications.get(i).getIdReceptor();
+            String categoria = notifications.get(i).getTipo();
 
             NotificationList oferta = new NotificationList(categoria, nombre, descripcion);
             listaNotificacion.add(oferta);
@@ -130,16 +130,21 @@ public class NotificationFragment extends Fragment {
         notificacion.setAdapter(myadapter);
     }
 
-    public void getUserOffers(UserOffersRequest userOffersRequest){
-        Call<UserOffersResponse> userOffersResponseCall = ApiClient.getService().getUserOffers(userOffersRequest);
-        userOffersResponseCall.enqueue(new Callback<UserOffersResponse>() {
-            @Override
-            public void onResponse(Call<UserOffersResponse> call, Response<UserOffersResponse> response) {
-                if (response.isSuccessful()) {
-                    UserOffersResponse userOffersResponse = response.body();
-                    offersD = new ArrayList<>(Arrays.asList(userOffersResponse.getOfertas()));
-                    llenarLista();
+    public void setUserNotificationsValues(){
+        UserNotificationsRequest userNotificationsRequest = new UserNotificationsRequest();
+        userNotificationsRequest.setUsername(username);
+        getUserNotifications(userNotificationsRequest);
+    }
 
+    public void getUserNotifications(UserNotificationsRequest userNotificationsRequest){
+        Call<UserNotificationsResponse> userNotificationsResponseCall = ApiClient.getService().getUserNotifications(userNotificationsRequest);
+        userNotificationsResponseCall.enqueue(new Callback<UserNotificationsResponse>() {
+            @Override
+            public void onResponse(Call<UserNotificationsResponse> call, Response<UserNotificationsResponse> response) {
+                if (response.isSuccessful()) {
+                    UserNotificationsResponse userNotificationsResponse = response.body();
+                    notifications = new ArrayList<>(Arrays.asList(userNotificationsResponse.getNotificaciones()));
+                    llenarLista();
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
@@ -147,19 +152,14 @@ public class NotificationFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<UserOffersResponse> call, Throwable t) {
+            public void onFailure(Call<UserNotificationsResponse> call, Throwable t) {
                 message = t.getLocalizedMessage();
                 Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public void setUserOffersValues(){
-        UserOffersRequest userOffersRequest = new UserOffersRequest();
-        userOffersRequest.setUsername(username);
-        getUserOffers(userOffersRequest);
 
-    }
 
     /*public void clickBtnCreateOffer(Button btnCreateOffer){
         btnCreateOffer.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +170,5 @@ public class NotificationFragment extends Fragment {
 
             }
         });
-    }
-
-     */
+    }*/
 }
