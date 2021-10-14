@@ -176,6 +176,21 @@
         <item name="android:minWidth">250dp</item>
     </style>
 
+    <style name="StyledBackButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_principal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:minWidth">250dp</item>
+    </style>
+
     <style name="circular">
         <item name="cornerSize">50%</item>
     </style>

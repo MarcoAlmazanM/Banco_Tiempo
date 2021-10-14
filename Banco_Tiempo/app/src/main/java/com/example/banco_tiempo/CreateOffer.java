@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -48,14 +49,14 @@ import retrofit2.Response;
 
 public class CreateOffer extends AppCompatActivity {
     Toolbar toolbar;
-    RelativeLayout createOfferLayout;
+    ConstraintLayout createOfferLayout;
 
     ImageView imgOffer;
     Uri selectedImage;
     String part_image;
     String sImage;
     String sCert;
-    Button bCert;
+    TextView bCert;
     ImageView cert;
     TextView category, title, description;
     String cat, titxd, des, message;
