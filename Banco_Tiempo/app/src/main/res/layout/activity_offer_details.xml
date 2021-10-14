@@ -38,6 +38,7 @@
             android:layout_height="50dp">
 
             <ImageView
+                android:layout_marginStart="40dp"
                 android:id="@+id/idServicioOfer"
                 style="@style/profileDetailsImage"
                 android:src="@drawable/name1" />
@@ -64,6 +65,7 @@
             android:layout_height="50dp">
 
             <ImageView
+                android:layout_marginStart="40dp"
                 android:id="@+id/mobileImageView"
                 style="@style/profileDetailsImage"
                 android:src="@drawable/username" />
@@ -90,6 +92,7 @@
             android:layout_height="50dp">
 
             <ImageView
+                android:layout_marginStart="40dp"
                 android:id="@+id/emailImageView"
                 style="@style/profileDetailsImage"
                 android:src="@drawable/ic_jobs" />
@@ -116,7 +119,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-
+                android:layout_marginStart="40dp"
                 android:id="@+id/descView"
                 style="@style/profileDetailsImage"
                 android:src="@drawable/baseline_description_black_20" />
