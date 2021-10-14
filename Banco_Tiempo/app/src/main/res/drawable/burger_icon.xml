@@ -5,11 +5,11 @@
     android:viewportHeight="768">
   <path
       android:pathData="M384,0C171.324,0 0,171.324 0,384C0,596.676 171.324,768 384,768C594.707,768 768,596.676 768,384C768,171.324 594.707,0 384,0ZM384,708.922C204.801,708.922 59.078,563.199 59.078,384C59.078,204.801 204.801,59.078 384,59.078C563.199,59.078 708.922,204.801 708.922,384C708.922,563.199 563.199,708.922 384,708.922ZM384,708.922"
-      android:fillColor="#FF914D"
+      android:fillColor="@color/gradientLightOrange"
       android:fillType="nonZero"/>
   <path
       android:pathData="M384,59.078C204.801,59.078 59.078,204.801 59.078,384C59.078,563.199 204.801,708.922 384,708.922C563.199,708.922 708.922,563.199 708.922,384C708.922,204.801 563.199,59.078 384,59.078ZM384,59.078"
-      android:fillColor="#FF914D"
+      android:fillColor="@color/gradientLightOrange"
       android:fillType="nonZero"/>
   <group>
     <clip-path

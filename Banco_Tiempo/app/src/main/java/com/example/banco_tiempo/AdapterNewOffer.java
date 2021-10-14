@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,7 @@ public class AdapterNewOffer
         Picasso.get().invalidate(listaOffer.get(position).getImagen());
         Picasso.get().load(listaOffer.get(position).getImagen()).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.myImage);
 
+        holder.relativeLayout.setBackgroundColor(R.drawable.home_gradient_maths);
     }
 
     @Override
@@ -69,6 +71,7 @@ public class AdapterNewOffer
         TextView myText1, myText2;
         ImageView myImage;
         Button btnAccept;
+        RelativeLayout relativeLayout;
         private AdapterNewOffer adapter;
 
         public MyViewHolder (@NonNull View itemView){
@@ -76,6 +79,7 @@ public class AdapterNewOffer
             myText1 = itemView.findViewById(R.id.tVJob);
             myText2 = itemView.findViewById(R.id.tVDescription);
             myImage = itemView.findViewById(R.id.iVUserPhoto);
+            relativeLayout = itemView.findViewById(R.id.rLlayout);
             itemView.findViewById(R.id.btnDelOffer).setOnClickListener(view-> {
                 adapter.listaOffer.remove(getAdapterPosition());
                 adapter.notifyItemRemoved(getAdapterPosition());
