@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -27,6 +30,9 @@ import retrofit2.Response;
  */
 public class RateOffer extends Fragment {
 
+    Context applicationContext = MainActivity.getContextOfApplication();
+    LinearLayout principal;
+    TextView secondary;
     RatingBar bar;
     Button btnRateOffer;
 
@@ -35,6 +41,9 @@ public class RateOffer extends Fragment {
 
     String username;
     String message;
+
+    View root;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -79,7 +88,7 @@ public class RateOffer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_rate_offer, container, false);
+        root = inflater.inflate(R.layout.fragment_rate_offer, container, false);
 
         bar = root.findViewById(R.id.rBCOferta);
         bar.setStepSize(1);
@@ -119,7 +128,20 @@ public class RateOffer extends Fragment {
             public void onResponse(Call<UserAcceptedServicesResponse> call, Response<UserAcceptedServicesResponse> response) {
                 if (response.isSuccessful()) {
                     UserAcceptedServicesResponse userAcceptedServicesResponse = response.body();
-                    
+                    try{
+                        if(userAcceptedServicesResponse.getSomething() == 1){
+                            Log.e("Hola","hey");
+                        }else{
+                            principal = root.findViewById(R.id.principalRateOfferLayout);
+                            principal.setVisibility(View.GONE);
+                            secondary = root.findViewById(R.id.secondaryRateOfferLayout);
+                            secondary.setVisibility(View.VISIBLE);
+                        }
+
+                    }catch(NullPointerException nullPointerException){
+                        message = "Ocurrió un error al procesar las ofertas";
+                        Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();

@@ -9,6 +9,7 @@ public class UserAcceptedServicesResponse {
     private String nombre;
     private String categoria;
     private String descripcion;
+    private Integer something;
 
     public Integer getIdNot() {
         return idNot;
@@ -72,5 +73,13 @@ public class UserAcceptedServicesResponse {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Integer getSomething() {
+        return something;
+    }
+
+    public void setSomething(Integer something) {
+        this.something = something;
     }
 }
