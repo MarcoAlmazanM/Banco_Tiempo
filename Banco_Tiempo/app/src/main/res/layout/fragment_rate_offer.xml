@@ -137,7 +137,10 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:theme="@style/RatingBar"
+            android:numStars="5"
+            android:stepSize="1"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -161,7 +164,8 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 style="@style/headerText"
-                android:text="Sí" />
+                android:text="Sí"
+                android:buttonTint="@color/gradientOrange"/>
 
             <View
                 android:layout_width="80dp"
@@ -174,7 +178,8 @@
                 android:layout_gravity="center_horizontal"
                 android:textStyle="bold"
                 style="@style/headerText"
-                android:text="No" />
+                android:text="No"
+                android:buttonTint="@color/gradientOrange"/>
 
         </RadioGroup>
 
