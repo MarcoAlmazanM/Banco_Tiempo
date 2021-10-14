@@ -40,8 +40,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     final ListAdapter.ClickListener action;
 
     Drawable draw;
-    ArrayList<Drawable> gradient_colors;
-    Integer counter_l;
+    ArrayList<Drawable> gradient_colors = new ArrayList<>();
+    Integer counter_l = 0;
 
     public ListAdapter(List<ElementList> itemList,Context context, ListAdapter.ClickListener action){
         this.mInflater=LayoutInflater.from(context);
