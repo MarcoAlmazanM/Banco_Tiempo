@@ -226,6 +226,9 @@ public class RegisterActivity extends AppCompatActivity {
             tUsername.getEditText().setText(username);
             tEmailR.getEditText().setTextColor(Color.parseColor("#ff0000"));
             tEmailR.getEditText().setText(email);
+        }else if(codigo == 2){
+            tUsername.getEditText().setText(username);
+            tEmailR.getEditText().setText(email);
         }
         tPassword.getEditText().setText(password);
         tPasswordConfirm.getEditText().setText(password);
@@ -296,12 +299,16 @@ public class RegisterActivity extends AppCompatActivity {
         Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(login);
         finish();
+
     }
 
     public void goBackRegister(View view){
-        Intent register = new Intent(RegisterActivity.this, RegisterActivity.class);
+        setContentView(R.layout.activity_register);
+        codigo = 2;
+        userInfo(codigo);
+        /*Intent register = new Intent(RegisterActivity.this, RegisterActivity.class);
         startActivity(register);
-        finish();
+        finish();*/
     }
 
     public static void verifyStoragePermissions(Activity activity) {
