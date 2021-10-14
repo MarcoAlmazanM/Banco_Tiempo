@@ -1,8 +1,15 @@
 package com.example.banco_tiempo;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,6 +20,9 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OfferDetails extends AppCompatActivity {
 
@@ -24,17 +34,29 @@ public class OfferDetails extends AppCompatActivity {
     TextView id;
     TextView trabajo2;
 
+    ElementList oferta;
+
     ImageView perfil;
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    String username, message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_details);
         toolbar = findViewById(R.id.toolbar);
         setTitle("Detalles de la Oferta");
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
-        ElementList oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
+        preferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        username = preferences.getString("username","NULL");
+
+        oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
         nombre=findViewById(R.id.textView);
         servicio=findViewById(R.id.trabajo);
         trabajo2=findViewById(R.id.userTrabajo);
@@ -53,5 +75,44 @@ public class OfferDetails extends AppCompatActivity {
         Transformation transformation = new RoundedCornersTransformation(50,5);
         Picasso.get().invalidate(url);
         Picasso.get().load(url).transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(perfil);
+    }
+    public void RequestOffer(View view){
+        UserRequestOffer userRequestOffer = new UserRequestOffer();
+        userRequestOffer.setIdServicio(oferta.getIdServicio());
+        userRequestOffer.setIdEmisor(oferta.getIdUsuario());
+        userRequestOffer.setIdReceptor(username);
+        userRequestOffer.setType("REQUEST");
+        getUserRequestOffer(userRequestOffer);
+    }
+
+    public void getUserRequestOffer(UserRequestOffer userRequestOffer){
+        Call<UserRequestOfferResponse> userRequestOfferResponseCall = ApiClient.getService().getUserRequestOffer(userRequestOffer);
+        userRequestOfferResponseCall.enqueue(new Callback<UserRequestOfferResponse>() {
+            @Override
+            public void onResponse(Call<UserRequestOfferResponse> call, Response<UserRequestOfferResponse> response) {
+                if (response.isSuccessful()) {
+                    UserRequestOfferResponse userRequestOfferResponse = response.body();
+                    try{
+                        if(userRequestOfferResponse.getTransactionApproval() == 1){
+                            Log.e("GOD IS HERE", "Entramos perros");
+                        }else{
+                            Log.e("GOD IS NOT HERE", "No Entramos perros");
+                        }
+                    }catch (NullPointerException nullPointerException){
+                        Log.e("GOD IS NOT HERE", "ERROOOOR");
+                    }
+
+                } else {
+                    message = "Ocurrió un error, favor de intentar más tarde";
+                    Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserRequestOfferResponse> call, Throwable t) {
+                message = t.getLocalizedMessage();
+                Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

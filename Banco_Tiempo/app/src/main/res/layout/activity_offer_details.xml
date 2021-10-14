@@ -124,12 +124,13 @@
 
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
             android:id="@+id/aceptarServicio"
+            style="@style/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/loginButton"
-            android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal"
-            android:text="Aceptar"/>
+            android:layout_marginTop="30dp"
+            android:onClick="RequestOffer"
+            android:text="Aceptar" />
 
     </LinearLayout>
 </RelativeLayout>
