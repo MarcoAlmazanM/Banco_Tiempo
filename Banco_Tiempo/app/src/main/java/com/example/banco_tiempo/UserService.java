@@ -46,6 +46,6 @@ public interface UserService {
     Call<UserNotificationsResponse> getUserNotifications(@Body UserNotificationsRequest userNotificationsRequest);
 
     //POST obtain user accepted service
-    @POST("getnotifications")
+    @POST("getacceptedservices")
     Call<UserAcceptedServicesResponse> getUserAcceptedServices(@Body UserNotificationsRequest userNotificationsRequest);
 }
