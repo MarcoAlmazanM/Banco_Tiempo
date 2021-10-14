@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -48,7 +49,7 @@ public class NewOfferFragment extends Fragment {
         // Required empty public constructor
     }
 
-    Button btnCreaOffer;
+    TextView btnCreaOffer;
     ArrayList<OfferVO> listOffer;
     View vista;
 
@@ -92,7 +93,7 @@ public class NewOfferFragment extends Fragment {
 
         listOffer = new ArrayList<>();
 
-        btnCreaOffer = (Button)vista.findViewById(R.id.btnNOffer);
+        btnCreaOffer = (TextView) vista.findViewById(R.id.btnNOffer);
         clickBtnCreateOffer(btnCreaOffer);
 
 
@@ -151,7 +152,7 @@ public class NewOfferFragment extends Fragment {
         recyclerOfertas.setAdapter(myadapter);
     }
 
-    public void clickBtnCreateOffer(Button btnCreateOffer){
+    public void clickBtnCreateOffer(TextView btnCreateOffer){
         btnCreateOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
