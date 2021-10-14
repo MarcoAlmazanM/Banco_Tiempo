@@ -32,7 +32,7 @@ public class RateOffer extends Fragment {
 
     Context applicationContext = MainActivity.getContextOfApplication();
     LinearLayout principal;
-    TextView secondary;
+    RelativeLayout secondary;
     RatingBar bar;
     Button btnRateOffer;
 
@@ -130,7 +130,7 @@ public class RateOffer extends Fragment {
                     UserAcceptedServicesResponse userAcceptedServicesResponse = response.body();
                     try{
                         if(userAcceptedServicesResponse.getSomething() == 1){
-                            Log.e("Hola","hey");
+
                         }else{
                             principal = root.findViewById(R.id.principalRateOfferLayout);
                             principal.setVisibility(View.GONE);
