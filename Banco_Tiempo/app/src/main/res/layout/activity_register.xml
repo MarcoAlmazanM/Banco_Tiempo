@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
     android:layout_gravity="center"
-    android:background="@color/register_bk_color"
+    android:background="@drawable/home_gradient_mate"
     android:focusableInTouchMode="true"
     android:gravity="center">
 
@@ -34,7 +34,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="@string/regFoto"
-                    android:textColor="@color/whiteTextColor" />
+                    android:textColor="@color/black" />
 
                 <ImageView
                     android:id="@+id/iVProfPic"
@@ -70,10 +70,9 @@
                             android:id="@+id/eTNombre"
                             style="@style/modifiedEditText"
                             android:hint="@string/nombreLogin"
-                            android:backgroundTint="@color/darker_gray"
-                            android:textColor="@color/black"
                             android:inputType="textPersonName"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,10 +85,9 @@
                             android:id="@+id/eTAM"
                             style="@style/modifiedEditText"
                             android:hint="@string/apellidoMaterno"
-                            android:backgroundTint="@color/darker_gray"
                             android:inputType="textPersonName"
-                            android:textColor="@color/black"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,10 +100,9 @@
                             android:id="@+id/eTAP"
                             style="@style/modifiedEditText"
                             android:hint="@string/apellidoPaterno"
-                            android:backgroundTint="@color/darker_gray"
-                            android:textColor="@color/black"
                             android:inputType="textPersonName"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,10 +116,9 @@
                             android:id="@+id/eTEmailR"
                             style="@style/modifiedEditText"
                             android:hint="@string/correo"
-                            android:backgroundTint="@color/darker_gray"
-                            android:textColor="@color/black"
                             android:inputType="textEmailAddress"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,50 +131,47 @@
                             android:id="@+id/eTUsernameR"
                             style="@style/modifiedEditText"
                             android:hint="@string/nombreUsuario"
-                            android:backgroundTint="@color/darker_gray"
-                            android:textColor="@color/black"
                             android:inputType="text"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputPassword"
                         style="@style/parent"
-                        app:passwordToggleEnabled="true"
-                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        app:passwordToggleEnabled="true">
 
                         <EditText
                             android:id="@+id/eTPasswordR"
                             style="@style/modifiedEditText"
                             android:hint="@string/passwordLogin"
-                            android:textColor="@color/black"
-                            android:backgroundTint="@color/darker_gray"
                             android:inputType="textPassword"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputPasswordConf"
                         style="@style/parent"
-                        app:passwordToggleEnabled="true"
-                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        app:passwordToggleEnabled="true">
 
                         <EditText
                             android:id="@+id/eTPasswordConfirm"
                             style="@style/modifiedEditText"
-                            android:hint="@string/passwordLogin"
-                            android:textColor="@color/black"
-                            android:backgroundTint="@color/darker_gray"
+                            android:hint="Confirmar Contraseña"
                             android:inputType="textPassword"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/btnRegisterR"
-                        style="@style/loginButton"
+                        style="@style/StyledBackButton"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:onClick="verifyData"
@@ -192,43 +185,27 @@
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:onClick="goBackLogin"
+                        android:shadowColor="#FFF"
+                        android:shadowDx="-2"
+                        android:shadowDy="-2"
+                        android:shadowRadius="0.5"
                         android:text="@string/goback"
                         android:textAlignment="center"
-                        android:textColor="@color/themeColor"
+                        android:textColor="@color/black"
                         android:textSize="17sp"
                         android:textStyle="bold" />
 
-                    <!--android:onClick="onLoginClick" -->
-
                 </LinearLayout>
 
-
             </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="100dp" />
 
         </LinearLayout>
 
     </ScrollView>
-
-    <View
-        android:layout_width="11dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/ic_side_bg"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="11dp"
-        android:layout_marginBottom="30dp"
-        android:adjustViewBounds="false"
-        android:onClick="goBackLogin"
-        android:src="@drawable/ic_back_img" />
-
-    <!--android:onClick="onLoginClick" -->
-
 
 </RelativeLayout>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
     android:layout_gravity="center"
-    android:background="@color/register_bk_color"
+    android:background="@drawable/home_gradient_mate"
     android:focusableInTouchMode="true"
     android:gravity="center">
 
@@ -66,10 +66,9 @@
                             android:id="@+id/eTCalle"
                             style="@style/modifiedEditText"
                             android:hint="@string/calle"
-                            android:backgroundTint="@color/darker_gray"
-                            android:textColor="@color/black"
                             android:inputType="text"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,10 +81,9 @@
                             android:id="@+id/eTColonia"
                             style="@style/modifiedEditText"
                             android:hint="@string/colonia"
-                            android:backgroundTint="@color/darker_gray"
                             android:inputType="text"
-                            android:textColor="@color/black"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,10 +96,9 @@
                             android:id="@+id/eTMunicipio"
                             style="@style/modifiedEditText"
                             android:hint="@string/municipio"
-                            android:backgroundTint="@color/darker_gray"
                             android:inputType="text"
-                            android:textColor="@color/black"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,10 +111,9 @@
                             android:id="@+id/eTEstado"
                             style="@style/modifiedEditText"
                             android:hint="@string/estado"
-                            android:backgroundTint="@color/darker_gray"
                             android:inputType="text"
-                            android:textColor="@color/black"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,9 +127,8 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/numInt"
                             android:inputType="number"
-                            android:backgroundTint="@color/darker_gray"
-                            android:textColor="@color/black"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,9 +142,8 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/codigoPostal"
                             android:inputType="number"
-                            android:backgroundTint="@color/darker_gray"
-                            android:textColor="@color/black"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -163,10 +157,14 @@
 
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/btnRegisterR"
-                        style="@style/loginButton"
+                        style="@style/StyledBackButton"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:onClick="verifyData2"
+                        android:shadowColor="#FFF"
+                        android:shadowDx="-2"
+                        android:shadowDy="-2"
+                        android:shadowRadius="0.5"
                         android:text="@string/registrarse"
                         app:initialCornerAngle="27dp"
                         app:spinning_bar_color="#FFF"
@@ -179,40 +177,23 @@
                         android:onClick="goBackLogin"
                         android:text="@string/goback"
                         android:textAlignment="center"
-                        android:textColor="@color/themeColor"
+                        android:textColor="@color/black"
                         android:textSize="17sp"
                         android:textStyle="bold" />
 
-                    <!--android:onClick="onLoginClick" -->
 
                 </LinearLayout>
 
 
             </androidx.cardview.widget.CardView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="100dp" />
+
         </LinearLayout>
 
     </ScrollView>
-
-    <View
-        android:layout_width="11dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/ic_side_bg"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="11dp"
-        android:layout_marginBottom="30dp"
-        android:adjustViewBounds="false"
-        android:onClick="goBackRegister"
-        android:src="@drawable/ic_back_img" />
-
-    <!--android:onClick="onLoginClick" -->
 
 </RelativeLayout>
