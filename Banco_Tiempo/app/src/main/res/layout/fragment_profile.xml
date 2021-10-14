@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/profile_bk"
+                android:background="@drawable/profile_color_bk"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -57,16 +57,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nombreUsuario"
-                    android:textSize="28dp"
-                    android:textStyle="bold" />
+                    android:textSize="34dp"
+                    android:textStyle="bold"
+                    android:shadowColor="#000"
+                    android:shadowDx="-2"
+                    android:shadowDy="-2"
+                    android:shadowRadius="1"/>
 
                 <TextView
                     android:id="@+id/tVemail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/profileEmail"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20dp"
+                    android:shadowColor="#000"
+                    android:shadowDx="-2"
+                    android:shadowDy="-2"
+                    android:shadowRadius="1"/>
 
 
             </LinearLayout>
@@ -85,7 +94,7 @@
                 android:layout_height="125dp"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/blue_2"
+                app:cardBackgroundColor="@color/darker_gray"
                 app:cardElevation="10dp">
 
                 <TextView
@@ -94,7 +103,11 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/estHoras"
                     android:textStyle="bold"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="-2"
+                    android:shadowDy="-2"
+                    android:shadowRadius="1"/>
 
 
                 <RelativeLayout
@@ -112,14 +125,18 @@
 
                     <TextView
                         android:id="@+id/tVverHoras"
-                        style="@style/profileStyledBackButton1"
+                        style="@style/StyledBackButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="65dp"
                         android:gravity="center"
                         android:text="@string/verHoras"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:shadowColor="#000"
+                        android:shadowDx="-2"
+                        android:shadowDy="-2"
+                        android:shadowRadius="0.5"/>
 
 
                 </RelativeLayout>
@@ -131,7 +148,7 @@
                 android:layout_height="125dp"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/blue_2"
+                app:cardBackgroundColor="@color/darker_gray"
                 app:cardElevation="10dp">
 
                 <TextView
@@ -140,7 +157,11 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/estDocu"
                     android:textStyle="bold"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:shadowColor="#000"
+                    android:shadowDx="-2"
+                    android:shadowDy="-2"
+                    android:shadowRadius="1"/>
 
 
                 <RelativeLayout
@@ -158,13 +179,17 @@
 
                     <TextView
                         android:id="@+id/tVverDocu"
-                        style="@style/profileStyledBackButton1"
+                        style="@style/StyledBackButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="65dp"
                         android:gravity="center"
                         android:text="@string/verDocs"
+                        android:shadowColor="#000"
+                        android:shadowDx="-2"
+                        android:shadowDy="-2"
+                        android:shadowRadius="0.5"
                         android:textSize="13sp" />
 
 
