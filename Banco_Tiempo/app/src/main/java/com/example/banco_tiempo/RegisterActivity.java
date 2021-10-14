@@ -306,9 +306,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         codigo = 2;
         userInfo(codigo);
-        /*Intent register = new Intent(RegisterActivity.this, RegisterActivity.class);
-        startActivity(register);
-        finish();*/
     }
 
     public static void verifyStoragePermissions(Activity activity) {
