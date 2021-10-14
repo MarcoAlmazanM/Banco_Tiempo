@@ -138,7 +138,7 @@
     <string name="accounthave" translatable="false">¿Ya tienes\n una cuenta?</string>
     <string name="passforg" translatable="false">¿Olvidaste tu contraseña?</string>
     <string name="nlogin" translatable="false">Iniciar Sesión</string>
-    <string name="nusuar" translatable="false">¿Usuario nuevo? Registrate ahora</string>
+    <string name="nusuar" translatable="false">¿Usuario nuevo? Regístrate ahora</string>
     <string name="nforinic" translatable="false">Otras formas</string>
 
     //Registro
