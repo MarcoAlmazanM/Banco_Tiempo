@@ -295,7 +295,8 @@ public class ProfileFragment extends Fragment {
                             } else {
                                 status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                             }
-
+                            String message = "El estatus de las horas ha sido actualizado.";
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                         } catch (NullPointerException e) {
                             String message = "Error al checar el estatus de las horas, favor de intentar más tarde";
                             Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
@@ -309,6 +310,8 @@ public class ProfileFragment extends Fragment {
                             } else {
                                 document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                             }
+                            String message = "El estatus de los documentos ha sido actualizado.";
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                         } catch (NullPointerException e) {
                             String message = "Error al checar el estatus de los documentos, favor de intentar más tarde";
                             Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
