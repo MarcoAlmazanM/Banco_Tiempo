@@ -132,7 +132,7 @@ public class NewOfferFragment extends Fragment {
 
     private void llenarLista() {
 
-        /*for (int i = 0; i < offersD.size(); i++){
+        for (int i = 0; i < offersD.size(); i++){
             String nombre = offersD.get(i).getNombre();
             String descripcion = offersD.get(i).getDescripcion();
             String categoria = offersD.get(i).getCategoria();
@@ -141,8 +141,7 @@ public class NewOfferFragment extends Fragment {
             OfferVO oferta = new OfferVO(nombre, descripcion, imagen, categoria);
             listOffer.add(oferta);
         }
-
-         */
+        /*
         OfferVO element = new OfferVO("changos", "changos2", "https://bancodetiempo.s3.amazonaws.com/perfil/Marco_perfil.jpg", "Comida");
         listOffer.add(element);
         listOffer.add(element);
@@ -162,6 +161,8 @@ public class NewOfferFragment extends Fragment {
         listOffer.add(element);
         listOffer.add(element);
         listOffer.add(element);
+
+         */
 
 
 
