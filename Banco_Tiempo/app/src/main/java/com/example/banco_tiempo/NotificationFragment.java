@@ -90,7 +90,7 @@ public class NotificationFragment extends Fragment {
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         username = preferences.getString("username","username");
-        setUserOffersValues();
+        setUserNotificationsValues();
 
         listaNotificacion = new ArrayList<>();
 
@@ -130,16 +130,19 @@ public class NotificationFragment extends Fragment {
         notificacion.setAdapter(myadapter);
     }
 
-    public void getUserOffers(UserOffersRequest userOffersRequest){
-        Call<UserOffersResponse> userOffersResponseCall = ApiClient.getService().getUserOffers(userOffersRequest);
-        userOffersResponseCall.enqueue(new Callback<UserOffersResponse>() {
-            @Override
-            public void onResponse(Call<UserOffersResponse> call, Response<UserOffersResponse> response) {
-                if (response.isSuccessful()) {
-                    UserOffersResponse userOffersResponse = response.body();
-                    offersD = new ArrayList<>(Arrays.asList(userOffersResponse.getOfertas()));
-                    llenarLista();
+    public void setUserNotificationsValues(){
+        UserNotificationsRequest userNotificationsRequest = new UserNotificationsRequest();
+        userNotificationsRequest.setUsername(username);
+        getUserNotifications(userNotificationsRequest);
+    }
 
+    public void getUserNotifications(UserNotificationsRequest userNotificationsRequest){
+        Call<UserNotificationsResponse> userNotificationsResponseCall = ApiClient.getService().getUserNotifications(userNotificationsRequest);
+        userNotificationsResponseCall.enqueue(new Callback<UserNotificationsResponse>() {
+            @Override
+            public void onResponse(Call<UserNotificationsResponse> call, Response<UserNotificationsResponse> response) {
+                if (response.isSuccessful()) {
+                    UserNotificationsResponse userNotificationsResponse = response.body();
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
@@ -147,19 +150,14 @@ public class NotificationFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<UserOffersResponse> call, Throwable t) {
+            public void onFailure(Call<UserNotificationsResponse> call, Throwable t) {
                 message = t.getLocalizedMessage();
                 Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public void setUserOffersValues(){
-        UserOffersRequest userOffersRequest = new UserOffersRequest();
-        userOffersRequest.setUsername(username);
-        getUserOffers(userOffersRequest);
 
-    }
 
     /*public void clickBtnCreateOffer(Button btnCreateOffer){
         btnCreateOffer.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +168,5 @@ public class NotificationFragment extends Fragment {
 
             }
         });
-    }
-
-     */
+    }*/
 }
