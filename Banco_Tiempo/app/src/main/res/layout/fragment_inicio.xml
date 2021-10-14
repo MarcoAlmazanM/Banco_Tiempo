@@ -62,7 +62,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:minHeight="100dp"
-                            android:background="@drawable/home_gradient_maths"
+                            android:background="@drawable/home_gradient_admin"
                             android:padding="10dp">
 
                             <ImageView
@@ -361,7 +361,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:minHeight="100dp"
-                            android:background="@drawable/home_gradient_maths"
+                            android:background="@drawable/home_gradient_admin"
                             android:padding="10dp">
 
                             <ImageView
@@ -497,7 +497,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:minHeight="100dp"
-                            android:background="@drawable/home_gradient_maths"
+                            android:background="@drawable/home_gradient_admin"
                             android:padding="10dp">
 
                             <ImageView

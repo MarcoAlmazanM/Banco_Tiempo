@@ -1,6 +1,7 @@
 package com.example.banco_tiempo;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.MemoryPolicy;
@@ -28,6 +30,8 @@ public class AdapterNewOffer
     Context context;
     private View.OnClickListener listener;
     ArrayList<OfferVO> listaOffer;
+    ArrayList<Drawable> gradients;
+    Integer counter = 0;
 
     public AdapterNewOffer(ArrayList<OfferVO> listaOffer){
         this.listaOffer = listaOffer;
@@ -49,7 +53,13 @@ public class AdapterNewOffer
         Picasso.get().invalidate(listaOffer.get(position).getImagen());
         Picasso.get().load(listaOffer.get(position).getImagen()).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.myImage);
 
-        holder.relativeLayout.setBackgroundColor(R.drawable.home_gradient_maths);
+        if (counter > 9) {
+            counter = 0;
+        }
+
+        holder.relativeLayout.setBackground(gradients.get(counter));
+
+        counter++;
     }
 
     @Override
@@ -71,6 +81,7 @@ public class AdapterNewOffer
         TextView myText1, myText2;
         ImageView myImage;
         Button btnAccept;
+        Drawable drawable;
         RelativeLayout relativeLayout;
         private AdapterNewOffer adapter;
 
@@ -79,6 +90,26 @@ public class AdapterNewOffer
             myText1 = itemView.findViewById(R.id.tVJob);
             myText2 = itemView.findViewById(R.id.tVDescription);
             myImage = itemView.findViewById(R.id.iVUserPhoto);
+
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradients.add(drawable);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_compu, null);
+            gradients.add(drawable);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradients.add(drawable);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradients.add(drawable);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradients.add(drawable);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradients.add(drawable);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradients.add(drawable);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradients.add(drawable);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradients.add(drawable);
+
             relativeLayout = itemView.findViewById(R.id.rLlayout);
             itemView.findViewById(R.id.btnDelOffer).setOnClickListener(view-> {
                 adapter.listaOffer.remove(getAdapterPosition());
