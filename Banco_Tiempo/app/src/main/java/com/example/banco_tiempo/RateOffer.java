@@ -1,5 +1,7 @@
 package com.example.banco_tiempo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,19 +9,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link rate_offer#newInstance} factory method to
+ * Use the {@link RateOffer#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class rate_offer extends Fragment {
+public class RateOffer extends Fragment {
 
     RatingBar bar;
     Button btnRateOffer;
 
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    String username;
+    String message;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +44,7 @@ public class rate_offer extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public rate_offer() {
+    public RateOffer() {
         // Required empty public constructor
     }
 
@@ -42,8 +57,8 @@ public class rate_offer extends Fragment {
      * @return A new instance of fragment rate_offer.
      */
     // TODO: Rename and change types and number of parameters
-    public static rate_offer newInstance(String param1, String param2) {
-        rate_offer fragment = new rate_offer();
+    public static RateOffer newInstance(String param1, String param2) {
+        RateOffer fragment = new RateOffer();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,6 +85,12 @@ public class rate_offer extends Fragment {
         bar.setStepSize(1);
         btnRateOffer = root.findViewById(R.id.btnRateOffer);
 
+        preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        username = preferences.getString("username","username");
+
+        setUserAcceptedServices();
+
         clickBtnRateOffer(btnRateOffer);
         // Inflate the layout for this fragment
         return root;
@@ -81,6 +102,34 @@ public class rate_offer extends Fragment {
             public void onClick(View view) {
                 Integer rating = (int)bar.getRating();
                 Log.e("lol", String.valueOf(rating));
+            }
+        });
+    }
+
+    public void setUserAcceptedServices(){
+        UserNotificationsRequest userNotificationsRequest = new UserNotificationsRequest();
+        userNotificationsRequest.setUsername(username);
+        getUserAcceptedServices(userNotificationsRequest);
+    }
+
+    public void getUserAcceptedServices(UserNotificationsRequest userNotificationsRequest){
+        Call<UserAcceptedServicesResponse> userAcceptedServicesResponseCall = ApiClient.getService().getUserAcceptedServices(userNotificationsRequest);
+        userAcceptedServicesResponseCall.enqueue(new Callback<UserAcceptedServicesResponse>() {
+            @Override
+            public void onResponse(Call<UserAcceptedServicesResponse> call, Response<UserAcceptedServicesResponse> response) {
+                if (response.isSuccessful()) {
+                    UserAcceptedServicesResponse userAcceptedServicesResponse = response.body();
+
+                } else {
+                    message = "Ocurrió un error, favor de intentar más tarde";
+                    Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserAcceptedServicesResponse> call, Throwable t) {
+                message = t.getLocalizedMessage();
+                Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
         });
     }
