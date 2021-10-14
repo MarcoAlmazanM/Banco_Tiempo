@@ -40,4 +40,8 @@ public interface UserService {
     //POST user request a offer
     @POST("createnotification")
     Call<UserRequestOfferResponse> getUserRequestOffer(@Body UserRequestOffer userRequestOffer);
+
+    //POST obtain user notifications
+    @POST("getnotifications")
+    Call<UserNotificationsResponse> getUserNotifications(@Body UserNotificationsRequest userNotificationsRequest);
 }
