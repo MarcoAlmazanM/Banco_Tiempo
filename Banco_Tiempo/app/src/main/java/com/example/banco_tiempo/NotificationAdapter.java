@@ -102,7 +102,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         TextView trabajo, tipo, desc;
         CardView cardType;
-        Button btnA, btnR, btnT, btnC;
+        Button btnA, btnR, btnC;//btnT
 
         //ImageView myImage;
         private NotificationAdapter adapter;
@@ -115,7 +115,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             btnA = itemView.findViewById(R.id.bAcept);
             btnR = itemView.findViewById(R.id.bReject);
-            btnT = itemView.findViewById(R.id.bTerminate);
+            //btnT = itemView.findViewById(R.id.bTerminate);
             btnC = itemView.findViewById(R.id.bContact);
 
             cardType=itemView.findViewById(R.id.notificationCards);
@@ -219,26 +219,26 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        private void dinChange(Button a, Button r, Button t, Button c,TextView m, int op){
+        private void dinChange(Button a, Button r, Button c,TextView m, int op){
             switch (op){
                 case 1:
                     a.setVisibility(View.VISIBLE);
                     r.setVisibility(View.VISIBLE);
-                    t.setVisibility(View.GONE);
+                    //t.setVisibility(View.GONE);
                     c.setVisibility(View.GONE);
                     m.setText("Pendiente");
                     break;
                 case 2:
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
-                    t.setVisibility(View.VISIBLE);
+                    //t.setVisibility(View.VISIBLE);
                     c.setVisibility(View.VISIBLE);
                     m.setText("Aceptado");
                     break;
                 case 3:
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
-                    t.setVisibility(View.GONE);
+                    //t.setVisibility(View.GONE);
                     c.setVisibility(View.GONE);
                     m.setText("Rechazado");
                     break;
@@ -251,15 +251,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             if(item.getTipo().contains("ACCEPTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
-                dinChange(btnA, btnR, btnT, btnC, tipo,2);
+                dinChange(btnA, btnR, btnC, tipo,2);
             }
             else if(item.getTipo().contains("REJECTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorRed)));
-                dinChange(btnA, btnR, btnT, btnC, tipo,3);
+                dinChange(btnA, btnR, btnC, tipo,3);
             }
             else{
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.themeColor)));
-                dinChange(btnA, btnR, btnT, btnC, tipo,1);
+                dinChange(btnA, btnR, btnC, tipo,1);
             }
             /*if(item.getCate().equals("q")){
                 cardType.setCardBackgroundColor(Color.GREEN);
