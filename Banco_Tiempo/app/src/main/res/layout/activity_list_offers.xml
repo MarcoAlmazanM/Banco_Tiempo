@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        app:queryHint="Buscar nombre" />
+        app:queryHint="Buscar por nombre de servicio" />
 
     <com.ramijemli.percentagechartview.PercentageChartView
         android:id="@+id/pVprogressPie"
