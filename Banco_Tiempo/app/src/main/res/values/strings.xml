@@ -68,9 +68,6 @@
     <string name="faq" translatable="false">Preguntas frecuentes</string>
     <string name="manual" translatable="false">Manual de aplicación</string>
 
-    //Notification_card
-    <string name="botonRechazar" translatable="false">Rechazar</string>
-
     //DetallesOfertas
     <string name="calEstrellas" translatable="false">4.7(13)</string>
     <string name="empleo" translatable="false">Carpintero</string>
