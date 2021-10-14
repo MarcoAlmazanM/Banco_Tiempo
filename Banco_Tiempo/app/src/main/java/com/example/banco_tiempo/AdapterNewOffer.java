@@ -100,11 +100,11 @@ public class AdapterNewOffer
             gradients.add(drawable);
             drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_artes, null);
             gradients.add(drawable);
-            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_inge, null);
             gradients.add(drawable);
-            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_edu, null);
             gradients.add(drawable);
-            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_comida, null);
             gradients.add(drawable);
 
             relativeLayout = itemView.findViewById(R.id.rLlayout);
