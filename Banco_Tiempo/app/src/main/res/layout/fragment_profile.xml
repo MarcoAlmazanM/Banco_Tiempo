@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/profileBackground"
+    android:backgroundTint="@color/white"
     tools:context=".ProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,8 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:background="@color/profileBackground"
-        android:backgroundTint="@color/gradientOrange"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+
         android:theme="@style/AppTheme1.ProfileTheme">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -103,8 +104,10 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/estHoras"
                     android:textStyle="bold"
+                    android:elevation="40dp"
+                    android:textColor="@color/black"
                     android:textSize="15dp"
-                    android:shadowColor="@color/black"
+                    android:shadowColor="@color/white"
                     android:shadowDx="-2"
                     android:shadowDy="-2"
                     android:shadowRadius="1"/>
@@ -113,7 +116,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/statusHours"
@@ -131,12 +135,12 @@
                         android:layout_centerInParent="true"
                         android:layout_marginTop="65dp"
                         android:gravity="center"
-                        android:text="@string/verHoras"
-                        android:textSize="13sp"
                         android:shadowColor="#000"
                         android:shadowDx="-2"
                         android:shadowDy="-2"
-                        android:shadowRadius="0.5"/>
+                        android:shadowRadius="0.5"
+                        android:text="@string/verHoras"
+                        android:textSize="13sp" />
 
 
                 </RelativeLayout>
@@ -158,16 +162,19 @@
                     android:text="@string/estDocu"
                     android:textStyle="bold"
                     android:textSize="15dp"
-                    android:shadowColor="#000"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/black"
                     android:shadowDx="-2"
                     android:shadowDy="-2"
+                    android:elevation="40dp"
                     android:shadowRadius="1"/>
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/document"

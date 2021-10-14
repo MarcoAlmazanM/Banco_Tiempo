@@ -20,7 +20,6 @@
             android:id="@+id/userJobImage"
             android:layout_width="match_parent"
             android:layout_height="225dp"
-            android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             app:srcCompat="@drawable/ic_work"
             tools:layout_editor_absoluteX="10dp"
@@ -38,9 +37,9 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_marginStart="40dp"
                 android:id="@+id/idServicioOfer"
                 style="@style/profileDetailsImage"
+                android:layout_marginStart="40dp"
                 android:src="@drawable/name1" />
 
             <TextView
@@ -51,8 +50,8 @@
 
             <TextView
                 android:id="@+id/serviceGiven"
-                android:layout_below="@+id/nameTextView"
                 style="@style/wrapperforlongtitles"
+                android:layout_below="@+id/nameTextView"
                 android:layout_toRightOf="@id/idServicioOfer"
                 android:text="#00000" />
 
@@ -65,9 +64,9 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_marginStart="40dp"
                 android:id="@+id/mobileImageView"
                 style="@style/profileDetailsImage"
+                android:layout_marginStart="40dp"
                 android:src="@drawable/username" />
 
             <TextView
@@ -78,8 +77,8 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_below="@+id/mobileText"
                 style="@style/wrapperforlongtitles"
+                android:layout_below="@+id/mobileText"
                 android:layout_toRightOf="@id/mobileImageView"
                 android:text="@string/usernameProf" />
 
@@ -92,9 +91,9 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_marginStart="40dp"
                 android:id="@+id/emailImageView"
                 style="@style/profileDetailsImage"
+                android:layout_marginStart="40dp"
                 android:src="@drawable/ic_jobs" />
 
             <TextView
@@ -119,9 +118,9 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_marginStart="40dp"
                 android:id="@+id/descView"
                 style="@style/profileDetailsImage"
+                android:layout_marginStart="40dp"
                 android:src="@drawable/baseline_description_black_20" />
 
             <TextView
@@ -141,12 +140,20 @@
 
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
             android:id="@+id/aceptarServicio"
-            style="@style/loginButton"
+            style="@style/StyledBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:shadowColor="#FFF"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="0.5"
             android:text="@string/solicitud" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </RelativeLayout>
