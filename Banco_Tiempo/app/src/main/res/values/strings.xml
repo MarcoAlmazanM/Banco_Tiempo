@@ -69,6 +69,7 @@
     <string name="manual" translatable="false">Manual de aplicación</string>
 
     //Notification_card
+    <string name="botonAceptar" translatable="false">Aceptar</string>
     <string name="botonRechazar" translatable="false">Rechazar</string>
     <string name="statusNotificacion" translatable="false">status</string>
     <string name="descripcior" translatable="false">Descripcion</string>
@@ -80,7 +81,7 @@
     <string name="empleo" translatable="false">Carpintero</string>
     <string name="descTrabajo" translatable="false">Descripción de prueba</string>
     <string name="horarios" translatable="false">Horarios Disponibles</string>
-    <string name="botonAceptar" translatable="false">Aceptar</string>
+    <string name="solicitud" translatable="false">Solicitar servicio</string>
     <string name="horario1" translatable="false">Lunes a Viernes de 8:00 a 13:00</string>
 
     //Bienvenida

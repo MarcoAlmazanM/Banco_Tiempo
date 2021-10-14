@@ -65,14 +65,6 @@
                     android:textColor="@android:color/white" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/aceptJob"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
-                android:backgroundTint="@color/blue_4_btn"
-                android:text="@string/botonAceptar" />
-
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
