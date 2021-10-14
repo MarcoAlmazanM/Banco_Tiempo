@@ -28,33 +28,35 @@
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/ine"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        style="@style/StyledBackButton"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="120dp"
-        android:backgroundTint="@color/blue_4_btn"
         android:drawableRight="@drawable/baseline_add_black_24"
         android:drawableTint="@color/white"
         android:onClick="clickBtnIne"
-        android:text="@string/eligeDoc"
+        android:text="Elige Documento..."
+        android:textColor="@color/white"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
-    <Button
+    <TextView
         android:id="@+id/dom"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        style="@style/StyledBackButton"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:drawableEnd="@drawable/baseline_add_black_24"
+        android:drawableRight="@drawable/baseline_add_black_24"
         android:drawableTint="@color/white"
         android:onClick="clickBtnDom"
-        android:text="@string/eligeDoc"
+        android:text="Elige Documento..."
+        android:textColor="@color/white"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -62,16 +64,17 @@
         app:layout_constraintStart_toStartOf="@+id/ine"
         app:layout_constraintTop_toBottomOf="@+id/rutaIne" />
 
-    <Button
+    <TextView
         android:id="@+id/ant"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        style="@style/StyledBackButton"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:drawableEnd="@drawable/baseline_add_black_24"
+        android:drawableRight="@drawable/baseline_add_black_24"
         android:drawableTint="@color/white"
         android:onClick="clickBtnAnt"
-        android:text="@string/eligeDoc"
+        android:text="Elige Documento..."
+        android:textColor="@color/white"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -226,6 +229,7 @@
         android:id="@+id/ineBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="0dp"
+        android:layout_marginTop="6dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="140dp"
         android:elevation="10dp"
@@ -238,6 +242,7 @@
         android:id="@+id/domBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="0dp"
+        android:layout_marginTop="6dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="140dp"
         android:elevation="10dp"
@@ -249,6 +254,7 @@
         android:id="@+id/antBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="0dp"
+        android:layout_marginTop="6dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="140dp"
         android:elevation="10dp"
@@ -256,42 +262,52 @@
         app:layout_constraintStart_toStartOf="@+id/ant"
         app:layout_constraintTop_toBottomOf="@+id/ant" />
 
-    <Button
+    <TextView
         android:id="@+id/ineUpload"
-        android:layout_width="0dp"
+        style="@style/StyledBackButton"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue_4_btn"
-        android:drawableTint="@color/white"
+        android:layout_marginTop="10dp"
         android:onClick="uploadIne"
-        android:text="@string/upload"
+        android:text="Subir"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/ine"
         app:layout_constraintStart_toStartOf="@+id/ine"
         app:layout_constraintTop_toBottomOf="@+id/ine"
-        tools:ignore="TouchTargetSizeCheck"
+        tools:ignore="TouchTargetSizeCheck" />
 
-        />
-
-    <Button
+    <TextView
         android:id="@+id/domUpload"
-        android:layout_width="0dp"
+        style="@style/StyledBackButton"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue_4_btn"
-        android:drawableTint="@color/white"
+        android:layout_marginTop="10dp"
         android:onClick="uploadDom"
-        android:text="@string/upload"
+        android:text="Subir"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/dom"
         app:layout_constraintStart_toStartOf="@+id/dom"
         app:layout_constraintTop_toBottomOf="@+id/dom"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <Button
+    <TextView
         android:id="@+id/antUpload"
-        android:layout_width="0dp"
+        style="@style/StyledBackButton"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue_4_btn"
-        android:drawableTint="@color/white"
+        android:layout_marginTop="10dp"
         android:onClick="uploadAnt"
-        android:text="@string/upload"
+        android:text="Subir"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/ant"
         app:layout_constraintStart_toStartOf="@+id/ant"
         app:layout_constraintTop_toBottomOf="@+id/ant"
