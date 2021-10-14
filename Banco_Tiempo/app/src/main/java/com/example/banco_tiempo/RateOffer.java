@@ -119,7 +119,7 @@ public class RateOffer extends Fragment {
             public void onResponse(Call<UserAcceptedServicesResponse> call, Response<UserAcceptedServicesResponse> response) {
                 if (response.isSuccessful()) {
                     UserAcceptedServicesResponse userAcceptedServicesResponse = response.body();
-
+                    
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
