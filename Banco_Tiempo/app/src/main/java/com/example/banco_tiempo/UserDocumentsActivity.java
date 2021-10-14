@@ -47,7 +47,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     TextView inePath, domPath, antPath;
     ImageView ine, dom, ant;
-    Button bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload, bCert;
+    TextView bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload, bCert;
     String sIne, sDom, sAnt;
 
     ProgressBar ineBar, domBar, antBar;
@@ -106,7 +106,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     }
 
-    private void changeBtn(Button b, TextView t) {
+    private void changeBtn(TextView b, TextView t) {
         b.setText("Documento cargado");
         b.setBackgroundColor(getColor(R.color.green));
         b.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.username, 0);
@@ -114,7 +114,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         t.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_upload_black_24, 0);
     }
 
-    private void uploadEffect(ProgressBar bar, Button b){
+    private void uploadEffect(ProgressBar bar, TextView b){
         bar.setVisibility(View.VISIBLE);
         b.setBackgroundColor(getColor(R.color.white));
         b.setTextColor(Color.parseColor("#36CBF9"));
