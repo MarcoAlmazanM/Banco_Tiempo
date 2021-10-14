@@ -94,12 +94,6 @@ public class NotificationFragment extends Fragment {
 
         listaNotificacion = new ArrayList<>();
 
-        /*bAcept = (Button)vista.findViewById(R.id.bAcept);
-        bReject = (Button)vista.findViewById(R.id.bReject);
-
-         */
-        //clickBtnCreateOffer(btnCreaOffer);
-
 
         return vista;
     }
@@ -107,25 +101,24 @@ public class NotificationFragment extends Fragment {
     private void llenarLista() {
 
         for (int i = 0; i < notifications.size(); i++){
-            String nombre = notifications.get(i).getIdEmisor();
-            String descripcion = notifications.get(i).getIdReceptor();
-            String categoria = notifications.get(i).getTipo();
+            Integer idNot = notifications.get(i).getIdNot();
+            String idEmisor = notifications.get(i).getIdEmisor();
+            String idReceptor = notifications.get(i).getIdReceptor();
+            Integer idServicio = notifications.get(i).getIdServicio();
+            String tipo = notifications.get(i).getTipo();
+            String nombre = notifications.get(i).getNombre();
+            String descripcion = notifications.get(i).getDescripcion();
 
-            NotificationList oferta = new NotificationList(categoria, nombre, descripcion);
+            NotificationList oferta = new NotificationList(idNot, idEmisor, idReceptor, idServicio, tipo,nombre,descripcion);
             listaNotificacion.add(oferta);
         }
-        
-        /*NotificationList oferta = new NotificationList("Test", "test", "test");
-        NotificationList oferta2 = new NotificationList("Test2", "test2","test2");
-        listaNotificacion.add(oferta);
-        listaNotificacion.add(oferta2);
-         */
+
 
         notificacion = (RecyclerView) vista.findViewById(R.id.listaNotificacion);
 
         notificacion.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        NotificationAdapter myadapter = new NotificationAdapter(listaNotificacion);
+        NotificationAdapter myadapter = new NotificationAdapter(listaNotificacion, getContext());
 
         notificacion.setAdapter(myadapter);
     }
@@ -159,16 +152,4 @@ public class NotificationFragment extends Fragment {
         });
     }
 
-
-
-    /*public void clickBtnCreateOffer(Button btnCreateOffer){
-        btnCreateOffer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent creaOferta = new Intent(getActivity().getApplicationContext(), CreateOffer.class);
-                getActivity().startActivity(creaOferta);
-
-            }
-        });
-    }*/
 }

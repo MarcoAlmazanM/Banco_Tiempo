@@ -1,95 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="0dp">
+    style="@style/parent.contentLayout">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
+            android:id="@+id/rLlayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/home_gradients"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="20dp">
-
-            <ImageView
-                android:id="@+id/iVUserPhoto"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/baseline_account_circle_black_48" />
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/home_gradient_admin">
 
             <TextView
                 android:id="@+id/tVJob"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif"
-                android:text="Empleo"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                style="@style/viewParent.headerText.HomeCardTitle"
+                android:text="Mi oferta" />
 
             <TextView
                 android:id="@+id/tVDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="10dp"
-                android:text="Descripción"
-                android:textAlignment="textStart"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tVJob"
-                app:layout_constraintTop_toBottomOf="@+id/tVJob"
-                app:layout_constraintVertical_bias="1.0" />
-            <!--app:layout_constraintBottom_toTopOf="@+id/btnEditOffer"-->
-            <!--
-            <Button
-                android:id="@+id/btnEditOffer"
-                android:layout_width="110dp"
-                android:layout_height="51dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginBottom="14dp"
-                android:backgroundTint="@color/black"
-                android:text="Editar"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                app:icon="@drawable/baseline_edit_black_20"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-                -->
+                style="@style/viewParent.headerText.homeCardContent"
+                android:layout_width="200dp"
+                android:scrollHorizontally="false"
+                android:layout_below="@+id/tVJob"
+                android:text="Descripción de mi oferta" />
 
-            <ImageView
-                android:id="@+id/btnDelOffer"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/baseline_close_black_48" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true">
+
+                <ImageView
+                    android:id="@+id/iVUserPhoto"
+                    style="@style/homeCardImage"
+                    android:layout_height="100dp"
+                    android:layout_toLeftOf="@+id/btnDelOffer"
+                    app:srcCompat="@drawable/baseline_account_circle_black_48" />
+
+
+                <ImageView
+                    android:id="@+id/btnDelOffer"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/baseline_close_black_48" />
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

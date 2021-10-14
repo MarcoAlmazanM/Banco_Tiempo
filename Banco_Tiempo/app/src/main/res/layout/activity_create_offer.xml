@@ -1,173 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/user_new_offer"
-    tools:context=".CreateOffer"
-    android:background="@drawable/blue_abstract_background_straight_line_design_adobe_illustrator">
+    tools:context=".CreateOffer">
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <include
             layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/tVImageN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="293dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="417dp"
-        android:clickable="false"
-        android:minHeight="48dp"
-        android:text=""
-        android:textAlignment="center"
-        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/iVPhoto1"
-        android:layout_width="wrap_content"
-        android:layout_height="196dp"
-        android:layout_alignStart="@+id/tVImageN"
-        android:layout_alignEnd="@+id/tVImageN"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginEnd="-2dp"
-        android:layout_marginBottom="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:onClick="pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:srcCompat="@drawable/img_predeterminada" />
 
-    <Button
+    <TextView
         android:id="@+id/btnAddImage"
-        android:layout_width="wrap_content"
+        style="@style/StyledBackButton"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/iVPhoto1"
-        android:layout_alignTop="@+id/iVPhoto1"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="144dp"
-        android:backgroundTint="@color/blue_4_btn"
         android:drawableLeft="@drawable/baseline_add_black_24"
         android:drawableTint="@color/white"
+        android:gravity="center"
         android:onClick="pick"
-        android:text="Imagen" />
-
-    <EditText
-        android:id="@+id/tVDescription"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/tVImageN"
-        android:layout_alignStart="@+id/tVImageN"
-        android:layout_alignEnd="@+id/tVImageN"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="-290dp"
-        android:layout_marginEnd="0dp"
-        android:gravity="top"
-        android:hint="Descripción"
-        android:inputType="text|textMultiLine"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/btnUploadOffer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tVDescription"
-        android:layout_alignStart="@+id/tVDescription"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="72dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:onClick="addNewOffer"
-        android:text="Añadir" />
-
-    <Button
-        android:id="@+id/certi"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_below="@+id/tVDescription"
-        android:layout_alignStart="@+id/tVDescription"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="9dp"
-        android:backgroundTint="@color/blue_4_btn"
-        android:drawableLeft="@drawable/baseline_add_black_24"
-        android:drawableTint="@color/white"
-        android:onClick="clickBtnCert"
-        android:text="Certificado de Apoyo"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textSize="16sp" />
-
-    <ImageView
-        android:id="@+id/certiView"
-        android:layout_width="86dp"
-        android:layout_height="50dp"
-        android:layout_alignStart="@+id/tVDescription"
-        android:layout_alignTop="@+id/tVDescription"
-        android:layout_marginStart="271dp"
-        android:layout_marginTop="160dp"
-        app:srcCompat="@drawable/baseline_upload_black_24" />
+        android:text="Imagen"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iVPhoto1"
+        app:layout_constraintEnd_toEndOf="@+id/iVPhoto1" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/parent"
+        android:layout_margin="@dimen/loginViewsMargin"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/iVPhoto1"
+        app:layout_constraintStart_toStartOf="@+id/iVPhoto1"
+        app:layout_constraintTop_toBottomOf="@+id/iVPhoto1">
+
+        <EditText
+            android:id="@+id/tVAutoComplete2"
+            style="@style/modifiedEditText"
+            android:backgroundTint="@color/darker_gray"
+            android:hint="Título de Oferta"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tVDescription"
-        android:layout_alignTop="@+id/tVDescription"
-        android:layout_alignEnd="@+id/tVDescription"
-        android:layout_alignBottom="@+id/tVDescription"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="-120dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="215dp"
-        android:hint="Categoría">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Categoría"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <AutoCompleteTextView
             android:id="@+id/tVAutoComplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/darker_gray"
             android:inputType="none"></AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tVDescription"
-        android:layout_alignTop="@+id/tVDescription"
-        android:layout_alignEnd="@+id/tVDescription"
-        android:layout_alignBottom="@+id/tVDescription"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="-60dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="160dp"
-        android:hint="   Título de Oferta">
 
-        <AutoCompleteTextView
-            android:id="@+id/tVAutoComplete2"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        style="@style/parent"
+        android:layout_margin="@dimen/loginViewsMargin"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+
+        <EditText
+            android:id="@+id/tVDescription"
+            style="@style/parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:textSize="16sp"
-            tools:ignore="TouchTargetSizeCheck"></AutoCompleteTextView>
+            android:layout_height="100dp"
+            android:backgroundTint="@color/darker_gray"
+            android:hint="Descripción"
+            android:gravity="top"
+            android:inputType="text|textMultiLine"
+            tools:ignore="SpeakableTextPresentCheck" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/certi"
+        style="@style/StyledBackButton"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/baseline_add_black_24"
+        android:drawableTint="@color/white"
+        android:gravity="center"
+        android:onClick="clickBtnCert"
+        android:text="Certificado de Apoyo"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+
+    <ImageView
+        android:id="@+id/certiView"
+        android:layout_width="86dp"
+        android:layout_height="50dp"
+        android:onClick="clickBtnCert"
+        app:layout_constraintBottom_toBottomOf="@+id/certi"
+        app:layout_constraintStart_toEndOf="@+id/certi"
+        app:srcCompat="@drawable/baseline_upload_black_24" />
+
+
+    <TextView
+        android:id="@+id/btnUploadOffer"
+        style="@style/StyledBackButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="30dp"
+        android:onClick="addNewOffer"
+        android:text="Añadir"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/certi"
+        app:layout_constraintTop_toBottomOf="@+id/certi" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

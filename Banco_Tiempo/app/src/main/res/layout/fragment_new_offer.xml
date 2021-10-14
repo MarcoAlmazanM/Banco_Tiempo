@@ -11,23 +11,32 @@
         android:id="@+id/rVNewOffer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <TextView
         android:id="@+id/btnNOffer"
-        android:layout_width="wrap_content"
+        style="@style/StyledBackButton"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="144dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/black"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="10dp"
         android:drawableLeft="@drawable/baseline_add_black_24"
         android:drawableTint="@color/white"
+        android:gravity="center"
         android:text="Oferta"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/rVNewOffer" />
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:shadowColor="#000"
+        android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/rVNewOffer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

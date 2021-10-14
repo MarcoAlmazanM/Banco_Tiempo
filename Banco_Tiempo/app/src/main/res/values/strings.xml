@@ -70,6 +70,10 @@
 
     //Notification_card
     <string name="botonRechazar" translatable="false">Rechazar</string>
+    <string name="statusNotificacion" translatable="false">status</string>
+    <string name="descripcior" translatable="false">Descripcion</string>
+    <string name="contactar" translatable="false">contactar</string>
+    <string name="cancelar" translatable="false">cancelar</string>
 
     //DetallesOfertas
     <string name="calEstrellas" translatable="false">4.7(13)</string>

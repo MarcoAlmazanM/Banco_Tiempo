@@ -94,9 +94,14 @@
 
         <TextView
             android:id="@+id/btnUserDocuments"
-            style="@style/profileStyledBackButton1"
+            style="@style/StyledBackButton"
             android:text="@string/documentosUsuario"
-            android:drawableEnd="@drawable/baseline_description_black_20"/>
+            android:drawableEnd="@drawable/baseline_description_black_20"
+            android:shadowColor="#000"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="0.5"
+            android:textColor="@color/white"/>
         </RelativeLayout>
 
         <View style="@style/proifleDetailsView" />
