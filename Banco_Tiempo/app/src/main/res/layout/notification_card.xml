@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="0dp">
 
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/jobCards"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/notificationCards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:backgroundTint="@color/themeColor"
+        app:cardBackgroundColor="@color/themeColor"
+
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
@@ -30,6 +36,7 @@
                 android:id="@+id/bAcept"
                 android:layout_width="119dp"
                 android:layout_height="52dp"
+                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/blue_4_btn"
                 android:text="@string/botonAceptar"
                 app:layout_constraintEnd_toStartOf="@+id/badge"
@@ -37,8 +44,9 @@
 
             <ImageView
                 android:id="@+id/badge"
-                android:layout_width="107dp"
-                android:layout_height="84dp"
+                android:layout_width="106dp"
+                android:layout_height="94dp"
+                android:layout_marginEnd="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -48,8 +56,8 @@
                 android:id="@+id/bReject"
                 android:layout_width="0dp"
                 android:layout_height="52dp"
-                android:text="@string/botonRechazar"
                 android:backgroundTint="@color/cardColorRed"
+                android:text="@string/botonRechazar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/badge"
                 app:layout_constraintStart_toStartOf="@+id/bAcept"
@@ -59,13 +67,63 @@
                 android:id="@+id/userJob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Trabajo"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/bReject"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bReject" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:text="@string/statusNotificacion"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/bAcept"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bAcept" />
+
+            <TextView
+                android:id="@+id/descripcion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:text="@string/descTrabajo"
+                app:layout_constraintBottom_toTopOf="@+id/userJob"
+                app:layout_constraintEnd_toStartOf="@+id/bAcept"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/status"
+                app:layout_constraintTop_toBottomOf="@+id/status"
+                app:layout_constraintVertical_bias="0.51" />
+
+            <Button
+                android:id="@+id/bTerminate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cancelar"
+                android:backgroundTint="@color/cardColorYellow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/badge"
+                app:layout_constraintHorizontal_bias="0.201"
+                app:layout_constraintStart_toStartOf="@+id/bContact"
+                app:layout_constraintTop_toBottomOf="@+id/bContact" />
+
+            <Button
+                android:id="@+id/bContact"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="@string/contactar"
+                android:backgroundTint="@color/cardColorViolet"
+                app:layout_constraintEnd_toStartOf="@+id/badge"
                 app:layout_constraintTop_toTopOf="@+id/bAcept" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

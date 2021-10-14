@@ -114,7 +114,7 @@ public class NotificationFragment extends Fragment {
             NotificationList oferta = new NotificationList(categoria, nombre, descripcion);
             listaNotificacion.add(oferta);
         }
-        
+
         /*NotificationList oferta = new NotificationList("Test", "test", "test");
         NotificationList oferta2 = new NotificationList("Test2", "test2","test2");
         listaNotificacion.add(oferta);
@@ -125,7 +125,7 @@ public class NotificationFragment extends Fragment {
 
         notificacion.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        NotificationAdapter myadapter = new NotificationAdapter(listaNotificacion);
+        NotificationAdapter myadapter = new NotificationAdapter(listaNotificacion, getContext());
 
         notificacion.setAdapter(myadapter);
     }

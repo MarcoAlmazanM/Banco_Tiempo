@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_settings:
                 ft.replace(R.id.content, new SettingsFragment());
+
                 break;
 
         }

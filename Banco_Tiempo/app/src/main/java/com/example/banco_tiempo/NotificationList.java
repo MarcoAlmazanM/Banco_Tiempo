@@ -23,4 +23,5 @@ public class NotificationList {
 
     public void setCate(String cate) {this.categoria = cate;}
 
+
 }
