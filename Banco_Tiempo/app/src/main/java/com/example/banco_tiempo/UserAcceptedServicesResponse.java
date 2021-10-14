@@ -6,5 +6,5 @@ public class UserAcceptedServicesResponse {
     private Integer idServicio;
     private String categoria;
     private String descripcion;
-    private String nom
+    private String nombre;
 }
