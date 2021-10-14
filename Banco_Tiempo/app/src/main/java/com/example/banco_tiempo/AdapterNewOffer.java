@@ -30,7 +30,7 @@ public class AdapterNewOffer
     Context context;
     private View.OnClickListener listener;
     ArrayList<OfferVO> listaOffer;
-    ArrayList<Drawable> gradients;
+    ArrayList<Drawable> gradients = new ArrayList<>();
     Integer counter = 0;
 
     public AdapterNewOffer(ArrayList<OfferVO> listaOffer){
@@ -58,7 +58,6 @@ public class AdapterNewOffer
         }
 
         holder.relativeLayout.setBackground(gradients.get(counter));
-
         counter++;
     }
 
@@ -95,13 +94,11 @@ public class AdapterNewOffer
             gradients.add(drawable);
             drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_compu, null);
             gradients.add(drawable);
-            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_mate, null);
             gradients.add(drawable);
-            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_actua, null);
             gradients.add(drawable);
-            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
-            gradients.add(drawable);
-            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_artes, null);
             gradients.add(drawable);
             drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
             gradients.add(drawable);

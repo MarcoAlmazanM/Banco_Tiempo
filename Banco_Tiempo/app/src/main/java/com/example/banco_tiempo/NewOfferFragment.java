@@ -146,6 +146,24 @@ public class NewOfferFragment extends Fragment {
         OfferVO element = new OfferVO("changos", "changos2", "https://bancodetiempo.s3.amazonaws.com/perfil/Marco_perfil.jpg", "Comida");
         listOffer.add(element);
         listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+        listOffer.add(element);
+
+
 
         recyclerOfertas = (RecyclerView) vista.findViewById(R.id.rVNewOffer);
 
