@@ -1,10 +1,12 @@
 package com.example.banco_tiempo;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 //import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import com.squareup.picasso.Transformation;
  */
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
@@ -65,24 +68,34 @@ public class NotificationAdapter
             listener.onClick(view);
         }
     }
+    private void test(){
+
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView trabajo;
+        Button btnA, btnR;
         //ImageView myImage;
         private NotificationAdapter adapter;
 
         public MyViewHolder (@NonNull View itemView){
             super(itemView);
             trabajo = itemView.findViewById(R.id.userJob);
+
+            btnA = itemView.findViewById(R.id.bAcept);
+            btnR = itemView.findViewById(R.id.bReject);
             //myImage = itemView.findViewById(R.id.iVUserPhoto);
             itemView.findViewById(R.id.bAcept).setOnClickListener(view-> {
-                adapter.notificationList.remove(getAdapterPosition());
+                //adapter.notificationList.remove(getAdapterPosition());
                 //adapter.notifyItemRemoved(getAdapterPosition());
+                //Log.e("aceptado",);
+                btnA.setText("JalaA");
             });
 
             itemView.findViewById(R.id.bReject).setOnClickListener(view-> {
-                adapter.notificationList.remove(getAdapterPosition());
+                //Log.e("rechazado",);
+                btnR.setText("JalaB");
             });
         }
 

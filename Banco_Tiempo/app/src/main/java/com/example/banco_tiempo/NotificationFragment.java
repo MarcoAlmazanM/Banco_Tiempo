@@ -96,7 +96,7 @@ public class NotificationFragment extends Fragment {
 
         /*bAcept = (Button)vista.findViewById(R.id.bAcept);
         bReject = (Button)vista.findViewById(R.id.bReject);
-        
+
          */
         //clickBtnCreateOffer(btnCreaOffer);
 
@@ -106,18 +106,20 @@ public class NotificationFragment extends Fragment {
 
     private void llenarLista() {
 
-        /*for (int i = 0; i < offersD.size(); i++){
+        for (int i = 0; i < offersD.size(); i++){
             String nombre = offersD.get(i).getNombre();
             String descripcion = offersD.get(i).getDescripcion();
             String categoria = offersD.get(i).getCategoria();
 
-            NotificationList oferta = new NotificationList(categoria);
+            NotificationList oferta = new NotificationList(categoria, nombre, descripcion);
             listaNotificacion.add(oferta);
         }
-
+        
+        /*NotificationList oferta = new NotificationList("Test", "test", "test");
+        NotificationList oferta2 = new NotificationList("Test2", "test2","test2");
+        listaNotificacion.add(oferta);
+        listaNotificacion.add(oferta2);
          */
-
-        NotificationList oferta = new NotificationList("Test", " ", " "," ");
 
         notificacion = (RecyclerView) vista.findViewById(R.id.listaNotificacion);
 

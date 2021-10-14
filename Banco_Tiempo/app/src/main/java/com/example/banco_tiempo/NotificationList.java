@@ -4,12 +4,10 @@ public class NotificationList {
     private String trabajo;
     private String info;
     private String categoria;
-    private String imagen;
 
-    public NotificationList(String trabajo, String info, String imagen, String categoria){
+    public NotificationList(String trabajo, String info, String categoria){
         this.trabajo = trabajo;
         this.info = info;
-        this.imagen = imagen;
         this.categoria = categoria;
     }
 
@@ -20,10 +18,6 @@ public class NotificationList {
     public String getInfo() {return info;}
 
     public void setInfo(String info) {this.info = info;}
-
-    public String getImagen() {return imagen;}
-
-    public void setImagen(String imagen) {this.imagen = imagen;}
 
     public String getCate() {return categoria;}
 
