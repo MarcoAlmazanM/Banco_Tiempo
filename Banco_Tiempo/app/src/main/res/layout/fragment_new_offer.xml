@@ -31,6 +31,10 @@
         android:text="Oferta"
         android:textColor="@color/white"
         android:textSize="13sp"
+        android:shadowColor="#000"
+        android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="0.5"
         app:layout_constraintBottom_toTopOf="@+id/rVNewOffer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
