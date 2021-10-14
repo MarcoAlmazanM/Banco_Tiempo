@@ -7,7 +7,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +17,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,9 +36,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     View headerView;
     TextView nameTextView;
-    ImageView userProfileImage;
-
     ActionBarDrawerToggle toggle;
+    ImageView userProfileImage;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -84,13 +83,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentInicio()).commit();
         setTitle("Inicio");
         // Setup Toolbar
+
         setSupportActionBar(toolbar);
 
-
-
         toggle = setUpDrawerToggle();
-        mDrawerLayout.addDrawerListener(toggle);
 
+        toggle.setDrawerIndicatorEnabled(false);
+        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        toggle.setHomeAsUpIndicator(R.drawable.burger_icon);
+
+        mDrawerLayout.addDrawerListener(toggle);
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -105,8 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mDrawerLayout.closeDrawers();
             }
         });
-
-
     }
 
     public void imageIntent(){
