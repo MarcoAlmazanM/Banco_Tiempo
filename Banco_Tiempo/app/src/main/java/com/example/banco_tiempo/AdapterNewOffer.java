@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -67,6 +68,7 @@ public class AdapterNewOffer
 
         TextView myText1, myText2;
         ImageView myImage;
+        Button btnAccept;
         private AdapterNewOffer adapter;
 
         public MyViewHolder (@NonNull View itemView){

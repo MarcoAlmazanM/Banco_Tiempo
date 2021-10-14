@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import retrofit2.Response;
 
 //implements SearchView.OnQueryTextListener
 public class ListOffersActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+
     ConstraintLayout listOffersLayout;
     Toolbar toolbar;
 
@@ -54,7 +56,6 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         toolbar = findViewById(R.id.toolbar);
         setTitle("Listado de Ofertas");
         setSupportActionBar(toolbar);
-
 
         chartView = findViewById(R.id.pVprogressPie);
 
@@ -100,7 +101,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
                 if (response.isSuccessful()) {
                     OffersResponse offersResponse = response.body();
                     offersD = new ArrayList<>(Arrays.asList(offersResponse.getOfertas()));
-                    //Log.e("lol", Arrays.deepToString(offersD.toArray()));
+
                     init();
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
