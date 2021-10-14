@@ -197,6 +197,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 byte[] byteArray = outputStream.toByteArray();
                                 //Encode Base 64 Image
                                 sImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                                Log.e("TAG","hola");
 
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -208,6 +209,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void userInfo(Integer codigo){
+        profileImage = findViewById(R.id.iVProfPic);
         tNombre = findViewById(R.id.textInputName);
         tAM = findViewById(R.id.textInputAM);
         tAP = findViewById(R.id.textInputAP);

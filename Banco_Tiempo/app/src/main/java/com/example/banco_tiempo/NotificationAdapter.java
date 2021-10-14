@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -35,13 +36,16 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolderNotifications> {
-            //implements View.OnClickListener
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolderNotifications> implements View.OnClickListener {
 
     Context context;
     private View.OnClickListener listener;
     ArrayList<NotificationList> notificationList;
+    String message;
 
     public NotificationAdapter(ArrayList<NotificationList> notificationList, Context context){
         this.notificationList = notificationList;
@@ -52,7 +56,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public ViewHolderNotifications onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_card, parent, false);
-        //view.setOnClickListener(this);
+        view.setOnClickListener(this);
         return new ViewHolderNotifications(view).linkAdapter(this);
     }
 
@@ -80,23 +84,19 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public int getItemCount() {return notificationList.size();}
 
-    /*public void setOnClickListener(View.OnClickListener listener){
+    public void setOnClickListener(View.OnClickListener listener){
         this.listener = listener;
     }
 
-     */
 
-    /*@Override
+
+    @Override
     public void onClick(View view) {
         if (listener != null){
             listener.onClick(view);
         }
     }
 
-     */
-    private void test(){
-
-    }
 
     public class ViewHolderNotifications extends RecyclerView.ViewHolder{
 
@@ -129,7 +129,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             itemView.findViewById(R.id.bAcept).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    btnA.setText("JalaA");
+                    setUserOfferAccept(getAdapterPosition());
+                    //btnA.setText("JalaA");
                     //cardType.setCardBackgroundColor(Color.RED);
                     //btnA.setTextColor(Color.RED);
 
@@ -144,6 +145,19 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 }
             });
 
+            /*itemView.findViewById(R.id.bTerminate).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    btnR.setText("JalaR");
+                }
+            });*/
+
+            /*itemView.findViewById(R.id.bContact).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    btnR.setText("JalaR");
+                }
+            });*/
 
             /*itemView.findViewById(R.id.bAcept).setOnClickListener(view-> {
                 //adapter.notificationList.remove(getAdapterPosition());
@@ -164,6 +178,47 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
              */
 
         }
+        public void setUserOfferAccept(int position){
+            UserRequestOffer userRequestOffer = new UserRequestOffer();
+            userRequestOffer.setIdNot(notificationList.get(position).getIdNot());
+            userRequestOffer.setIdReceptor(notificationList.get(position).getIdReceptor());
+            userRequestOffer.setIdEmisor(notificationList.get(position).getIdEmisor());
+            userRequestOffer.setType("ACCEPTED");
+            userRequestOffer.setIdServicio(notificationList.get(position).getIdServicio());
+            getUserRequestOffer(userRequestOffer);
+        }
+
+        public void getUserRequestOffer(UserRequestOffer userRequestOffer){
+            Call<UserRequestOfferResponse> userRequestOfferResponseCall = ApiClient.getService().getUserRequestOffer(userRequestOffer);
+            userRequestOfferResponseCall.enqueue(new Callback<UserRequestOfferResponse>() {
+                @Override
+                public void onResponse(Call<UserRequestOfferResponse> call, Response<UserRequestOfferResponse> response) {
+                    if (response.isSuccessful()) {
+                        UserRequestOfferResponse userRequestOfferResponse = response.body();
+                        try{
+                            if(userRequestOfferResponse.getTransactionApproval() == 1){
+                                Log.e("GOD IS HERE", "Entramos perros");
+                            }else{
+                                Log.e("GOD IS NOT HERE", "No Entramos perros");
+                            }
+                        }catch (NullPointerException nullPointerException){
+                            Log.e("GOD IS NOT HERE", "ERROOOOR");
+                        }
+
+                    } else {
+                        message = "Ocurrió un error, favor de intentar más tarde";
+                        Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UserRequestOfferResponse> call, Throwable t) {
+                    message = t.getLocalizedMessage();
+                    Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
         private void dinChange(Button a, Button r, Button t, Button c,TextView m, int op){
             switch (op){
                 case 1:
