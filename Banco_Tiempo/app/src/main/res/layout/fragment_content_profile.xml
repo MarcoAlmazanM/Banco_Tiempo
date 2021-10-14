@@ -20,8 +20,10 @@
             android:text="Información de la cuenta"
             android:layout_marginBottom="20dp"/>
 
-        <RelativeLayout style="@style/profileDetailsLayout">
+        <RelativeLayout style="@style/profileDetailsLayout"
+            android:layout_marginBottom="10dp">
             <ImageView
+                android:layout_marginStart="20dp"
                 android:id="@+id/nameImageView"
                 android:src="@drawable/name1"
                 style="@style/profileDetailsImage" />
@@ -36,13 +38,15 @@
                 android:id="@+id/tVnameP"
                 android:text="@string/nameProf"
                 android:layout_toRightOf="@id/nameImageView"
-                style="@style/profileDetailsMiniText" />
+                style="@style/profileDetailsMiniText"/>
 
         </RelativeLayout>
 
         <View style="@style/proifleDetailsView" />
-        <RelativeLayout style="@style/profileDetailsLayout">
+        <RelativeLayout style="@style/profileDetailsLayout"
+            android:layout_marginBottom="10dp">
             <ImageView
+                android:layout_marginStart="20dp"
                 android:id="@+id/mobileImageView"
                 android:src="@drawable/username"
                 style="@style/profileDetailsImage" />
@@ -61,8 +65,10 @@
         </RelativeLayout>
 
         <View style="@style/proifleDetailsView" />
-        <RelativeLayout style="@style/profileDetailsLayout">
+        <RelativeLayout style="@style/profileDetailsLayout"
+            android:layout_marginBottom="10dp">
             <ImageView
+                android:layout_marginStart="20dp"
                 android:id="@+id/emailImageView"
                 android:src="@drawable/email"
                 style="@style/profileDetailsImage" />
