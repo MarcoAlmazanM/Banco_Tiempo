@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Always Display Inicio UI
         getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentInicio()).commit();
         setTitle("Inicio");
-
         // Setup Toolbar
         setSupportActionBar(toolbar);
+
 
 
         toggle = setUpDrawerToggle();
@@ -99,8 +99,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content, new ProfileFragment()).commit();
+                ft.replace(R.id.content, new ProfileFragment());
                 ft.addToBackStack(null);
+                ft.commit();
                 mDrawerLayout.closeDrawers();
             }
         });
@@ -148,6 +149,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            while (count > 0) {
+                getSupportFragmentManager().popBackStack();
+                count = count - 1;
+            }
+            setTitle("Inicio");
+        }
+
+    }
+
 
     private void selectItemNav(MenuItem item) {
         FragmentManager fm = getSupportFragmentManager();
@@ -155,22 +174,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch(item.getItemId()){
             case R.id.nav_home:
                 ft.replace(R.id.content, new FragmentInicio());
-                ft.addToBackStack(null);
                 break;
             case R.id.nav_profile:
                 ft.replace(R.id.content, new ProfileFragment());
-                ft.addToBackStack(null);
                 break;
             case R.id.nav_newOffer:
                 ft.replace(R.id.content, new NewOfferFragment());
-                ft.addToBackStack(null);
+
                 break;
             case R.id.nav_settings:
                 ft.replace(R.id.content, new SettingsFragment());
-                ft.addToBackStack(null);
+
                 break;
 
         }
+        ft.addToBackStack(null);
         ft.commit();
         setTitle(item.getTitle());
         mDrawerLayout.closeDrawers();

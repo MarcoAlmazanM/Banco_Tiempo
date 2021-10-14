@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import retrofit2.Response;
 
 //implements SearchView.OnQueryTextListener
 public class ListOffersActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+
     ConstraintLayout listOffersLayout;
     Toolbar toolbar;
 
@@ -45,6 +47,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
     String categoria;
     String colonia;
     String message;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,6 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         setTitle("Listado de Ofertas");
         setSupportActionBar(toolbar);
 
-
         chartView = findViewById(R.id.pVprogressPie);
 
         ofertas = new ArrayList<>();
@@ -62,27 +64,20 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         editor = preferences.edit();
         categoria = preferences.getString("categoria","NULL");
         colonia = preferences.getString("colonia", "NULL");
+        username = preferences.getString("username","NULL");
 
         uploadEffect(chartView);
-        //setOffersValues();
+
 
 
         initViews();
         initListener();
 
-        //searchList.setOnQueryTextListener(this);
     }
 
     private void uploadEffect(PercentageChartView chartView){
         chartView.setVisibility(View.VISIBLE);
         chartView.setProgress(100, true);
-        /*final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                chartView.setProgress(100, true);
-            }
-        }, 9000);*/
         setOffersValues();
     }
 
@@ -94,6 +89,7 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
         OffersRequest offersRequest = new OffersRequest();
         offersRequest.setCategoria(categoria);
         offersRequest.setColonia(colonia);
+        offersRequest.setUsername(username);
         getOffers(offersRequest);
     }
 

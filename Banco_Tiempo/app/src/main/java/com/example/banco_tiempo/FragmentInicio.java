@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -27,6 +28,8 @@ public class FragmentInicio extends Fragment {
     CardView cardViewVent;
     CardView cardViewMant;
     CardView cardViewTran;
+
+
 
     CardView cardViewComida;
     CardView cardViewMateriales, cardViewAgri, cardViewPer, cardViewConst, cardViewEdu, cardViewInge, cardViewCompu;

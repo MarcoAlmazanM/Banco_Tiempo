@@ -4,13 +4,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
+
 import java.util.ArrayList;
+
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class AdapterNewOffer
         extends RecyclerView.Adapter<AdapterNewOffer.MyViewHolder>
@@ -36,7 +44,10 @@ public class AdapterNewOffer
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.myText1.setText(listaOffer.get(position).getTrabajo());
         holder.myText2.setText(listaOffer.get(position).getInfo());
-        holder.myImage.setImageResource(listaOffer.get(position).getImagen());
+        Transformation transformation = new RoundedCornersTransformation(100,5);
+        Picasso.get().invalidate(listaOffer.get(position).getImagen());
+        Picasso.get().load(listaOffer.get(position).getImagen()).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.myImage);
+
     }
 
     @Override
@@ -57,6 +68,7 @@ public class AdapterNewOffer
 
         TextView myText1, myText2;
         ImageView myImage;
+        Button btnAccept;
         private AdapterNewOffer adapter;
 
         public MyViewHolder (@NonNull View itemView){
