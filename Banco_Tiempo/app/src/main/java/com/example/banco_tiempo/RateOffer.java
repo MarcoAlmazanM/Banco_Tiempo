@@ -5,10 +5,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -41,6 +45,9 @@ public class RateOffer extends Fragment {
     RatingBar bar;
     Button btnRateOffer;
     PercentageChartView chartView;
+    Button btnRateOffer, btnAttend;
+    private RadioGroup radioGroup;
+    private RadioButton rBYes, rBNo;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -99,6 +106,27 @@ public class RateOffer extends Fragment {
         bar = root.findViewById(R.id.rBCOferta);
         bar.setStepSize(1);
         btnRateOffer = root.findViewById(R.id.btnRateOffer);
+        radioGroup = (RadioGroup) root.findViewById(R.id.myRadioGroup);
+        rBNo = (RadioButton) root.findViewById(R.id.rBtnNo);
+        rBYes = (RadioButton) root.findViewById(R.id.rBtnSi);
+
+        rBNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bar.setIsIndicator(true);
+                bar.setRating(0);
+            }
+
+        });
+
+        rBYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bar.setIsIndicator(false);
+            }
+
+        });
+
 
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -115,7 +143,7 @@ public class RateOffer extends Fragment {
         return root;
     }
 
-    public void clickBtnRateOffer(Button btnRateOffer){
+    public void clickBtnRateOffer(Button btnRateOffer ){
         btnRateOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
