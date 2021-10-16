@@ -8,6 +8,7 @@ public class UserNotifications {
     private String tipo;
     private String nombre;
     private String descripcion;
+    private String error;
 
     public Integer getIdNot() {
         return idNot;
@@ -37,12 +38,17 @@ public class UserNotifications {
         return descripcion;
     }
 
-    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String nombre, String tipo) {
+    public String getError() {
+        return error;
+    }
+
+    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String nombre, String tipo, String error) {
         this.idNot = idNot;
         this.idEmisor = idEmisor;
         this.idReceptor = idReceptor;
         this.idServicio = idServicio;
         this.nombre = nombre;
         this.tipo = tipo;
+        this.error = error;
     }
 }
