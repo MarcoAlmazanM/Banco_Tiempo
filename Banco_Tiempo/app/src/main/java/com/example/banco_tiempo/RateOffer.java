@@ -5,10 +5,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,7 +37,9 @@ public class RateOffer extends Fragment {
     LinearLayout principal;
     RelativeLayout secondary;
     RatingBar bar;
-    Button btnRateOffer;
+    Button btnRateOffer, btnAttend;
+    private RadioGroup radioGroup;
+    private RadioButton rBYes, rBNo;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -93,6 +98,40 @@ public class RateOffer extends Fragment {
         bar = root.findViewById(R.id.rBCOferta);
         bar.setStepSize(1);
         btnRateOffer = root.findViewById(R.id.btnRateOffer);
+        radioGroup = (RadioGroup) root.findViewById(R.id.myRadioGroup);
+        rBNo = (RadioButton) root.findViewById(R.id.rBtnNo);
+        rBYes = (RadioButton) root.findViewById(R.id.rBtnSi);
+        /*
+        bar.setIsIndicator(true);
+
+        rBNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bar.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        return true;
+                    }
+                });
+                bar.setFocusable(false);
+            }
+
+        });
+
+        rBYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bar.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        return true;
+                    }
+                });
+                bar.setFocusable(true);
+            }
+
+        });
+        */
 
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -105,7 +144,7 @@ public class RateOffer extends Fragment {
         return root;
     }
 
-    public void clickBtnRateOffer(Button btnRateOffer){
+    public void clickBtnRateOffer(Button btnRateOffer ){
         btnRateOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

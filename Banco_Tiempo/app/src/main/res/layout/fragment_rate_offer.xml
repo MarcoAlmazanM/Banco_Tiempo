@@ -170,7 +170,8 @@
                 android:layout_gravity="center_horizontal"
                 android:theme="@style/RatingBar"
                 android:numStars="5"
-                android:stepSize="1"/>
+                android:stepSize="1"
+                android:isIndicator="true"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -181,6 +182,7 @@
                 style="@style/headerText"/>
 
             <RadioGroup
+                android:id="@+id/myRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
