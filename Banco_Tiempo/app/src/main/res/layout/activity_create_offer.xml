@@ -64,7 +64,6 @@
         <EditText
             android:id="@+id/tVAutoComplete2"
             style="@style/modifiedEditText"
-            android:backgroundTint="@color/darker_gray"
             android:hint="Título de Oferta"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -109,7 +108,6 @@
             style="@style/parent"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:backgroundTint="@color/darker_gray"
             android:hint="Descripción"
             android:gravity="top"
             android:inputType="text|textMultiLine"

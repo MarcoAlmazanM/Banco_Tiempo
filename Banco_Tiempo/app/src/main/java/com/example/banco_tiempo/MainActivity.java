@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.replace(R.id.content, new NotificationFragment());
                 break;
             case R.id.nav_rateOffer:
-                ft.replace(R.id.content, new rate_offer());
+                ft.replace(R.id.content, new RateOffer());
 
                 break;
             case R.id.nav_settings:
@@ -217,8 +217,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void closeSession(MenuItem item) {
         editor.putBoolean("SaveSession",false);
         editor.apply();
-        String message = "Closed Session";
-        Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+        String message = "Sesión cerrada con éxito";
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
         Intent login = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(login);
         finish();
