@@ -101,19 +101,12 @@ public class RateOffer extends Fragment {
         radioGroup = (RadioGroup) root.findViewById(R.id.myRadioGroup);
         rBNo = (RadioButton) root.findViewById(R.id.rBtnNo);
         rBYes = (RadioButton) root.findViewById(R.id.rBtnSi);
-        /*
-        bar.setIsIndicator(true);
 
         rBNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bar.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View view, MotionEvent motionEvent) {
-                        return true;
-                    }
-                });
-                bar.setFocusable(false);
+                bar.setIsIndicator(true);
+                bar.setRating(0);
             }
 
         });
@@ -121,17 +114,11 @@ public class RateOffer extends Fragment {
         rBYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bar.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View view, MotionEvent motionEvent) {
-                        return true;
-                    }
-                });
-                bar.setFocusable(true);
+                bar.setIsIndicator(false);
             }
 
         });
-        */
+
 
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();

@@ -170,8 +170,7 @@
                 android:layout_gravity="center_horizontal"
                 android:theme="@style/RatingBar"
                 android:numStars="5"
-                android:stepSize="1"
-                android:isIndicator="true"/>
+                android:stepSize="1" />
 
             <TextView
                 android:layout_width="match_parent"
