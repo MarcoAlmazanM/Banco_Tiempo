@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".RateOffer">
 
+    <com.ramijemli.percentagechartview.PercentageChartView
+        android:id="@+id/pVprogressPie2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        app:pcv_animDuration="800"
+        app:pcv_animInterpolator="anticipate_overshoot"
+        app:pcv_mode="pie"
+        app:pcv_orientation="counter_clockwise"
+        app:pcv_progress="10"
+        app:pcv_progressColor="@color/gradientLightOrange"
+        android:elevation="20dp"
+        app:pcv_startAngle="90" />
+
     <RelativeLayout
         android:id="@id/secondaryRateOfferLayout"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,16 +41,15 @@
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/principalRateOfferLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <LinearLayout
-            android:id="@+id/principalRateOfferLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="visible"
-            >
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/userJobImage"
@@ -71,8 +85,8 @@
 
                 <TextView
                     android:id="@+id/serviceGiven"
-                    android:layout_below="@id/nameTextView"
                     style="@style/wrapperforlongtitles"
+                    android:layout_below="@id/nameTextView"
                     android:layout_toRightOf="@id/idServicioOfer"
                     android:text="#00000" />
 
@@ -95,9 +109,9 @@
                     android:text="Nombre de Usuario:" />
 
                 <TextView
-                    android:id="@+id/textView"
-                    android:layout_below="@id/mobileText"
+                    android:id="@+id/userName2"
                     style="@style/wrapperforlongtitles"
+                    android:layout_below="@id/mobileText"
                     android:layout_toRightOf="@id/mobileImageView"
                     android:text="@string/usernameProf" />
 
@@ -121,8 +135,8 @@
 
                 <TextView
                     android:id="@+id/userTrabajo"
-                    android:layout_below="@+id/emailText"
                     style="@style/wrapperforlongtitles"
+                    android:layout_below="@+id/emailText"
                     android:layout_toRightOf="@id/emailImageView"
                     android:text="trabajo" />
 
@@ -146,8 +160,8 @@
 
                 <TextView
                     android:id="@+id/jobDescription"
-                    android:layout_below="@+id/tVDetOffer"
                     style="@style/wrapperforlongtitles"
+                    android:layout_below="@+id/tVDetOffer"
                     android:layout_toRightOf="@id/descView"
                     android:scrollHorizontally="false"
                     android:text="@string/descripcion" />
@@ -170,7 +184,7 @@
                 android:layout_gravity="center_horizontal"
                 android:theme="@style/RatingBar"
                 android:numStars="5"
-                android:stepSize="1"/>
+                android:stepSize="1" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -181,6 +195,7 @@
                 style="@style/headerText"/>
 
             <RadioGroup
+                android:id="@+id/myRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -229,7 +244,7 @@
                 android:id="@+id/secondaryRateOfferLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone">
+                android:visibility="invisible">
 
                 <TextView
                     android:layout_width="match_parent"

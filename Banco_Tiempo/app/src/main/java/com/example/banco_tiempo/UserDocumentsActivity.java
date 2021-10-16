@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -52,7 +54,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     ProgressBar ineBar, domBar, antBar;
 
-
+    Drawable drawable;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -97,6 +99,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         antBar=findViewById(R.id.antBar);
         antBar.setVisibility(View.GONE);
 
+        drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.aceptar_color, null);
 
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -108,7 +111,8 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     private void changeBtn(TextView b, TextView t) {
         b.setText("Documento cargado");
-        b.setBackgroundColor(getColor(R.color.green));
+        b.setBackground(drawable);
+        //b.setBackgroundColor(getColor(R.color.green));
         b.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.username, 0);
         t.setText("Carga exitosa");
         t.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_upload_black_24, 0);
@@ -125,8 +129,9 @@ public class UserDocumentsActivity extends AppCompatActivity {
             @Override
             public void run() {
                 bar.setVisibility(View.GONE);
+                b.setBackground(drawable);
                 b.setTextColor(Color.parseColor("#FFFFFF"));
-                b.setBackgroundColor(getColor(R.color.green));
+                //b.setBackgroundColor(getColor(R.color.green));
                 b.setText("Listo");
             }
         }, 7000);

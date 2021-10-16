@@ -9,21 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.ramijemli.percentagechartview.PercentageChartView;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import retrofit2.Call;
@@ -38,10 +37,12 @@ import retrofit2.Response;
 public class RateOffer extends Fragment {
 
     Context applicationContext = MainActivity.getContextOfApplication();
-    LinearLayout principal;
+    ScrollView principal;
     RelativeLayout secondary;
     RatingBar bar;
+    PercentageChartView chartView;
     Button btnRateOffer;
+    private RadioButton rBYes, rBNo;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -100,19 +101,43 @@ public class RateOffer extends Fragment {
         bar = root.findViewById(R.id.rBCOferta);
         bar.setStepSize(1);
         btnRateOffer = root.findViewById(R.id.btnRateOffer);
+        rBNo = root.findViewById(R.id.rBtnNo);
+        rBYes = root.findViewById(R.id.rBtnSi);
+
+        rBNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bar.setIsIndicator(true);
+                bar.setRating(0);
+            }
+
+        });
+
+        rBYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bar.setIsIndicator(false);
+            }
+
+        });
+
 
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         username = preferences.getString("username","username");
 
-        setUserAcceptedServices();
+        chartView = root.findViewById(R.id.pVprogressPie2);
+
+        uploadEffect();
+
+
 
         clickBtnRateOffer(btnRateOffer);
         // Inflate the layout for this fragment
         return root;
     }
 
-    public void clickBtnRateOffer(Button btnRateOffer){
+    public void clickBtnRateOffer(Button btnRateOffer ){
         btnRateOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,12 +147,33 @@ public class RateOffer extends Fragment {
         });
     }
 
+
+    private void uploadEffect(){
+        chartView.setProgress(100, true);
+        setUserAcceptedServices();
+    }
+
     public void setRateOffer(UserAcceptedServicesResponse userAcceptedServicesResponse){
+
         ImageView userJobImage = root.findViewById(R.id.userJobImage);
+        TextView trabajo = root.findViewById(R.id.trabajo);
+        TextView serviceGiven = root.findViewById(R.id.serviceGiven);
+        TextView userName = root.findViewById(R.id.userName2);
+        TextView userTrabajo = root.findViewById(R.id.userTrabajo);
+        TextView descripcion = root.findViewById(R.id.jobDescription);
+
         Transformation transformation = new RoundedCornersTransformation(50,5);
         Picasso.get().invalidate(userAcceptedServicesResponse.getImage());
-        Picasso.get().load(userAcceptedServicesResponse.getImage()).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userJobImage);
+        Picasso.get().load(userAcceptedServicesResponse.getImage()).transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userJobImage);
+        trabajo.setText(userAcceptedServicesResponse.getNombre());
+        serviceGiven.setText(String.valueOf(userAcceptedServicesResponse.getIdServicio()));
+        userName.setText(userAcceptedServicesResponse.getIdEmisor());
+        userTrabajo.setText(userAcceptedServicesResponse.getCategoria());
+        descripcion.setText(userAcceptedServicesResponse.getDescripcion());
+
+        chartView.setVisibility(View.GONE);
     }
+
     public void setUserAcceptedServices(){
         UserNotificationsRequest userNotificationsRequest = new UserNotificationsRequest();
         userNotificationsRequest.setUsername(username);
@@ -140,15 +186,19 @@ public class RateOffer extends Fragment {
             @Override
             public void onResponse(Call<UserAcceptedServicesResponse> call, Response<UserAcceptedServicesResponse> response) {
                 if (response.isSuccessful()) {
+
                     UserAcceptedServicesResponse userAcceptedServicesResponse = response.body();
                     try{
                         if(userAcceptedServicesResponse.getSomething() == 1){
-                           setRateOffer(userAcceptedServicesResponse);
-                        }else{
                             principal = root.findViewById(R.id.principalRateOfferLayout);
-                            principal.setVisibility(View.GONE);
+                            principal.setVisibility(View.VISIBLE);
+                            setRateOffer(userAcceptedServicesResponse);
+                        }else{
                             secondary = root.findViewById(R.id.secondaryRateOfferLayout);
                             secondary.setVisibility(View.VISIBLE);
+                            chartView.setVisibility(View.GONE);
+
+
                         }
 
                     }catch(NullPointerException nullPointerException){
