@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
@@ -16,9 +17,15 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -115,6 +122,12 @@ public class RateOffer extends Fragment {
         });
     }
 
+    public void setRateOffer(UserAcceptedServicesResponse userAcceptedServicesResponse){
+        ImageView userJobImage = root.findViewById(R.id.userJobImage);
+        Transformation transformation = new RoundedCornersTransformation(50,5);
+        Picasso.get().invalidate(userAcceptedServicesResponse.getImage());
+        Picasso.get().load(userAcceptedServicesResponse.getImage()).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(userJobImage);
+    }
     public void setUserAcceptedServices(){
         UserNotificationsRequest userNotificationsRequest = new UserNotificationsRequest();
         userNotificationsRequest.setUsername(username);
@@ -130,7 +143,7 @@ public class RateOffer extends Fragment {
                     UserAcceptedServicesResponse userAcceptedServicesResponse = response.body();
                     try{
                         if(userAcceptedServicesResponse.getSomething() == 1){
-                           String message ="Hola";
+                           setRateOffer(userAcceptedServicesResponse);
                         }else{
                             principal = root.findViewById(R.id.principalRateOfferLayout);
                             principal.setVisibility(View.GONE);
