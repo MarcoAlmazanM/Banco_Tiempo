@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 /*import com.squareup.picasso.MemoryPolicy;
@@ -203,12 +205,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         UserRequestOfferResponse userRequestOfferResponse = response.body();
                         try{
                             if(userRequestOfferResponse.getTransactionApproval() == 1){
-                                Log.e("GOD IS HERE", "Entramos perros");
+                                message = "El servicio se ha aceptado correctamente, en breve un usuario se contactará con usted.";
+
                             }else{
-                                Log.e("GOD IS NOT HERE", "No Entramos perros");
+                                message = "No puede aceptar más de un servicio.";
                             }
+                            Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                         }catch (NullPointerException nullPointerException){
-                            Log.e("GOD IS NOT HERE", "ERROOOOR");
+                            message = "Ocurrió un error al procesar la acción, favor de intentarlo de nuevo.";
+                            Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                         }
 
                     } else {
