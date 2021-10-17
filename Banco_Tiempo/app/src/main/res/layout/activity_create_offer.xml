@@ -135,10 +135,11 @@
     <ImageView
         android:id="@+id/certiView"
         android:layout_width="86dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:onClick="clickBtnCert"
         app:layout_constraintBottom_toBottomOf="@+id/certi"
         app:layout_constraintStart_toEndOf="@+id/certi"
+        app:layout_constraintTop_toTopOf="@+id/certi"
         app:srcCompat="@drawable/baseline_upload_black_24" />
 
 
@@ -147,14 +148,15 @@
         style="@style/StyledBackButton"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:onClick="addNewOffer"
         android:text="Añadir"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/certi"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
         app:layout_constraintTop_toBottomOf="@+id/certi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

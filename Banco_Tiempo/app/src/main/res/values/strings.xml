@@ -73,7 +73,8 @@
     <string name="botonRechazar" translatable="false">Rechazar</string>
     <string name="statusNotificacion" translatable="false">status</string>
     <string name="descripcior" translatable="false">Descripcion</string>
-    <string name="contactar" translatable="false">contactar</string>
+    <string name="contactar" translatable="false">contacto</string>
+    <string name="mensajeNotificacion" translatable="false">mensaje...</string>
     <string name="cancelar" translatable="false">cancelar</string>
 
     //DetallesOfertas
