@@ -2,65 +2,63 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="450dp"
-    android:layout_height="250dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="#FFF">
 
     <TextView
         android:id="@+id/tVConfirmarUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="¿Está seguro de permitir la actualización de sus datos personales?"
-        android:textSize="22dp"
+        android:layout_margin="30dp"
         android:gravity="center"
-        android:textAllCaps="false"
-        android:textStyle="bold"
         android:shadowColor="#000"
         android:shadowDx="-2"
         android:shadowDy="-2"
-        android:shadowRadius="1"/>
+        android:shadowRadius="1"
+        android:text="¿Estás seguro que quieres\n actualizar tus datos?"
+        android:textAllCaps="false"
+        android:textSize="22dp"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tVConfirmarUpdate">
+        android:layout_below="@+id/tVConfirmarUpdate"
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/btnUpdateUD"
             style="@style/StyledBackButton"
-            android:layout_width="140dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="30dp"
             android:gravity="center"
-            android:text="Permitir"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:shadowColor="#000"
             android:shadowDx="-2"
             android:shadowDy="-2"
-            android:shadowRadius="1"/>
+            android:shadowRadius="1"
+            android:text="Actualizar"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btnCancelUpdate"
             style="@style/StyledBackButton"
-            android:layout_width="140dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_margin="30dp"
+            android:layout_alignParentEnd="true"
             android:gravity="center"
-            android:text="@string/cancelimg"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:shadowColor="#000"
             android:shadowDx="-2"
             android:shadowDy="-2"
-            android:shadowRadius="1"/>
+            android:shadowRadius="1"
+            android:text="@string/cancelimg"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
