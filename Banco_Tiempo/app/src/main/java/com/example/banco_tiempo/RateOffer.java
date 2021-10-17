@@ -154,7 +154,7 @@ public class RateOffer extends Fragment {
         if(rBYes.isChecked()){
             asistance = 1;
         }else{
-            asistance = 2;
+            asistance = 0;
         }
     }
 

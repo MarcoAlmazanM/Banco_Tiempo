@@ -181,9 +181,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 Fragment fragment = ((FragmentActivity)context).getSupportFragmentManager().findFragmentByTag("Notification");
                                 FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
                                 FragmentTransaction ft = fm.beginTransaction();
-                                ft.detach(fragment);
-                                ft.attach(fragment);
-                                ft.commit();
+                                ft.replace(R.id.content, fragment);
+                                ft.commitAllowingStateLoss();
                             }else{
                                 message = "No puede aceptar más de un servicio.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
