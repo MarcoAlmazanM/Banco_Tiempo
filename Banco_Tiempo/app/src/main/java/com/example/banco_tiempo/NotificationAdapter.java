@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 //import android.widget.ImageView;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,6 +19,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 /*import com.squareup.picasso.MemoryPolicy;
@@ -62,6 +67,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderNotifications holder, int position) {
+        holder.cardType.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
         holder.trabajo.setText( notificationList.get(position).getNombre());
         holder.tipo.setText(notificationList.get(position).getTipo());
         holder.desc.setText(notificationList.get(position).getDescripcion());
@@ -103,7 +109,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         TextView trabajo, tipo, desc, nombre, ap, am, correo, mensajeUsuario;
         CardView cardType;
-        Button btnA, btnR, btnC;//btnT
+        Button btnA, btnR;//btnT
 
         //ImageView myImage;
         private NotificationAdapter adapter;
@@ -121,68 +127,34 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             btnA = itemView.findViewById(R.id.bAcept);
             btnR = itemView.findViewById(R.id.bReject);
-            //btnT = itemView.findViewById(R.id.bTerminate);
-            btnC = itemView.findViewById(R.id.bContact);
 
             cardType=itemView.findViewById(R.id.notificationCards);
 
 
-            //Log.e("card", cardType.toString());
 
-            //cardType.setCardBackgroundColor(Color.RED);
-
-            //myImage = itemView.findViewById(R.id.iVUserPhoto);
             itemView.findViewById(R.id.bAcept).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     setUserOfferAccept(getAdapterPosition());
-                    //btnA.setText("JalaA");
-                    //cardType.setCardBackgroundColor(Color.RED);
-                    //btnA.setTextColor(Color.RED);
-
-                    //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
                 }
             });
 
             itemView.findViewById(R.id.bReject).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    btnR.setText("JalaR");
+                    setUserOfferRejected(getAdapterPosition());
                 }
             });
 
-            /*itemView.findViewById(R.id.bTerminate).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    btnR.setText("JalaR");
-                }
-            });*/
 
-            /*itemView.findViewById(R.id.bContact).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    btnR.setText("JalaR");
-                }
-            });*/
 
-            /*itemView.findViewById(R.id.bAcept).setOnClickListener(view-> {
-                //adapter.notificationList.remove(getAdapterPosition());
-                //adapter.notifyItemRemoved(getAdapterPosition());
-                //Log.e("aceptado",);
-                btnA.setText("JalaA");
-                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
-                //cardType.setCardBackgroundColor(Color.GREEN);
+        }
 
-            });
-
-             */
-
-            /*itemView.findViewById(R.id.bReject).setOnClickListener(view-> {
-                //Log.e("rechazado",);
-                btnR.setText("JalaB");
-            });
-             */
-
+        public void setUserOfferRejected(int position){
+            UserRequestOffer userRequestOffer = new UserRequestOffer();
+            userRequestOffer.setIdNot(notificationList.get(position).getIdNot());
+            userRequestOffer.setType("REJECTED");
+            getUserRequestOffer(userRequestOffer);
         }
         public void setUserOfferAccept(int position){
             UserRequestOffer userRequestOffer = new UserRequestOffer();
@@ -203,12 +175,20 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         UserRequestOfferResponse userRequestOfferResponse = response.body();
                         try{
                             if(userRequestOfferResponse.getTransactionApproval() == 1){
-                                Log.e("GOD IS HERE", "Entramos perros");
-                            }else{
-                                Log.e("GOD IS NOT HERE", "No Entramos perros");
+                                message = "El servicio se ha aceptado correctamente, en breve un usuario se contactará con usted.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                            }else if(userRequestOfferResponse.getTransactionApproval() == 2){
+                                message = "El servicio se ha rechazado correctamente.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                             }
+                            else{
+                                message = "Error al procesar la petición, favor de intentarlo de nuevo.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                            }
+
                         }catch (NullPointerException nullPointerException){
-                            Log.e("GOD IS NOT HERE", "ERROOOOR");
+                            message = "Ocurrió un error al procesar la acción, favor de intentarlo de nuevo.";
+                            Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                         }
 
                     } else {
@@ -225,7 +205,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        private void dinChange(Button a, Button r, Button c,TextView m,TextView n, TextView correo, TextView ap, TextView am, TextView mensajeUsuario, int op){
+        private void dinChange(Button a, Button r,TextView m,TextView n, TextView correo, TextView ap, TextView am, TextView mensajeUsuario, int op){
             switch (op){
 
                 //REQUEST
@@ -233,7 +213,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.VISIBLE);
                     r.setVisibility(View.VISIBLE);
                     //t.setVisibility(View.GONE);
-                    c.setVisibility(View.GONE);
                     n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.VISIBLE);
@@ -248,11 +227,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
                     //t.setVisibility(View.VISIBLE);
-                    c.setVisibility(View.VISIBLE);
-                    n.setVisibility(View.INVISIBLE);
+                    n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.VISIBLE);
-                    ap.setVisibility(View.INVISIBLE);
-                    am.setVisibility(View.INVISIBLE);
+                    ap.setVisibility(View.VISIBLE);
+                    am.setVisibility(View.VISIBLE);
                     mensajeUsuario.setVisibility(View.GONE);
                     m.setText("Aceptado");
                     break;
@@ -262,7 +240,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
                     //t.setVisibility(View.GONE);
-                    c.setVisibility(View.GONE);
                     n.setVisibility(View.INVISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.INVISIBLE);
@@ -270,13 +247,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("La solicitud ha sido rechazada");
                     m.setText("Rechazado");
-
+                    break;
                     //CONTACTING
                 case 4:
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
                     //t.setVisibility(View.GONE);
-                    c.setVisibility(View.GONE);
                     n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.VISIBLE);
                     ap.setVisibility(View.VISIBLE);
@@ -290,50 +266,39 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
                     //t.setVisibility(View.GONE);
-                    c.setVisibility(View.GONE);
                     n.setVisibility(View.INVISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.INVISIBLE);
                     am.setVisibility(View.INVISIBLE);
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("En espera de solicitud");
-                    m.setText("En espera...");
-
+                    m.setText("En espera de aprobacion");
+                    break;
 
             }
         }
         void bindCardColor(final NotificationList item){
-            //tipo.setText(item.getCate());
 
-            if(item.getTipo().contains("ACCEPTED")){
+            if(item.getTipo().equals("ACCEPTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,2);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,2);
             }
-            else if(item.getTipo().contains("REJECTED")){
+            else if(item.getTipo().equals("REJECTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorRed)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,3);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,3);
             }
-            else if(item.getTipo().contains("WAITING")){
+            else if(item.getTipo().equals("WAITING")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorYellow)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,5);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,5);
             }
-            else if(item.getTipo().contains("CONTACTING")){
+            else if(item.getTipo().equals("CONTACTING")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorTeal)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,4);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,4);
             }
             else{
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.themeColor)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,1);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,1);
             }
-            /*if(item.getCate().equals("q")){
-                cardType.setCardBackgroundColor(Color.GREEN);
-                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
-            }
-            if(item.getCate().equals("xd")){
-                //cardType.setCardBackgroundColor(Color.RED);
-            }
-
-             */
 
         }
 

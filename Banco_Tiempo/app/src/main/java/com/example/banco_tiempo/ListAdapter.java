@@ -68,34 +68,37 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position){
-        holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
+        //holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
         holder.bindData(mData.get(position));
 
-        if (counter_l > 9) {
+        if (counter_l > 8) {
             counter_l = 0;
         }
 
-        //holder.myLinearLayout.setBackground(gradient_colors.get(counter_l));
+        holder.myLinearLayout.setBackground(gradient_colors.get(counter_l));
 
         counter_l++;
     }
 
     public void filtro(@NonNull String search){
         int len=search.length();
+        String searchClean=search.toLowerCase();
+        mData.clear();
+        mData.addAll(oData);
         if(len==0){
             mData.clear();
             mData.addAll(oData);
         }else{
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
                 List<ElementList> collect = mData.stream()
-                        .filter(i -> i.getNombre().toLowerCase().contains(search))
+                        .filter(i -> i.getNombre().toLowerCase().contains(searchClean))
                         .collect(Collectors.toList());
                 mData.clear();
                 mData.addAll(collect);
             }else{
                 mData.clear();
                 for(ElementList i: oData){
-                    if(i.getNombre().toLowerCase().contains(search)){
+                    if(i.getNombre().toLowerCase().contains(searchClean)){
                         mData.add(i);
                     }
                 }
@@ -150,6 +153,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             trabajo.setText(item.getNombre());
 
             //Set profile picture
+
             String url = item.getFoto();
             Transformation transformation = new RoundedCornersTransformation(100,5);
             Picasso.get().invalidate(url);
