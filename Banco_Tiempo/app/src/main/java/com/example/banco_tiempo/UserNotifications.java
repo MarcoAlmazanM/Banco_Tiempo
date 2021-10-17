@@ -10,9 +10,9 @@ public class UserNotifications {
     private String descripcion;
     private String nombreUsuario;
     private String nombreApellidoP;
-    private String NombreApellidoM;
+    private String nombreApellidoM;
     private String correo;
-    private String error;
+
 
     public Integer getIdNot() {
         return idNot;
@@ -46,25 +46,23 @@ public class UserNotifications {
 
     public String getNombreApellidoP() { return nombreApellidoP; }
 
-    public String getNombreApellidoM() { return NombreApellidoM; }
+    public String getNombreApellidoM() { return nombreApellidoM; }
 
-    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String nombre, String tipo, String nombreUsuario, String nombreApellidoP, String nombreApellidoM, String correo) {
-    public String getError() {
-        return error;
-    }
 
-    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String nombre, String tipo, String error) {
+    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, Integer idServicio,
+                             String tipo, String nombre, String descripcion, String nombreUsuario,
+                             String nombreApellidoP, String nombreApellidoM, String correo) {
         this.idNot = idNot;
         this.idEmisor = idEmisor;
         this.idReceptor = idReceptor;
         this.idServicio = idServicio;
-        this.nombre = nombre;
         this.tipo = tipo;
-        this.correo = correo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.nombreUsuario = nombreUsuario;
         this.nombreApellidoP = nombreApellidoP;
-        this.NombreApellidoM= nombreApellidoM;
+        this.nombreApellidoM = nombreApellidoM;
         this.correo = correo;
-        this.error = error;
+
     }
 }
