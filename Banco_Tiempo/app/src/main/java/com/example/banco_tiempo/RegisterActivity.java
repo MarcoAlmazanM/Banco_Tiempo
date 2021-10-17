@@ -1,12 +1,5 @@
 package com.example.banco_tiempo;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,12 +21,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import retrofit2.Call;
@@ -87,6 +89,32 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+
+    public boolean validateFields() {
+
+
+
+        String regex = "\\w+";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(nombre);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tNombre = findViewById(R.id.textInputName);
+            tNombre.getEditText().setTextColor(Color.parseColor("#ff0000"));
+            tNombre.getEditText().setText(nombre);
+            tNombre.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    tNombre.getEditText().setTextColor(Color.BLACK);
+                }
+            });
+        }
+
+        return flag;
+    }
+
     public void verifyData(View view){
         // Find Id EditText
         eTNombre =findViewById(R.id.eTNombre);
@@ -118,11 +146,17 @@ public class RegisterActivity extends AppCompatActivity {
             message = "La foto de perfil es requerida";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
         } else{
-            Resources resources = new Resources();
-            passwordHash = resources.hash256(password);
-            setContentView(R.layout.activity_register_second);
-            if(saveUserData){
-                userInfo2();
+            if (validateFields()) {
+                Resources resources = new Resources();
+                passwordHash = resources.hash256(password);
+                setContentView(R.layout.activity_register_second);
+                if (saveUserData) {
+                    userInfo2();
+                }
+            }
+            else {
+                message = "Algún campo es incorrecto.";
+                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
             }
         }
     }
