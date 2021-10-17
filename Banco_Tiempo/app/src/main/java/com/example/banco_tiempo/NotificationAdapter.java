@@ -125,37 +125,34 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             btnA = itemView.findViewById(R.id.bAcept);
             btnR = itemView.findViewById(R.id.bReject);
-            //btnT = itemView.findViewById(R.id.bTerminate);
 
             cardType=itemView.findViewById(R.id.notificationCards);
 
 
-            //Log.e("card", cardType.toString());
 
-            //cardType.setCardBackgroundColor(Color.RED);
-
-            //myImage = itemView.findViewById(R.id.iVUserPhoto);
             itemView.findViewById(R.id.bAcept).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     setUserOfferAccept(getAdapterPosition());
-                    //btnA.setText("JalaA");
-                    //cardType.setCardBackgroundColor(Color.RED);
-                    //btnA.setTextColor(Color.RED);
-
-                    //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
                 }
             });
 
             itemView.findViewById(R.id.bReject).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    btnR.setText("JalaR");
+                    setUserOfferRejected(getAdapterPosition());
                 }
             });
 
 
 
+        }
+
+        public void setUserOfferRejected(int position){
+            UserRequestOffer userRequestOffer = new UserRequestOffer();
+            userRequestOffer.setIdNot(notificationList.get(position).getIdNot());
+            userRequestOffer.setType("REJECTED");
+            getUserRequestOffer(userRequestOffer);
         }
         public void setUserOfferAccept(int position){
             UserRequestOffer userRequestOffer = new UserRequestOffer();
@@ -178,13 +175,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                             if(userRequestOfferResponse.getTransactionApproval() == 1){
                                 message = "El servicio se ha aceptado correctamente, en breve un usuario se contactará con usted.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                Fragment fragment = ((FragmentActivity)context).getSupportFragmentManager().findFragmentByTag("Notification");
-                                FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
-                                FragmentTransaction ft = fm.beginTransaction();
-                                ft.replace(R.id.content, fragment);
-                                ft.commitAllowingStateLoss();
-                            }else{
-                                message = "No puede aceptar más de un servicio.";
+                            }else if(userRequestOfferResponse.getTransactionApproval() == 2){
+                                message = "El servicio se ha rechazado correctamente.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                message = "Error al procesar la petición, favor de intentarlo de nuevo.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                             }
 
@@ -249,7 +245,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("La solicitud ha sido rechazada");
                     m.setText("Rechazado");
-
+                    break;
                     //CONTACTING
                 case 4:
                     a.setVisibility(View.GONE);
@@ -275,26 +271,25 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("En espera de solicitud");
                     m.setText("En espera de aprobacion");
-
+                    break;
 
             }
         }
         void bindCardColor(final NotificationList item){
-            //tipo.setText(item.getCate());
 
-            if(item.getTipo().contains("ACCEPTED")){
+            if(item.getTipo().equals("ACCEPTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,2);
             }
-            else if(item.getTipo().contains("REJECTED")){
+            else if(item.getTipo().equals("REJECTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorRed)));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,3);
             }
-            else if(item.getTipo().contains("WAITING")){
+            else if(item.getTipo().equals("WAITING")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorYellow)));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,5);
             }
-            else if(item.getTipo().contains("CONTACTING")){
+            else if(item.getTipo().equals("CONTACTING")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorTeal)));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,4);
             }
@@ -302,15 +297,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.themeColor)));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,1);
             }
-            /*if(item.getCate().equals("q")){
-                cardType.setCardBackgroundColor(Color.GREEN);
-                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
-            }
-            if(item.getCate().equals("xd")){
-                //cardType.setCardBackgroundColor(Color.RED);
-            }
-
-             */
 
         }
 
