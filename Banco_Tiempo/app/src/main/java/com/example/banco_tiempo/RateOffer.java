@@ -3,7 +3,6 @@ package com.example.banco_tiempo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -154,7 +153,7 @@ public class RateOffer extends Fragment {
         if(rBYes.isChecked()){
             asistance = 1;
         }else{
-            asistance = 2;
+            asistance = 0;
         }
     }
 
