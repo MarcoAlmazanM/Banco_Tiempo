@@ -83,6 +83,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     public void filtro(@NonNull String search){
         int len=search.length();
         String searchClean=search.toLowerCase();
+        mData.clear();
+        mData.addAll(oData);
         if(len==0){
             mData.clear();
             mData.addAll(oData);
