@@ -69,10 +69,12 @@
     <string name="manual" translatable="false">Manual de aplicación</string>
 
     //Notification_card
+    <string name="botonAceptar" translatable="false">Aceptar</string>
     <string name="botonRechazar" translatable="false">Rechazar</string>
     <string name="statusNotificacion" translatable="false">status</string>
     <string name="descripcior" translatable="false">Descripcion</string>
-    <string name="contactar" translatable="false">contactar</string>
+    <string name="contactar" translatable="false">contacto</string>
+    <string name="mensajeNotificacion" translatable="false">mensaje...</string>
     <string name="cancelar" translatable="false">cancelar</string>
 
     //DetallesOfertas
@@ -80,7 +82,7 @@
     <string name="empleo" translatable="false">Carpintero</string>
     <string name="descTrabajo" translatable="false">Descripción de prueba</string>
     <string name="horarios" translatable="false">Horarios Disponibles</string>
-    <string name="botonAceptar" translatable="false">Aceptar</string>
+    <string name="solicitud" translatable="false">Solicitar servicio</string>
     <string name="horario1" translatable="false">Lunes a Viernes de 8:00 a 13:00</string>
 
     //Bienvenida
@@ -137,7 +139,7 @@
     <string name="accounthave" translatable="false">¿Ya tienes\n una cuenta?</string>
     <string name="passforg" translatable="false">¿Olvidaste tu contraseña?</string>
     <string name="nlogin" translatable="false">Iniciar Sesión</string>
-    <string name="nusuar" translatable="false">¿Usuario nuevo? Registrate ahora</string>
+    <string name="nusuar" translatable="false">¿Usuario nuevo? Regístrate ahora</string>
     <string name="nforinic" translatable="false">Otras formas</string>
 
     //Registro

@@ -1,12 +1,10 @@
 package com.example.banco_tiempo;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,7 +55,7 @@ public class OfferDetails extends AppCompatActivity {
         username = preferences.getString("username","NULL");
 
         oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
-        nombre=findViewById(R.id.textView);
+        nombre=findViewById(R.id.userName2);
         servicio=findViewById(R.id.trabajo);
         trabajo2=findViewById(R.id.userTrabajo);
         descripcion=findViewById(R.id.jobDescription);
@@ -94,12 +92,15 @@ public class OfferDetails extends AppCompatActivity {
                     UserRequestOfferResponse userRequestOfferResponse = response.body();
                     try{
                         if(userRequestOfferResponse.getTransactionApproval() == 1){
-                            Log.e("GOD IS HERE", "Entramos perros");
+                            message = "La solicitud del servicio esta esperando a ser aceptada, favor de dirigirse al apartado de notificaciones.";
+                            Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
                         }else{
-                            Log.e("GOD IS NOT HERE", "No Entramos perros");
+                            message = userRequestOfferResponse.getError();
+                            Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
                         }
                     }catch (NullPointerException nullPointerException){
-                        Log.e("GOD IS NOT HERE", "ERROOOOR");
+                        message = "Ocurrió un error al procesar la solicitud del servicio";
+                        Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
                     }
 
                 } else {

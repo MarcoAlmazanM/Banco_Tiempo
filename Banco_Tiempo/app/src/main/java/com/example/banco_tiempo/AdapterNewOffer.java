@@ -53,7 +53,7 @@ public class AdapterNewOffer
         Picasso.get().invalidate(listaOffer.get(position).getImagen());
         Picasso.get().load(listaOffer.get(position).getImagen()).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.myImage);
 
-        if (counter > 9) {
+        if (counter > 8) {
             counter = 0;
         }
 

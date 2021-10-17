@@ -8,8 +8,12 @@ public class NotificationList {
     private String tipo;
     private String nombre;
     private String descripcion;
+    private String nombreUsuario;
+    private String nombreApellidoP;
+    private String NombreApellidoM;
+    private String correo;
 
-    public NotificationList(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String tipo, String nombre, String descripcion) {
+    public NotificationList(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String tipo, String nombre, String descripcion, String nombreUsuario, String nombreApellidoP, String nombreApellidoM, String correo) {
         this.idNot = idNot;
         this.idEmisor = idEmisor;
         this.idReceptor = idReceptor;
@@ -17,6 +21,10 @@ public class NotificationList {
         this.tipo = tipo;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.nombreUsuario = nombreUsuario;
+        this.nombreApellidoP = nombreApellidoP;
+        this.NombreApellidoM= nombreApellidoM;
+        this.correo = correo;
     }
 
     public Integer getIdNot() {
@@ -75,4 +83,13 @@ public class NotificationList {
         this.descripcion = descripcion;
     }
 
+    public String getCorreo() { return correo; }
+
+    public void setCorreo(String correo) { this.correo = correo; }
+
+    public String getNombreUsuario() { return nombreUsuario; }
+
+    public String getNombreApellidoP() { return nombreApellidoP; }
+
+    public String getNombreApellidoM() { return NombreApellidoM; }
 }

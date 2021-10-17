@@ -3,6 +3,7 @@ package com.example.banco_tiempo;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.MemoryPolicy;
@@ -35,6 +38,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     private LayoutInflater mInflater;
     private Context context;
     final ListAdapter.ClickListener action;
+
+    Drawable draw;
+    ArrayList<Drawable> gradient_colors = new ArrayList<>();
+    Integer counter_l = 0;
 
     public ListAdapter(List<ElementList> itemList,Context context, ListAdapter.ClickListener action){
         this.mInflater=LayoutInflater.from(context);
@@ -63,6 +70,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position){
         holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
         holder.bindData(mData.get(position));
+
+        if (counter_l > 8) {
+            counter_l = 0;
+        }
+
+        holder.myLinearLayout.setBackground(gradient_colors.get(counter_l));
+
+        counter_l++;
     }
 
     public void filtro(@NonNull String search){
@@ -98,6 +113,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         ImageView badge, perfil;
         TextView nombre, trabajo;
         CardView cardView;
+        LinearLayout myLinearLayout;
         TextView trabajo1;
 
         ViewHolder(View itemView){
@@ -107,14 +123,34 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             nombre=itemView.findViewById(R.id.userName);
             trabajo=itemView.findViewById(R.id.userJob);
             cardView=itemView.findViewById(R.id.jobCards);
-
+            myLinearLayout = itemView.findViewById(R.id.myLinear);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradient_colors.add(draw);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_compu, null);
+            gradient_colors.add(draw);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradient_colors.add(draw);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradient_colors.add(draw);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradient_colors.add(draw);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_admin, null);
+            gradient_colors.add(draw);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_inge, null);
+            gradient_colors.add(draw);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_edu, null);
+            gradient_colors.add(draw);
+            draw = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_comida, null);
+            gradient_colors.add(draw);
         }
 
         void bindData(final ElementList item){
             badge.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             nombre.setText(item.getNombreUsuario());
             trabajo.setText(item.getNombre());
+
             //Set profile picture
+
             String url = item.getFoto();
             Transformation transformation = new RoundedCornersTransformation(100,5);
             Picasso.get().invalidate(url);

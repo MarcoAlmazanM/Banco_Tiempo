@@ -55,7 +55,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/gradientOrange</item>
     </style>
 
     <style name="AppTheme1.NoActionBar">
@@ -79,8 +79,8 @@
     </style>
 
     <style name="AppTheme1.ProfileTheme">
-        <item name="colorPrimaryDark">@color/blue_4_btn</item>
-        <item name="colorAccent">@color/blue_3</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColor">@color/whiteTextColor</item>

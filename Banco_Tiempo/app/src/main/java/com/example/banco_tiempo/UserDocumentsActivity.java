@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -47,12 +49,12 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     TextView inePath, domPath, antPath;
     ImageView ine, dom, ant;
-    Button bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload, bCert;
+    TextView bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload;
     String sIne, sDom, sAnt;
 
     ProgressBar ineBar, domBar, antBar;
 
-
+    Drawable drawable;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -97,6 +99,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         antBar=findViewById(R.id.antBar);
         antBar.setVisibility(View.GONE);
 
+        drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.aceptar_color, null);
 
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -106,15 +109,16 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     }
 
-    private void changeBtn(Button b, TextView t) {
+    private void changeBtn(TextView b, TextView t) {
         b.setText("Documento cargado");
-        b.setBackgroundColor(getColor(R.color.green));
+        b.setBackground(drawable);
+        //b.setBackgroundColor(getColor(R.color.green));
         b.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.username, 0);
         t.setText("Carga exitosa");
         t.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_upload_black_24, 0);
     }
 
-    private void uploadEffect(ProgressBar bar, Button b){
+    private void uploadEffect(ProgressBar bar, TextView b){
         bar.setVisibility(View.VISIBLE);
         b.setBackgroundColor(getColor(R.color.white));
         b.setTextColor(Color.parseColor("#36CBF9"));
@@ -125,8 +129,9 @@ public class UserDocumentsActivity extends AppCompatActivity {
             @Override
             public void run() {
                 bar.setVisibility(View.GONE);
+                b.setBackground(drawable);
                 b.setTextColor(Color.parseColor("#FFFFFF"));
-                b.setBackgroundColor(getColor(R.color.green));
+                //b.setBackgroundColor(getColor(R.color.green));
                 b.setText("Listo");
             }
         }, 7000);
