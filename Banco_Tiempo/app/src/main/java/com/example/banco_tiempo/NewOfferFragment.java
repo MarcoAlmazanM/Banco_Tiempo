@@ -141,12 +141,13 @@ public class NewOfferFragment extends Fragment {
     private void llenarLista() {
 
         for (int i = 0; i < offersD.size(); i++){
+            Integer idServicio = offersD.get(i).getIdServicio();
             String nombre = offersD.get(i).getNombre();
             String descripcion = offersD.get(i).getDescripcion();
             String categoria = offersD.get(i).getCategoria();
             String imagen = offersD.get(i).getImagen();
 
-            OfferVO oferta = new OfferVO(nombre, descripcion, imagen, categoria);
+            OfferVO oferta = new OfferVO(nombre, descripcion, imagen, categoria, idServicio);
             listOffer.add(oferta);
         }
 
@@ -154,7 +155,7 @@ public class NewOfferFragment extends Fragment {
 
         recyclerOfertas.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        AdapterNewOffer myadapter = new AdapterNewOffer(listOffer);
+        AdapterNewOffer myadapter = new AdapterNewOffer(listOffer, getContext());
 
         recyclerOfertas.setAdapter(myadapter);
     }

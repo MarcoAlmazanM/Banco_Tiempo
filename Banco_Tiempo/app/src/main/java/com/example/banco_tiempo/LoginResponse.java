@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class LoginResponse implements Serializable {
     private String name;
     private String lastName;
+    private String lastNameM;
     private String email;
     private String username;
     private Integer loginApproval;
@@ -12,6 +13,10 @@ public class LoginResponse implements Serializable {
     private Integer documentosApproval;
     private String foto;
     private String colonia;
+    private String calle;
+    private String numero;
+    private String municipio;
+    private String CP;
 
     public Integer getLoginApproval() {
         return loginApproval;

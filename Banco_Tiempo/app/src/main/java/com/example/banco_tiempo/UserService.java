@@ -52,4 +52,8 @@ public interface UserService {
     //POST to close a offer
     @POST("endservice")
     Call<EndedServiceResponse> sendEndedServiceRequest(@Body EndedServiceRequest endedServiceRequest);
+
+    //POST to delete a service
+    @POST("deleteservice")
+    Call<DeleteUserOfferResponse> getDelUserOffer(@Body DeleteUserOfferRequest deleteUserOfferRequest);
 }

@@ -2,16 +2,26 @@ package com.example.banco_tiempo;
 
 public class OfferVO {
 
+    private Integer idServicio;
     private String trabajo;
     private String info;
     private String cate;
     private String imagen;
 
-    public OfferVO(String trabajo, String info, String imagen, String cate){
+    public OfferVO(String trabajo, String info, String imagen, String cate, Integer idServicio){
+        this.idServicio = idServicio;
         this.trabajo = trabajo;
         this.info = info;
         this.imagen = imagen;
         this.cate = cate;
+    }
+
+    public Integer getIdServicio() {
+        return idServicio;
+    }
+
+    public void setIdServicio(Integer idServicio) {
+        this.idServicio = idServicio;
     }
 
     public String getTrabajo() {return trabajo;}

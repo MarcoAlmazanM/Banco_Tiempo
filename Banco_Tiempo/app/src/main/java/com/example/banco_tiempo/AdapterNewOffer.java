@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
@@ -22,6 +23,9 @@ import com.squareup.picasso.Transformation;
 import java.util.ArrayList;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterNewOffer
         extends RecyclerView.Adapter<AdapterNewOffer.MyViewHolder>
@@ -32,9 +36,12 @@ public class AdapterNewOffer
     ArrayList<OfferVO> listaOffer;
     ArrayList<Drawable> gradients = new ArrayList<>();
     Integer counter = 0;
+    String message;
 
-    public AdapterNewOffer(ArrayList<OfferVO> listaOffer){
+    public AdapterNewOffer(ArrayList<OfferVO> listaOffer, Context context){
+
         this.listaOffer = listaOffer;
+        this.context = context;
     }
 
     @NonNull
@@ -109,8 +116,50 @@ public class AdapterNewOffer
 
             relativeLayout = itemView.findViewById(R.id.rLlayout);
             itemView.findViewById(R.id.btnDelOffer).setOnClickListener(view-> {
+                setDeleteUserOffer(getAdapterPosition());
                 adapter.listaOffer.remove(getAdapterPosition());
                 adapter.notifyItemRemoved(getAdapterPosition());
+            });
+        }
+
+        public void setDeleteUserOffer(int position){
+            DeleteUserOfferRequest deleteUserOfferRequest = new DeleteUserOfferRequest();
+            deleteUserOfferRequest.setIdServicio(listaOffer.get(position).getIdServicio());
+            getDelUserOffer(deleteUserOfferRequest);
+        }
+
+        public void getDelUserOffer(DeleteUserOfferRequest deleteUserOfferRequest){
+            Call<DeleteUserOfferResponse> deleteUserOfferResponseCall = ApiClient.getService().getDelUserOffer(deleteUserOfferRequest);
+            deleteUserOfferResponseCall.enqueue(new Callback<DeleteUserOfferResponse>() {
+                @Override
+                public void onResponse(Call<DeleteUserOfferResponse> call, Response<DeleteUserOfferResponse> response) {
+                    if (response.isSuccessful()) {
+                        DeleteUserOfferResponse deleteUserOfferResponse = response.body();
+                        try{
+                            if(deleteUserOfferResponse.getTransactionApproval() == 1){
+                                message = "La oferta se ha eliminado correctamente.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                            }else{
+                                message = "No se puede eliminar la oferta porque esta actualmente activa.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                            }
+
+                        }catch (NullPointerException nullPointerException){
+                            message = "Ocurrió un error al borrar la oferta, favor de intentarlo de nuevo.";
+                            Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                        }
+
+                    } else {
+                        message = "Ocurrió un error, favor de intentar más tarde";
+                        Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DeleteUserOfferResponse> call, Throwable t) {
+                    message = t.getLocalizedMessage();
+                    Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                }
             });
         }
 
