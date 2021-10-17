@@ -58,8 +58,8 @@ import retrofit2.Response;
 public class ProfileFragment extends Fragment {
     Button btnUserData;
     TextView btnUserDocuments;
-    Button btnImg;
-    Button btnCncl;
+    TextView btnImg;
+    TextView btnCncl;
 
 
     ImageView status;
@@ -381,7 +381,7 @@ public class ProfileFragment extends Fragment {
 
 
         // dismiss the popup window when touched
-        btnImg = (Button)popupView.findViewById(R.id.btnImg);
+        btnImg = (TextView) popupView.findViewById(R.id.btnImg);
 
         btnImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -391,7 +391,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        btnCncl = (Button)popupView.findViewById(R.id.btnCncl);
+        btnCncl = (TextView) popupView.findViewById(R.id.btnCncl);
 
         btnCncl.setOnClickListener(new View.OnClickListener() {
             @Override
