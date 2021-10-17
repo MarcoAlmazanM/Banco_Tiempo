@@ -108,8 +108,12 @@ public class NotificationFragment extends Fragment {
             String tipo = notifications.get(i).getTipo();
             String nombre = notifications.get(i).getNombre();
             String descripcion = notifications.get(i).getDescripcion();
+            String nombreUsuario = notifications.get(i).getNombreUsuario();
+            String correo = notifications.get(i).getCorreo();
+            String ap = notifications.get(i).getNombreApellidoP();
+            String am = notifications.get(i).getNombreApellidoM();
 
-            NotificationList oferta = new NotificationList(idNot, idEmisor, idReceptor, idServicio, tipo,nombre,descripcion);
+            NotificationList oferta = new NotificationList(idNot, idEmisor, idReceptor, idServicio, tipo,nombre,descripcion,nombreUsuario,ap, am, correo);
             listaNotificacion.add(oferta);
         }
 

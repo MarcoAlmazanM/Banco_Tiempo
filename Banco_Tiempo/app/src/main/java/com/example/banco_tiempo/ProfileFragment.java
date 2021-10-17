@@ -295,6 +295,8 @@ public class ProfileFragment extends Fragment {
                             } else {
                                 status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                             }
+                            editor.putInt("statusHours", hoursDocumentResponse.getStatusHoras());
+                            editor.apply();
                             String message = "El estatus de las horas ha sido actualizado.";
                             Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                         } catch (NullPointerException e) {
@@ -310,6 +312,8 @@ public class ProfileFragment extends Fragment {
                             } else {
                                 document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                             }
+                            editor.putInt("documentosApproval", hoursDocumentResponse.getStatusDocumentos());
+                            editor.apply();
                             String message = "El estatus de los documentos ha sido actualizado.";
                             Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                         } catch (NullPointerException e) {

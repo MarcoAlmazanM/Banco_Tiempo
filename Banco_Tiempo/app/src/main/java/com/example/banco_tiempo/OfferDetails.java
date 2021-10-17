@@ -92,12 +92,15 @@ public class OfferDetails extends AppCompatActivity {
                     UserRequestOfferResponse userRequestOfferResponse = response.body();
                     try{
                         if(userRequestOfferResponse.getTransactionApproval() == 1){
-                            Log.e("GOD IS HERE", "Entramos perros");
+                            message = "La solicitud del servicio esta esperando a ser aceptada, favor de dirigirse al apartado de notificaciones.";
+                            Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
                         }else{
-                            Log.e("GOD IS NOT HERE", "No Entramos perros");
+                            message = userRequestOfferResponse.getError();
+                            Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
                         }
                     }catch (NullPointerException nullPointerException){
-                        Log.e("GOD IS NOT HERE", "ERROOOOR");
+                        message = "Ocurrió un error al procesar la solicitud del servicio";
+                        Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
                     }
 
                 } else {

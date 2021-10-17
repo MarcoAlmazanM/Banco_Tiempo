@@ -49,7 +49,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
 
     TextView inePath, domPath, antPath;
     ImageView ine, dom, ant;
-    TextView bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload, bCert;
+    TextView bIne,bIneUpload, bDom, bDomUpload, bAnt, bAntUpload;
     String sIne, sDom, sAnt;
 
     ProgressBar ineBar, domBar, antBar;

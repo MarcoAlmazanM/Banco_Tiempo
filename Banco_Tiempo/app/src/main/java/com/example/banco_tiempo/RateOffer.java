@@ -5,14 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -43,10 +40,8 @@ public class RateOffer extends Fragment {
     ScrollView principal;
     RelativeLayout secondary;
     RatingBar bar;
-    Button btnRateOffer;
     PercentageChartView chartView;
-    Button btnRateOffer, btnAttend;
-    private RadioGroup radioGroup;
+    Button btnRateOffer;
     private RadioButton rBYes, rBNo;
 
     SharedPreferences preferences;
@@ -106,9 +101,8 @@ public class RateOffer extends Fragment {
         bar = root.findViewById(R.id.rBCOferta);
         bar.setStepSize(1);
         btnRateOffer = root.findViewById(R.id.btnRateOffer);
-        radioGroup = (RadioGroup) root.findViewById(R.id.myRadioGroup);
-        rBNo = (RadioButton) root.findViewById(R.id.rBtnNo);
-        rBYes = (RadioButton) root.findViewById(R.id.rBtnSi);
+        rBNo = root.findViewById(R.id.rBtnNo);
+        rBYes = root.findViewById(R.id.rBtnSi);
 
         rBNo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,6 +196,8 @@ public class RateOffer extends Fragment {
                         }else{
                             secondary = root.findViewById(R.id.secondaryRateOfferLayout);
                             secondary.setVisibility(View.VISIBLE);
+                            chartView.setVisibility(View.GONE);
+
 
                         }
 
