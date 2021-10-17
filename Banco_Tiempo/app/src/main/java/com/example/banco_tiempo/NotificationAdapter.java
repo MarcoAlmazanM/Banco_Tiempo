@@ -1,18 +1,12 @@
 package com.example.banco_tiempo;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-//import android.widget.ImageView;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,25 +19,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+//import android.widget.ImageView;
 /*import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
  */
-
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
-
-import java.util.ArrayList;
-import java.util.Locale;
-
-import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolderNotifications> implements View.OnClickListener {
 
@@ -110,6 +98,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         TextView trabajo, tipo, desc, nombre, ap, am, correo, mensajeUsuario;
         CardView cardType;
         Button btnA, btnR;//btnT
+        LinearLayout linearLayout;
 
         //ImageView myImage;
         private NotificationAdapter adapter;
@@ -130,6 +119,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             //btnT = itemView.findViewById(R.id.bTerminate);
 
             cardType=itemView.findViewById(R.id.notificationCards);
+            linearLayout = itemView.findViewById(R.id.cardLinearLayout);
+
 
 
             //Log.e("card", cardType.toString());
@@ -252,6 +243,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("La solicitud ha sido rechazada");
                     m.setText("Rechazado");
+                    break;
 
                     //CONTACTING
                 case 4:
@@ -278,6 +270,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("En espera de solicitud");
                     m.setText("En espera de aprobacion");
+                    break;
 
 
             }
@@ -286,23 +279,28 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             //tipo.setText(item.getCate());
 
             if(item.getTipo().contains("ACCEPTED")){
-                cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
+                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.drawable.green)));
+                linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_green));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,2);
             }
             else if(item.getTipo().contains("REJECTED")){
-                cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorRed)));
+                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorRed)));
+                linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_admin));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,3);
             }
             else if(item.getTipo().contains("WAITING")){
-                cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorYellow)));
+                //.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorYellow)));
+                linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_inge));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,5);
             }
             else if(item.getTipo().contains("CONTACTING")){
-                cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorTeal)));
+                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorTeal)));
+                linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_edu));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,4);
             }
             else{
-                cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.themeColor)));
+                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.drawable.home_gradient_actua)));
+                linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_actua));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,1);
             }
             /*if(item.getCate().equals("q")){
