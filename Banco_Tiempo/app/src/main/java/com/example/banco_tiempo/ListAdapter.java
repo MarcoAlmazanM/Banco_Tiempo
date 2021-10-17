@@ -71,11 +71,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
         holder.bindData(mData.get(position));
 
-        if (counter_l > 9) {
+        if (counter_l > 8) {
             counter_l = 0;
         }
 
-        //holder.myLinearLayout.setBackground(gradient_colors.get(counter_l));
+        holder.myLinearLayout.setBackground(gradient_colors.get(counter_l));
 
         counter_l++;
     }
@@ -150,6 +150,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             trabajo.setText(item.getNombre());
 
             //Set profile picture
+
             String url = item.getFoto();
             Transformation transformation = new RoundedCornersTransformation(100,5);
             Picasso.get().invalidate(url);
