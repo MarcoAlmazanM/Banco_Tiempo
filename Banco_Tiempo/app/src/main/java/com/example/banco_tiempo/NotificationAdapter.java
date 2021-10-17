@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -152,37 +154,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 }
             });
 
-            /*itemView.findViewById(R.id.bTerminate).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    btnR.setText("JalaR");
-                }
-            });*/
 
-            /*itemView.findViewById(R.id.bContact).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    btnR.setText("JalaR");
-                }
-            });*/
-
-            /*itemView.findViewById(R.id.bAcept).setOnClickListener(view-> {
-                //adapter.notificationList.remove(getAdapterPosition());
-                //adapter.notifyItemRemoved(getAdapterPosition());
-                //Log.e("aceptado",);
-                btnA.setText("JalaA");
-                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
-                //cardType.setCardBackgroundColor(Color.GREEN);
-
-            });
-
-             */
-
-            /*itemView.findViewById(R.id.bReject).setOnClickListener(view-> {
-                //Log.e("rechazado",);
-                btnR.setText("JalaB");
-            });
-             */
 
         }
         public void setUserOfferAccept(int position){
@@ -205,11 +177,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         try{
                             if(userRequestOfferResponse.getTransactionApproval() == 1){
                                 message = "El servicio se ha aceptado correctamente, en breve un usuario se contactará con usted.";
-
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                Fragment fragment = ((FragmentActivity)context).getSupportFragmentManager().findFragmentByTag("Notification");
+                                FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
+                                FragmentTransaction ft = fm.beginTransaction();
+                                ft.detach(fragment);
+                                ft.attach(fragment);
+                                ft.commit();
                             }else{
                                 message = "No puede aceptar más de un servicio.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                             }
-                            Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
                         }catch (NullPointerException nullPointerException){
                             message = "Ocurrió un error al procesar la acción, favor de intentarlo de nuevo.";
                             Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();

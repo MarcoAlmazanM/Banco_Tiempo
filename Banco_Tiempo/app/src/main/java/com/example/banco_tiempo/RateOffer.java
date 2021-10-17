@@ -36,12 +36,14 @@ import retrofit2.Response;
  */
 public class RateOffer extends Fragment {
 
+    UserAcceptedServicesResponse userAcceptedServicesResponse;
     Context applicationContext = MainActivity.getContextOfApplication();
     ScrollView principal;
     RelativeLayout secondary;
     RatingBar bar;
     PercentageChartView chartView;
     Button btnRateOffer;
+    Integer asistance;
     private RadioButton rBYes, rBNo;
 
     SharedPreferences preferences;
@@ -142,18 +144,72 @@ public class RateOffer extends Fragment {
             @Override
             public void onClick(View view) {
                 Integer rating = (int)bar.getRating();
-                Log.e("lol", String.valueOf(rating));
+                verifyData();
+                setUserEndedService(rating);
             }
         });
     }
 
+    private void verifyData(){
+        if(rBYes.isChecked()){
+            asistance = 1;
+        }else{
+            asistance = 2;
+        }
+    }
+
+    private void setUserEndedService(Integer rating){
+        EndedServiceRequest  endedServiceRequest = new EndedServiceRequest();
+        endedServiceRequest.setIdServicio(userAcceptedServicesResponse.getIdServicio());
+        endedServiceRequest.setIdEmisor(userAcceptedServicesResponse.getIdEmisor());
+        endedServiceRequest.setIdReceptor(username);
+        endedServiceRequest.setIdNotificacion(userAcceptedServicesResponse.getIdNot());
+        endedServiceRequest.setAsistencia(asistance);
+        endedServiceRequest.setStars("V" + rating);
+        sendEndedServiceRequest(endedServiceRequest);
+    }
+
+    private void sendEndedServiceRequest(EndedServiceRequest endedServiceRequest){
+        Call<EndedServiceResponse> endedServiceResponseCall = ApiClient.getService().sendEndedServiceRequest(endedServiceRequest);
+        endedServiceResponseCall.enqueue(new Callback<EndedServiceResponse>() {
+            @Override
+            public void onResponse(Call<EndedServiceResponse> call, Response<EndedServiceResponse> response) {
+                if (response.isSuccessful()) {
+
+                    EndedServiceResponse endedServiceResponse = response.body();
+                    try{
+                        if(endedServiceResponse.getTransactionApproval() == 1){
+                            message = "La oferta ha sido calificada.";
+                            Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                        }else{
+                            message = "Ocurrió un error al procesar la calificación de la oferta, favor de volver a intentarlo.";
+                            Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                        }
+
+                    }catch(NullPointerException nullPointerException){
+                        message = "Ocurrió un error al procesar la calificación de la oferta";
+                        Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    message = "Ocurrió un error, favor de intentar más tarde";
+                    Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EndedServiceResponse> call, Throwable t) {
+                message = t.getLocalizedMessage();
+                Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     private void uploadEffect(){
         chartView.setProgress(100, true);
         setUserAcceptedServices();
     }
 
-    public void setRateOffer(UserAcceptedServicesResponse userAcceptedServicesResponse){
+    public void setRateOffer(){
 
         ImageView userJobImage = root.findViewById(R.id.userJobImage);
         TextView trabajo = root.findViewById(R.id.trabajo);
@@ -187,12 +243,12 @@ public class RateOffer extends Fragment {
             public void onResponse(Call<UserAcceptedServicesResponse> call, Response<UserAcceptedServicesResponse> response) {
                 if (response.isSuccessful()) {
 
-                    UserAcceptedServicesResponse userAcceptedServicesResponse = response.body();
+                    userAcceptedServicesResponse = response.body();
                     try{
                         if(userAcceptedServicesResponse.getSomething() == 1){
                             principal = root.findViewById(R.id.principalRateOfferLayout);
                             principal.setVisibility(View.VISIBLE);
-                            setRateOffer(userAcceptedServicesResponse);
+                            setRateOffer();
                         }else{
                             secondary = root.findViewById(R.id.secondaryRateOfferLayout);
                             secondary.setVisibility(View.VISIBLE);
