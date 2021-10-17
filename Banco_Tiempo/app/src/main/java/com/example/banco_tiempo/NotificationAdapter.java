@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 //import android.widget.ImageView;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -64,6 +65,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderNotifications holder, int position) {
+        holder.cardType.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
         holder.trabajo.setText( notificationList.get(position).getNombre());
         holder.tipo.setText(notificationList.get(position).getTipo());
         holder.desc.setText(notificationList.get(position).getDescripcion());

@@ -68,7 +68,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position){
-        holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
+        //holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
         holder.bindData(mData.get(position));
 
         if (counter_l > 8) {
@@ -82,20 +82,21 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     public void filtro(@NonNull String search){
         int len=search.length();
+        String searchClean=search.toLowerCase();
         if(len==0){
             mData.clear();
             mData.addAll(oData);
         }else{
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
                 List<ElementList> collect = mData.stream()
-                        .filter(i -> i.getNombre().toLowerCase().contains(search))
+                        .filter(i -> i.getNombre().toLowerCase().contains(searchClean))
                         .collect(Collectors.toList());
                 mData.clear();
                 mData.addAll(collect);
             }else{
                 mData.clear();
                 for(ElementList i: oData){
-                    if(i.getNombre().toLowerCase().contains(search)){
+                    if(i.getNombre().toLowerCase().contains(searchClean)){
                         mData.add(i);
                     }
                 }
