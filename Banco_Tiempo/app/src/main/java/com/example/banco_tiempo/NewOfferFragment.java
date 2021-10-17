@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +53,7 @@ public class NewOfferFragment extends Fragment {
     TextView btnCreaOffer;
     ArrayList<OfferVO> listOffer;
     View vista;
-
+    RelativeLayout relativeLayout;
     RecyclerView recyclerOfertas;
 
     /**
@@ -116,8 +117,13 @@ public class NewOfferFragment extends Fragment {
                 if (response.isSuccessful()) {
                     UserOffersResponse userOffersResponse = response.body();
                     offersD = new ArrayList<>(Arrays.asList(userOffersResponse.getOfertas()));
-                    llenarLista();
-
+                    if (offersD.size() == 0) {
+                        relativeLayout = vista.findViewById(R.id.rLnoOffers);
+                        relativeLayout.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        llenarLista();
+                    }
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
