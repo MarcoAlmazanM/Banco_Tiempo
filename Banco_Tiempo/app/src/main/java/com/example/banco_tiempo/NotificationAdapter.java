@@ -95,7 +95,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public class ViewHolderNotifications extends RecyclerView.ViewHolder{
 
-        TextView trabajo, tipo, desc, nombre, ap, am, correo, mensajeUsuario;
+        TextView trabajo, tipo, desc, nombre, nombrePlaceHolder, ap, am, correo, correoPlaceholder, mensajeUsuario;
         CardView cardType;
         Button btnA, btnR;//btnT
         LinearLayout linearLayout;
@@ -109,9 +109,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             tipo = itemView.findViewById(R.id.status);
             desc = itemView.findViewById(R.id.descripcion);
             nombre = itemView.findViewById(R.id.nombreCliente);
+            nombrePlaceHolder = itemView.findViewById(R.id.nombreClienteph);
             ap = itemView.findViewById(R.id.ap);
             am = itemView.findViewById(R.id.am);
             correo = itemView.findViewById(R.id.correo);
+            correoPlaceholder = itemView.findViewById(R.id.tVCorreo);
             mensajeUsuario = itemView.findViewById(R.id.mensajeEstado);
 
             btnA = itemView.findViewById(R.id.bAcept);
@@ -196,7 +198,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        private void dinChange(Button a, Button r,TextView m,TextView n, TextView correo, TextView ap, TextView am, TextView mensajeUsuario, int op){
+        private void dinChange(Button a, Button r,TextView m,TextView n, TextView correo, TextView ap, TextView am, TextView mensajeUsuario, TextView correoPlaceholder,TextView nombrePLaceholder,int op){
             switch (op){
 
                 //REQUEST
@@ -208,6 +210,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.VISIBLE);
                     am.setVisibility(View.VISIBLE);
+                    correoPlaceholder.setVisibility(View.INVISIBLE);
+                    nombrePLaceholder.setVisibility(View.VISIBLE);
                     mensajeUsuario.setVisibility(View.GONE);
 
                     m.setText("Pendiente");
@@ -222,6 +226,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correo.setVisibility(View.VISIBLE);
                     ap.setVisibility(View.VISIBLE);
                     am.setVisibility(View.VISIBLE);
+                    correoPlaceholder.setVisibility(View.VISIBLE);
+                    nombrePLaceholder.setVisibility(View.VISIBLE);
                     mensajeUsuario.setVisibility(View.GONE);
                     m.setText("Aceptado");
                     break;
@@ -235,6 +241,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.INVISIBLE);
                     am.setVisibility(View.INVISIBLE);
+                    correoPlaceholder.setVisibility(View.INVISIBLE);
+                    nombrePLaceholder.setVisibility(View.INVISIBLE);
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("La solicitud ha sido rechazada");
                     m.setText("Rechazado");
@@ -248,6 +256,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correo.setVisibility(View.VISIBLE);
                     ap.setVisibility(View.VISIBLE);
                     am.setVisibility(View.VISIBLE);
+                    correoPlaceholder.setVisibility(View.VISIBLE);
+                    nombrePLaceholder.setVisibility(View.VISIBLE);
                     mensajeUsuario.setVisibility(View.INVISIBLE);
                     m.setText("En contacto");
                     break;
@@ -261,6 +271,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.INVISIBLE);
                     am.setVisibility(View.INVISIBLE);
+                    correoPlaceholder.setVisibility(View.INVISIBLE);
+                    nombrePLaceholder.setVisibility(View.INVISIBLE);
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("En espera de solicitud");
                     m.setText("En espera de aprobacion");
@@ -273,27 +285,27 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if(item.getTipo().contains("ACCEPTED")){
                 //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.drawable.green)));
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_green));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,2);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,2);
             }
             else if(item.getTipo().contains("REJECTED")){
                 //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorRed)));
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_admin));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,3);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,3);
             }
             else if(item.getTipo().contains("WAITING")){
                 //.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorYellow)));
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_inge));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,5);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,5);
             }
             else if(item.getTipo().contains("CONTACTING")){
                 //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorTeal)));
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_edu));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,4);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,4);
             }
             else{
                 //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.drawable.home_gradient_actua)));
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_actua));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,1);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,1);
             }
 
         }
