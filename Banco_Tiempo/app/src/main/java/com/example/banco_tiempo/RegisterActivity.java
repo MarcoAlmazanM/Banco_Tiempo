@@ -89,9 +89,20 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    public void colorText(TextInputLayout myInputLayout, String myString) {
+
+        myInputLayout.getEditText().setTextColor(Color.parseColor("#ff0000"));
+        myInputLayout.getEditText().setText(myString);
+        myInputLayout.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                myInputLayout.getEditText().setTextColor(Color.BLACK);
+            }
+        });
+
+    }
 
     public boolean validateFields() {
-
 
 
         String regex = "\\w+";
@@ -102,14 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (!flag) {
             tNombre = findViewById(R.id.textInputName);
-            tNombre.getEditText().setTextColor(Color.parseColor("#ff0000"));
-            tNombre.getEditText().setText(nombre);
-            tNombre.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View view, boolean b) {
-                    tNombre.getEditText().setTextColor(Color.BLACK);
-                }
-            });
+            colorText(tNombre, nombre);
         }
 
         return flag;
