@@ -80,8 +80,14 @@ public class LoginActivity extends AppCompatActivity {
                     editor = preferences.edit();
                     editor.putString("name", loginResponse.getName());
                     editor.putString("lastName", loginResponse.getLastName());
+                    editor.putString("lastNameM", loginResponse.getLastNameM());
                     editor.putString("username", loginResponse.getUsername());
+                    editor.putString("calle", loginResponse.getCalle());
+                    editor.putString("numInt", loginResponse.getNumero());
                     editor.putString("colonia", loginResponse.getColonia());
+                    editor.putString("municipio", loginResponse.getMunicipio());
+                    editor.putInt("codigoP", loginResponse.getCP());
+                    editor.putString("estado", loginResponse.getEstado());
                     editor.putString("foto", loginResponse.getFoto());
                     editor.putString("email", loginResponse.getEmail());
                     editor.putInt("statusHours", loginResponse.getStatusHours());

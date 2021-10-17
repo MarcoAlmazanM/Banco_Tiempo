@@ -20,6 +20,7 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 public class UpdateUserData extends AppCompatActivity {
 
     String nombre, apellidoM, apellidoP, calle, colonia, municipio, estado, numInterno, codPostal;
+    Integer cp;
     EditText eTnombre, eTapellidoM, eTapellidoP, eTcalle, eTcolonia, eTmunicipio, eTestado, eTnumInterno, eTcodPostal;
 
     SharedPreferences preferences;
@@ -47,31 +48,38 @@ public class UpdateUserData extends AppCompatActivity {
         eTnumInterno = findViewById(R.id.eTNumeroIU);
         eTcodPostal = findViewById(R.id.eTCodigoPU);
 
-        setUserData();
-
-        eTnombre.setText(nombre, TextView.BufferType.EDITABLE);
-        eTapellidoM.setText("Texto de prueba", TextView.BufferType.EDITABLE);
-        eTapellidoP.setText(apellidoP, TextView.BufferType.EDITABLE);
-        eTcalle.setText("Texto de prueba", TextView.BufferType.EDITABLE);
-        eTcolonia.setText(colonia, TextView.BufferType.EDITABLE);
-        eTmunicipio.setText("Texto de prueba", TextView.BufferType.EDITABLE);
-        eTestado.setText("Texto de prueba", TextView.BufferType.EDITABLE);
-        eTnumInterno.setText("Texto de prueba", TextView.BufferType.EDITABLE);
-        eTcodPostal.setText("Texto de prueba", TextView.BufferType.EDITABLE);
+        obtainUserData();
 
         circularProgressButton = findViewById(R.id.btnActualizarDatos);
 
         View view = findViewById(android.R.id.content).getRootView();
         updateUserData(circularProgressButton, view);
-
     }
 
-    public void setUserData() {
-        nombre = preferences.getString("name","nombre");
-        apellidoP = preferences.getString("lastname", "apellidoP");
-        colonia = preferences.getString("colonia", "colonia");
+    public void obtainUserData() {
+        nombre = preferences.getString("name","Nombre");
+        apellidoP = preferences.getString("lastName", "Apellido Paterno");
+        apellidoM = preferences.getString("lastNameM","Apellido Materno");
+        calle = preferences.getString("calle","Calle");
+        colonia = preferences.getString("colonia", "Colonia");
+        municipio = preferences.getString("municipio","Municipio");
+        estado = preferences.getString("estado","Estado");
+        numInterno = preferences.getString("numInt","Numero Interno");
+        cp = preferences.getInt("codigoP",0);
+        codPostal = cp.toString();
+        setActualUserData();
     }
-
+    public void setActualUserData(){
+        eTnombre.setText(nombre, TextView.BufferType.EDITABLE);
+        eTapellidoM.setText(apellidoM, TextView.BufferType.EDITABLE);
+        eTapellidoP.setText(apellidoP, TextView.BufferType.EDITABLE);
+        eTcalle.setText(calle, TextView.BufferType.EDITABLE);
+        eTcolonia.setText(colonia, TextView.BufferType.EDITABLE);
+        eTmunicipio.setText(municipio, TextView.BufferType.EDITABLE);
+        eTestado.setText(estado, TextView.BufferType.EDITABLE);
+        eTnumInterno.setText(numInterno, TextView.BufferType.EDITABLE);
+        eTcodPostal.setText(codPostal, TextView.BufferType.EDITABLE);
+    }
     public void updateUserData (CircularProgressButton btn, View view) {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +123,7 @@ public class UpdateUserData extends AppCompatActivity {
                 btnUpdateUD.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        getuserInfo();
                         popupWindow.dismiss();
                     }
                 });
@@ -134,7 +143,6 @@ public class UpdateUserData extends AppCompatActivity {
     }
 
     public void getuserInfo(){
-
         nombre = eTnombre.getText().toString();
         apellidoM = eTapellidoM.getText().toString();
         apellidoP = eTapellidoP.getText().toString();
