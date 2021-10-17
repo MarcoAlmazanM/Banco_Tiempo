@@ -103,7 +103,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         TextView trabajo, tipo, desc, nombre, ap, am, correo, mensajeUsuario;
         CardView cardType;
-        Button btnA, btnR, btnC;//btnT
+        Button btnA, btnR;//btnT
 
         //ImageView myImage;
         private NotificationAdapter adapter;
@@ -122,7 +122,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             btnA = itemView.findViewById(R.id.bAcept);
             btnR = itemView.findViewById(R.id.bReject);
             //btnT = itemView.findViewById(R.id.bTerminate);
-            btnC = itemView.findViewById(R.id.bContact);
 
             cardType=itemView.findViewById(R.id.notificationCards);
 
@@ -225,7 +224,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        private void dinChange(Button a, Button r, Button c,TextView m,TextView n, TextView correo, TextView ap, TextView am, TextView mensajeUsuario, int op){
+        private void dinChange(Button a, Button r,TextView m,TextView n, TextView correo, TextView ap, TextView am, TextView mensajeUsuario, int op){
             switch (op){
 
                 //REQUEST
@@ -233,7 +232,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.VISIBLE);
                     r.setVisibility(View.VISIBLE);
                     //t.setVisibility(View.GONE);
-                    c.setVisibility(View.GONE);
                     n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.VISIBLE);
@@ -248,11 +246,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
                     //t.setVisibility(View.VISIBLE);
-                    c.setVisibility(View.VISIBLE);
-                    n.setVisibility(View.INVISIBLE);
+                    n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.VISIBLE);
-                    ap.setVisibility(View.INVISIBLE);
-                    am.setVisibility(View.INVISIBLE);
+                    ap.setVisibility(View.VISIBLE);
+                    am.setVisibility(View.VISIBLE);
                     mensajeUsuario.setVisibility(View.GONE);
                     m.setText("Aceptado");
                     break;
@@ -262,7 +259,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
                     //t.setVisibility(View.GONE);
-                    c.setVisibility(View.GONE);
                     n.setVisibility(View.INVISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.INVISIBLE);
@@ -276,7 +272,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
                     //t.setVisibility(View.GONE);
-                    c.setVisibility(View.GONE);
                     n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.VISIBLE);
                     ap.setVisibility(View.VISIBLE);
@@ -290,14 +285,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
                     //t.setVisibility(View.GONE);
-                    c.setVisibility(View.GONE);
                     n.setVisibility(View.INVISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.INVISIBLE);
                     am.setVisibility(View.INVISIBLE);
                     mensajeUsuario.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("En espera de solicitud");
-                    m.setText("En espera...");
+                    m.setText("En espera de aprobacion");
 
 
             }
@@ -307,23 +301,23 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             if(item.getTipo().contains("ACCEPTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,2);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,2);
             }
             else if(item.getTipo().contains("REJECTED")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorRed)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,3);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,3);
             }
             else if(item.getTipo().contains("WAITING")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorYellow)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,5);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,5);
             }
             else if(item.getTipo().contains("CONTACTING")){
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.cardColorTeal)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,4);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,4);
             }
             else{
                 cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.themeColor)));
-                dinChange(btnA, btnR, btnC, tipo,nombre,correo,ap,am,mensajeUsuario,1);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,1);
             }
             /*if(item.getCate().equals("q")){
                 cardType.setCardBackgroundColor(Color.GREEN);
