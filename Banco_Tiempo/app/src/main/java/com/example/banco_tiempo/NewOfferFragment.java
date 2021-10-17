@@ -34,6 +34,7 @@ public class NewOfferFragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     String username;
+    Integer statusDocuments;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,6 +89,7 @@ public class NewOfferFragment extends Fragment {
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         username = preferences.getString("username","username");
+        statusDocuments = preferences.getInt("documentosApproval",0);
         setUserOffersValues();
 
         listOffer = new ArrayList<>();
@@ -141,30 +143,6 @@ public class NewOfferFragment extends Fragment {
             OfferVO oferta = new OfferVO(nombre, descripcion, imagen, categoria);
             listOffer.add(oferta);
         }
-        /*
-        OfferVO element = new OfferVO("changos", "changos2", "https://bancodetiempo.s3.amazonaws.com/perfil/Marco_perfil.jpg", "Comida");
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-
-         */
-
-
 
         recyclerOfertas = (RecyclerView) vista.findViewById(R.id.rVNewOffer);
 
@@ -179,9 +157,13 @@ public class NewOfferFragment extends Fragment {
         btnCreateOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent creaOferta = new Intent(getActivity().getApplicationContext(), CreateOffer.class);
-                getActivity().startActivity(creaOferta);
-
+                if(statusDocuments == 1){
+                    Intent creaOferta = new Intent(getActivity().getApplicationContext(), CreateOffer.class);
+                    getActivity().startActivity(creaOferta);
+                }else{
+                    message = "No puedes crear una oferta si tus documentos no han sido aprobados.";
+                    Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

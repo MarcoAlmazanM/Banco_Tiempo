@@ -195,7 +195,7 @@ public class RegisterActivity extends AppCompatActivity {
                             try {
                                 bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
                                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
                                 byte[] byteArray = outputStream.toByteArray();
                                 //Encode Base 64 Image
                                 sImage = Base64.encodeToString(byteArray, Base64.DEFAULT);

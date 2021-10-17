@@ -253,8 +253,6 @@ public class RateOffer extends Fragment {
                             secondary = root.findViewById(R.id.secondaryRateOfferLayout);
                             secondary.setVisibility(View.VISIBLE);
                             chartView.setVisibility(View.GONE);
-
-
                         }
 
                     }catch(NullPointerException nullPointerException){
