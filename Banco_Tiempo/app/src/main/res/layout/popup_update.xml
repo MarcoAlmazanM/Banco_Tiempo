@@ -7,50 +7,50 @@
     android:background="#FFF">
 
     <TextView
-        android:id="@+id/tVConfirmar"
+        android:id="@+id/tVConfirmarUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/selection"
-        android:textSize="22dp"
-        android:textAllCaps="false"
-        android:textStyle="bold"
+        android:layout_margin="30dp"
+        android:gravity="center"
         android:shadowColor="#000"
         android:shadowDx="-2"
         android:shadowDy="-2"
-        android:shadowRadius="1"/>
+        android:shadowRadius="1"
+        android:text="¿Estás seguro que quieres\n actualizar tus datos?"
+        android:textAllCaps="false"
+        android:textSize="22dp"
+        android:textStyle="bold" />
 
     <RelativeLayout
-        android:id="@+id/rLconfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tVConfirmar"
+        android:layout_below="@+id/tVConfirmarUpdate"
         android:padding="20dp">
 
         <TextView
-            android:id="@+id/btnImg"
+            android:id="@+id/btnUpdateUD"
             style="@style/StyledBackButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:clickable="true"
+            android:gravity="center"
             android:shadowColor="#000"
             android:shadowDx="-2"
             android:shadowDy="-2"
             android:shadowRadius="1"
-            android:text="@string/uploadimg"
+            android:text="Actualizar"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/btnCncl"
+            android:id="@+id/btnCancelUpdate"
             style="@style/StyledBackButton"
             android:layout_width="120dp"
-            android:clickable="true"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:gravity="center"
             android:shadowColor="#000"
             android:shadowDx="-2"
             android:shadowDy="-2"
@@ -59,6 +59,7 @@
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold" />
+
 
     </RelativeLayout>
 

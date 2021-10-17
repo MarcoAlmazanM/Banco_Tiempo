@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".UpdateUserData"
     android:layout_gravity="center"
-    android:background="@drawable/home_gradient_mate"
+    android:background="@drawable/home_gradient_login"
     android:focusableInTouchMode="true"
     android:gravity="center">
 
