@@ -142,7 +142,12 @@ public class NotificationFragment extends Fragment {
                 if (response.isSuccessful()) {
                     UserNotificationsResponse userNotificationsResponse = response.body();
                     notifications = new ArrayList<>(Arrays.asList(userNotificationsResponse.getNotificaciones()));
-                    llenarLista();
+                    if(notifications.size() == 0){
+                        
+                    }else{
+                        llenarLista();
+                    }
+
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
