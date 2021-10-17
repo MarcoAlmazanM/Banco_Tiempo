@@ -1,154 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="0dp">
+    style="@style/parent.contentLayout">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/notificationCards"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:animateLayoutChanges="true"
-        app:cardBackgroundColor="@color/themeColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/home_gradients"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/bAcept"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/blue_4_btn"
-                android:text="@string/botonAceptar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/badge"
-                android:layout_width="106dp"
-                android:layout_height="94dp"
-                android:layout_marginEnd="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_work" />
+                <TextView
+                    android:id="@+id/estatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/statusNotificacion"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
-            <Button
-                android:id="@+id/bReject"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/cardColorRed"
-                android:text="@string/botonRechazar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toEndOf="@+id/estatus"
+                    android:text="ACEPTADO"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/userJob"
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trabajo"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/nombreCliente"
-                app:layout_constraintTop_toBottomOf="@+id/nombreCliente" />
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/status"
+                <TextView
+                    android:id="@+id/nombreClienteph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre:"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/nombreCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombreUsuario"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/ap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/apellidoPaterno"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/am"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:text="@string/apellidoMaterno"
+                    android:textColor="@android:color/white" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:text="@string/statusNotificacion"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/descripcion"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="50dp"
-                android:text="@string/descTrabajo"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/badge"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/status"
-                app:layout_constraintTop_toBottomOf="@+id/correo" />
+                <TextView
+                    android:id="@+id/trabajo2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trabajo:"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/correo"
+                <TextView
+                    android:id="@+id/userJob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/trabajo2"
+                    android:text="trabajo"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/correo"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/nombreCliente"
-                app:layout_constraintTop_toBottomOf="@+id/userJob" />
+                android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/ap"
+                <TextView
+                    android:id="@+id/tVCorreo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Correo:"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/correo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/tVCorreo"
+                    android:text="@string/correo"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="@string/apellidoPaterno"
-                android:textColor="@android:color/white"
-                app:layout_constraintStart_toEndOf="@+id/nombreCliente"
-                app:layout_constraintTop_toTopOf="@+id/nombreCliente" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/descripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollHorizontally="false"
+                    android:text="@string/descTrabajo"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/badge"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_work"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+
 
             <TextView
-                android:id="@+id/am"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="@string/apellidoMaterno"
-                android:textColor="@android:color/white"
-                app:layout_constraintStart_toEndOf="@+id/ap"
-                app:layout_constraintTop_toTopOf="@+id/ap" />
-
-            <TextView
-                android:id="@+id/nombreCliente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/nombreUsuario"
-                android:textColor="@android:color/white"
-                app:layout_constraintStart_toStartOf="@+id/status"
-                app:layout_constraintTop_toBottomOf="@+id/status" />
-
-            <TextView
+                android:layout_marginVertical="5dp"
                 android:id="@+id/mensajeEstado"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mensajeNotificacion"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/badge"
-                app:layout_constraintHorizontal_bias="0.089"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.756" />
+                android:textSize="16sp"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <Button
+                    android:id="@+id/bReject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/cardColorRed"
+                    android:text="@string/botonRechazar" />
+
+                <Button
+                    android:id="@+id/bAcept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue_4_btn"
+                    android:text="@string/botonAceptar"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
