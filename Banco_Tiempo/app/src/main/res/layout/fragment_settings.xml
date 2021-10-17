@@ -46,13 +46,13 @@
         android:shadowDx="-2"
         android:shadowDy="-2"
         android:shadowRadius="1"
-        app:layout_constraintBottom_toTopOf="@+id/btnPregFreq"
+        app:layout_constraintBottom_toTopOf="@+id/btnUpdateUserData"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnInfoSoft" />
 
     <TextView
-        android:id="@+id/btnPregFreq"
+        android:id="@+id/btnUpdateUserData"
         style="@style/StyledBackButton"
         android:layout_width="340dp"
         android:layout_height="60dp"
@@ -60,7 +60,7 @@
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:text="@string/faq"
+        android:text="Actualizar información"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -115,6 +115,6 @@
         app:layout_constraintBottom_toTopOf="@+id/btnTermYCond"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPregFreq" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateUserData" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
+            android:name=".UpdateUserData"
+            android:exported="true" />
+        <activity
             android:name=".CreateOffer"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
@@ -27,8 +30,7 @@
         <activity
             android:name=".ListOffersActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UserDocumentsActivity"
             android:exported="true" />
