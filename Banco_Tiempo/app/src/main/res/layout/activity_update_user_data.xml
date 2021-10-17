@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateUserData"
+    android:layout_gravity="center"
+    android:background="@drawable/home_gradient_mate"
+    android:focusableInTouchMode="true"
+    android:gravity="center">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-39dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/viewParent.headerText.NoMode"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="Actualiza tus\ndatos de usuario"
+                    android:textColor="@color/black" />
+
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/whiteTextColor"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputNombreU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTNombreU"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/nombreLogin"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputApellidoMU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTApellidoMU"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/apellidoMaterno"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputApellidoPU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTApellidoPU"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/apellidoPaterno"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputCalleU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTCalleU"
+                            style="@style/modifiedEditText"
+                            android:hint="Calle"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputColoniaU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTColoniaU"
+                            style="@style/modifiedEditText"
+                            android:hint="Colonia"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputMunicipioU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTMunicipioU"
+                            style="@style/modifiedEditText"
+                            android:hint="Municipio"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputEstadoU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTEstadoU"
+                            style="@style/modifiedEditText"
+                            android:hint="Estado"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputNumeroIU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTNumeroIU"
+                            style="@style/modifiedEditText"
+                            android:hint="Número Interno"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputCodigoPU"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <EditText
+                            android:id="@+id/eTCodigoPU"
+                            style="@style/modifiedEditText"
+                            android:hint="Código Postal"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                        android:id="@+id/btnActualizarDatos"
+                        style="@style/StyledBackButton"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        android:text="Actualizar"
+                        app:initialCornerAngle="27dp"
+                        app:spinning_bar_color="#FFF"
+                        app:spinning_bar_padding="6dp"
+                        app:spinning_bar_width="4dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="100dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
