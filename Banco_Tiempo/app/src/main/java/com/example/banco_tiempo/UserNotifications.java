@@ -8,6 +8,10 @@ public class UserNotifications {
     private String tipo;
     private String nombre;
     private String descripcion;
+    private String nombreUsuario;
+    private String nombreApellidoP;
+    private String NombreApellidoM;
+    private String correo;
 
     public Integer getIdNot() {
         return idNot;
@@ -33,16 +37,27 @@ public class UserNotifications {
         return nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public String getDescripcion() { return descripcion; }
 
-    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String nombre, String tipo) {
+    public String getCorreo() { return correo; }
+
+    public String getNombreUsuario() { return nombreUsuario; }
+
+    public String getNombreApellidoP() { return nombreApellidoP; }
+
+    public String getNombreApellidoM() { return NombreApellidoM; }
+
+    public UserNotifications(Integer idNot, String idEmisor, String idReceptor, Integer idServicio, String nombre, String tipo, String nombreUsuario, String nombreApellidoP, String nombreApellidoM, String correo) {
         this.idNot = idNot;
         this.idEmisor = idEmisor;
         this.idReceptor = idReceptor;
         this.idServicio = idServicio;
         this.nombre = nombre;
         this.tipo = tipo;
+        this.correo = correo;
+        this.nombreUsuario = nombreUsuario;
+        this.nombreApellidoP = nombreApellidoP;
+        this.NombreApellidoM= nombreApellidoM;
+        this.correo = correo;
     }
 }

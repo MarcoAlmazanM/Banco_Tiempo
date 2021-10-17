@@ -137,6 +137,12 @@ public class CreateOffer extends AppCompatActivity {
         certGetContent.launch(Intent.createChooser(i, "Select Picture"));
     }
 
+    private void changeBtn(TextView b) {
+        b.setText("Documento cargado");
+        b.setBackgroundColor(getColor(R.color.gradientLightGreen));
+        b.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.username, 0);
+    }
+
     public void addNewOffer(View view){
         imgOffer = findViewById(R.id.iVPhoto1);
         cert = findViewById(R.id.certiView);
@@ -259,7 +265,7 @@ public class CreateOffer extends AppCompatActivity {
                         Intent data = result.getData();
                         Uri uri = data.getData();
                         if (null != uri) {
-
+                            changeBtn(bCert);
                             cert.setImageURI(uri);
                             Bitmap bitmap = null;
                             try {
