@@ -43,6 +43,14 @@
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
 
+                <ImageView
+                    android:id="@+id/iVEraseRejected"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/baseline_close_black_48" />
+
             </RelativeLayout>
 
             <LinearLayout

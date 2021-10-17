@@ -132,9 +132,8 @@
                         style="@style/StyledBackButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="65dp"
-                        android:gravity="center"
                         android:shadowColor="#000"
                         android:shadowDx="-2"
                         android:shadowDy="-2"
@@ -189,14 +188,14 @@
                         style="@style/StyledBackButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="65dp"
                         android:gravity="center"
-                        android:text="@string/verDocs"
                         android:shadowColor="#000"
                         android:shadowDx="-2"
                         android:shadowDy="-2"
                         android:shadowRadius="0.5"
+                        android:text="@string/verDocs"
                         android:textSize="13sp" />
 
 
