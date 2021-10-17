@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -98,6 +99,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         TextView trabajo, tipo, desc, nombre, nombrePlaceHolder, ap, am, correo, correoPlaceholder, mensajeUsuario;
         CardView cardType;
         Button btnA, btnR;//btnT
+        ImageView eliminar;
         LinearLayout linearLayout;
 
         //ImageView myImage;
@@ -119,6 +121,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             btnA = itemView.findViewById(R.id.bAcept);
             btnR = itemView.findViewById(R.id.bReject);
 
+            eliminar = itemView.findViewById(R.id.iVEraseRejected);
             cardType=itemView.findViewById(R.id.notificationCards);
             linearLayout = itemView.findViewById(R.id.cardLinearLayout);
 
@@ -197,7 +200,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
         }
 
-        private void dinChange(Button a, Button r,TextView m,TextView n, TextView correo, TextView ap, TextView am, TextView mensajeUsuario, TextView correoPlaceholder,TextView nombrePLaceholder,int op){
+        private void dinChange(Button a, Button r,TextView m,TextView n, TextView correo, TextView ap, TextView am, TextView mensajeUsuario, TextView correoPlaceholder,TextView nombrePLaceholder,ImageView eliminar, int op){
             switch (op){
 
                 //REQUEST
@@ -212,6 +215,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correoPlaceholder.setVisibility(View.INVISIBLE);
                     nombrePLaceholder.setVisibility(View.VISIBLE);
                     mensajeUsuario.setVisibility(View.GONE);
+                    eliminar.setVisibility(View.GONE);
 
                     m.setText("Pendiente");
                     break;
@@ -228,6 +232,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correoPlaceholder.setVisibility(View.VISIBLE);
                     nombrePLaceholder.setVisibility(View.VISIBLE);
                     mensajeUsuario.setVisibility(View.GONE);
+                    eliminar.setVisibility(View.GONE);
                     m.setText("Aceptado");
                     break;
 
@@ -243,6 +248,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correoPlaceholder.setVisibility(View.INVISIBLE);
                     nombrePLaceholder.setVisibility(View.INVISIBLE);
                     mensajeUsuario.setVisibility(View.VISIBLE);
+                    eliminar.setVisibility(View.VISIBLE);
                     mensajeUsuario.setText("La solicitud ha sido rechazada");
                     m.setText("Rechazado");
                     break;
@@ -258,6 +264,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correoPlaceholder.setVisibility(View.VISIBLE);
                     nombrePLaceholder.setVisibility(View.VISIBLE);
                     mensajeUsuario.setVisibility(View.INVISIBLE);
+                    eliminar.setVisibility(View.GONE);
                     m.setText("En contacto");
                     break;
 
@@ -273,6 +280,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     correoPlaceholder.setVisibility(View.INVISIBLE);
                     nombrePLaceholder.setVisibility(View.INVISIBLE);
                     mensajeUsuario.setVisibility(View.VISIBLE);
+                    eliminar.setVisibility(View.GONE);
                     mensajeUsuario.setText("En espera de solicitud");
                     m.setText("En espera de aprobacion");
                     break;
@@ -285,24 +293,24 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if(item.getTipo().equals("ACCEPTED")){
             
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_green));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,2);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,eliminar,2);
             }
             else if(item.getTipo().equals("REJECTED")){
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_admin));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,3);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,eliminar,3);
             }
             else if(item.getTipo().equals("WAITING")){
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_inge));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,5);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,eliminar,5);
             }
             else if(item.getTipo().equals("CONTACTING")){
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_edu));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,4);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,eliminar,4);
             }
             else{
                 //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.drawable.home_gradient_actua)));
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_actua));
-                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,1);
+                dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,eliminar,1);
             }
 
         }
