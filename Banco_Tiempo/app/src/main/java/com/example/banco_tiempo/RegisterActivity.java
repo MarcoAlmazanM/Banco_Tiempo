@@ -1,12 +1,5 @@
 package com.example.banco_tiempo;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,12 +21,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import retrofit2.Call;
@@ -87,6 +92,263 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    public void colorText(TextInputLayout myInputLayout, String myString) {
+
+        myInputLayout.getEditText().setTextColor(Color.parseColor("#ff0000"));
+        myInputLayout.getEditText().setText(myString);
+        myInputLayout.getEditText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myInputLayout.getEditText().setTextColor(Color.BLACK);
+            }
+        });
+
+    }
+
+    public boolean validateName() {
+        String regex = "^(\\w ?){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(nombre);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tNombre = findViewById(R.id.textInputName);
+            colorText(tNombre, nombre);
+        }
+        return flag;
+    }
+
+    public boolean validateMiddleName() {
+        String regex = "^(\\w ?){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(apellidoPaterno);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tAP = findViewById(R.id.textInputAP);
+            colorText(tAP, apellidoPaterno);
+        }
+        return flag;
+    }
+
+    public boolean validateLastName() {
+        String regex = "^(\\w ?){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(apellidoMaterno);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tAM = findViewById(R.id.textInputAM);
+            colorText(tAM, apellidoMaterno);
+        }
+        return flag;
+    }
+
+    public boolean validateEmail() {
+        boolean flag = true;
+
+        try {
+            InternetAddress internetAddress = new InternetAddress(email);
+            internetAddress.validate();
+        } catch (AddressException exception) {
+            flag = false;
+            tEmailR = findViewById(R.id.textInputEmail);
+            colorText(tEmailR, email);
+        }
+
+        return flag;
+    }
+
+    public boolean validateUsername() {
+        String regex = "^(\\w){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(username);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tUsername = findViewById(R.id.textInputUsername);
+            colorText(tUsername, username);
+        }
+        return flag;
+    }
+
+    public boolean validatePassword() {
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,255}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tPassword = findViewById(R.id.textInputPassword);
+            colorText(tPassword, password);
+        }
+        return flag;
+    }
+
+    public boolean validatePasswordConfirm() {
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,255}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(passwordConfirm);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tPasswordConfirm = findViewById(R.id.textInputPasswordConf);
+            colorText(tPasswordConfirm, passwordConfirm);
+        }
+        return flag;
+    }
+
+    public boolean validateCalle() {
+        String regex = "^(\\w ?){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(calle);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tCalle = findViewById(R.id.textInputCalle);
+            colorText(tCalle, calle);
+        }
+        return flag;
+    }
+
+    public boolean validateColonia() {
+        String regex = "^(\\w ?){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(colonia);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tColonia = findViewById(R.id.textInputColonia);
+            colorText(tColonia, colonia);
+        }
+        return flag;
+    }
+
+    public boolean validateMunicipio() {
+        String regex = "^(\\w ?){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(municipio);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tMunicipio = findViewById(R.id.textInputMunicipio);
+            colorText(tMunicipio, municipio);
+        }
+        return flag;
+    }
+
+    public boolean validateEstado() {
+        String regex = "^(\\w ?){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(estado);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tEstado = findViewById(R.id.textInputEstado);
+            colorText(tEstado, estado);
+        }
+        return flag;
+    }
+
+    public boolean validateNumInterno() {
+        String regex = "^(\\w ?){1,127}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(numInt);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tNumInt = findViewById(R.id.textInputNumInt);
+            colorText(tNumInt, numInt);
+        }
+        return flag;
+    }
+
+    public boolean validateCodigoPostal() {
+        String regex = "\\d{5}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cP);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tCP = findViewById(R.id.textInputCP);
+            colorText(tCP, cP);
+        }
+        return flag;
+    }
+
+    public boolean validateFields() {
+
+        boolean name = false;
+        boolean middle = false;
+        boolean last = false;
+        boolean email = false;
+        boolean username = false;
+        boolean pass = false;
+        boolean confirmpass = false;
+
+        if (validateName()) {
+            name = true;
+        }
+        if (validateMiddleName()) {
+            middle = true;
+        }
+        if (validateLastName()) {
+            last = true;
+        }
+        if (validateEmail()) {
+            email = true;
+        }if (validateUsername()) {
+            username = true;
+        }if (validatePassword()) {
+            pass = true;
+        }if (validatePasswordConfirm()) {
+            confirmpass = true;
+        }
+
+        return (name && middle && last && email && username && pass && confirmpass);
+    }
+
+    public boolean validateFields2() {
+
+        boolean calle = false;
+        boolean colonia = false;
+        boolean municipio = false;
+        boolean estado = false;
+        boolean numint = false;
+        boolean codpost = false;
+
+        if (validateCalle()) {
+            calle = true;
+        }
+        if (validateColonia()) {
+            colonia = true;
+        }
+        if (validateMunicipio()) {
+            municipio = true;
+        }
+        if (validateEstado()) {
+            estado = true;
+        }if (validateNumInterno()) {
+            numint = true;
+        }if (validateCodigoPostal()) {
+            codpost = true;
+        }
+
+        return (calle && colonia && municipio && estado && numint && codpost);
+    }
+
     public void verifyData(View view){
         // Find Id EditText
         eTNombre =findViewById(R.id.eTNombre);
@@ -118,11 +380,17 @@ public class RegisterActivity extends AppCompatActivity {
             message = "La foto de perfil es requerida";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
         } else{
-            Resources resources = new Resources();
-            passwordHash = resources.hash256(password);
-            setContentView(R.layout.activity_register_second);
-            if(saveUserData){
-                userInfo2();
+            if (validateFields()) {
+                Resources resources = new Resources();
+                passwordHash = resources.hash256(password);
+                setContentView(R.layout.activity_register_second);
+                if (saveUserData) {
+                    userInfo2();
+                }
+            }
+            else {
+                message = "Algún campo es incorrecto.";
+                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -153,21 +421,28 @@ public class RegisterActivity extends AppCompatActivity {
             message = "Se requiere aceptar las condiciones de uso y privacidad de la aplicación.";
             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
         }else{
-            RegisterRequest registerRequest = new RegisterRequest();
-            registerRequest.setNombre(nombre);
-            registerRequest.setApellidoP(apellidoPaterno);
-            registerRequest.setApellidoM(apellidoMaterno);
-            registerRequest.setCalle(calle);
-            registerRequest.setNumero(numInt);
-            registerRequest.setColonia(colonia);
-            registerRequest.setMunicipio(municipio);
-            registerRequest.setEstado(estado);
-            registerRequest.setCPP(cP);
-            registerRequest.setCorreo(email);
-            registerRequest.setIdUsuario(username);
-            registerRequest.setContrasena(passwordHash);
-            registerRequest.setImage(sImage);
-            registerUser(registerRequest);
+            if (validateFields2()) {
+                RegisterRequest registerRequest = new RegisterRequest();
+                registerRequest.setNombre(nombre);
+                registerRequest.setApellidoP(apellidoPaterno);
+                registerRequest.setApellidoM(apellidoMaterno);
+                registerRequest.setCalle(calle);
+                registerRequest.setNumero(numInt);
+                registerRequest.setColonia(colonia);
+                registerRequest.setMunicipio(municipio);
+                registerRequest.setEstado(estado);
+                registerRequest.setCPP(cP);
+                registerRequest.setCorreo(email);
+                registerRequest.setIdUsuario(username);
+                registerRequest.setContrasena(passwordHash);
+                registerRequest.setImage(sImage);
+                registerUser(registerRequest);
+            }
+
+            else {
+                message = "Algún campo es incorrecto.";
+                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -195,7 +470,7 @@ public class RegisterActivity extends AppCompatActivity {
                             try {
                                 bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
                                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
                                 byte[] byteArray = outputStream.toByteArray();
                                 //Encode Base 64 Image
                                 sImage = Base64.encodeToString(byteArray, Base64.DEFAULT);

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class NewOfferFragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     String username;
+    Integer statusDocuments;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,7 +53,7 @@ public class NewOfferFragment extends Fragment {
     TextView btnCreaOffer;
     ArrayList<OfferVO> listOffer;
     View vista;
-
+    RelativeLayout relativeLayout;
     RecyclerView recyclerOfertas;
 
     /**
@@ -88,6 +90,7 @@ public class NewOfferFragment extends Fragment {
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         username = preferences.getString("username","username");
+        statusDocuments = preferences.getInt("documentosApproval",0);
         setUserOffersValues();
 
         listOffer = new ArrayList<>();
@@ -114,8 +117,13 @@ public class NewOfferFragment extends Fragment {
                 if (response.isSuccessful()) {
                     UserOffersResponse userOffersResponse = response.body();
                     offersD = new ArrayList<>(Arrays.asList(userOffersResponse.getOfertas()));
-                    llenarLista();
-
+                    if (offersD.size() == 0) {
+                        relativeLayout = vista.findViewById(R.id.rLnoOffers);
+                        relativeLayout.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        llenarLista();
+                    }
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
@@ -133,44 +141,21 @@ public class NewOfferFragment extends Fragment {
     private void llenarLista() {
 
         for (int i = 0; i < offersD.size(); i++){
+            Integer idServicio = offersD.get(i).getIdServicio();
             String nombre = offersD.get(i).getNombre();
             String descripcion = offersD.get(i).getDescripcion();
             String categoria = offersD.get(i).getCategoria();
             String imagen = offersD.get(i).getImagen();
 
-            OfferVO oferta = new OfferVO(nombre, descripcion, imagen, categoria);
+            OfferVO oferta = new OfferVO(nombre, descripcion, imagen, categoria, idServicio);
             listOffer.add(oferta);
         }
-        /*
-        OfferVO element = new OfferVO("changos", "changos2", "https://bancodetiempo.s3.amazonaws.com/perfil/Marco_perfil.jpg", "Comida");
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-        listOffer.add(element);
-
-         */
-
-
 
         recyclerOfertas = (RecyclerView) vista.findViewById(R.id.rVNewOffer);
 
         recyclerOfertas.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        AdapterNewOffer myadapter = new AdapterNewOffer(listOffer);
+        AdapterNewOffer myadapter = new AdapterNewOffer(listOffer, getContext());
 
         recyclerOfertas.setAdapter(myadapter);
     }
@@ -179,9 +164,13 @@ public class NewOfferFragment extends Fragment {
         btnCreateOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent creaOferta = new Intent(getActivity().getApplicationContext(), CreateOffer.class);
-                getActivity().startActivity(creaOferta);
-
+                if(statusDocuments == 1){
+                    Intent creaOferta = new Intent(getActivity().getApplicationContext(), CreateOffer.class);
+                    getActivity().startActivity(creaOferta);
+                }else{
+                    message = "No puedes crear una oferta si tus documentos no han sido aprobados.";
+                    Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

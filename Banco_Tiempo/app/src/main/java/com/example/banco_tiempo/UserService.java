@@ -48,4 +48,16 @@ public interface UserService {
     //POST obtain user accepted service
     @POST("getacceptedservices")
     Call<UserAcceptedServicesResponse> getUserAcceptedServices(@Body UserNotificationsRequest userNotificationsRequest);
+
+    //POST to close a offer
+    @POST("endservice")
+    Call<EndedServiceResponse> sendEndedServiceRequest(@Body EndedServiceRequest endedServiceRequest);
+
+    //POST to delete services
+    @POST("deleteservice")
+    Call<DeleteUserOfferResponse> getDelUserOffer(@Body DeleteUserOfferRequest deleteUserOfferRequest);
+
+    //POST to update user data
+    @POST("updateuser")
+    Call<UpdateUserDataResponse> updateUserData(@Body UpdateUserDataRequest updateUserDataRequest);
 }

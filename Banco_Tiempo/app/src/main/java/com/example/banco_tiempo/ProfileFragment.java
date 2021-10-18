@@ -58,8 +58,8 @@ import retrofit2.Response;
 public class ProfileFragment extends Fragment {
     Button btnUserData;
     TextView btnUserDocuments;
-    Button btnImg;
-    Button btnCncl;
+    TextView btnImg;
+    TextView btnCncl;
 
 
     ImageView status;
@@ -169,6 +169,11 @@ public class ProfileFragment extends Fragment {
         tVHours = root.findViewById(R.id.tVverHoras);
         tVDocuments = root.findViewById(R.id.tVverDocu);
 
+        // Set listener en btnUserData
+        nestedScrollView = root.findViewById(R.id.fragment_content_profile);
+        btnUserDocuments = nestedScrollView.findViewById(R.id.btnUserDocuments);
+        clickBtnUserDocuments(btnUserDocuments);
+
         if (statusHours == 0) {
             status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
         }else {
@@ -180,12 +185,8 @@ public class ProfileFragment extends Fragment {
         }else {
             document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.greentick, null));
             tVDocuments.setVisibility(View.GONE);
+            btnUserDocuments.setVisibility(View.GONE);
         }
-
-        // Set listener en btnUserData
-        nestedScrollView = root.findViewById(R.id.fragment_content_profile);
-        btnUserDocuments = nestedScrollView.findViewById(R.id.btnUserDocuments);
-        clickBtnUserDocuments(btnUserDocuments);
 
         emailTextView = nestedScrollView.findViewById(R.id.tVemailP);
         usernameTextView = nestedScrollView.findViewById(R.id.tVuserNameP);
@@ -309,6 +310,7 @@ public class ProfileFragment extends Fragment {
                             if (hoursDocumentResponse.getStatusDocumentos() == 1) {
                                 document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.greentick, null));
                                 tVDocuments.setVisibility(View.GONE);
+                                btnUserDocuments.setVisibility(View.GONE);
                             } else {
                                 document_status.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
                             }
@@ -379,7 +381,7 @@ public class ProfileFragment extends Fragment {
 
 
         // dismiss the popup window when touched
-        btnImg = (Button)popupView.findViewById(R.id.btnImg);
+        btnImg = (TextView) popupView.findViewById(R.id.btnImg);
 
         btnImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -389,7 +391,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        btnCncl = (Button)popupView.findViewById(R.id.btnCncl);
+        btnCncl = (TextView) popupView.findViewById(R.id.btnCncl);
 
         btnCncl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -423,7 +425,7 @@ public class ProfileFragment extends Fragment {
                             try {
                                 bitmap = MediaStore.Images.Media.getBitmap(applicationContext.getContentResolver(), uri);
                                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
                                 byte[] byteArray = outputStream.toByteArray();
                                 //Encode Base 64 Image
                                 sImage = Base64.encodeToString(byteArray, Base64.DEFAULT);

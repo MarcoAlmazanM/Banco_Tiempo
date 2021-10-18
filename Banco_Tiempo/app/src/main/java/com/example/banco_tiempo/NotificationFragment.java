@@ -1,19 +1,18 @@
 package com.example.banco_tiempo;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +31,7 @@ public class NotificationFragment extends Fragment {
 
     String message, username;
     Button bAcept, bReject;
+    RelativeLayout relativeLayout;
     List<UserNotifications> notifications;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -70,6 +70,15 @@ public class NotificationFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    private NotificationAdapter.OnUpdateListener listener;
+
+    @Override
+    public void onAttach(Context mycontext) {
+        super.onAttach(mycontext);
+        listener = (NotificationAdapter.OnUpdateListener) mycontext;
+
     }
 
     @Override
@@ -123,7 +132,7 @@ public class NotificationFragment extends Fragment {
         notificacion.setLayoutManager(new LinearLayoutManager(getContext()));
 
         NotificationAdapter myadapter = new NotificationAdapter(listaNotificacion, getContext());
-
+        myadapter.setOnUpdateListener(this.listener);
         notificacion.setAdapter(myadapter);
     }
 
@@ -141,7 +150,13 @@ public class NotificationFragment extends Fragment {
                 if (response.isSuccessful()) {
                     UserNotificationsResponse userNotificationsResponse = response.body();
                     notifications = new ArrayList<>(Arrays.asList(userNotificationsResponse.getNotificaciones()));
-                    llenarLista();
+                    if(notifications.size() == 0){
+                        relativeLayout = vista.findViewById(R.id.rLnoNotification);
+                        relativeLayout.setVisibility(View.VISIBLE);
+                    }else{
+                        llenarLista();
+                    }
+
                 } else {
                     message = "Ocurrió un error, favor de intentar más tarde";
                     Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();

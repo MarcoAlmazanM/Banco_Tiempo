@@ -2,21 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     style="@style/parent.contentLayout">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/offerCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp">
 
         <RelativeLayout
             android:id="@+id/rLlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="@drawable/home_gradient_admin">
+            android:background="@drawable/home_gradient_admin"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/tVJob"
@@ -27,15 +30,15 @@
                 android:id="@+id/tVDescription"
                 style="@style/viewParent.headerText.homeCardContent"
                 android:layout_width="200dp"
-                android:scrollHorizontally="false"
                 android:layout_below="@+id/tVJob"
+                android:scrollHorizontally="false"
                 android:text="Descripción de mi oferta" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentEnd="true">
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/iVUserPhoto"
@@ -54,7 +57,6 @@
                     app:srcCompat="@drawable/baseline_close_black_48" />
 
             </LinearLayout>
-
 
 
         </RelativeLayout>

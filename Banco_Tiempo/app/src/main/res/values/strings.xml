@@ -11,7 +11,7 @@
     <string name="registroReg" translatable="false">Registro</string>
     <string name="registroTeryPol" translatable="false">Acepto las condiciones de uso y la política de privacidad.</string>
     <string name="username" translatable="false">Usuario</string>
-    <string name="correo" translatable="false">Correo</string>
+    <string name="correo" translatable="false">correo</string>
     <string name="confirmaContra" translatable="false">Confirma contraseña</string>
     <string name="registrarse" translatable="false">Regístrate</string>
     <string name="regcontinuar" translatable="false">Continuar</string>
@@ -71,7 +71,7 @@
     //Notification_card
     <string name="botonAceptar" translatable="false">Aceptar</string>
     <string name="botonRechazar" translatable="false">Rechazar</string>
-    <string name="statusNotificacion" translatable="false">status</string>
+    <string name="statusNotificacion" translatable="false">Estatus:</string>
     <string name="descripcior" translatable="false">Descripcion</string>
     <string name="contactar" translatable="false">contacto</string>
     <string name="mensajeNotificacion" translatable="false">mensaje...</string>
@@ -134,7 +134,7 @@
 
     //New Login
     <string name="app_name" translatable="false">Banco de Tiempo</string>
-    <string name="login_email_hint" translatable="false">Correo</string>
+    <string name="login_email_hint" translatable="false">correo</string>
     <string name="login_password_hint" translatable="false">Contraseña</string>
     <string name="accounthave" translatable="false">¿Ya tienes\n una cuenta?</string>
     <string name="passforg" translatable="false">¿Olvidaste tu contraseña?</string>
