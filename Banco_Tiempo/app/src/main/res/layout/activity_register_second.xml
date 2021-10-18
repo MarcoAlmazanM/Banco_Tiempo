@@ -126,7 +126,7 @@
                             android:id="@+id/eTNumInt"
                             style="@style/modifiedEditText"
                             android:hint="@string/numInt"
-                            android:inputType="number"
+                            android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
 
