@@ -16,7 +16,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -33,7 +35,7 @@ public class UpdateUserData extends AppCompatActivity {
     String nombre, apellidoM, apellidoP, calle, colonia, municipio, estado, numInterno, codPostal, message, idUsuario;
     Integer cp, statusHoras, statusDocumentos;
     EditText eTnombre, eTapellidoM, eTapellidoP, eTcalle, eTcolonia, eTmunicipio, eTestado, eTnumInterno, eTcodPostal;
-
+    Toolbar toolbar;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     CircularProgressButton circularProgressButton;
@@ -47,7 +49,13 @@ public class UpdateUserData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_update_user_data);
-
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(Color.WHITE);
+        setTitle("Actualizar Información");
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -309,5 +317,11 @@ public class UpdateUserData extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

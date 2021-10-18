@@ -66,6 +66,11 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(register);
     }
 
+    public void btnSendEmail(View view){
+        Intent changeP = new Intent(LoginActivity.this, EmailChangePassword.class);
+        startActivity(changeP);
+    }
+
     public boolean checkSession(){
         return this.preferences.getBoolean("SaveSession", false);
     }
