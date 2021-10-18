@@ -155,6 +155,8 @@ public class RegisterActivity extends AppCompatActivity {
             internetAddress.validate();
         } catch (AddressException exception) {
             flag = false;
+            tEmailR = findViewById(R.id.textInputEmail);
+            colorText(tEmailR, email);
         }
 
         return flag;
