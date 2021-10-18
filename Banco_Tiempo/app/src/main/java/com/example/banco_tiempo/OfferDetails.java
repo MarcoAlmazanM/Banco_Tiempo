@@ -3,12 +3,12 @@ package com.example.banco_tiempo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -50,7 +50,9 @@ public class OfferDetails extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setTitle("Detalles de la Oferta");
         setSupportActionBar(toolbar);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         preferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         username = preferences.getString("username","NULL");
@@ -122,5 +124,11 @@ public class OfferDetails extends AppCompatActivity {
                 Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

@@ -15,7 +15,6 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,6 +24,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -77,7 +77,9 @@ public class UserDocumentsActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setTitle("User Documents");
         setSupportActionBar(toolbar);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         inePath = findViewById(R.id.rutaIne);
         ine = findViewById(R.id.ineView);
         bIne = findViewById(R.id.ine);
@@ -324,5 +326,11 @@ public class UserDocumentsActivity extends AppCompatActivity {
                     REQUEST_EXTERNAL_STORAGE
             );
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
