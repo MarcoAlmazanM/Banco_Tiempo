@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
 }
 
+
 android {
     compileSdk 31
     buildToolsVersion "31.0.0"
@@ -56,6 +57,14 @@ dependencies {
     implementation 'net.colindodd:gradientlayout:1.2'
     implementation 'androidx.core:core:1.6.0'
     implementation 'com.ramijemli.percentagechartview:percentagechartview:0.3.0'
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.amazonaws:aws-android-sdk-pinpoint:2.33.0'
+    implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.33.0'
+    implementation 'com.amplifyframework:aws-api:1.28.1'
+    implementation 'com.amplifyframework:aws-datastore:1.28.1'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.sun.mail:android-mail:1.6.2'
     implementation 'com.sun.mail:android-activation:1.6.2'
 
@@ -64,3 +73,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
 }
+apply plugin: 'com.google.gms.google-services'

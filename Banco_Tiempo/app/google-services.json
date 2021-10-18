@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "509661533491",
+    "project_id": "bdtpush",
+    "storage_bucket": "bdtpush.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509661533491:android:466f6c368b1f84734d1a46",
+        "android_client_info": {
+          "package_name": "com.example.banco_tiempo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509661533491-ocbbq5m1jjq5o8nqfs781sr235hu700t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.banco_tiempo",
+            "certificate_hash": "89627dce3ed4b786fb1b3c03908a8d8424d7c760"
+          }
+        },
+        {
+          "client_id": "509661533491-t5pdp1hr0f5srhmpgeut2baial6gvu8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtJmPubhZW3VIhAjmfNfmTOfo4Hs1-gYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509661533491-t5pdp1hr0f5srhmpgeut2baial6gvu8n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
