@@ -18,6 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
+            android:name=".ChangePassword"
+            android:exported="true" />
+        <activity
+            android:name=".CheckUserPassword"
+            android:exported="true" />
+        <activity
+            android:name=".EmailChangePassword"
+            android:exported="true" />
+        <activity
             android:name=".UpdateUserData"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
