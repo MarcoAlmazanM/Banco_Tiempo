@@ -16,6 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.ramijemli.percentagechartview.PercentageChartView;
 import com.squareup.picasso.MemoryPolicy;
@@ -180,6 +183,12 @@ public class RateOffer extends Fragment {
                         if(endedServiceResponse.getTransactionApproval() == 1){
                             message = "La oferta ha sido calificada.";
                             Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+                            FragmentManager fm = getActivity().getSupportFragmentManager();
+                            FragmentTransaction ft = fm.beginTransaction();
+                            ft.replace(R.id.content, new RateOffer());
+                            ft.addToBackStack(null);
+                            ft.commit();
                         }else{
                             message = "Ocurrió un error al procesar la calificación de la oferta, favor de volver a intentarlo.";
                             Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();

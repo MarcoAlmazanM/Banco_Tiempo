@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.replace(R.id.content, new NotificationFragment());
         ft.addToBackStack(null);
         ft.commit();
-        setTitle("Hola");
+        setTitle("Notificaciones");
     }
 
     @Override

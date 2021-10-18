@@ -36,6 +36,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     Context context;
     private View.OnClickListener listener;
     ArrayList<NotificationList> notificationList;
+    Boolean deleteNotification;
     String message;
 
     private OnUpdateListener onUpdateListener;
@@ -48,7 +49,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         this.onUpdateListener = onUpdateListener;
     }
 
-    Boolean deleteNotification = false;
+
     public NotificationAdapter(ArrayList<NotificationList> notificationList, Context context){
         this.notificationList = notificationList;
         this.context = context;
@@ -72,17 +73,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.correo.setText(notificationList.get(position).getCorreo());
         holder.ap.setText(notificationList.get(position).getNombreApellidoP());
         holder.am.setText(notificationList.get(position).getNombreApellidoM());
-        //holder.cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
         holder.bindCardColor(notificationList.get(position));
-
-
-
-        /*Transformation transformation = new RoundedCornersTransformation(100,5);
-        Picasso.get().invalidate(notificationList.get(position).getImagen());
-        Picasso.get().load(notificationList.get(position).getImagen()).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.myImage);
-
-         */
-
     }
 
     @Override
@@ -139,13 +130,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 @Override
                 public void onClick(View view) {
                     setUserOfferAccept(getAdapterPosition());
-                    if(deleteNotification) {
-                        adapter.notificationList.remove(getAdapterPosition());
-                        adapter.notifyItemRemoved(getAdapterPosition());
-                    }
-                    if(onUpdateListener != null){
-                        onUpdateListener.onUpdate(1);
-                    }
                 }
             });
 
@@ -153,10 +137,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 @Override
                 public void onClick(View view) {
                     setUserOfferRejected(getAdapterPosition());
-                    if(deleteNotification) {
-                        adapter.notificationList.remove(getAdapterPosition());
-                        adapter.notifyItemRemoved(getAdapterPosition());
-                    }
                 }
             });
 
@@ -164,10 +144,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 @Override
                 public void onClick(View view) {
                     setUserOfferEnded(getAdapterPosition());
-                    if(deleteNotification) {
-                        adapter.notificationList.remove(getAdapterPosition());
-                        adapter.notifyItemRemoved(getAdapterPosition());
-                    }
                 }
             });
 
@@ -208,20 +184,25 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                             if(userRequestOfferResponse.getTransactionApproval() == 1){
                                 message = "El servicio se ha aceptado correctamente, en breve un usuario se contactará con usted.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                deleteNotification = true;
+                                adapter.notificationList.remove(getAdapterPosition());
+                                adapter.notifyItemRemoved(getAdapterPosition());
                             }else if(userRequestOfferResponse.getTransactionApproval() == 2){
                                 message = "El servicio se ha rechazado correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                deleteNotification = true;
+                                adapter.notificationList.remove(getAdapterPosition());
+                                adapter.notifyItemRemoved(getAdapterPosition());
                             }else if(userRequestOfferResponse.getTransactionApproval() == 3){
                                 message = "Notificación eliminada correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                deleteNotification = true;
+                                adapter.notificationList.remove(getAdapterPosition());
+                                adapter.notifyItemRemoved(getAdapterPosition());
                             }
                             else{
                                 message = userRequestOfferResponse.getError();
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                deleteNotification = false;
+                            }
+                            if(onUpdateListener != null){
+                                onUpdateListener.onUpdate(1);
                             }
 
                         }catch (NullPointerException nullPointerException){
