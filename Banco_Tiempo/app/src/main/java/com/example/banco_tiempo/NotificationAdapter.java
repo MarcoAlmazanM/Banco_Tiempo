@@ -1,6 +1,7 @@
 package com.example.banco_tiempo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private View.OnClickListener listener;
     ArrayList<NotificationList> notificationList;
     String message;
-
+    Boolean deleteNotification = false;
     public NotificationAdapter(ArrayList<NotificationList> notificationList, Context context){
         this.notificationList = notificationList;
         this.context = context;
@@ -130,14 +131,24 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             itemView.findViewById(R.id.bAcept).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     setUserOfferAccept(getAdapterPosition());
+                    if(deleteNotification) {
+                        adapter.notificationList.remove(getAdapterPosition());
+                        adapter.notifyItemRemoved(getAdapterPosition());
+                    }
                 }
             });
 
             itemView.findViewById(R.id.bReject).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     setUserOfferRejected(getAdapterPosition());
+                    if(deleteNotification) {
+                        adapter.notificationList.remove(getAdapterPosition());
+                        adapter.notifyItemRemoved(getAdapterPosition());
+                    }
                 }
             });
 
@@ -145,6 +156,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 @Override
                 public void onClick(View view) {
                     setUserOfferEnded(getAdapterPosition());
+                    if(deleteNotification) {
+                        adapter.notificationList.remove(getAdapterPosition());
+                        adapter.notifyItemRemoved(getAdapterPosition());
+                    }
                 }
             });
 
@@ -185,16 +200,20 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                             if(userRequestOfferResponse.getTransactionApproval() == 1){
                                 message = "El servicio se ha aceptado correctamente, en breve un usuario se contactará con usted.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                deleteNotification = true;
                             }else if(userRequestOfferResponse.getTransactionApproval() == 2){
                                 message = "El servicio se ha rechazado correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                deleteNotification = true;
                             }else if(userRequestOfferResponse.getTransactionApproval() == 3){
                                 message = "Notificación eliminada correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                deleteNotification = true;
                             }
                             else{
                                 message = userRequestOfferResponse.getError();
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                deleteNotification = false;
                             }
 
                         }catch (NullPointerException nullPointerException){

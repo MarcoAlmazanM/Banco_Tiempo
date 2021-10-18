@@ -239,8 +239,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void closeSession(MenuItem item) {
-        //editor.putBoolean("SaveSession",false);
-        //editor.apply();
         AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
         builder1.setTitle("Salir de la Sesión");
         builder1.setMessage("¿Seguro que desea cerrar su sesión?");
@@ -250,6 +248,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        editor.putBoolean("SaveSession",false);
+                        editor.apply();
                         String message = "Sesión cerrada con éxito";
                         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                         Intent login = new Intent(MainActivity.this, LoginActivity.class);
