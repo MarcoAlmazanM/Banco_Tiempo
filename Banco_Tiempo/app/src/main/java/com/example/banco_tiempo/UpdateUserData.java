@@ -84,7 +84,8 @@ public class UpdateUserData extends AppCompatActivity {
 
     public boolean validateFields() {
 
-        String regex = "\\w{1,255}";
+        //String regex = "\\w{1,255}";
+        String regex = "^(\\w ?){1,127}$";
         String regexCP = "\\d{5}";
         Pattern pattern = Pattern.compile(regex);
         Pattern patternCP = Pattern.compile(regexCP);
