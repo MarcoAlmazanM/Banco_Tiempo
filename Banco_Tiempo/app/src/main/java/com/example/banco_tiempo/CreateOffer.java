@@ -1,47 +1,42 @@
 package com.example.banco_tiempo;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.ImageView;
-
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.Normalizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +55,7 @@ public class CreateOffer extends AppCompatActivity {
     ImageView cert;
     TextView category, title, description;
     String cat, titxd, des, message;
+    TextInputLayout tTitulo, tCategoria, tDescripcion;
 
     AutoCompleteTextView autoCTV;
     ArrayAdapter<String> adapterItems;
@@ -92,7 +88,9 @@ public class CreateOffer extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setTitle("Create New Offer");
         setSupportActionBar(toolbar);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         imgOffer = findViewById(R.id.iVPhoto1);
 
 
@@ -119,6 +117,52 @@ public class CreateOffer extends AppCompatActivity {
             }
         });
         createOfferIntent();
+    }
+
+    public void colorText(TextInputLayout myInputLayout, String myString) {
+
+        myInputLayout.getEditText().setTextColor(Color.parseColor("#ff0000"));
+        myInputLayout.getEditText().setText(myString);
+        myInputLayout.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                myInputLayout.getEditText().setTextColor(Color.BLACK);
+            }
+        });
+
+    }
+
+    public boolean validateFields() {
+
+        //String regex = "\\w{1,255}";
+        //String regex = "^(\\w ?){1,127}$";
+        String regex = ".{1,255}";
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher1 = pattern.matcher(cat);
+        Matcher matcher2 = pattern.matcher(titxd);
+        Matcher matcher3 = pattern.matcher(des);
+
+        boolean flag1 = matcher1.matches();
+        boolean flag2 = matcher2.matches();
+        boolean flag3 = matcher3.matches();
+
+        if (!flag1) {
+            tCategoria = findViewById(R.id.textInputCategoriaOffer);
+            colorText(tCategoria, cat);
+        }
+        if (!flag2) {
+            tTitulo = findViewById(R.id.textInputTitleOffer);
+            colorText(tTitulo, titxd);
+        }
+        if (!flag3) {
+            tDescripcion = findViewById(R.id.textInputDescOffer);
+            colorText(tDescripcion, des);
+        }
+
+        boolean flag = flag1 && flag2 && flag3;
+
+        return flag;
     }
 
     public void pick(View view) {
@@ -166,19 +210,25 @@ public class CreateOffer extends AppCompatActivity {
             Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
         }
         else {
-            NewOfferRequest newOfferRequest = new NewOfferRequest();
-            newOfferRequest.setUsername(username);
-            newOfferRequest.setCategoria(cat);
-            newOfferRequest.setNombre(titxd);
-            newOfferRequest.setDescripcion(des);
-            newOfferRequest.setImage(sImage);
-            newOfferRequest.setColonia(colonia);
-            if(TextUtils.isEmpty(sCert)){
-                newOfferRequest.setCertificado("NULL");
-            }else{
-                newOfferRequest.setCertificado(sCert);
+            if (validateFields()) {
+                NewOfferRequest newOfferRequest = new NewOfferRequest();
+                newOfferRequest.setUsername(username);
+                newOfferRequest.setCategoria(cat);
+                newOfferRequest.setNombre(titxd);
+                newOfferRequest.setDescripcion(des);
+                newOfferRequest.setImage(sImage);
+                newOfferRequest.setColonia(colonia);
+                if (TextUtils.isEmpty(sCert)) {
+                    newOfferRequest.setCertificado("NULL");
+                } else {
+                    newOfferRequest.setCertificado(sCert);
+                }
+                uploadNewOffer(newOfferRequest);
             }
-            uploadNewOffer(newOfferRequest);
+            else{
+                message = "Los campos en color rojo son incorrectos, por favor revise su contenido.";
+                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -297,5 +347,11 @@ public class CreateOffer extends AppCompatActivity {
                     REQUEST_EXTERNAL_STORAGE
             );
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

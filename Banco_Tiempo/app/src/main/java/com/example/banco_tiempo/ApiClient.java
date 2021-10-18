@@ -17,6 +17,21 @@ public class ApiClient {
                 .build();
         return retrofit;
     }
+    public static Retrofit getRetrofitClient(){
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("")
+                .client(okHttpClient)
+                .build();
+        return retrofit;
+    }
+    public static EmailService getEmailService(){
+        EmailService emailService = getRetrofitClient().create(EmailService.class);
+        return emailService;
+    }
     public static UserService getService(){
         UserService userService = getRetrofit().create(UserService.class);
         return userService;

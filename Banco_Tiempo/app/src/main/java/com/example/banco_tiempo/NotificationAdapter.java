@@ -2,6 +2,7 @@ package com.example.banco_tiempo;
 
 import android.content.Context;
 import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -45,7 +42,19 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     Context context;
     private View.OnClickListener listener;
     ArrayList<NotificationList> notificationList;
+    Boolean deleteNotification;
     String message;
+
+    private OnUpdateListener onUpdateListener;
+
+    public interface OnUpdateListener {
+        void onUpdate(Integer text);
+    }
+
+    public void setOnUpdateListener(OnUpdateListener onUpdateListener) {
+        this.onUpdateListener = onUpdateListener;
+    }
+
 
     public NotificationAdapter(ArrayList<NotificationList> notificationList, Context context){
         this.notificationList = notificationList;
@@ -72,17 +81,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.correo.setText(notificationList.get(position).getCorreo());
         holder.ap.setText(notificationList.get(position).getNombreApellidoP());
         holder.am.setText(notificationList.get(position).getNombreApellidoM());
-        //holder.cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
         holder.bindCardColor(notificationList.get(position));
-
-
-
-        /*Transformation transformation = new RoundedCornersTransformation(100,5);
-        Picasso.get().invalidate(notificationList.get(position).getImagen());
-        Picasso.get().load(notificationList.get(position).getImagen()).resize(120,120).centerCrop().transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.myImage);
-
-         */
-
     }
 
     @Override
@@ -171,8 +170,21 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 }
             });
 
+            itemView.findViewById(R.id.iVEraseRejected).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setUserOfferEnded(getAdapterPosition());
+                }
+            });
 
 
+        }
+
+        public void setUserOfferEnded(int position){
+            UserRequestOffer userRequestOffer = new UserRequestOffer();
+            userRequestOffer.setIdNot(notificationList.get(position).getIdNot());
+            userRequestOffer.setType("ENDED");
+            getUserRequestOffer(userRequestOffer);
         }
 
         public void setUserOfferRejected(int position){
@@ -206,13 +218,25 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                             if(userRequestOfferResponse.getTransactionApproval() == 1){
                                 message = "El servicio se ha aceptado correctamente, en breve un usuario se contactará con usted.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                adapter.notificationList.remove(getAdapterPosition());
+                                adapter.notifyItemRemoved(getAdapterPosition());
                             }else if(userRequestOfferResponse.getTransactionApproval() == 2){
                                 message = "El servicio se ha rechazado correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                adapter.notificationList.remove(getAdapterPosition());
+                                adapter.notifyItemRemoved(getAdapterPosition());
+                            }else if(userRequestOfferResponse.getTransactionApproval() == 3){
+                                message = "Notificación eliminada correctamente.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                adapter.notificationList.remove(getAdapterPosition());
+                                adapter.notifyItemRemoved(getAdapterPosition());
                             }
                             else{
-                                message = "Error al procesar la petición, favor de intentarlo de nuevo.";
+                                message = userRequestOfferResponse.getError();
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                            }
+                            if(onUpdateListener != null){
+                                onUpdateListener.onUpdate(1);
                             }
 
                         }catch (NullPointerException nullPointerException){

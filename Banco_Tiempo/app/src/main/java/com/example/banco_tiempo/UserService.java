@@ -53,7 +53,11 @@ public interface UserService {
     @POST("endservice")
     Call<EndedServiceResponse> sendEndedServiceRequest(@Body EndedServiceRequest endedServiceRequest);
 
-    //POST to delete a service
+    //POST to delete services
     @POST("deleteservice")
     Call<DeleteUserOfferResponse> getDelUserOffer(@Body DeleteUserOfferRequest deleteUserOfferRequest);
+
+    //POST to update user data
+    @POST("updateuser")
+    Call<UpdateUserDataResponse> updateUserData(@Body UpdateUserDataRequest updateUserDataRequest);
 }

@@ -72,6 +72,15 @@ public class NotificationFragment extends Fragment {
         return fragment;
     }
 
+    private NotificationAdapter.OnUpdateListener listener;
+
+    @Override
+    public void onAttach(Context mycontext) {
+        super.onAttach(mycontext);
+        listener = (NotificationAdapter.OnUpdateListener) mycontext;
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +132,7 @@ public class NotificationFragment extends Fragment {
         notificacion.setLayoutManager(new LinearLayoutManager(getContext()));
 
         NotificationAdapter myadapter = new NotificationAdapter(listaNotificacion, getContext());
-
+        myadapter.setOnUpdateListener(this.listener);
         notificacion.setAdapter(myadapter);
     }
 

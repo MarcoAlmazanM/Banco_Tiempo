@@ -3,13 +3,13 @@ package com.example.banco_tiempo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -44,6 +44,7 @@ public class OfferDetails extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     String username, message, token;
+    Integer statusDocumentos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +54,13 @@ public class OfferDetails extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setTitle("Detalles de la Oferta");
         setSupportActionBar(toolbar);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         preferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         username = preferences.getString("username","NULL");
+        statusDocumentos = preferences.getInt("documentosApproval",0);
 
         oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
         nombre=findViewById(R.id.userName2);
@@ -100,13 +104,17 @@ public class OfferDetails extends AppCompatActivity {
                 });
     }
     public void RequestOffer(View view){
-        UserRequestOffer userRequestOffer = new UserRequestOffer();
-        userRequestOffer.setIdServicio(oferta.getIdServicio());
-        userRequestOffer.setIdEmisor(oferta.getIdUsuario());
-        userRequestOffer.setIdReceptor(username);
-        userRequestOffer.setType("REQUEST");
-        getUserRequestOffer(userRequestOffer);
-
+        if(statusDocumentos == 1){
+            UserRequestOffer userRequestOffer = new UserRequestOffer();
+            userRequestOffer.setIdServicio(oferta.getIdServicio());
+            userRequestOffer.setIdEmisor(oferta.getIdUsuario());
+            userRequestOffer.setIdReceptor(username);
+            userRequestOffer.setType("REQUEST");
+            getUserRequestOffer(userRequestOffer);
+        }else{
+            message = "No puedes solicitar un servicio si no tus documentos no han sido aprobados.";
+            Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
+        }
     }
 
     public void getUserRequestOffer(UserRequestOffer userRequestOffer){
@@ -143,5 +151,11 @@ public class OfferDetails extends AppCompatActivity {
                 Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
