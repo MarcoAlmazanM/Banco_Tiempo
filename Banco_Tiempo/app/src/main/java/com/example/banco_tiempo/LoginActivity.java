@@ -37,10 +37,10 @@ public class LoginActivity extends AppCompatActivity {
         preferences = this.getSharedPreferences("userData",Context.MODE_PRIVATE);
         editor = preferences.edit();
         loginIntent();
-        if(checkSession()){
+        /*if(checkSession()){
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
-        }
+        }*/
 
     }
 
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("email", loginResponse.getEmail());
                     editor.putInt("statusHours", loginResponse.getStatusHours());
                     editor.putInt("documentosApproval", loginResponse.getDocumentosApproval());
-                    editor.putBoolean("SaveSession", true);
+                   // editor.putBoolean("SaveSession", true);
                     editor.apply();
                     Intent menu = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(menu);
@@ -131,5 +131,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+   /*@Override
+    public void onBackPressed(){
+        startActivity(new Intent(LoginActivity.this, LoginActivity.class));
+        finish();
+    }*/
 }

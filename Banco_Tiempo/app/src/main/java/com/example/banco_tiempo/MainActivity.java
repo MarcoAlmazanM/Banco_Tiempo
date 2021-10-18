@@ -1,10 +1,13 @@
 package com.example.banco_tiempo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,7 +16,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
@@ -157,12 +162,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
-            super.onBackPressed();
-            //additional code
+            //super.onBackPressed();
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+            builder1.setTitle("Salir de la Aplicación");
+            builder1.setMessage("¿Seguro que desea salir de la aplicación?");
+            builder1.setCancelable(true);
+            builder1.setPositiveButton("Aceptar",
+                    new DialogInterface.OnClickListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            finishAffinity();
+                        }
+                    });
+            builder1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+
         } else {
             while (count > 0) {
                 getSupportFragmentManager().popBackStack();
@@ -170,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             setTitle("Inicio");
         }
-
     }
 
 
@@ -215,14 +239,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void closeSession(MenuItem item) {
-        editor.putBoolean("SaveSession",false);
-        editor.apply();
-        String message = "Sesión cerrada con éxito";
-        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-        Intent login = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(login);
-        finish();
+        //editor.putBoolean("SaveSession",false);
+        //editor.apply();
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+        builder1.setTitle("Salir de la Sesión");
+        builder1.setMessage("¿Seguro que desea cerrar su sesión?");
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("Aceptar",
+                new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        String message = "Sesión cerrada con éxito";
+                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                        Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(login);
+                        finish();
+                    }
+                });
+        builder1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
+
 
     public static Context contextOfApplication;
     public static Context getContextOfApplication()

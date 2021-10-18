@@ -193,7 +193,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                             }
                             else{
-                                message = "Error al procesar la petición, favor de intentarlo de nuevo.";
+                                message = userRequestOfferResponse.getError();
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                             }
 

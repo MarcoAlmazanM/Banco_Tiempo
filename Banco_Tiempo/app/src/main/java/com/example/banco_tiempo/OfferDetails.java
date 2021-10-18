@@ -40,6 +40,7 @@ public class OfferDetails extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     String username, message;
+    Integer statusDocumentos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class OfferDetails extends AppCompatActivity {
         preferences = this.getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
         username = preferences.getString("username","NULL");
+        statusDocumentos = preferences.getInt("documentosApproval",0);
 
         oferta=(ElementList) getIntent().getSerializableExtra("ElementList");
         nombre=findViewById(R.id.userName2);
@@ -75,12 +77,17 @@ public class OfferDetails extends AppCompatActivity {
         Picasso.get().load(url).transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(perfil);
     }
     public void RequestOffer(View view){
-        UserRequestOffer userRequestOffer = new UserRequestOffer();
-        userRequestOffer.setIdServicio(oferta.getIdServicio());
-        userRequestOffer.setIdEmisor(oferta.getIdUsuario());
-        userRequestOffer.setIdReceptor(username);
-        userRequestOffer.setType("REQUEST");
-        getUserRequestOffer(userRequestOffer);
+        if(statusDocumentos == 1){
+            UserRequestOffer userRequestOffer = new UserRequestOffer();
+            userRequestOffer.setIdServicio(oferta.getIdServicio());
+            userRequestOffer.setIdEmisor(oferta.getIdUsuario());
+            userRequestOffer.setIdReceptor(username);
+            userRequestOffer.setType("REQUEST");
+            getUserRequestOffer(userRequestOffer);
+        }else{
+            message = "No puedes solicitar un servicio si no tus documentos no han sido aprobados.";
+            Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
+        }
     }
 
     public void getUserRequestOffer(UserRequestOffer userRequestOffer){
