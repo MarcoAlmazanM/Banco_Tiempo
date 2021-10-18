@@ -37,6 +37,9 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -102,10 +105,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public boolean validateFields() {
-
-
-        String regex = "\\w+";
+    public boolean validateName() {
+        String regex = "\\w{1,255}";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(nombre);
 
@@ -115,8 +116,97 @@ public class RegisterActivity extends AppCompatActivity {
             tNombre = findViewById(R.id.textInputName);
             colorText(tNombre, nombre);
         }
+        return flag;
+    }
+
+    public boolean validateMiddleName() {
+        String regex = "\\w{1,255}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(apellidoPaterno);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tAP = findViewById(R.id.textInputAP);
+            colorText(tAP, apellidoPaterno);
+        }
+        return flag;
+    }
+
+    public boolean validateLastName() {
+        String regex = "\\w{1,255}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(apellidoMaterno);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tAM = findViewById(R.id.textInputAM);
+            colorText(tAM, apellidoMaterno);
+        }
+        return flag;
+    }
+
+    public boolean validateEmail() {
+        boolean flag = true;
+
+        try {
+            InternetAddress internetAddress = new InternetAddress(email);
+            internetAddress.validate();
+        } catch (AddressException exception) {
+            flag = false;
+        }
 
         return flag;
+    }
+
+    public boolean validateUsername() {
+        String regex = "\\w{1,255}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(username);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tUsername = findViewById(R.id.textInputUsername);
+            colorText(tUsername, username);
+        }
+        return flag;
+    }
+
+    public boolean validatePassword() {
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tPassword = findViewById(R.id.textInputPassword);
+            colorText(tPassword, password);
+        }
+        return flag;
+    }
+
+    public boolean validatePasswordConfirm() {
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(passwordConfirm);
+
+        boolean flag = matcher.matches();
+
+        if (!flag) {
+            tPasswordConfirm = findViewById(R.id.textInputPasswordConf);
+            colorText(tPasswordConfirm, passwordConfirm);
+        }
+        return flag;
+    }
+
+    public boolean validateFields() {
+        return (validateName() && validateMiddleName()
+                && validateLastName() && validateEmail()
+                && validateUsername() && validatePassword()
+                && validatePasswordConfirm());
     }
 
     public void verifyData(View view){
