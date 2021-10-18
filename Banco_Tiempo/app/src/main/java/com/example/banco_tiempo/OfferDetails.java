@@ -9,9 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -39,7 +43,7 @@ public class OfferDetails extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    String username, message;
+    String username, message, token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,27 @@ public class OfferDetails extends AppCompatActivity {
         Transformation transformation = new RoundedCornersTransformation(50,5);
         Picasso.get().invalidate(url);
         Picasso.get().load(url).transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(perfil);
+
+        FirebaseMessaging.getInstance().getToken()
+
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("FCM Token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        //String token = task.getResult();
+                        token = task.getResult();
+
+                        // Log and toast
+                        //String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d("TOKEN", token);
+                        //Toast.makeText(NotificationAdapter.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
     public void RequestOffer(View view){
         UserRequestOffer userRequestOffer = new UserRequestOffer();
@@ -81,6 +106,7 @@ public class OfferDetails extends AppCompatActivity {
         userRequestOffer.setIdReceptor(username);
         userRequestOffer.setType("REQUEST");
         getUserRequestOffer(userRequestOffer);
+
     }
 
     public void getUserRequestOffer(UserRequestOffer userRequestOffer){
@@ -94,6 +120,8 @@ public class OfferDetails extends AppCompatActivity {
                         if(userRequestOfferResponse.getTransactionApproval() == 1){
                             message = "La solicitud del servicio esta esperando a ser aceptada, favor de dirigirse al apartado de notificaciones.";
                             Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
+                            FcmNotificationSenderAct notificationSenderAct = new FcmNotificationSenderAct(token,"¡Hola!","Tienes nuevas notificaciones",getApplicationContext(), OfferDetails.this);
+                            notificationSenderAct.SendNotifications();
                         }else{
                             message = userRequestOfferResponse.getError();
                             Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
