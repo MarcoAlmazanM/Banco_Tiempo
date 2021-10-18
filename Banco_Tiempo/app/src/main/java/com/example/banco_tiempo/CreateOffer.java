@@ -19,6 +19,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,11 +38,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.Normalizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +65,7 @@ public class CreateOffer extends AppCompatActivity {
     ImageView cert;
     TextView category, title, description;
     String cat, titxd, des, message;
+    TextInputLayout tTitulo, tCategoria, tDescripcion;
 
     AutoCompleteTextView autoCTV;
     ArrayAdapter<String> adapterItems;
@@ -121,6 +127,52 @@ public class CreateOffer extends AppCompatActivity {
         createOfferIntent();
     }
 
+    public void colorText(TextInputLayout myInputLayout, String myString) {
+
+        myInputLayout.getEditText().setTextColor(Color.parseColor("#ff0000"));
+        myInputLayout.getEditText().setText(myString);
+        myInputLayout.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                myInputLayout.getEditText().setTextColor(Color.BLACK);
+            }
+        });
+
+    }
+
+    public boolean validateFields() {
+
+        //String regex = "\\w{1,255}";
+        //String regex = "^(\\w ?){1,127}$";
+        String regex = ".{1,255}";
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher1 = pattern.matcher(cat);
+        Matcher matcher2 = pattern.matcher(titxd);
+        Matcher matcher3 = pattern.matcher(des);
+
+        boolean flag1 = matcher1.matches();
+        boolean flag2 = matcher2.matches();
+        boolean flag3 = matcher3.matches();
+
+        if (!flag1) {
+            tTitulo = findViewById(R.id.textInputTitleOffer);
+            colorText(tTitulo, titxd);
+        }
+        if (!flag2) {
+            tCategoria = findViewById(R.id.textInputCategoriaOffer);
+            colorText(tCategoria, cat);
+        }
+        if (!flag3) {
+            tDescripcion = findViewById(R.id.textInputDescOffer);
+            colorText(tDescripcion, des);
+        }
+
+        boolean flag = flag1 && flag2 && flag3;
+
+        return flag;
+    }
+
     public void pick(View view) {
         verifyStoragePermissions(CreateOffer.this);
         Intent i = new Intent();
@@ -166,19 +218,25 @@ public class CreateOffer extends AppCompatActivity {
             Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
         }
         else {
-            NewOfferRequest newOfferRequest = new NewOfferRequest();
-            newOfferRequest.setUsername(username);
-            newOfferRequest.setCategoria(cat);
-            newOfferRequest.setNombre(titxd);
-            newOfferRequest.setDescripcion(des);
-            newOfferRequest.setImage(sImage);
-            newOfferRequest.setColonia(colonia);
-            if(TextUtils.isEmpty(sCert)){
-                newOfferRequest.setCertificado("NULL");
-            }else{
-                newOfferRequest.setCertificado(sCert);
+            if (validateFields()) {
+                NewOfferRequest newOfferRequest = new NewOfferRequest();
+                newOfferRequest.setUsername(username);
+                newOfferRequest.setCategoria(cat);
+                newOfferRequest.setNombre(titxd);
+                newOfferRequest.setDescripcion(des);
+                newOfferRequest.setImage(sImage);
+                newOfferRequest.setColonia(colonia);
+                if (TextUtils.isEmpty(sCert)) {
+                    newOfferRequest.setCertificado("NULL");
+                } else {
+                    newOfferRequest.setCertificado(sCert);
+                }
+                uploadNewOffer(newOfferRequest);
             }
-            uploadNewOffer(newOfferRequest);
+            else{
+                message = "Los campos en color rojo son incorrectos, por favor revise su contenido.";
+                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
