@@ -53,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="@+id/iVPhoto1" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/textInputTitleOffer"
         style="@style/parent"
         android:layout_margin="@dimen/loginViewsMargin"
         android:layout_marginTop="30dp"
@@ -72,7 +72,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:id="@+id/textInputCategoriaOffer"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,9 +80,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:hint="Categoría"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintEnd_toEndOf="@+id/textInputTitleOffer"
+        app:layout_constraintStart_toStartOf="@+id/textInputTitleOffer"
+        app:layout_constraintTop_toBottomOf="@+id/textInputTitleOffer">
 
         <AutoCompleteTextView
             android:id="@+id/tVAutoComplete"
@@ -94,14 +94,14 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
+        android:id="@+id/textInputDescOffer"
         style="@style/parent"
         android:layout_margin="@dimen/loginViewsMargin"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintEnd_toEndOf="@+id/textInputCategoriaOffer"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+        app:layout_constraintStart_toStartOf="@+id/textInputCategoriaOffer"
+        app:layout_constraintTop_toBottomOf="@+id/textInputCategoriaOffer">
 
         <EditText
             android:id="@+id/tVDescription"
@@ -129,8 +129,8 @@
         android:text="Certificado de Apoyo"
         android:textColor="@color/white"
         android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+        app:layout_constraintStart_toStartOf="@+id/textInputDescOffer"
+        app:layout_constraintTop_toBottomOf="@+id/textInputDescOffer" />
 
     <ImageView
         android:id="@+id/certiView"
@@ -154,9 +154,9 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintEnd_toEndOf="@+id/textInputCategoriaOffer"
         app:layout_constraintHorizontal_bias="0.458"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintStart_toStartOf="@+id/textInputDescOffer"
         app:layout_constraintTop_toBottomOf="@+id/certi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
