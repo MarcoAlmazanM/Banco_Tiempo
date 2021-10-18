@@ -15,10 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -41,6 +37,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private View.OnClickListener listener;
     ArrayList<NotificationList> notificationList;
     String message;
+
+    private OnUpdateListener onUpdateListener;
+
+    public interface OnUpdateListener {
+        void onUpdate(Integer text);
+    }
+
+    public void setOnUpdateListener(OnUpdateListener onUpdateListener) {
+        this.onUpdateListener = onUpdateListener;
+    }
+
     Boolean deleteNotification = false;
     public NotificationAdapter(ArrayList<NotificationList> notificationList, Context context){
         this.notificationList = notificationList;
@@ -135,6 +142,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     if(deleteNotification) {
                         adapter.notificationList.remove(getAdapterPosition());
                         adapter.notifyItemRemoved(getAdapterPosition());
+                    }
+                    if(onUpdateListener != null){
+                        onUpdateListener.onUpdate(1);
                     }
                 }
             });
