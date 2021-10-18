@@ -131,7 +131,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             itemView.findViewById(R.id.bAcept).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     setUserOfferAccept(getAdapterPosition());
                     if(deleteNotification) {
                         adapter.notificationList.remove(getAdapterPosition());
@@ -143,7 +142,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             itemView.findViewById(R.id.bReject).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     setUserOfferRejected(getAdapterPosition());
                     if(deleteNotification) {
                         adapter.notificationList.remove(getAdapterPosition());
