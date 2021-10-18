@@ -16,7 +16,8 @@ public class LoginResponse implements Serializable {
     private String calle;
     private String numero;
     private String municipio;
-    private String CP;
+    private String estado;
+    private Integer CP;
 
     public Integer getLoginApproval() {
         return loginApproval;
@@ -88,6 +89,54 @@ public class LoginResponse implements Serializable {
 
     public void setColonia(String colonia) {
         this.colonia = colonia;
+    }
+
+    public String getLastNameM() {
+        return lastNameM;
+    }
+
+    public void setLastNameM(String lastNameM) {
+        this.lastNameM = lastNameM;
+    }
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public Integer getCP() {
+        return CP;
+    }
+
+    public void setCP(Integer CP) {
+        this.CP = CP;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
 

@@ -141,8 +141,21 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 }
             });
 
+            itemView.findViewById(R.id.iVEraseRejected).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setUserOfferEnded(getAdapterPosition());
+                }
+            });
 
 
+        }
+
+        public void setUserOfferEnded(int position){
+            UserRequestOffer userRequestOffer = new UserRequestOffer();
+            userRequestOffer.setIdNot(notificationList.get(position).getIdNot());
+            userRequestOffer.setType("ENDED");
+            getUserRequestOffer(userRequestOffer);
         }
 
         public void setUserOfferRejected(int position){
@@ -175,9 +188,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                             }else if(userRequestOfferResponse.getTransactionApproval() == 2){
                                 message = "El servicio se ha rechazado correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                            }else if(userRequestOfferResponse.getTransactionApproval() == 3){
+                                message = "Notificación eliminada correctamente.";
+                                Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                             }
                             else{
-                                message = "Error al procesar la petición, favor de intentarlo de nuevo.";
+                                message = userRequestOfferResponse.getError();
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                             }
 

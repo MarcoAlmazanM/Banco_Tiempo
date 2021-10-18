@@ -1,15 +1,24 @@
 package com.example.banco_tiempo;
 
 public class UpdateUserDataRequest {
+    private String idUsuario;
     private String nombre;
     private String apellidoP;
     private String apellidoM;
     private String calle;
-    private Integer numero;
-    private Integer cp;
+    private String numero;
+    private Integer CP;
     private String colonia;
     private String municipio;
     private String estado;
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     public String getNombre() {
         return nombre;
@@ -43,20 +52,20 @@ public class UpdateUserDataRequest {
         this.calle = calle;
     }
 
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
-    public Integer getCp() {
-        return cp;
+    public Integer getCP() {
+        return CP;
     }
 
-    public void setCp(Integer cp) {
-        this.cp = cp;
+    public void setCP(Integer CP) {
+        this.CP = CP;
     }
 
     public String getColonia() {
