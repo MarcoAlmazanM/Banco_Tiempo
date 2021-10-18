@@ -68,7 +68,7 @@
         android:shadowDx="-2"
         android:shadowDy="-2"
         android:shadowRadius="1"
-        app:layout_constraintBottom_toTopOf="@+id/btnLegal"
+        app:layout_constraintBottom_toTopOf="@+id/btnRestableceContra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAppMan" />
@@ -93,10 +93,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLegal" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRestableceContra" />
 
     <TextView
-        android:id="@+id/btnLegal"
+        android:id="@+id/btnRestableceContra"
         style="@style/StyledBackButton"
         android:layout_width="340dp"
         android:layout_height="60dp"
@@ -104,7 +104,7 @@
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:text="Reestablecer contraseña"
+        android:text="Restablecer contraseña"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textStyle="bold"

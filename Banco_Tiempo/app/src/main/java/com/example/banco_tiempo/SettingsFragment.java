@@ -27,7 +27,7 @@ public class SettingsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    TextView btnUpdateUserData;
+    TextView btnUpdateUserData, btnChangeUserPassword;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -68,6 +68,8 @@ public class SettingsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
         btnUpdateUserData = (TextView) root.findViewById(R.id.btnUpdateUserData);
+        btnChangeUserPassword = (TextView) root.findViewById(R.id.btnRestableceContra);
+        clickBtnChangePassword(btnChangeUserPassword);
         clickBtnUpdateUserData(btnUpdateUserData);
 
         return root;
@@ -79,6 +81,16 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 Intent updateUserData = new Intent(getActivity().getApplicationContext(), UpdateUserData.class);
                 getActivity().startActivity(updateUserData);
+            }
+        });
+    }
+
+    public void clickBtnChangePassword(TextView btnCPassword){
+        btnCPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent changeUserPassword = new Intent(getActivity().getApplicationContext(), CheckUserPassword.class);
+                getActivity().startActivity(changeUserPassword);
             }
         });
     }
