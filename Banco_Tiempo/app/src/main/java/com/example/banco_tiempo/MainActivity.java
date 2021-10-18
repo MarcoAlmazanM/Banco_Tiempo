@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,7 +34,7 @@ import com.squareup.picasso.Transformation;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , NotificationAdapter.OnUpdateListener {
     DrawerLayout mDrawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -212,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.replace(R.id.content, new NewOfferFragment());
                 break;
             case R.id.nav_notification:
-                ft.replace(R.id.content, new NotificationFragment(), "Notification");
+                ft.replace(R.id.content, new NotificationFragment());
                 break;
             case R.id.nav_rateOffer:
                 ft.replace(R.id.content, new RateOffer());
@@ -273,5 +272,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static Context getContextOfApplication()
     {
         return contextOfApplication;
+    }
+
+    @Override
+    public void onUpdate(Integer text) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.content, new NotificationFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+        setTitle("Hola");
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
