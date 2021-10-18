@@ -156,12 +156,12 @@ public class CreateOffer extends AppCompatActivity {
         boolean flag3 = matcher3.matches();
 
         if (!flag1) {
-            tTitulo = findViewById(R.id.textInputTitleOffer);
-            colorText(tTitulo, titxd);
-        }
-        if (!flag2) {
             tCategoria = findViewById(R.id.textInputCategoriaOffer);
             colorText(tCategoria, cat);
+        }
+        if (!flag2) {
+            tTitulo = findViewById(R.id.textInputTitleOffer);
+            colorText(tTitulo, titxd);
         }
         if (!flag3) {
             tDescripcion = findViewById(R.id.textInputDescOffer);
