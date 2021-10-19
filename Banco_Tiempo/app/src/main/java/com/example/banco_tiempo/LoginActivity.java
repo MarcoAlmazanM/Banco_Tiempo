@@ -103,8 +103,11 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(menu);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                     finish();
-                } else {
+                } else if(loginResponse.getLoginApproval() == 0) {
                     message = "Usuario o Contraseña Incorrectos";
+                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                }else{
+                    message = "Verifica tú correo para poder ingresar.";
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }catch(NullPointerException nullPointerException){

@@ -60,4 +60,8 @@ public interface UserService {
     //POST to update user data
     @POST("updateuser")
     Call<UpdateUserDataResponse> updateUserData(@Body UpdateUserDataRequest updateUserDataRequest);
+
+    //POST to recover password
+    @POST("changepassword")
+    Call<RecoverPasswordResponse> recoverPassResponse(@Body RecoverPasswordRequest recoverPasswordRequest);
 }

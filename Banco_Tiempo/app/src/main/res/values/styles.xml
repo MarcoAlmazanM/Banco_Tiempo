@@ -269,5 +269,4 @@
     <style name="DarkModeHidden">
         <item name="android:visibility">visible</item>
     </style>
-
 </resources>

@@ -121,38 +121,56 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag1) {
             tNombre = findViewById(R.id.textInputNombreU);
             colorText(tNombre, nombre);
+            message = "El nombre contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
-        if (!flag2) {
+        else if (!flag2) {
             tApellidoM = findViewById(R.id.textInputApellidoMU);
             colorText(tApellidoM, apellidoM);
+            message = "El apellido materno contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
-        if (!flag3) {
+        else if (!flag3) {
             tApellidoP = findViewById(R.id.textInputApellidoPU);
             colorText(tApellidoP, apellidoP);
+            message = "El apellido paterno contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
-        if (!flag4) {
+        else if (!flag4) {
             tCalle = findViewById(R.id.textInputCalleU);
             colorText(tCalle, calle);
+            message = "La calle contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
-        if (!flag5) {
+        else if (!flag5) {
             tColonia = findViewById(R.id.textInputColoniaU);
             colorText(tColonia, colonia);
+            message = "La colonia contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
-        if (!flag6) {
+        else if (!flag6) {
             tMunicipio = findViewById(R.id.textInputMunicipioU);
             colorText(tMunicipio, municipio);
+            message = "El municipio contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
-        if (!flag7) {
+        else if (!flag7) {
             tEstado = findViewById(R.id.textInputEstadoU);
             colorText(tEstado, estado);
+            message = "El estado contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
-        if (!flag8) {
+        else if (!flag8) {
             tNumInterno = findViewById(R.id.textInputNumeroIU);
             colorText(tNumInterno, numInterno);
+            message = "El número interno contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
-        if (!flag9) {
+        else if (!flag9) {
             tCodPostal = findViewById(R.id.textInputCodigoPU);
             colorText(tCodPostal, codPostal);
+            message = "El código postal debe tener 5 dígitos exactos.";
+            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
         }
 
         boolean flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6 && flag7 && flag8 && flag9;
@@ -311,10 +329,7 @@ public class UpdateUserData extends AppCompatActivity {
                     });
 
                 }
-                else{
-                    message = "Los datos en color rojo son incorrectos, favor de verificarlos.";
-                    Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
-                }
+
             }
         });
     }

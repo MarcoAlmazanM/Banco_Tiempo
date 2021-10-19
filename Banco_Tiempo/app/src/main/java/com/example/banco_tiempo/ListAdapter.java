@@ -68,7 +68,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position){
-        //holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_op));
+
         holder.bindData(mData.get(position));
 
         if (counter_l > 8) {

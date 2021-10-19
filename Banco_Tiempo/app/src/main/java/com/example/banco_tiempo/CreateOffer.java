@@ -134,8 +134,6 @@ public class CreateOffer extends AppCompatActivity {
 
     public boolean validateFields() {
 
-        //String regex = "\\w{1,255}";
-        //String regex = "^(\\w ?){1,127}$";
         String regex = ".{1,255}";
         Pattern pattern = Pattern.compile(regex);
 
@@ -150,14 +148,20 @@ public class CreateOffer extends AppCompatActivity {
         if (!flag1) {
             tCategoria = findViewById(R.id.textInputCategoriaOffer);
             colorText(tCategoria, cat);
+            message = "La categoría ingresada tiene demasiados caracteres, el máximo es de 255.";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
         }
-        if (!flag2) {
+        else if (!flag2) {
             tTitulo = findViewById(R.id.textInputTitleOffer);
             colorText(tTitulo, titxd);
+            message = "El título ingresado tiene demasiados caracteres, el máximo es de 255.";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
         }
-        if (!flag3) {
+        else if (!flag3) {
             tDescripcion = findViewById(R.id.textInputDescOffer);
             colorText(tDescripcion, des);
+            message = "La descripción ingresada tiene demasiados caracteres, el máximo es de 255.";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
         }
 
         boolean flag = flag1 && flag2 && flag3;
@@ -195,8 +199,6 @@ public class CreateOffer extends AppCompatActivity {
         description = findViewById(R.id.tVDescription);
 
         cat = category.getText().toString();
-        //cat = Normalizer.normalize(cat, Normalizer.Form.NFD);
-        //cat = cat.replaceAll("[^\\p{ASCII}]", "");
 
         titxd = title.getText().toString();
         des = description.getText().toString();
@@ -224,10 +226,6 @@ public class CreateOffer extends AppCompatActivity {
                     newOfferRequest.setCertificado(sCert);
                 }
                 uploadNewOffer(newOfferRequest);
-            }
-            else{
-                message = "Los campos en color rojo son incorrectos, por favor revise su contenido.";
-                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
             }
         }
     }

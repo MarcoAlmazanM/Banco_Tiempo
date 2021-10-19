@@ -8,10 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -39,7 +43,7 @@ public class OfferDetails extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    String username, message;
+    String username, message, token;
     Integer statusDocumentos;
 
     @Override
@@ -77,6 +81,18 @@ public class OfferDetails extends AppCompatActivity {
         Transformation transformation = new RoundedCornersTransformation(50,5);
         Picasso.get().invalidate(url);
         Picasso.get().load(url).transform(transformation).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(perfil);
+
+        FirebaseMessaging.getInstance().getToken()
+
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+                        token = task.getResult();
+                    }
+                });
     }
     public void RequestOffer(View view){
         if(statusDocumentos == 1){
@@ -87,7 +103,7 @@ public class OfferDetails extends AppCompatActivity {
             userRequestOffer.setType("REQUEST");
             getUserRequestOffer(userRequestOffer);
         }else{
-            message = "No puedes solicitar un servicio si no tus documentos no han sido aprobados.";
+            message = "No puedes solicitar un servicio si tus documentos no han sido aprobados.";
             Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
         }
     }
@@ -103,6 +119,8 @@ public class OfferDetails extends AppCompatActivity {
                         if(userRequestOfferResponse.getTransactionApproval() == 1){
                             message = "La solicitud del servicio esta esperando a ser aceptada, favor de dirigirse al apartado de notificaciones.";
                             Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
+                            FcmNotificationSenderAct notificationSenderAct = new FcmNotificationSenderAct(token,"Servicio solicitado correctamente","Revisa tus notificaciones",getApplicationContext(), OfferDetails.this);
+                            notificationSenderAct.SendNotifications();
                         }else{
                             message = userRequestOfferResponse.getError();
                             Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
