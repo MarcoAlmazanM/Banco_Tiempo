@@ -93,19 +93,27 @@ public class UpdateUserData extends AppCompatActivity {
     public boolean validateFields() {
 
         //String regex = "\\w{1,255}";
-        String regex = "^(\\w ?){1,127}$";
+        //String regex = "^(\\w ?){1,127}$";
+        String regex_nombres = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         String regexCP = "\\d{5}";
-        Pattern pattern = Pattern.compile(regex);
+        String regex_colonia = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
+        String regex_numI = "^[0-9A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{0,255}$";
+        String regex_calle = "^[0-9A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
+        //Pattern pattern = Pattern.compile(regex);
+        Pattern pattern_nombre = Pattern.compile(regex_nombres);
+        Pattern pattern_calle = Pattern.compile(regex_calle);
+        Pattern pattern_colonia = Pattern.compile(regex_colonia);
+        Pattern pattern_numI = Pattern.compile(regex_numI);
         Pattern patternCP = Pattern.compile(regexCP);
 
-        Matcher matcher1 = pattern.matcher(nombre);
-        Matcher matcher2 = pattern.matcher(apellidoM);
-        Matcher matcher3 = pattern.matcher(apellidoP);
-        Matcher matcher4 = pattern.matcher(calle);
-        Matcher matcher5 = pattern.matcher(colonia);
-        Matcher matcher6 = pattern.matcher(municipio);
-        Matcher matcher7 = pattern.matcher(estado);
-        Matcher matcher8 = pattern.matcher(numInterno);
+        Matcher matcher1 = pattern_nombre.matcher(nombre);
+        Matcher matcher2 = pattern_nombre.matcher(apellidoM);
+        Matcher matcher3 = pattern_nombre.matcher(apellidoP);
+        Matcher matcher4 = pattern_calle.matcher(calle);
+        Matcher matcher5 = pattern_colonia.matcher(colonia);
+        Matcher matcher6 = pattern_colonia.matcher(municipio);
+        Matcher matcher7 = pattern_colonia.matcher(estado);
+        Matcher matcher8 = pattern_numI.matcher(numInterno);
         Matcher matcher9 = patternCP.matcher(codPostal);
 
         boolean flag1 = matcher1.matches();
@@ -118,59 +126,97 @@ public class UpdateUserData extends AppCompatActivity {
         boolean flag8 = matcher8.matches();
         boolean flag9 = matcher9.matches();
 
+        TextView tn, tap, tam, tca, tco, tm, te, tni, tcp;
+        tn = findViewById(R.id.tVNameNotAcceptedU);
+        tap = findViewById(R.id.tVAPNotAcceptedU);
+        tam = findViewById(R.id.tVAMNotAcceptedU);
+        tca = findViewById(R.id.tVCalleNotAcceptedU);
+        tco = findViewById(R.id.tVColoniaNotAcceptedU);
+        tm = findViewById(R.id.tVMunicipioNotAcceptedU);
+        te = findViewById(R.id.tVEstadoNotAcceptedU);
+        tni = findViewById(R.id.tVNINotAcceptedU);
+        tcp = findViewById(R.id.tVCPNotAcceptedU);
+
         if (!flag1) {
-            tNombre = findViewById(R.id.textInputNombreU);
-            colorText(tNombre, nombre);
-            message = "El nombre contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+            tn.setVisibility(View.VISIBLE);
+            tn.setTextColor(Color.RED);
+            message = "El nombre no acepta caracteres especiales.";
+            tn.setText(message);
         }
-        else if (!flag2) {
-            tApellidoM = findViewById(R.id.textInputApellidoMU);
-            colorText(tApellidoM, apellidoM);
-            message = "El apellido materno contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+        else{
+            tn.setVisibility(View.GONE);
         }
-        else if (!flag3) {
-            tApellidoP = findViewById(R.id.textInputApellidoPU);
-            colorText(tApellidoP, apellidoP);
-            message = "El apellido paterno contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+        if (!flag2) {
+            tam.setVisibility(View.VISIBLE);
+            tam.setTextColor(Color.RED);
+            message = "El apelldio materno no acepta caracteres especiales.";
+            tam.setText(message);
         }
-        else if (!flag4) {
-            tCalle = findViewById(R.id.textInputCalleU);
-            colorText(tCalle, calle);
-            message = "La calle contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+        else{
+            tam.setVisibility(View.GONE);
         }
-        else if (!flag5) {
-            tColonia = findViewById(R.id.textInputColoniaU);
-            colorText(tColonia, colonia);
-            message = "La colonia contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+        if (!flag3) {
+            tap.setVisibility(View.VISIBLE);
+            tap.setTextColor(Color.RED);
+            message = "El apellido paterno no acepta caracteres especiales.";
+            tap.setText(message);
         }
-        else if (!flag6) {
-            tMunicipio = findViewById(R.id.textInputMunicipioU);
-            colorText(tMunicipio, municipio);
-            message = "El municipio contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+        else{
+            tap.setVisibility(View.GONE);
         }
-        else if (!flag7) {
-            tEstado = findViewById(R.id.textInputEstadoU);
-            colorText(tEstado, estado);
-            message = "El estado contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+        if (!flag4) {
+            tca.setVisibility(View.VISIBLE);
+            tca.setTextColor(Color.RED);
+            message = "La calle no acepta caracteres especiales.";
+            tca.setText(message);
         }
-        else if (!flag8) {
-            tNumInterno = findViewById(R.id.textInputNumeroIU);
-            colorText(tNumInterno, numInterno);
-            message = "El número interno contiene caracteres inválidos o sobrepasa el tamaño máximo de 127.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+        else{
+            tca.setVisibility(View.GONE);
         }
-        else if (!flag9) {
-            tCodPostal = findViewById(R.id.textInputCodigoPU);
-            colorText(tCodPostal, codPostal);
-            message = "El código postal debe tener 5 dígitos exactos.";
-            Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
+        if (!flag5) {
+            tco.setVisibility(View.VISIBLE);
+            tco.setTextColor(Color.RED);
+            message = "La colonia no acepta caracteres especiales.";
+            tco.setText(message);
+        }
+        else{
+            tco.setVisibility(View.GONE);
+        }
+        if (!flag6) {
+            tm.setVisibility(View.VISIBLE);
+            tm.setTextColor(Color.RED);
+            message = "El municipio no acepta caracteres especiales.";
+            tm.setText(message);
+        }
+        else{
+            tm.setVisibility(View.GONE);
+        }
+        if (!flag7) {
+            te.setVisibility(View.VISIBLE);
+            te.setTextColor(Color.RED);
+            message = "El estado no acepta caracteres especiales.";
+            te.setText(message);
+        }
+        else{
+            te.setVisibility(View.GONE);
+        }
+        if (!flag8) {
+            tni.setVisibility(View.VISIBLE);
+            tni.setTextColor(Color.RED);
+            message = "El número interno no acepta caracteres especiales.";
+            tni.setText(message);
+        }
+        else{
+            tni.setVisibility(View.GONE);
+        }
+        if (!flag9) {
+            tcp.setVisibility(View.VISIBLE);
+            tcp.setTextColor(Color.RED);
+            message = "El código postal solo puede tener una longitud de 5 dígitos.";
+            tcp.setText(message);
+        }
+        else{
+            tcp.setVisibility(View.GONE);
         }
 
         boolean flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6 && flag7 && flag8 && flag9;
@@ -329,13 +375,7 @@ public class UpdateUserData extends AppCompatActivity {
                     });
 
                 }
-                /*
-                else{
-                    message = "Los datos en color rojo son incorrectos, favor de verificarlos.";
-                    Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
-                }
 
-                 */
             }
         });
     }

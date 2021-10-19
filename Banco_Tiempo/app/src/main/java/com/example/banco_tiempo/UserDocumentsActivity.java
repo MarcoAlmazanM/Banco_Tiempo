@@ -75,7 +75,7 @@ public class UserDocumentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_documents);
         userDocumentsLayout = findViewById(R.id.user_documents);
         toolbar = findViewById(R.id.toolbar);
-        setTitle("User Documents");
+        setTitle("Documentos del Usuario");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;

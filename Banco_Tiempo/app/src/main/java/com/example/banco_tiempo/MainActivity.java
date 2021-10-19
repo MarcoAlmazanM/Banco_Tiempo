@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -20,6 +25,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -165,11 +171,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (count == 0) {
             //super.onBackPressed();
-            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-            builder1.setTitle("Salir de la Aplicación");
-            builder1.setMessage("¿Seguro que desea salir de la aplicación?");
-            builder1.setCancelable(true);
-            builder1.setPositiveButton("Aceptar",
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(MainActivity.this);
+            builder2.setTitle("Salir de la Aplicación");
+            builder2.setMessage("¿Seguro que desea salir de la aplicación?");
+            builder2.setCancelable(true);
+            builder2.setPositiveButton("Aceptar",
                     new DialogInterface.OnClickListener() {
                         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                         @Override
@@ -177,15 +183,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             finishAffinity();
                         }
                     });
-            builder1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            builder2.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.cancel();
                 }
             });
 
-            AlertDialog alert11 = builder1.create();
-            alert11.show();
+            AlertDialog alert2 = builder2.create();
+            alert2.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialogInterface) {
+                    alert2.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#F94172"));
+                    alert2.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#21E8AC"));
+                }
+            });
+            alert2.show();
 
         } else {
             while (count > 0) {
@@ -263,8 +276,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+        AlertDialog alert1 = builder1.create();
+        alert1.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                alert1.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#F94172"));
+                alert1.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#21E8AC"));
+            }
+        });
+
+        alert1.show();
     }
 
 
