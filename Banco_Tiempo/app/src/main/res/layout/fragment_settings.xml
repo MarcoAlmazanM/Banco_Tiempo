@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".SettingsFragment">
 
     <TextView
@@ -11,54 +13,42 @@
         style="@style/StyledBackButton"
         android:layout_width="340dp"
         android:layout_height="60dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:text="Términos y condiciones"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:shadowColor="#000"
         android:shadowDx="-2"
         android:shadowDy="-2"
         android:shadowRadius="1"
-        app:layout_constraintBottom_toTopOf="@+id/btnAppMan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Términos y condiciones"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="110dp" />
 
     <TextView
         android:id="@+id/btnAppMan"
         style="@style/StyledBackButton"
         android:layout_width="340dp"
         android:layout_height="60dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:text="@string/manual"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:shadowColor="#000"
         android:shadowDx="-2"
         android:shadowDy="-2"
         android:shadowRadius="1"
-        app:layout_constraintBottom_toTopOf="@+id/btnUpdateUserData"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInfoSoft" />
+        android:text="@string/manual"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="200dp" />
 
     <TextView
         android:id="@+id/btnUpdateUserData"
         style="@style/StyledBackButton"
         android:layout_width="340dp"
         android:layout_height="60dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="35dp"
         android:gravity="center"
         android:shadowColor="#000"
         android:shadowDx="-2"
@@ -68,19 +58,15 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAppMan" />
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="293dp" />
 
     <TextView
         android:id="@+id/btnTermYCond"
         style="@style/StyledBackButton"
         android:layout_width="340dp"
         android:layout_height="60dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="221dp"
         android:gravity="center"
         android:shadowColor="#000"
         android:shadowDx="-2"
@@ -90,11 +76,8 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpdateUserData"
-        app:layout_constraintVertical_bias="0.319" />
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="384dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

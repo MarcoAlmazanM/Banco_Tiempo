@@ -6,11 +6,11 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -34,7 +34,7 @@ public class UpdateUserData extends AppCompatActivity {
 
     String nombre, apellidoM, apellidoP, calle, colonia, municipio, estado, numInterno, codPostal, message, idUsuario;
     Integer cp, statusHoras, statusDocumentos;
-    EditText eTnombre, eTapellidoM, eTapellidoP, eTcalle, eTcolonia, eTmunicipio, eTestado, eTnumInterno, eTcodPostal;
+    TextInputLayout eTnombre, eTapellidoM, eTapellidoP, eTcalle, eTcolonia, eTmunicipio, eTestado, eTnumInterno, eTcodPostal;
     Toolbar toolbar;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -42,7 +42,7 @@ public class UpdateUserData extends AppCompatActivity {
 
     TextView btnUpdateUD, btnCancelUpdate;
 
-    TextInputLayout tNombre, tApellidoM, tApellidoP, tCalle, tColonia, tMunicipio, tEstado, tNumInterno, tCodPostal;
+    TextView tn, tap, tam, tca, tco, tm, te, tni, tcp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,17 +59,24 @@ public class UpdateUserData extends AppCompatActivity {
         preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
-        eTnombre = findViewById(R.id.eTNombreU);
-        eTapellidoM = findViewById(R.id.eTApellidoMU);
-        eTapellidoP = findViewById(R.id.eTApellidoPU);
-        eTcalle = findViewById(R.id.eTCalleU);
-        eTcolonia = findViewById(R.id.eTColoniaU);
-        eTmunicipio = findViewById(R.id.eTMunicipioU);
-        eTestado = findViewById(R.id.eTEstadoU);
-        eTnumInterno = findViewById(R.id.eTNumeroIU);
-        eTcodPostal = findViewById(R.id.eTCodigoPU);
+        eTnombre = findViewById(R.id.textInputNombreU);
+        eTapellidoM = findViewById(R.id.textInputApellidoMU);
+        eTapellidoP = findViewById(R.id.textInputApellidoPU);
+        eTcalle = findViewById(R.id.textInputCalleU);
+        eTcolonia = findViewById(R.id.textInputColoniaU);
+        eTmunicipio = findViewById(R.id.textInputMunicipioU);
+        eTestado = findViewById(R.id.textInputEstadoU);
+        eTnumInterno = findViewById(R.id.textInputNumeroIU);
+        eTcodPostal = findViewById(R.id.textInputCodigoPU);
 
         obtainUserData();
+
+        eTnombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                Log.e("lol",eTnombre.getEditText().getText().toString());
+            }
+        });
 
         circularProgressButton = findViewById(R.id.btnActualizarDatos);
 
@@ -92,14 +99,11 @@ public class UpdateUserData extends AppCompatActivity {
 
     public boolean validateFields() {
 
-        //String regex = "\\w{1,255}";
-        //String regex = "^(\\w ?){1,127}$";
         String regex_nombres = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         String regexCP = "\\d{5}";
         String regex_colonia = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         String regex_numI = "^[0-9A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{0,255}$";
         String regex_calle = "^[0-9A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
-        //Pattern pattern = Pattern.compile(regex);
         Pattern pattern_nombre = Pattern.compile(regex_nombres);
         Pattern pattern_calle = Pattern.compile(regex_calle);
         Pattern pattern_colonia = Pattern.compile(regex_colonia);
@@ -126,7 +130,6 @@ public class UpdateUserData extends AppCompatActivity {
         boolean flag8 = matcher8.matches();
         boolean flag9 = matcher9.matches();
 
-        TextView tn, tap, tam, tca, tco, tm, te, tni, tcp;
         tn = findViewById(R.id.tVNameNotAcceptedU);
         tap = findViewById(R.id.tVAPNotAcceptedU);
         tam = findViewById(R.id.tVAMNotAcceptedU);
@@ -241,27 +244,28 @@ public class UpdateUserData extends AppCompatActivity {
         setActualUserData();
     }
     public void setActualUserData(){
-        eTnombre.setText(nombre, TextView.BufferType.EDITABLE);
-        eTapellidoM.setText(apellidoM, TextView.BufferType.EDITABLE);
-        eTapellidoP.setText(apellidoP, TextView.BufferType.EDITABLE);
-        eTcalle.setText(calle, TextView.BufferType.EDITABLE);
-        eTcolonia.setText(colonia, TextView.BufferType.EDITABLE);
-        eTmunicipio.setText(municipio, TextView.BufferType.EDITABLE);
-        eTestado.setText(estado, TextView.BufferType.EDITABLE);
-        eTnumInterno.setText(numInterno, TextView.BufferType.EDITABLE);
-        eTcodPostal.setText(codPostal, TextView.BufferType.EDITABLE);
+        Log.e("lol","entramos1");
+        eTnombre.getEditText().setText(nombre);
+        eTapellidoM.getEditText().setText(apellidoM);
+        eTapellidoP.getEditText().setText(apellidoP);
+        eTcalle.getEditText().setText(calle);
+        eTcolonia.getEditText().setText(colonia);
+        eTmunicipio.getEditText().setText(municipio);
+        eTestado.getEditText().setText(estado);
+        eTnumInterno.getEditText().setText(numInterno);
+        eTcodPostal.getEditText().setText(codPostal);
     }
 
     public void getUpdateUserInfo(){
-        nombre = eTnombre.getText().toString();
-        apellidoM = eTapellidoM.getText().toString();
-        apellidoP = eTapellidoP.getText().toString();
-        calle = eTcalle.getText().toString();
-        colonia = eTcolonia.getText().toString();
-        municipio = eTmunicipio.getText().toString();
-        estado = eTestado.getText().toString();
-        numInterno = eTnumInterno.getText().toString();
-        codPostal = eTcodPostal.getText().toString();
+        nombre = eTnombre.getEditText().getText().toString();
+        apellidoM = eTapellidoM.getEditText().getText().toString();
+        apellidoP = eTapellidoP.getEditText().getText().toString();
+        calle = eTcalle.getEditText().getText().toString();
+        colonia = eTcolonia.getEditText().getText().toString();
+        municipio = eTmunicipio.getEditText().getText().toString();
+        estado = eTestado.getEditText().getText().toString();
+        numInterno = eTnumInterno.getEditText().getText().toString();
+        codPostal = eTcodPostal.getEditText().getText().toString();
     }
 
     public void setUpdateUserData(){
@@ -320,10 +324,12 @@ public class UpdateUserData extends AppCompatActivity {
     }
 
     public void getUpdateUserData(CircularProgressButton btn, View view) {
+        Log.e("lol", String.valueOf(eTnombre));
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getUpdateUserInfo();
+                Log.e("lol","entramos0");
                 if (validateFields()) {
                     LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View popupView = inflater.inflate(R.layout.popup_update, null);

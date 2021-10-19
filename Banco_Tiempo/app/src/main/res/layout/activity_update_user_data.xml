@@ -65,12 +65,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputNombreU"
                         style="@style/parent"
+                        android:hint="@string/nombreLogin"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTNombreU"
                             style="@style/modifiedEditText"
-                            android:hint="@string/nombreLogin"
                             android:inputType="textPersonName"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -88,12 +88,13 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputApellidoMU"
                         style="@style/parent"
-                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        android:hint="@string/apellidoMaterno"
+                        android:importantForAutofill="noExcludeDescendants">
 
                         <EditText
                             android:id="@+id/eTApellidoMU"
                             style="@style/modifiedEditText"
-                            android:hint="@string/apellidoMaterno"
                             android:inputType="textPersonName"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -111,12 +112,13 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputApellidoPU"
                         style="@style/parent"
-                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        android:hint="@string/apellidoPaterno"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        android:importantForAutofill="noExcludeDescendants">
 
                         <EditText
                             android:id="@+id/eTApellidoPU"
                             style="@style/modifiedEditText"
-                            android:hint="@string/apellidoPaterno"
                             android:inputType="textPersonName"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -158,12 +160,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputColoniaU"
                         style="@style/parent"
+                        android:hint="Colonia"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTColoniaU"
                             style="@style/modifiedEditText"
-                            android:hint="Colonia"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -181,12 +183,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputMunicipioU"
                         style="@style/parent"
+                        android:hint="Municipio"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTMunicipioU"
                             style="@style/modifiedEditText"
-                            android:hint="Municipio"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -204,12 +206,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEstadoU"
                         style="@style/parent"
+                        android:hint="Estado"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTEstadoU"
                             style="@style/modifiedEditText"
-                            android:hint="Estado"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -227,12 +229,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputNumeroIU"
                         style="@style/parent"
+                        android:hint="Número Interno"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTNumeroIU"
                             style="@style/modifiedEditText"
-                            android:hint="Número Interno"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -250,12 +252,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputCodigoPU"
                         style="@style/parent"
+                        android:hint="Código Postal"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTCodigoPU"
                             style="@style/modifiedEditText"
-                            android:hint="Código Postal"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
