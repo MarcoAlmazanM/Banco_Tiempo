@@ -63,7 +63,7 @@
         tools:layout_editor_absoluteY="293dp" />
 
     <TextView
-        android:id="@+id/btnTermYCond"
+        android:id="@+id/btnLegal"
         style="@style/StyledBackButton"
         android:layout_width="340dp"
         android:layout_height="60dp"
@@ -79,5 +79,7 @@
         android:layout_margin="20dp"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="384dp" />
+
+
 
 </LinearLayout>
