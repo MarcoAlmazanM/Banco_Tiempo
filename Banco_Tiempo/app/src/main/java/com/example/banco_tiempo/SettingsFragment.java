@@ -2,14 +2,12 @@ package com.example.banco_tiempo;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +24,8 @@ public class SettingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    TextView btnAviso;
 
     TextView btnUpdateUserData;
 
@@ -67,8 +67,11 @@ public class SettingsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
+
         btnUpdateUserData = (TextView) root.findViewById(R.id.btnUpdateUserData);
+        btnAviso = (TextView) root.findViewById(R.id.btnLegal);
         clickBtnUpdateUserData(btnUpdateUserData);
+        clickBtnAviso(btnAviso);
 
         return root;
     }
@@ -82,5 +85,18 @@ public class SettingsFragment extends Fragment {
             }
         });
     }
+
+    public void clickBtnAviso(TextView btnAviso) {
+        btnAviso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent documentation = new Intent(getActivity().getApplicationContext(), documentation.class);
+                getActivity().startActivity(documentation);
+            }
+        });
+
+    }
+
+
 
 }
