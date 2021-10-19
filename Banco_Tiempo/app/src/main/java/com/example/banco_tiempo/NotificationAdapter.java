@@ -105,7 +105,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         TextView trabajo, tipo, desc, nombre, nombrePlaceHolder, ap, am, correo, correoPlaceholder, mensajeUsuario;
         CardView cardType;
-        Button btnA, btnR;//btnT
+        Button btnA, btnR;
         ImageView eliminar;
         LinearLayout linearLayout;
         String token;
@@ -139,18 +139,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         @Override
                         public void onComplete(@NonNull Task<String> task) {
                             if (!task.isSuccessful()) {
-                                Log.w("FCM Token failed", task.getException());
+                                //Log.w("FCM Token failed", task.getException());
                                 return;
                             }
 
                             // Get new FCM registration token
-                            //String token = task.getResult();
                             token = task.getResult();
-
-                            // Log and toast
-                            //String msg = getString(R.string.msg_token_fmt, token);
-                            Log.d("TOKEN", token);
-                            //Toast.makeText(NotificationAdapter.this, token, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -192,8 +186,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             userRequestOffer.setIdNot(notificationList.get(position).getIdNot());
             userRequestOffer.setType("REJECTED");
             getUserRequestOffer(userRequestOffer);
-            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Haz rechazado un servicio",context.getApplicationContext(), NotificationAdapter.this);
-            notificationsSender.SendNotifications();
+
         }
         public void setUserOfferAccept(int position){
             UserRequestOffer userRequestOffer = new UserRequestOffer();
@@ -203,8 +196,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             userRequestOffer.setType("ACCEPTED");
             userRequestOffer.setIdServicio(notificationList.get(position).getIdServicio());
             getUserRequestOffer(userRequestOffer);
-            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Haz aceptado un servicio",context.getApplicationContext(), NotificationAdapter.this);
-            notificationsSender.SendNotifications();
+
         }
 
         public void getUserRequestOffer(UserRequestOffer userRequestOffer){
@@ -220,11 +212,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 adapter.notificationList.remove(getAdapterPosition());
                                 adapter.notifyItemRemoved(getAdapterPosition());
+                                FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Haz aceptado un servicio",context.getApplicationContext(), NotificationAdapter.this);
+                                notificationsSender.SendNotifications();
                             }else if(userRequestOfferResponse.getTransactionApproval() == 2){
                                 message = "El servicio se ha rechazado correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 adapter.notificationList.remove(getAdapterPosition());
                                 adapter.notifyItemRemoved(getAdapterPosition());
+                                FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Haz rechazado un servicio",context.getApplicationContext(), NotificationAdapter.this);
+                                notificationsSender.SendNotifications();
                             }else if(userRequestOfferResponse.getTransactionApproval() == 3){
                                 message = "Notificación eliminada correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
