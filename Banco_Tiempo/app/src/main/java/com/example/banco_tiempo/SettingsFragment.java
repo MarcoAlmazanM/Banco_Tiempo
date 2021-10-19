@@ -1,6 +1,7 @@
 package com.example.banco_tiempo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ public class SettingsFragment extends Fragment {
     TextView btnAviso;
 
     TextView btnUpdateUserData;
+
+    TextView btnManualUser;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -69,9 +72,12 @@ public class SettingsFragment extends Fragment {
 
 
         btnUpdateUserData = (TextView) root.findViewById(R.id.btnUpdateUserData);
+        btnManualUser = (TextView) root.findViewById(R.id.btnAppMan);
         btnAviso = (TextView) root.findViewById(R.id.btnLegal);
         clickBtnUpdateUserData(btnUpdateUserData);
         clickBtnAviso(btnAviso);
+        clickBtnManual(btnManualUser);
+
 
         return root;
     }
@@ -92,6 +98,17 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 Intent documentation = new Intent(getActivity().getApplicationContext(), Documentation.class);
                 getActivity().startActivity(documentation);
+            }
+        });
+
+    }
+
+    public void clickBtnManual(TextView btnManualUser) {
+        btnManualUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/playlist?list=PLd9I1Ec6Ep2U-nlJmYyHYwovQrBHjJsx7"));
+                getActivity().startActivity(browserintent);
             }
         });
 
