@@ -88,18 +88,9 @@ public class OfferDetails extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
                         if (!task.isSuccessful()) {
-                            //Log.w("FCM Token failed", task.getException());
                             return;
                         }
-
-                        // Get new FCM registration token
-                        //String token = task.getResult();
                         token = task.getResult();
-
-                        // Log and toast
-                        //String msg = getString(R.string.msg_token_fmt, token);
-                        //Log.d("TOKEN", token);
-                        //Toast.makeText(NotificationAdapter.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
