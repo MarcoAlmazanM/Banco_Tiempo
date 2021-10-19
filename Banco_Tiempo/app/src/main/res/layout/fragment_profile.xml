@@ -97,11 +97,11 @@
                 android:layout_marginTop="20dp"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:progressBackgroundTint="@color/gradientLightOrange"
                 android:stepSize="1"
                 android:theme="@style/RatingBar" />
 
             <TextView
+                android:id="@+id/ratingBarNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="34dp"
