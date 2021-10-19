@@ -258,7 +258,7 @@
                         <EditText
                             android:id="@+id/eTCodigoPU"
                             style="@style/modifiedEditText"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:maxLines="1"
                             android:textColor="@color/black" />
 

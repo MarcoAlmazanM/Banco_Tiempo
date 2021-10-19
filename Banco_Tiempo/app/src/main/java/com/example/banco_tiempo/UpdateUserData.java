@@ -44,6 +44,9 @@ public class UpdateUserData extends AppCompatActivity {
 
     TextView tn, tap, tam, tca, tco, tm, te, tni, tcp;
 
+    TextInputLayout tNombre, tApellidoM, tApellidoP, tCalle, tColonia, tMunicipio, tEstado, tNumInterno, tCodPostal;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,6 +146,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag1) {
             tn.setVisibility(View.VISIBLE);
             tn.setTextColor(Color.RED);
+            tNombre = findViewById(R.id.textInputNombreU);
+            colorText(tNombre,nombre);
             message = "El nombre no acepta caracteres especiales.";
             tn.setText(message);
         }
@@ -152,6 +157,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag2) {
             tam.setVisibility(View.VISIBLE);
             tam.setTextColor(Color.RED);
+            tApellidoM = findViewById(R.id.textInputApellidoMU);
+            colorText(tApellidoM,apellidoM);
             message = "El apelldio materno no acepta caracteres especiales.";
             tam.setText(message);
         }
@@ -161,6 +168,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag3) {
             tap.setVisibility(View.VISIBLE);
             tap.setTextColor(Color.RED);
+            tApellidoP = findViewById(R.id.textInputApellidoPU);
+            colorText(tApellidoP,apellidoP);
             message = "El apellido paterno no acepta caracteres especiales.";
             tap.setText(message);
         }
@@ -170,6 +179,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag4) {
             tca.setVisibility(View.VISIBLE);
             tca.setTextColor(Color.RED);
+            tCalle = findViewById(R.id.textInputCalleU);
+            colorText(tCalle,calle);
             message = "La calle no acepta caracteres especiales.";
             tca.setText(message);
         }
@@ -179,6 +190,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag5) {
             tco.setVisibility(View.VISIBLE);
             tco.setTextColor(Color.RED);
+            tColonia = findViewById(R.id.textInputColoniaU);
+            colorText(tColonia,colonia);
             message = "La colonia no acepta caracteres especiales.";
             tco.setText(message);
         }
@@ -188,6 +201,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag6) {
             tm.setVisibility(View.VISIBLE);
             tm.setTextColor(Color.RED);
+            tMunicipio = findViewById(R.id.textInputMunicipioU);
+            colorText(tMunicipio,municipio);
             message = "El municipio no acepta caracteres especiales.";
             tm.setText(message);
         }
@@ -197,6 +212,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag7) {
             te.setVisibility(View.VISIBLE);
             te.setTextColor(Color.RED);
+            tEstado = findViewById(R.id.textInputEstadoU);
+            colorText(tEstado,estado);
             message = "El estado no acepta caracteres especiales.";
             te.setText(message);
         }
@@ -206,6 +223,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag8) {
             tni.setVisibility(View.VISIBLE);
             tni.setTextColor(Color.RED);
+            tNumInterno = findViewById(R.id.textInputNumeroIU);
+            colorText(tNumInterno,numInterno);
             message = "El número interno no acepta caracteres especiales.";
             tni.setText(message);
         }
@@ -215,6 +234,8 @@ public class UpdateUserData extends AppCompatActivity {
         if (!flag9) {
             tcp.setVisibility(View.VISIBLE);
             tcp.setTextColor(Color.RED);
+            tCodPostal = findViewById(R.id.textInputCodigoPU);
+            colorText(tCodPostal,codPostal);
             message = "El código postal solo puede tener una longitud de 5 dígitos.";
             tcp.setText(message);
         }
