@@ -34,7 +34,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/idServicioOfer"
@@ -45,14 +45,14 @@
             <TextView
                 android:id="@+id/nameTextView"
                 style="@style/profileDetailsTextMain"
-                android:layout_toRightOf="@id/idServicioOfer"
+                android:layout_toEndOf="@id/idServicioOfer"
                 android:text="ID del Servicio:" />
 
             <TextView
                 android:id="@+id/serviceGiven"
                 style="@style/wrapperforlongtitles"
                 android:layout_below="@+id/nameTextView"
-                android:layout_toRightOf="@id/idServicioOfer"
+                android:layout_toEndOf="@id/idServicioOfer"
                 android:text="#00000" />
 
         </RelativeLayout>
@@ -61,7 +61,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/mobileImageView"
@@ -72,14 +72,14 @@
             <TextView
                 android:id="@id/mobileText"
                 style="@style/profileDetailsTextMain"
-                android:layout_toRightOf="@id/mobileImageView"
+                android:layout_toEndOf="@id/mobileImageView"
                 android:text="Nombre de Usuario:" />
 
             <TextView
                 android:id="@+id/userName2"
                 style="@style/wrapperforlongtitles"
                 android:layout_below="@+id/mobileText"
-                android:layout_toRightOf="@id/mobileImageView"
+                android:layout_toEndOf="@id/mobileImageView"
                 android:text="@string/usernameProf" />
 
         </RelativeLayout>
@@ -88,7 +88,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/emailImageView"
@@ -99,14 +99,14 @@
             <TextView
                 android:id="@+id/emailText"
                 style="@style/profileDetailsTextMain"
-                android:layout_toRightOf="@id/emailImageView"
+                android:layout_toEndOf="@id/emailImageView"
                 android:text="Trabajo:" />
 
             <TextView
                 android:id="@+id/userTrabajo"
                 style="@style/wrapperforlongtitles"
                 android:layout_below="@+id/emailText"
-                android:layout_toRightOf="@id/emailImageView"
+                android:layout_toEndOf="@id/emailImageView"
                 android:text="trabajo" />
 
         </RelativeLayout>
@@ -126,14 +126,14 @@
             <TextView
                 android:id="@+id/tVDetOffer"
                 style="@style/profileDetailsTextMain"
-                android:layout_toRightOf="@id/descView"
+                android:layout_toEndOf="@id/descView"
                 android:text="Descripción de la Oferta:" />
 
             <TextView
                 android:id="@+id/jobDescription"
                 style="@style/wrapperforlongtitles"
                 android:layout_below="@+id/tVDetOffer"
-                android:layout_toRightOf="@id/descView"
+                android:layout_toEndOf="@id/descView"
                 android:text="@string/descripcion" />
 
         </RelativeLayout>
