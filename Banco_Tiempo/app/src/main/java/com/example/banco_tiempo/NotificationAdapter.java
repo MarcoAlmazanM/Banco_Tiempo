@@ -261,12 +261,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 case 1:
                     a.setVisibility(View.VISIBLE);
                     r.setVisibility(View.VISIBLE);
-                    n.setVisibility(View.VISIBLE);
+                    n.setVisibility(View.GONE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.VISIBLE);
                     am.setVisibility(View.VISIBLE);
                     correoPlaceholder.setVisibility(View.INVISIBLE);
-                    nombrePLaceholder.setVisibility(View.VISIBLE);
+                    nombrePLaceholder.setVisibility(View.GONE);
                     mensajeUsuario.setVisibility(View.GONE);
                     eliminar.setVisibility(View.GONE);
 
