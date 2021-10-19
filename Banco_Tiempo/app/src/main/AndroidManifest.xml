@@ -20,7 +20,12 @@
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
             android:name=".Documentation"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity
             android:name=".SplashScreen"
             android:exported="true"
@@ -90,7 +95,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <service
             android:name=".FirebaseMessagingService"

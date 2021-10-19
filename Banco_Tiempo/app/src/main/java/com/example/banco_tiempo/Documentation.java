@@ -3,11 +3,11 @@ package com.example.banco_tiempo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.github.barteksc.pdfviewer.PDFView;
-import com.github.barteksc.pdfviewer.source.DocumentSource;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -28,7 +28,9 @@ public class Documentation extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setTitle("Aviso de Privacidad");
         setSupportActionBar(toolbar);
-
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         pdfView = findViewById(R.id.pdfView);
         new RetrivePDFfromUrl().execute(pdfUrl);
     }
@@ -56,5 +58,11 @@ public class Documentation extends AppCompatActivity {
         protected void onPostExecute(InputStream inputStream) {
             pdfView.fromStream(inputStream).load();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
