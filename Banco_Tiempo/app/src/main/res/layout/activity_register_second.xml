@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
     android:layout_gravity="center"
-    android:background="@drawable/home_gradient_mate"
+    android:background="@drawable/home_gradient_login"
     android:focusableInTouchMode="true"
     android:gravity="center">
 
@@ -72,6 +72,14 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/tVCalleNotAccepted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Calle no aceptada"
+                        android:visibility="gone">
+                    </TextView>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputColonia"
                         style="@style/parent"
@@ -86,6 +94,14 @@
                             android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tVColoniaNotAccepted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Colonia no aceptada"
+                        android:visibility="gone">
+                    </TextView>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputMunicipio"
@@ -102,6 +118,14 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/tVMuniNotAccepted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Municipio no aceptado"
+                        android:visibility="gone">
+                    </TextView>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEstado"
                         style="@style/parent"
@@ -116,6 +140,14 @@
                             android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tVEstadoNotAccepted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estado no aceptado"
+                        android:visibility="gone">
+                    </TextView>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputNumInt"
@@ -132,6 +164,14 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/tVNINotAccepted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Numero Interno no aceptado"
+                        android:visibility="gone">
+                    </TextView>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputCP"
                         style="@style/parent"
@@ -146,6 +186,14 @@
                             android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tVCodigoPostalNotAccepted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Codigo Postal no aceptado"
+                        android:visibility="gone">
+                    </TextView>
 
                     <CheckBox
                         android:id="@+id/cBPrivacity"
