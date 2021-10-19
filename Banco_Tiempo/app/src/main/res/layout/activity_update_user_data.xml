@@ -77,6 +77,14 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/tVNameNotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputApellidoMU"
                         style="@style/parent"
@@ -92,6 +100,14 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/tVAMNotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputApellidoPU"
                         style="@style/parent"
@@ -106,6 +122,14 @@
                             android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tVAPNotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -123,6 +147,14 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/tVCalleNotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputColoniaU"
                         style="@style/parent"
@@ -137,6 +169,14 @@
                             android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tVColoniaNotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputMunicipioU"
@@ -153,6 +193,14 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/tVMunicipioNotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEstadoU"
                         style="@style/parent"
@@ -167,6 +215,14 @@
                             android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tVEstadoNotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputNumeroIU"
@@ -183,6 +239,14 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/tVNINotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputCodigoPU"
                         style="@style/parent"
@@ -197,6 +261,14 @@
                             android:textColor="@color/black" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tVCPNotAcceptedU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre no aceptado"
+                        android:visibility="gone">
+                    </TextView>
 
 
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
