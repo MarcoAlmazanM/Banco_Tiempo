@@ -134,8 +134,6 @@ public class CreateOffer extends AppCompatActivity {
 
     public boolean validateFields() {
 
-        //String regex = "\\w{1,255}";
-        //String regex = "^(\\w ?){1,127}$";
         String regex = ".{1,255}";
         Pattern pattern = Pattern.compile(regex);
 
@@ -201,8 +199,6 @@ public class CreateOffer extends AppCompatActivity {
         description = findViewById(R.id.tVDescription);
 
         cat = category.getText().toString();
-        //cat = Normalizer.normalize(cat, Normalizer.Form.NFD);
-        //cat = cat.replaceAll("[^\\p{ASCII}]", "");
 
         titxd = title.getText().toString();
         des = description.getText().toString();
@@ -231,12 +227,6 @@ public class CreateOffer extends AppCompatActivity {
                 }
                 uploadNewOffer(newOfferRequest);
             }
-            /*
-            else{
-                message = "Los campos en color rojo son incorrectos, por favor revise su contenido.";
-                Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
-            }
-             */
         }
     }
 

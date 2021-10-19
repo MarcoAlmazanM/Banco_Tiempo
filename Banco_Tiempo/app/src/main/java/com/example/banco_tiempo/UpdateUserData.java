@@ -329,13 +329,7 @@ public class UpdateUserData extends AppCompatActivity {
                     });
 
                 }
-                /*
-                else{
-                    message = "Los datos en color rojo son incorrectos, favor de verificarlos.";
-                    Toast.makeText(UpdateUserData.this,message,Toast.LENGTH_LONG).show();
-                }
 
-                 */
             }
         });
     }
