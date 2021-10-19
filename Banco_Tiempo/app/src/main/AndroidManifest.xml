@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
-            android:name=".documentation"
+            android:name=".Documentation"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"

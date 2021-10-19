@@ -90,7 +90,7 @@ public class SettingsFragment extends Fragment {
         btnAviso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent documentation = new Intent(getActivity().getApplicationContext(), documentation.class);
+                Intent documentation = new Intent(getActivity().getApplicationContext(), Documentation.class);
                 getActivity().startActivity(documentation);
             }
         });
