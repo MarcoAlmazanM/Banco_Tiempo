@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,7 +68,7 @@ public class AdapterNewOffer
             counter = 0;
         }
 
-        holder.relativeLayout.setBackground(gradients.get(counter));
+        holder.linearLayout.setBackground(gradients.get(counter));
         counter++;
     }
 
@@ -91,7 +92,8 @@ public class AdapterNewOffer
         ImageView myImage;
         Button btnAccept;
         Drawable drawable;
-        RelativeLayout relativeLayout;
+        //RelativeLayout relativeLayout;
+        LinearLayout linearLayout;
         String token;
         private AdapterNewOffer adapter;
 
@@ -118,7 +120,7 @@ public class AdapterNewOffer
             drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_comida, null);
             gradients.add(drawable);
 
-            relativeLayout = itemView.findViewById(R.id.rLlayout);
+            linearLayout = itemView.findViewById(R.id.rLayout);
             itemView.findViewById(R.id.btnDelOffer).setOnClickListener(view-> {
                 setDeleteUserOffer(getAdapterPosition());
             });

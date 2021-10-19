@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.Rating;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +62,7 @@ public class ProfileFragment extends Fragment {
     TextView btnUserDocuments;
     TextView btnImg;
     TextView btnCncl;
-
+    TextView ratingNumber;
 
     ImageView status;
     ImageView image;
@@ -82,8 +84,10 @@ public class ProfileFragment extends Fragment {
     String email;
     String name;
     String lastName;
+    String stars;
     Integer statusHours;
     Integer documentosApproval;
+    Float starsUser;
 
     TextView tVHours;
     TextView tVDocuments;
@@ -91,6 +95,8 @@ public class ProfileFragment extends Fragment {
 
     Integer codigoStatus;
     NestedScrollView nestedScrollView;
+
+    RatingBar ratingBar;
 
     private final int REQUEST_EXTERNAL_STORAGE = 1;
     private String[] PERMISSIONS_STORAGE = {
@@ -147,6 +153,8 @@ public class ProfileFragment extends Fragment {
 
         nameTextView = root.findViewById(R.id.tVUserName);
         tVemail = root.findViewById(R.id.tVemail);
+        ratingBar = root.findViewById(R.id.rBPerfil);
+        ratingNumber = root.findViewById(R.id.ratingBarNumber);
         preferences = this.getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -157,6 +165,10 @@ public class ProfileFragment extends Fragment {
 
         username = preferences.getString("username","username");
         email = preferences.getString("email", "correo@prueba.com");
+        stars = preferences.getString("stars","0");
+        starsUser = Float.parseFloat(stars);
+        ratingBar.setRating(starsUser);
+        ratingNumber.setText(stars);
         tVemail.setText(email);
 
 
