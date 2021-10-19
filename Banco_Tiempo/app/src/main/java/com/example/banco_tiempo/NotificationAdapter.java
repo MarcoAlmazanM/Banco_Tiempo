@@ -192,7 +192,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             userRequestOffer.setIdNot(notificationList.get(position).getIdNot());
             userRequestOffer.setType("REJECTED");
             getUserRequestOffer(userRequestOffer);
-            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Haz rechazado un servicio",context.getApplicationContext(), NotificationAdapter.this);
+            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Has rechazado un servicio",context.getApplicationContext(), NotificationAdapter.this);
             notificationsSender.SendNotifications();
         }
         public void setUserOfferAccept(int position){
@@ -203,7 +203,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             userRequestOffer.setType("ACCEPTED");
             userRequestOffer.setIdServicio(notificationList.get(position).getIdServicio());
             getUserRequestOffer(userRequestOffer);
-            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Haz aceptado un servicio",context.getApplicationContext(), NotificationAdapter.this);
+            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Has aceptado un servicio",context.getApplicationContext(), NotificationAdapter.this);
             notificationsSender.SendNotifications();
         }
 
