@@ -90,7 +90,7 @@
             android:layout_gravity="center">
 
             <RatingBar
-                android:id="@+id/rBCOferta"
+                android:id="@+id/rBPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -110,7 +110,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
-                android:layout_toEndOf="@+id/rBCOferta"/>
+                android:layout_toEndOf="@+id/rBPerfil"/>
 
 
 
