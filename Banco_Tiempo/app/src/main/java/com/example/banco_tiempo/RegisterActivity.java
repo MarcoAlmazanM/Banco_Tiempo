@@ -514,6 +514,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Resources resources = new Resources();
                 passwordHash = resources.hash256(password);
                 setContentView(R.layout.activity_register_second);
+
                 if (saveUserData) {
                     userInfo2();
                 }
@@ -523,6 +524,11 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void btngotoPolPriv(View view) {
+        Intent browserintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://bancodetiempo.s3.amazonaws.com/Aviso+de+Privacidad+Banco+de+Tiempo.pdf"));
+        startActivity(browserintent);
     }
 
     public void verifyData2(View view){

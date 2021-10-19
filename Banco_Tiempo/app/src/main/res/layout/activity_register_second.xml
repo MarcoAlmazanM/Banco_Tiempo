@@ -195,13 +195,35 @@
                         android:visibility="gone">
                     </TextView>
 
-                    <CheckBox
-                        android:id="@+id/cBPrivacity"
-                        android:layout_width="267dp"
-                        android:layout_height="54dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:text="@string/registroTeryPol" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:padding="20dp">
+
+
+                        <CheckBox
+                            android:id="@+id/cBPrivacity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/tvPolPriv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:textColor="@color/blue_2"
+                            android:onClick="btngotoPolPriv"
+                            android:gravity="center_vertical"
+                            android:text="@string/registroTeryPol"/>
+
+                    </LinearLayout>
+
+
 
                     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                         android:id="@+id/btnRegisterR"
