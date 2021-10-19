@@ -150,14 +150,20 @@ public class CreateOffer extends AppCompatActivity {
         if (!flag1) {
             tCategoria = findViewById(R.id.textInputCategoriaOffer);
             colorText(tCategoria, cat);
+            message = "La categoría ingresada tiene demasiados caracteres, el máximo es de 255.";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
         }
-        if (!flag2) {
+        else if (!flag2) {
             tTitulo = findViewById(R.id.textInputTitleOffer);
             colorText(tTitulo, titxd);
+            message = "El título ingresado tiene demasiados caracteres, el máximo es de 255.";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
         }
-        if (!flag3) {
+        else if (!flag3) {
             tDescripcion = findViewById(R.id.textInputDescOffer);
             colorText(tDescripcion, des);
+            message = "La descripción ingresada tiene demasiados caracteres, el máximo es de 255.";
+            Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
         }
 
         boolean flag = flag1 && flag2 && flag3;
@@ -225,10 +231,12 @@ public class CreateOffer extends AppCompatActivity {
                 }
                 uploadNewOffer(newOfferRequest);
             }
+            /*
             else{
                 message = "Los campos en color rojo son incorrectos, por favor revise su contenido.";
                 Toast.makeText(CreateOffer.this, message, Toast.LENGTH_LONG).show();
             }
+             */
         }
     }
 
