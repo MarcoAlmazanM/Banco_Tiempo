@@ -15,6 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -89,6 +92,7 @@ public class AdapterNewOffer
         Button btnAccept;
         Drawable drawable;
         RelativeLayout relativeLayout;
+        String token;
         private AdapterNewOffer adapter;
 
         public MyViewHolder (@NonNull View itemView){
@@ -118,6 +122,21 @@ public class AdapterNewOffer
             itemView.findViewById(R.id.btnDelOffer).setOnClickListener(view-> {
                 setDeleteUserOffer(getAdapterPosition());
             });
+
+            FirebaseMessaging.getInstance().getToken()
+
+                    .addOnCompleteListener(new OnCompleteListener<String>() {
+                        @Override
+                        public void onComplete(@NonNull Task<String> task) {
+                            if (!task.isSuccessful()) {
+                                //Log.w("FCM Token failed", task.getException());
+                                return;
+                            }
+
+                            // Get new FCM registration token
+                            token = task.getResult();
+                        }
+                    });
         }
 
         public void setDeleteUserOffer(int position){
@@ -139,6 +158,9 @@ public class AdapterNewOffer
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 adapter.listaOffer.remove(getAdapterPosition());
                                 adapter.notifyItemRemoved(getAdapterPosition());
+                                //deleteOffer = true;
+                                FcmNotificationSenderOffer notificationSenderOffer = new FcmNotificationSenderOffer(token,"Estatus de oferta","Oferta eliminada correctamente",context.getApplicationContext(), AdapterNewOffer.this);
+                                notificationSenderOffer.SendNotifications();
                             }else{
                                 message = "No se puede eliminar la oferta porque esta actualmente activa.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();

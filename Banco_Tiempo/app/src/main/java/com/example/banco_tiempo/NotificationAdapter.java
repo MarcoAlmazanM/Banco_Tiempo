@@ -226,6 +226,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 adapter.notificationList.remove(getAdapterPosition());
                                 adapter.notifyItemRemoved(getAdapterPosition());
+                                FcmNotificationsSender notificationsSender = new FcmNotificationsSender(token,"Estatus","Notificación eliminada correctamente",context.getApplicationContext(), NotificationAdapter.this);
+                                notificationsSender.SendNotifications();
                             }
                             else{
                                 message = userRequestOfferResponse.getError();
