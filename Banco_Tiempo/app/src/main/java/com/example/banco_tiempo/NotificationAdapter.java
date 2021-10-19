@@ -142,15 +142,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 Log.w("FCM Token failed", task.getException());
                                 return;
                             }
-
-                            // Get new FCM registration token
-                            //String token = task.getResult();
                             token = task.getResult();
-
-                            // Log and toast
-                            //String msg = getString(R.string.msg_token_fmt, token);
-                            Log.d("TOKEN", token);
-                            //Toast.makeText(NotificationAdapter.this, token, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -265,7 +257,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 case 1:
                     a.setVisibility(View.VISIBLE);
                     r.setVisibility(View.VISIBLE);
-                    //t.setVisibility(View.GONE);
                     n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.VISIBLE);
@@ -282,7 +273,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 case 2:
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
-                    //t.setVisibility(View.VISIBLE);
                     n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.VISIBLE);
                     ap.setVisibility(View.VISIBLE);
@@ -298,7 +288,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 case 3:
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
-                    //t.setVisibility(View.GONE);
                     n.setVisibility(View.INVISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.INVISIBLE);
@@ -314,7 +303,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 case 4:
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
-                    //t.setVisibility(View.GONE);
                     n.setVisibility(View.VISIBLE);
                     correo.setVisibility(View.VISIBLE);
                     ap.setVisibility(View.VISIBLE);
@@ -330,7 +318,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 case 5:
                     a.setVisibility(View.GONE);
                     r.setVisibility(View.GONE);
-                    //t.setVisibility(View.GONE);
                     n.setVisibility(View.INVISIBLE);
                     correo.setVisibility(View.INVISIBLE);
                     ap.setVisibility(View.INVISIBLE);
@@ -366,7 +353,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,eliminar,4);
             }
             else{
-                //cardType.setCardBackgroundColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.drawable.home_gradient_actua)));
                 linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.home_gradient_actua));
                 dinChange(btnA, btnR, tipo,nombre,correo,ap,am,mensajeUsuario,correoPlaceholder,nombrePlaceHolder,eliminar,1);
             }

@@ -94,9 +94,6 @@
             android:name=".UserDataActivity"
             android:exported="true" />
         <activity
-            android:name=".VerificationActivity"
-            android:exported="true" />
-        <activity
             android:name=".RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
