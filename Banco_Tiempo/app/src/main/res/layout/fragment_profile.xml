@@ -83,11 +83,50 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <RatingBar
+                android:id="@+id/rBCOferta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressBackgroundTint="@color/gradientLightOrange"
+                android:stepSize="1"
+                android:theme="@style/RatingBar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="34dp"
+                android:textStyle="bold"
+                android:text="5.0"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@+id/rBCOferta"/>
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:background="@color/white">
 
             <com.google.android.material.card.MaterialCardView
@@ -139,7 +178,7 @@
                         android:shadowDy="-2"
                         android:shadowRadius="0.5"
                         android:text="@string/verHoras"
-                        android:textSize="13sp" />
+                        android:textSize="13dp" />
 
 
                 </RelativeLayout>
@@ -196,7 +235,7 @@
                         android:shadowDy="-2"
                         android:shadowRadius="0.5"
                         android:text="@string/verDocs"
-                        android:textSize="13sp" />
+                        android:textSize="13dp" />
 
 
                 </RelativeLayout>
