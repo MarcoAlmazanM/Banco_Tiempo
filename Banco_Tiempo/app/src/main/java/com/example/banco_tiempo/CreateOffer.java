@@ -86,7 +86,7 @@ public class CreateOffer extends AppCompatActivity {
         setContentView(R.layout.activity_create_offer);
         createOfferLayout = findViewById(R.id.user_new_offer);
         toolbar = findViewById(R.id.toolbar);
-        setTitle("Create New Offer");
+        setTitle("Crear Nueva Oferta");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
