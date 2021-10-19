@@ -40,7 +40,6 @@ public class AdapterNewOffer
     ArrayList<Drawable> gradients = new ArrayList<>();
     Integer counter = 0;
     String message;
-    Boolean deleteOffer = false;
 
     public AdapterNewOffer(ArrayList<OfferVO> listaOffer, Context context){
 
@@ -122,10 +121,6 @@ public class AdapterNewOffer
             relativeLayout = itemView.findViewById(R.id.rLlayout);
             itemView.findViewById(R.id.btnDelOffer).setOnClickListener(view-> {
                 setDeleteUserOffer(getAdapterPosition());
-                if(deleteOffer){
-                    adapter.listaOffer.remove(getAdapterPosition());
-                    adapter.notifyItemRemoved(getAdapterPosition());
-                }
             });
 
             FirebaseMessaging.getInstance().getToken()
@@ -161,13 +156,14 @@ public class AdapterNewOffer
                             if(deleteUserOfferResponse.getTransactionApproval() == 1){
                                 message = "La oferta se ha eliminado correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                deleteOffer = true;
+                                adapter.listaOffer.remove(getAdapterPosition());
+                                adapter.notifyItemRemoved(getAdapterPosition());
+                                //deleteOffer = true;
                                 FcmNotificationSenderOffer notificationSenderOffer = new FcmNotificationSenderOffer(token,"Estatus de oferta","Oferta eliminada correctamente",context.getApplicationContext(), AdapterNewOffer.this);
                                 notificationSenderOffer.SendNotifications();
                             }else{
                                 message = "No se puede eliminar la oferta porque esta actualmente activa.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                deleteOffer =false;
                             }
 
                         }catch (NullPointerException nullPointerException){
