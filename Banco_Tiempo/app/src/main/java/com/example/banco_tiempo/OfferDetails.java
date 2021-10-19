@@ -112,7 +112,7 @@ public class OfferDetails extends AppCompatActivity {
             userRequestOffer.setType("REQUEST");
             getUserRequestOffer(userRequestOffer);
         }else{
-            message = "No puedes solicitar un servicio si no tus documentos no han sido aprobados.";
+            message = "No puedes solicitar un servicio si tus documentos no han sido aprobados.";
             Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
         }
     }
