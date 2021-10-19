@@ -12,13 +12,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -106,7 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateName() {
-        String regex = "^(\\w ?){1,127}$";
+        String regex = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(nombre);
 
@@ -120,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateMiddleName() {
-        String regex = "^(\\w ?){1,127}$";
+        String regex = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(apellidoPaterno);
 
@@ -134,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateLastName() {
-        String regex = "^(\\w ?){1,127}$";
+        String regex = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(apellidoMaterno);
 
@@ -163,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateUsername() {
-        String regex = "^(\\w){1,127}$";
+        String regex = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(username);
 
@@ -177,7 +177,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validatePassword() {
-        String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,255}$";
+        String regex = "^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\\d@$!%*?&]{8,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
 
@@ -191,7 +191,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validatePasswordConfirm() {
-        String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,255}$";
+        String regex = "^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\\d@$!%*?&]{8,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(passwordConfirm);
 
@@ -205,7 +205,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateCalle() {
-        String regex = "^(\\w ?){1,127}$";
+        String regex = "^[0-9A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(calle);
 
@@ -219,7 +219,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateColonia() {
-        String regex = "^(\\w ?){1,127}$";
+        String regex = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(colonia);
 
@@ -233,7 +233,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateMunicipio() {
-        String regex = "^(\\w ?){1,127}$";
+        String regex = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(municipio);
 
@@ -247,7 +247,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateEstado() {
-        String regex = "^(\\w ?){1,127}$";
+        String regex = "^[A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(estado);
 
@@ -261,7 +261,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateNumInterno() {
-        String regex = "^(\\w ?){1,127}$";
+        String regex = "^[0-9A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{0,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(numInt);
 
@@ -298,23 +298,92 @@ public class RegisterActivity extends AppCompatActivity {
         boolean pass = false;
         boolean confirmpass = false;
 
+        TextView tname, tmiddle, tlast, temail, tusername, tpass, tconfirmpass;
+
         if (validateName()) {
             name = true;
+            tname = findViewById(R.id.tVNameNotAccepted);
+            tname.setVisibility(View.GONE);
+        }
+        else {
+            tname = findViewById(R.id.tVNameNotAccepted);
+            tname.setVisibility(View.VISIBLE);
+            tname.setTextColor(Color.RED);
+            String message = "El nombre no acepta caracteres especiales.";
+            tname.setText(message);
         }
         if (validateMiddleName()) {
             middle = true;
+            tmiddle = findViewById(R.id.tVAMNotAccepted);
+            tmiddle.setVisibility(View.GONE);
+        }
+        else {
+            tmiddle = findViewById(R.id.tVAMNotAccepted);
+            tmiddle.setVisibility(View.VISIBLE);
+            tmiddle.setTextColor(Color.RED);
+            String message = "El apellido materno no acepta caracteres especiales.";
+            tmiddle.setText(message);
         }
         if (validateLastName()) {
             last = true;
+            tlast = findViewById(R.id.tVAPNotAccepted);
+            tlast.setVisibility(View.GONE);
+        }
+        else {
+            tlast = findViewById(R.id.tVAPNotAccepted);
+            tlast.setVisibility(View.VISIBLE);
+            tlast.setTextColor(Color.RED);
+            String message = "El apellido paterno no acepta caracteres especiales.";
+            tlast.setText(message);
         }
         if (validateEmail()) {
             email = true;
-        }if (validateUsername()) {
+            temail = findViewById(R.id.tVEmailNotAccepted);
+            temail.setVisibility(View.GONE);
+        }
+        else {
+            temail = findViewById(R.id.tVEmailNotAccepted);
+            temail.setVisibility(View.VISIBLE);
+            temail.setTextColor(Color.RED);
+            String message = "El correo electrónico no es válido.";
+            temail.setText(message);
+
+        }
+        if (validateUsername()) {
             username = true;
-        }if (validatePassword()) {
+            tusername = findViewById(R.id.tVUserNameNotAccepted);
+            tusername.setVisibility(View.GONE);
+        }
+        else{
+            tusername = findViewById(R.id.tVUserNameNotAccepted);
+            tusername.setVisibility(View.VISIBLE);
+            tusername.setTextColor(Color.RED);
+            String message = "El usuario no acepta caracteres especiales.";
+            tusername.setText(message);
+        }
+        if (validatePassword()) {
             pass = true;
-        }if (validatePasswordConfirm()) {
+            tpass = findViewById(R.id.tVPassNotAccepted);
+            tpass.setVisibility(View.GONE);
+        }
+        else{
+            tpass = findViewById(R.id.tVPassNotAccepted);
+            tpass.setVisibility(View.VISIBLE);
+            tpass.setTextColor(Color.RED);
+            String message = "Mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.";
+            tpass.setText(message);
+        }
+        if (validatePasswordConfirm()) {
             confirmpass = true;
+            tconfirmpass = findViewById(R.id.tVPassConfNotAccepted);
+            tconfirmpass.setVisibility(View.GONE);
+        }
+        else{
+            tconfirmpass = findViewById(R.id.tVPassConfNotAccepted);
+            tconfirmpass.setVisibility(View.VISIBLE);
+            tconfirmpass.setTextColor(Color.RED);
+            String message = "Mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.";
+            tconfirmpass.setText(message);
         }
 
         return (name && middle && last && email && username && pass && confirmpass);
@@ -329,21 +398,82 @@ public class RegisterActivity extends AppCompatActivity {
         boolean numint = false;
         boolean codpost = false;
 
+        TextView tcalle, tcolonia, tmunicipio, testado, tnumint, tcodpost;
+
         if (validateCalle()) {
             calle = true;
+            tcalle = findViewById(R.id.tVCalleNotAccepted);
+            tcalle.setVisibility(View.GONE);
+        }
+        else {
+            tcalle = findViewById(R.id.tVCalleNotAccepted);
+            tcalle.setVisibility(View.VISIBLE);
+            tcalle.setTextColor(Color.RED);
+            String message = "La calle no acepta caracteres especiales.";
+            tcalle.setText(message);
         }
         if (validateColonia()) {
             colonia = true;
+            tcolonia = findViewById(R.id.tVColoniaNotAccepted);
+            tcolonia.setVisibility(View.GONE);
+        }
+        else {
+            tcolonia = findViewById(R.id.tVColoniaNotAccepted);
+            tcolonia.setVisibility(View.VISIBLE);
+            tcolonia.setTextColor(Color.RED);
+            String message = "La colonia no acepta caracteres especiales.";
+            tcolonia.setText(message);
+
         }
         if (validateMunicipio()) {
             municipio = true;
+            tmunicipio = findViewById(R.id.tVMuniNotAccepted);
+            tmunicipio.setVisibility(View.GONE);
+        }
+        else {
+            tmunicipio = findViewById(R.id.tVMuniNotAccepted);
+            tmunicipio.setVisibility(View.VISIBLE);
+            tmunicipio.setTextColor(Color.RED);
+            String message = "El municipio no acepta caracteres especiales.";
+            tmunicipio.setText(message);
+
         }
         if (validateEstado()) {
             estado = true;
-        }if (validateNumInterno()) {
+            testado = findViewById(R.id.tVEstadoNotAccepted);
+            testado.setVisibility(View.GONE);
+        }
+        else {
+            testado = findViewById(R.id.tVEstadoNotAccepted);
+            testado.setVisibility(View.VISIBLE);
+            testado.setTextColor(Color.RED);
+            String message = "El estado no acepta caracteres especiales.";
+            testado.setText(message);
+
+        }
+        if (validateNumInterno()) {
             numint = true;
-        }if (validateCodigoPostal()) {
+            tnumint = findViewById(R.id.tVNINotAccepted);
+            tnumint.setVisibility(View.GONE);
+        }
+        else {
+            tnumint = findViewById(R.id.tVNINotAccepted);
+            tnumint.setVisibility(View.VISIBLE);
+            tnumint.setTextColor(Color.RED);
+            String message = "El número interno no acepta caracteres especiales.";
+            tnumint.setText(message);
+        }
+        if (validateCodigoPostal()) {
             codpost = true;
+            tcodpost = findViewById(R.id.tVCodigoPostalNotAccepted);
+            tcodpost.setVisibility(View.GONE);
+        }
+        else {
+            tcodpost = findViewById(R.id.tVCodigoPostalNotAccepted);
+            tcodpost.setVisibility(View.VISIBLE);
+            tcodpost.setTextColor(Color.RED);
+            String message = "El código postal solo puede tener una longitud de 5 dígitos.";
+            tcodpost.setText(message);
         }
 
         return (calle && colonia && municipio && estado && numint && codpost);
@@ -474,7 +604,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 byte[] byteArray = outputStream.toByteArray();
                                 //Encode Base 64 Image
                                 sImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                                Log.e("TAG","hola");
 
                             } catch (IOException e) {
                                 e.printStackTrace();
