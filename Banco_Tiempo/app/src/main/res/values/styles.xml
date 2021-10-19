@@ -269,4 +269,9 @@
     <style name="DarkModeHidden">
         <item name="android:visibility">visible</item>
     </style>
+
+    <style name="SplashScreenTheme" parent = "Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
 </resources>
