@@ -15,11 +15,15 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.ramijemli.percentagechartview.PercentageChartView;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -53,6 +57,7 @@ public class RateOffer extends Fragment {
 
     String username;
     String message;
+    String token;
 
     View root;
 
@@ -94,6 +99,20 @@ public class RateOffer extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        FirebaseMessaging.getInstance().getToken()
+
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            //Log.w("FCM Token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        token = task.getResult();
+                    }
+                });
     }
 
     @Override
@@ -181,6 +200,8 @@ public class RateOffer extends Fragment {
                     EndedServiceResponse endedServiceResponse = response.body();
                     try{
                         if(endedServiceResponse.getTransactionApproval() == 1){
+                            FcmNotificationSenderRate notificationSenderRate = new FcmNotificationSenderRate(token,"Ofertas","La oferta se ha calificado correctamente",applicationContext, RateOffer.this);
+                            notificationSenderRate.SendNotificationRate();
                             message = "La oferta ha sido calificada.";
                             Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
