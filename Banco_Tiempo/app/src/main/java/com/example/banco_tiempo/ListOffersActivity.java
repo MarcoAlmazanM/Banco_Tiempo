@@ -37,7 +37,6 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
     List<ElementList>ofertas;
     List<OffersDetails>offersD;
     ListAdapter adapter;
-    //List<ElementList>filtrado;
     SearchView searchList;
 
     SharedPreferences preferences;
@@ -191,8 +190,6 @@ public class ListOffersActivity extends AppCompatActivity implements SearchView.
 
     @Override
     public boolean onQueryTextChange(String s) {
-        //filtro(s);
-        //adapter=new ListAdapter(ofertas,this, adapter.action);
         adapter.filtro(s);
         return false;
     }
