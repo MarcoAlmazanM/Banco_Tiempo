@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -73,13 +72,6 @@ public class UpdateUserData extends AppCompatActivity {
         eTcodPostal = findViewById(R.id.textInputCodigoPU);
 
         obtainUserData();
-
-        eTnombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                Log.e("lol",eTnombre.getEditText().getText().toString());
-            }
-        });
 
         circularProgressButton = findViewById(R.id.btnActualizarDatos);
 
@@ -265,7 +257,6 @@ public class UpdateUserData extends AppCompatActivity {
         setActualUserData();
     }
     public void setActualUserData(){
-        Log.e("lol","entramos1");
         eTnombre.getEditText().setText(nombre);
         eTapellidoM.getEditText().setText(apellidoM);
         eTapellidoP.getEditText().setText(apellidoP);
@@ -345,12 +336,10 @@ public class UpdateUserData extends AppCompatActivity {
     }
 
     public void getUpdateUserData(CircularProgressButton btn, View view) {
-        Log.e("lol", String.valueOf(eTnombre));
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getUpdateUserInfo();
-                Log.e("lol","entramos0");
                 if (validateFields()) {
                     LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View popupView = inflater.inflate(R.layout.popup_update, null);
