@@ -60,12 +60,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputCalle"
                         style="@style/parent"
+                        android:hint="@string/calle"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTCalle"
                             style="@style/modifiedEditText"
-                            android:hint="@string/calle"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -83,12 +83,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputColonia"
                         style="@style/parent"
+                        android:hint="@string/colonia"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTColonia"
                             style="@style/modifiedEditText"
-                            android:hint="@string/colonia"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -106,12 +106,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputMunicipio"
                         style="@style/parent"
+                        android:hint="@string/municipio"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTMunicipio"
                             style="@style/modifiedEditText"
-                            android:hint="@string/municipio"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -129,12 +129,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEstado"
                         style="@style/parent"
+                        android:hint="@string/estado"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTEstado"
                             style="@style/modifiedEditText"
-                            android:hint="@string/estado"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -152,12 +152,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputNumInt"
                         style="@style/parent"
+                        android:hint="@string/numInt"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTNumInt"
                             style="@style/modifiedEditText"
-                            android:hint="@string/numInt"
                             android:inputType="text"
                             android:maxLines="1"
                             android:textColor="@color/black" />
@@ -175,12 +175,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputCP"
                         style="@style/parent"
+                        android:hint="@string/codigoPostal"
                         android:layout_marginTop="@dimen/loginViewsMargin">
 
                         <EditText
                             android:id="@+id/eTCP"
                             style="@style/modifiedEditText"
-                            android:hint="@string/codigoPostal"
                             android:inputType="number"
                             android:maxLines="1"
                             android:textColor="@color/black" />
