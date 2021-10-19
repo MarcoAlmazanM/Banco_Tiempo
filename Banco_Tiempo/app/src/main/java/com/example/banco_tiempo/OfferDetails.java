@@ -128,7 +128,7 @@ public class OfferDetails extends AppCompatActivity {
                         if(userRequestOfferResponse.getTransactionApproval() == 1){
                             message = "La solicitud del servicio esta esperando a ser aceptada, favor de dirigirse al apartado de notificaciones.";
                             Toast.makeText(OfferDetails.this, message, Toast.LENGTH_LONG).show();
-                            FcmNotificationSenderAct notificationSenderAct = new FcmNotificationSenderAct(token,"¡Hola!","Tienes nuevas notificaciones",getApplicationContext(), OfferDetails.this);
+                            FcmNotificationSenderAct notificationSenderAct = new FcmNotificationSenderAct(token,"Servicio solicitado correctamente","Revisa tus notificaciones",getApplicationContext(), OfferDetails.this);
                             notificationSenderAct.SendNotifications();
                         }else{
                             message = userRequestOfferResponse.getError();
