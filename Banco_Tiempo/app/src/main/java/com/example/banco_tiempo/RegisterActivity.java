@@ -163,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validateUsername() {
-        String regex = "^[0-9A-Za-z ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
+        String regex = "^[0-9A-Za-z_\\- ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{1,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(username);
 
@@ -177,7 +177,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validatePassword() {
-        String regex = "^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\\d@$!%*?&]{8,255}$";
+        String regex = "^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\\d)(?=.*[@$!%*?._&])[A-ZÑa-zñ\\d@$!%*?._&]{8,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
 
@@ -191,7 +191,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean validatePasswordConfirm() {
-        String regex = "^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\\d)(?=.*[@$!%*?&])[A-ZÑa-zñ\\d@$!%*?&]{8,255}$";
+        String regex = "^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\\d)(?=.*[@$!%*?._&])[A-ZÑa-zñ\\d@$!%*?._&]{8,255}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(passwordConfirm);
 
@@ -514,6 +514,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Resources resources = new Resources();
                 passwordHash = resources.hash256(password);
                 setContentView(R.layout.activity_register_second);
+
                 if (saveUserData) {
                     userInfo2();
                 }
@@ -523,6 +524,11 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void btngotoPolPriv(View view) {
+        Intent browserintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://bancodetiempo.s3.amazonaws.com/Aviso+de+Privacidad+Banco+de+Tiempo.pdf"));
+        startActivity(browserintent);
     }
 
     public void verifyData2(View view){

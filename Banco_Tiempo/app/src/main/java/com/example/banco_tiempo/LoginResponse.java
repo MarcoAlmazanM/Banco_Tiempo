@@ -18,6 +18,7 @@ public class LoginResponse implements Serializable {
     private String municipio;
     private String estado;
     private Integer CP;
+    private String stars;
 
     public Integer getLoginApproval() {
         return loginApproval;
@@ -137,6 +138,14 @@ public class LoginResponse implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getStars() {
+        return stars;
+    }
+
+    public void setStars(String stars) {
+        this.stars = stars;
     }
 }
 

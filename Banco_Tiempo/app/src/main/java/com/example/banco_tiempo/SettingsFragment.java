@@ -1,15 +1,14 @@
 package com.example.banco_tiempo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +26,11 @@ public class SettingsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    TextView btnAviso;
+
     TextView btnUpdateUserData;
+
+    TextView btnManualUser;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -67,8 +70,14 @@ public class SettingsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
+
         btnUpdateUserData = (TextView) root.findViewById(R.id.btnUpdateUserData);
+        btnManualUser = (TextView) root.findViewById(R.id.btnAppMan);
+        btnAviso = (TextView) root.findViewById(R.id.btnLegal);
         clickBtnUpdateUserData(btnUpdateUserData);
+        clickBtnAviso(btnAviso);
+        clickBtnManual(btnManualUser);
+
 
         return root;
     }
@@ -82,5 +91,29 @@ public class SettingsFragment extends Fragment {
             }
         });
     }
+
+    public void clickBtnAviso(TextView btnAviso) {
+        btnAviso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent documentation = new Intent(getActivity().getApplicationContext(), Documentation.class);
+                getActivity().startActivity(documentation);
+            }
+        });
+
+    }
+
+    public void clickBtnManual(TextView btnManualUser) {
+        btnManualUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/playlist?list=PLd9I1Ec6Ep2U-nlJmYyHYwovQrBHjJsx7"));
+                getActivity().startActivity(browserintent);
+            }
+        });
+
+    }
+
+
 
 }

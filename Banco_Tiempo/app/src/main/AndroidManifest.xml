@@ -19,15 +19,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Banco_Tiempo">
         <activity
+            android:name=".Documentation"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashScreenTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name=".EmailChangePassword"
             android:exported="true" />
@@ -87,8 +95,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <service
             android:name=".FirebaseMessagingService"
@@ -110,6 +117,15 @@
         </service>
         <service
             android:name=".FirebaseMessagingServiceAct"
+            android:exported="true"
+            android:permission="TODO"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".FirebaseMessagingServiceRate"
             android:exported="true"
             android:permission="TODO"
             tools:ignore="ExportedService">

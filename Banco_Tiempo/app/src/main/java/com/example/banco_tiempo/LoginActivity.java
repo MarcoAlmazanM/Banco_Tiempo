@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("email", loginResponse.getEmail());
                     editor.putInt("statusHours", loginResponse.getStatusHours());
                     editor.putInt("documentosApproval", loginResponse.getDocumentosApproval());
+                    editor.putString("stars", loginResponse.getStars());
                     editor.putBoolean("SaveSession", true);
                     editor.apply();
                     Intent menu = new Intent(LoginActivity.this, MainActivity.class);

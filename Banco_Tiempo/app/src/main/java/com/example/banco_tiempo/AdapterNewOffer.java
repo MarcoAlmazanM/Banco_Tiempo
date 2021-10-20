@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -37,7 +41,6 @@ public class AdapterNewOffer
     ArrayList<Drawable> gradients = new ArrayList<>();
     Integer counter = 0;
     String message;
-    Boolean deleteOffer = false;
 
     public AdapterNewOffer(ArrayList<OfferVO> listaOffer, Context context){
 
@@ -65,7 +68,7 @@ public class AdapterNewOffer
             counter = 0;
         }
 
-        holder.relativeLayout.setBackground(gradients.get(counter));
+        holder.linearLayout.setBackground(gradients.get(counter));
         counter++;
     }
 
@@ -89,7 +92,8 @@ public class AdapterNewOffer
         ImageView myImage;
         Button btnAccept;
         Drawable drawable;
-        RelativeLayout relativeLayout;
+        LinearLayout linearLayout;
+        String token;
         private AdapterNewOffer adapter;
 
         public MyViewHolder (@NonNull View itemView){
@@ -115,14 +119,25 @@ public class AdapterNewOffer
             drawable = ResourcesCompat.getDrawable(itemView.getResources(), R.drawable.home_gradient_comida, null);
             gradients.add(drawable);
 
-            relativeLayout = itemView.findViewById(R.id.rLlayout);
+            linearLayout = itemView.findViewById(R.id.rLayout);
             itemView.findViewById(R.id.btnDelOffer).setOnClickListener(view-> {
                 setDeleteUserOffer(getAdapterPosition());
-                if(deleteOffer){
-                    adapter.listaOffer.remove(getAdapterPosition());
-                    adapter.notifyItemRemoved(getAdapterPosition());
-                }
             });
+
+            FirebaseMessaging.getInstance().getToken()
+
+                    .addOnCompleteListener(new OnCompleteListener<String>() {
+                        @Override
+                        public void onComplete(@NonNull Task<String> task) {
+                            if (!task.isSuccessful()) {
+                                //Log.w("FCM Token failed", task.getException());
+                                return;
+                            }
+
+                            // Get new FCM registration token
+                            token = task.getResult();
+                        }
+                    });
         }
 
         public void setDeleteUserOffer(int position){
@@ -142,11 +157,14 @@ public class AdapterNewOffer
                             if(deleteUserOfferResponse.getTransactionApproval() == 1){
                                 message = "La oferta se ha eliminado correctamente.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                deleteOffer = true;
+                                adapter.listaOffer.remove(getAdapterPosition());
+                                adapter.notifyItemRemoved(getAdapterPosition());
+                                //deleteOffer = true;
+                                FcmNotificationSenderOffer notificationSenderOffer = new FcmNotificationSenderOffer(token,"Estatus de oferta","Oferta eliminada correctamente",context.getApplicationContext(), AdapterNewOffer.this);
+                                notificationSenderOffer.SendNotifications();
                             }else{
                                 message = "No se puede eliminar la oferta porque esta actualmente activa.";
                                 Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                deleteOffer =false;
                             }
 
                         }catch (NullPointerException nullPointerException){
